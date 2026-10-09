@@ -1,0 +1,11444 @@
+{
+ "chip": {
+  "blender": [
+   0.0,
+   1.5
+  ],
+  "keep_clear_r": 1.05,
+  "underside_z": 0.249
+ },
+ "dir_angle": {
+  "E": 180,
+  "NE": 240,
+  "NW": 300,
+  "SE": 120,
+  "SW": 60,
+  "W": 0
+ },
+ "frame": "Blender tile frame (hex centre origin, +z up, chip socket (0, 1.5, 0.26)); file = glTF frame (x, z=-y); yaws CCW about Blender +z == about three.js +y",
+ "grounds": {
+  "Desert": {
+   "heroes": {
+    "cactus1": {
+     "anchor": {
+      "blender": [
+       -1.95,
+       -0.36
+      ],
+      "file": [
+       -1.95,
+       0.36
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.347,
+     "ground_bound": false,
+     "nodes": [
+      "Desert_cactus_01"
+     ],
+     "note": "tall saguaro",
+     "select_r": null
+    },
+    "cactus3": {
+     "anchor": {
+      "blender": [
+       -0.79,
+       -1.76
+      ],
+      "file": [
+       -0.79,
+       1.76
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.361,
+     "ground_bound": false,
+     "nodes": [
+      "Desert_cactus_03"
+     ],
+     "note": "tall saguaro",
+     "select_r": null
+    },
+    "mesa": {
+     "anchor": {
+      "blender": [
+       1.36,
+       -0.96
+      ],
+      "file": [
+       1.36,
+       0.96
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.961,
+     "ground_bound": false,
+     "nodes": [
+      "Desert_mesa"
+     ],
+     "note": "the red mesa",
+     "select_r": null
+    }
+   },
+   "keep": {
+    "budget_drop_order": [
+     "Desert_washstones",
+     "Desert_bones",
+     "Desert_skull",
+     "Desert_tumbleweed_02",
+     "Desert_scrub_03"
+    ],
+    "clip_nodes": [
+     "Desert_ripples_01",
+     "Desert_ripples_02",
+     "Desert_ripples_03"
+    ],
+    "note": "clip = remove only the triangles the town covers, never the whole dune; the desert base is already 3643 tris, so drop in budget_drop_order until the tile is under 3634"
+   },
+   "river_spots": {},
+   "spots": {
+    "E": {
+     "cactus1": {
+      "blender": [
+       0.45,
+       -0.84
+      ],
+      "file": [
+       0.45,
+       0.84
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "cactus1_alt": {
+      "blender": [
+       0.29,
+       -2.12
+      ],
+      "file": [
+       0.29,
+       2.12
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 60.0
+     },
+     "cactus3": {
+      "blender": [
+       1.05,
+       0.08
+      ],
+      "file": [
+       1.05,
+       -0.08
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "cactus3_alt": {
+      "blender": [
+       1.45,
+       -0.24
+      ],
+      "file": [
+       1.45,
+       0.24
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "mesa": {
+      "blender": [
+       0.88,
+       -1.44
+      ],
+      "file": [
+       0.88,
+       1.44
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     }
+    },
+    "NE": {
+     "cactus1": {
+      "blender": [
+       -1.31,
+       1.16
+      ],
+      "file": [
+       -1.31,
+       -1.16
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -60.0
+     },
+     "cactus1_alt": {
+      "blender": [
+       -1.71,
+       1.48
+      ],
+      "file": [
+       -1.71,
+       -1.48
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "cactus3": {
+      "blender": [
+       1.21,
+       1.12
+      ],
+      "file": [
+       1.21,
+       -1.12
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "cactus3_alt": {
+      "blender": [
+       1.85,
+       0.56
+      ],
+      "file": [
+       1.85,
+       -0.56
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -60.0
+     },
+     "mesa": {
+      "blender": [
+       1.76,
+       -0.08
+      ],
+      "file": [
+       1.76,
+       0.08
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": -30.0
+     }
+    },
+    "NW": {
+     "cactus1": {
+      "blender": [
+       -2.11,
+       0.36
+      ],
+      "file": [
+       -2.11,
+       -0.36
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "cactus3": {
+      "blender": [
+       -1.19,
+       1.2
+      ],
+      "file": [
+       -1.19,
+       -1.2
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 60.0
+     },
+     "cactus3_alt": {
+      "blender": [
+       1.21,
+       1.12
+      ],
+      "file": [
+       1.21,
+       -1.12
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "mesa": {
+      "blender": [
+       -1.6,
+       0.0
+      ],
+      "file": [
+       -1.6,
+       -0.0
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 30.0
+     }
+    },
+    "SE": {
+     "cactus1": {
+      "blender": [
+       -1.07,
+       -1.0
+      ],
+      "file": [
+       -1.07,
+       1.0
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "cactus1_alt": {
+      "blender": [
+       -1.55,
+       -1.56
+      ],
+      "file": [
+       -1.55,
+       1.56
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 90.0
+     },
+     "cactus3": {
+      "blender": [
+       -0.79,
+       -1.84
+      ],
+      "file": [
+       -0.79,
+       1.84
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "cactus3_alt": {
+      "blender": [
+       -0.47,
+       -1.44
+      ],
+      "file": [
+       -0.47,
+       1.44
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "mesa": {
+      "blender": [
+       0.88,
+       -1.44
+      ],
+      "file": [
+       0.88,
+       1.44
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     }
+    },
+    "SW": {
+     "cactus1": {
+      "blender": [
+       -1.95,
+       -0.36
+      ],
+      "file": [
+       -1.95,
+       0.36
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "cactus3": {
+      "blender": [
+       -1.67,
+       -1.52
+      ],
+      "file": [
+       -1.67,
+       1.52
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -90.0
+     },
+     "cactus3_alt": {
+      "blender": [
+       0.41,
+       -1.76
+      ],
+      "file": [
+       0.41,
+       1.76
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "mesa": {
+      "blender": [
+       -0.88,
+       -1.44
+      ],
+      "file": [
+       -0.88,
+       1.44
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 90.0
+     }
+    },
+    "W": {
+     "cactus1": {
+      "blender": [
+       -1.95,
+       -0.36
+      ],
+      "file": [
+       -1.95,
+       0.36
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "cactus3": {
+      "blender": [
+       -1.67,
+       -1.52
+      ],
+      "file": [
+       -1.67,
+       1.52
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -90.0
+     },
+     "cactus3_alt": {
+      "blender": [
+       -1.43,
+       -0.4
+      ],
+      "file": [
+       -1.43,
+       0.4
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "mesa": {
+      "blender": [
+       -0.88,
+       -1.44
+      ],
+      "file": [
+       -0.88,
+       1.44
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 90.0
+     }
+    }
+   },
+   "yard_material": "Mat_Desert_gravel"
+  },
+  "Fields": {
+   "heroes": {
+    "farmstead": {
+     "anchor": {
+      "blender": [
+       -1.27,
+       -0.98
+      ],
+      "file": [
+       -1.27,
+       0.98
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.691,
+     "ground_bound": false,
+     "nodes": [
+      "Fields_farmstead"
+     ],
+     "note": "house and granary",
+     "select_r": null
+    },
+    "racks": {
+     "anchor": {
+      "blender": [
+       -1.57,
+       1.26
+      ],
+      "file": [
+       -1.57,
+       -1.26
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.615,
+     "ground_bound": false,
+     "nodes": [
+      "Fields_croprows"
+     ],
+     "note": "drying racks",
+     "select_r": 0.4
+    },
+    "scarecrow": {
+     "anchor": {
+      "blender": [
+       -0.75,
+       0.24
+      ],
+      "file": [
+       -0.75,
+       -0.24
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.383,
+     "ground_bound": false,
+     "nodes": [
+      "Fields_scarecrow"
+     ],
+     "note": "scarecrow",
+     "select_r": null
+    },
+    "sheaves": {
+     "anchor": {
+      "blender": [
+       1.85,
+       -0.6
+      ],
+      "file": [
+       1.85,
+       0.6
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.329,
+     "ground_bound": false,
+     "nodes": [
+      "Fields_harvest"
+     ],
+     "note": "smaller sheaves",
+     "select_r": 0.3
+    },
+    "stooks": {
+     "anchor": {
+      "blender": [
+       1.77,
+       0.39
+      ],
+      "file": [
+       1.77,
+       -0.39
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.642,
+     "ground_bound": false,
+     "nodes": [
+      "Fields_harvest"
+     ],
+     "note": "the big sheaf stook",
+     "select_r": 0.4
+    }
+   },
+   "keep": {
+    "note": "the crop bands are ground materials and survive the re-heighting; only the props need spots"
+   },
+   "river_spots": {
+    "E_NW": {
+     "farmstead": {
+      "blender": [
+       -0.95,
+       -1.7
+      ],
+      "file": [
+       -0.95,
+       1.7
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "farmstead_alt": {
+      "blender": [
+       -0.47,
+       -1.86
+      ],
+      "file": [
+       -0.47,
+       1.86
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -60.0
+     },
+     "racks": {
+      "blender": [
+       -1.57,
+       1.26
+      ],
+      "file": [
+       -1.57,
+       -1.26
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "scarecrow": {
+      "blender": [
+       -0.75,
+       0.32
+      ],
+      "file": [
+       -0.75,
+       -0.32
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "scarecrow_alt": {
+      "blender": [
+       -0.27,
+       0.16
+      ],
+      "file": [
+       -0.27,
+       -0.16
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "sheaves": {
+      "blender": [
+       1.85,
+       -0.6
+      ],
+      "file": [
+       1.85,
+       0.6
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "stooks": {
+      "blender": [
+       1.77,
+       0.39
+      ],
+      "file": [
+       1.77,
+       -0.39
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     }
+    },
+    "E_SW": {
+     "farmstead": {
+      "blender": [
+       -0.71,
+       -1.7
+      ],
+      "file": [
+       -0.71,
+       1.7
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "farmstead_alt": {
+      "blender": [
+       -0.15,
+       -1.62
+      ],
+      "file": [
+       -0.15,
+       1.62
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "racks": {
+      "blender": [
+       -1.57,
+       1.26
+      ],
+      "file": [
+       -1.57,
+       -1.26
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "scarecrow": {
+      "blender": [
+       -0.83,
+       0.4
+      ],
+      "file": [
+       -0.83,
+       -0.4
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "sheaves": {
+      "blender": [
+       1.85,
+       -0.6
+      ],
+      "file": [
+       1.85,
+       0.6
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "stooks": {
+      "blender": [
+       1.93,
+       0.31
+      ],
+      "file": [
+       1.93,
+       -0.31
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "stooks_alt": {
+      "blender": [
+       1.21,
+       -0.57
+      ],
+      "file": [
+       1.21,
+       0.57
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     }
+    },
+    "E_W_A": {
+     "farmstead": {
+      "blender": [
+       -1.27,
+       -1.14
+      ],
+      "file": [
+       -1.27,
+       1.14
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "farmstead_alt": {
+      "blender": [
+       -0.87,
+       -1.46
+      ],
+      "file": [
+       -0.87,
+       1.46
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "racks": {
+      "blender": [
+       -0.37,
+       -1.54
+      ],
+      "file": [
+       -0.37,
+       1.54
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "racks_alt": {
+      "blender": [
+       0.19,
+       -1.54
+      ],
+      "file": [
+       0.19,
+       1.54
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "scarecrow": {
+      "blender": [
+       -1.39,
+       1.2
+      ],
+      "file": [
+       -1.39,
+       -1.2
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "scarecrow_alt": {
+      "blender": [
+       0.61,
+       0.32
+      ],
+      "file": [
+       0.61,
+       -0.32
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheaves": {
+      "blender": [
+       2.01,
+       -0.92
+      ],
+      "file": [
+       2.01,
+       0.92
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheaves_alt": {
+      "blender": [
+       1.53,
+       -1.08
+      ],
+      "file": [
+       1.53,
+       1.08
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "stooks": {
+      "blender": [
+       1.37,
+       0.71
+      ],
+      "file": [
+       1.37,
+       -0.71
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "stooks_alt": {
+      "blender": [
+       1.53,
+       1.19
+      ],
+      "file": [
+       1.53,
+       -1.19
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     }
+    },
+    "E_W_B": {
+     "farmstead": {
+      "blender": [
+       -1.43,
+       -1.3
+      ],
+      "file": [
+       -1.43,
+       1.3
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "farmstead_alt": {
+      "blender": [
+       -0.95,
+       -1.46
+      ],
+      "file": [
+       -0.95,
+       1.46
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "racks": {
+      "blender": [
+       -1.57,
+       1.26
+      ],
+      "file": [
+       -1.57,
+       -1.26
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "scarecrow": {
+      "blender": [
+       -0.75,
+       0.32
+      ],
+      "file": [
+       -0.75,
+       -0.32
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "scarecrow_alt": {
+      "blender": [
+       -1.31,
+       0.48
+      ],
+      "file": [
+       -1.31,
+       -0.48
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -60.0
+     },
+     "sheaves": {
+      "blender": [
+       1.93,
+       -0.84
+      ],
+      "file": [
+       1.93,
+       0.84
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheaves_alt": {
+      "blender": [
+       1.37,
+       -0.76
+      ],
+      "file": [
+       1.37,
+       0.76
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "stooks": {
+      "blender": [
+       1.45,
+       1.27
+      ],
+      "file": [
+       1.45,
+       -1.27
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 60.0
+     },
+     "stooks_alt": {
+      "blender": [
+       1.77,
+       -1.05
+      ],
+      "file": [
+       1.77,
+       1.05
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     }
+    },
+    "NE_SE": {
+     "farmstead": {
+      "blender": [
+       -0.39,
+       -0.26
+      ],
+      "file": [
+       -0.39,
+       0.26
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "farmstead_alt": {
+      "blender": [
+       -0.15,
+       -0.74
+      ],
+      "file": [
+       -0.15,
+       0.74
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "racks": {
+      "blender": [
+       0.75,
+       0.14
+      ],
+      "file": [
+       0.75,
+       -0.14
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "racks_alt": {
+      "blender": [
+       0.19,
+       -0.82
+      ],
+      "file": [
+       0.19,
+       0.82
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "scarecrow": {
+      "blender": [
+       -0.11,
+       -0.72
+      ],
+      "file": [
+       -0.11,
+       0.72
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "scarecrow_alt": {
+      "blender": [
+       0.45,
+       -0.48
+      ],
+      "file": [
+       0.45,
+       0.48
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheaves": {
+      "blender": [
+       1.85,
+       -0.6
+      ],
+      "file": [
+       1.85,
+       0.6
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "stooks": {
+      "blender": [
+       1.77,
+       0.39
+      ],
+      "file": [
+       1.77,
+       -0.39
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     }
+    },
+    "NE_SW": {
+     "farmstead": {
+      "blender": [
+       -1.83,
+       -0.66
+      ],
+      "file": [
+       -1.83,
+       0.66
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "farmstead_alt": {
+      "blender": [
+       -1.51,
+       -0.18
+      ],
+      "file": [
+       -1.51,
+       0.18
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "racks": {
+      "blender": [
+       -1.57,
+       1.26
+      ],
+      "file": [
+       -1.57,
+       -1.26
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "scarecrow": {
+      "blender": [
+       -0.75,
+       0.24
+      ],
+      "file": [
+       -0.75,
+       -0.24
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "sheaves": {
+      "blender": [
+       1.85,
+       -0.6
+      ],
+      "file": [
+       1.85,
+       0.6
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "stooks": {
+      "blender": [
+       1.29,
+       -0.89
+      ],
+      "file": [
+       1.29,
+       0.89
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "stooks_alt": {
+      "blender": [
+       1.69,
+       -1.21
+      ],
+      "file": [
+       1.69,
+       1.21
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     }
+    },
+    "NE_W": {
+     "farmstead": {
+      "blender": [
+       -1.59,
+       -0.5
+      ],
+      "file": [
+       -1.59,
+       0.5
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "farmstead_alt": {
+      "blender": [
+       -1.11,
+       -0.34
+      ],
+      "file": [
+       -1.11,
+       0.34
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "racks": {
+      "blender": [
+       -1.57,
+       1.26
+      ],
+      "file": [
+       -1.57,
+       -1.26
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "scarecrow": {
+      "blender": [
+       -0.75,
+       0.24
+      ],
+      "file": [
+       -0.75,
+       -0.24
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "sheaves": {
+      "blender": [
+       1.93,
+       -1.24
+      ],
+      "file": [
+       1.93,
+       1.24
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheaves_alt": {
+      "blender": [
+       1.37,
+       -1.32
+      ],
+      "file": [
+       1.37,
+       1.32
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "stooks": {
+      "blender": [
+       1.85,
+       0.71
+      ],
+      "file": [
+       1.85,
+       -0.71
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "stooks_alt": {
+      "blender": [
+       1.53,
+       1.11
+      ],
+      "file": [
+       1.53,
+       -1.11
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     }
+    },
+    "NW_SE": {
+     "farmstead": {
+      "blender": [
+       -1.35,
+       -0.98
+      ],
+      "file": [
+       -1.35,
+       0.98
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "farmstead_alt": {
+      "blender": [
+       -1.03,
+       -1.38
+      ],
+      "file": [
+       -1.03,
+       1.38
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "racks": {
+      "blender": [
+       0.91,
+       0.3
+      ],
+      "file": [
+       0.91,
+       -0.3
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "racks_alt": {
+      "blender": [
+       -0.69,
+       -1.38
+      ],
+      "file": [
+       -0.69,
+       1.38
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "scarecrow": {
+      "blender": [
+       -1.63,
+       -0.4
+      ],
+      "file": [
+       -1.63,
+       0.4
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "scarecrow_alt": {
+      "blender": [
+       -1.95,
+       0.08
+      ],
+      "file": [
+       -1.95,
+       -0.08
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "sheaves": {
+      "blender": [
+       1.85,
+       -0.6
+      ],
+      "file": [
+       1.85,
+       0.6
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "stooks": {
+      "blender": [
+       1.77,
+       0.39
+      ],
+      "file": [
+       1.77,
+       -0.39
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     }
+    },
+    "NW_SW": {
+     "farmstead": {
+      "blender": [
+       -1.27,
+       -0.98
+      ],
+      "file": [
+       -1.27,
+       0.98
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "racks": {
+      "blender": [
+       -1.57,
+       1.26
+      ],
+      "file": [
+       -1.57,
+       -1.26
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "scarecrow": {
+      "blender": [
+       -0.75,
+       0.24
+      ],
+      "file": [
+       -0.75,
+       -0.24
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "sheaves": {
+      "blender": [
+       0.33,
+       -0.68
+      ],
+      "file": [
+       0.33,
+       0.68
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheaves_alt": {
+      "blender": [
+       0.17,
+       -1.16
+      ],
+      "file": [
+       0.17,
+       1.16
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "stooks": {
+      "blender": [
+       0.49,
+       0.07
+      ],
+      "file": [
+       0.49,
+       -0.07
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "stooks_alt": {
+      "blender": [
+       0.41,
+       -0.49
+      ],
+      "file": [
+       0.41,
+       0.49
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     }
+    },
+    "W_SE": {
+     "farmstead": {
+      "blender": [
+       -1.27,
+       -0.98
+      ],
+      "file": [
+       -1.27,
+       0.98
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "racks": {
+      "blender": [
+       -1.89,
+       0.22
+      ],
+      "file": [
+       -1.89,
+       -0.22
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "racks_alt": {
+      "blender": [
+       -1.73,
+       -0.26
+      ],
+      "file": [
+       -1.73,
+       0.26
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -90.0
+     },
+     "scarecrow": {
+      "blender": [
+       -1.39,
+       -0.4
+      ],
+      "file": [
+       -1.39,
+       0.4
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "scarecrow_alt": {
+      "blender": [
+       -0.51,
+       -1.04
+      ],
+      "file": [
+       -0.51,
+       1.04
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheaves": {
+      "blender": [
+       2.01,
+       -1.24
+      ],
+      "file": [
+       2.01,
+       1.24
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "sheaves_alt": {
+      "blender": [
+       1.45,
+       -1.48
+      ],
+      "file": [
+       1.45,
+       1.48
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "stooks": {
+      "blender": [
+       1.93,
+       0.87
+      ],
+      "file": [
+       1.93,
+       -0.87
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "stooks_alt": {
+      "blender": [
+       1.37,
+       0.87
+      ],
+      "file": [
+       1.37,
+       -0.87
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -60.0
+     }
+    }
+   },
+   "spots": {
+    "E": {
+     "farmstead": {
+      "blender": [
+       0.65,
+       -1.22
+      ],
+      "file": [
+       0.65,
+       1.22
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -60.0
+     },
+     "farmstead_alt": {
+      "blender": [
+       0.89,
+       -1.7
+      ],
+      "file": [
+       0.89,
+       1.7
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "racks": {
+      "blender": [
+       1.39,
+       1.5
+      ],
+      "file": [
+       1.39,
+       -1.5
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "scarecrow": {
+      "blender": [
+       1.17,
+       0.08
+      ],
+      "file": [
+       1.17,
+       -0.08
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "scarecrow_alt": {
+      "blender": [
+       0.53,
+       -1.92
+      ],
+      "file": [
+       0.53,
+       1.92
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheaves": {
+      "blender": [
+       1.93,
+       -0.6
+      ],
+      "file": [
+       1.93,
+       0.6
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheaves_alt": {
+      "blender": [
+       1.61,
+       -1.4
+      ],
+      "file": [
+       1.61,
+       1.4
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "stooks": {
+      "blender": [
+       1.77,
+       0.23
+      ],
+      "file": [
+       1.77,
+       -0.23
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "stooks_alt": {
+      "blender": [
+       1.93,
+       -0.25
+      ],
+      "file": [
+       1.93,
+       0.25
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     }
+    },
+    "NE": {
+     "farmstead": {
+      "blender": [
+       1.45,
+       -0.02
+      ],
+      "file": [
+       1.45,
+       0.02
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "racks": {
+      "blender": [
+       -1.41,
+       1.5
+      ],
+      "file": [
+       -1.41,
+       -1.5
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "scarecrow": {
+      "blender": [
+       1.33,
+       1.28
+      ],
+      "file": [
+       1.33,
+       -1.28
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheaves": {
+      "blender": [
+       2.09,
+       0.6
+      ],
+      "file": [
+       2.09,
+       -0.6
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "stooks": {
+      "blender": [
+       2.01,
+       -0.41
+      ],
+      "file": [
+       2.01,
+       0.41
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 30.0
+     }
+    },
+    "NW": {
+     "farmstead": {
+      "blender": [
+       -1.59,
+       -0.18
+      ],
+      "file": [
+       -1.59,
+       0.18
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "farmstead_alt": {
+      "blender": [
+       -1.91,
+       0.22
+      ],
+      "file": [
+       -1.91,
+       -0.22
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -60.0
+     },
+     "racks": {
+      "blender": [
+       -1.97,
+       0.46
+      ],
+      "file": [
+       -1.97,
+       -0.46
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "scarecrow": {
+      "blender": [
+       -1.31,
+       1.44
+      ],
+      "file": [
+       -1.31,
+       -1.44
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "scarecrow_alt": {
+      "blender": [
+       -1.95,
+       -0.56
+      ],
+      "file": [
+       -1.95,
+       0.56
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheaves": {
+      "blender": [
+       1.93,
+       -0.04
+      ],
+      "file": [
+       1.93,
+       0.04
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheaves_alt": {
+      "blender": [
+       1.29,
+       -0.12
+      ],
+      "file": [
+       1.29,
+       0.12
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "stooks": {
+      "blender": [
+       1.45,
+       1.43
+      ],
+      "file": [
+       1.45,
+       -1.43
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": -30.0
+     }
+    },
+    "SE": {
+     "farmstead": {
+      "blender": [
+       0.65,
+       -1.22
+      ],
+      "file": [
+       0.65,
+       1.22
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -60.0
+     },
+     "farmstead_alt": {
+      "blender": [
+       0.89,
+       -1.7
+      ],
+      "file": [
+       0.89,
+       1.7
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "racks": {
+      "blender": [
+       -0.61,
+       -0.98
+      ],
+      "file": [
+       -0.61,
+       0.98
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "scarecrow": {
+      "blender": [
+       1.17,
+       0.08
+      ],
+      "file": [
+       1.17,
+       -0.08
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "scarecrow_alt": {
+      "blender": [
+       -0.75,
+       -1.84
+      ],
+      "file": [
+       -0.75,
+       1.84
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheaves": {
+      "blender": [
+       1.93,
+       -0.6
+      ],
+      "file": [
+       1.93,
+       0.6
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheaves_alt": {
+      "blender": [
+       1.61,
+       -1.4
+      ],
+      "file": [
+       1.61,
+       1.4
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "stooks": {
+      "blender": [
+       1.77,
+       0.23
+      ],
+      "file": [
+       1.77,
+       -0.23
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "stooks_alt": {
+      "blender": [
+       1.93,
+       -0.25
+      ],
+      "file": [
+       1.93,
+       0.25
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     }
+    },
+    "SW": {
+     "farmstead": {
+      "blender": [
+       -1.11,
+       -1.46
+      ],
+      "file": [
+       -1.11,
+       1.46
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "farmstead_alt": {
+      "blender": [
+       -1.59,
+       -0.18
+      ],
+      "file": [
+       -1.59,
+       0.18
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "racks": {
+      "blender": [
+       -1.89,
+       0.38
+      ],
+      "file": [
+       -1.89,
+       -0.38
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "racks_alt": {
+      "blender": [
+       -1.49,
+       0.06
+      ],
+      "file": [
+       -1.49,
+       -0.06
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "scarecrow": {
+      "blender": [
+       -1.07,
+       -0.08
+      ],
+      "file": [
+       -1.07,
+       0.08
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "scarecrow_alt": {
+      "blender": [
+       -1.55,
+       -0.24
+      ],
+      "file": [
+       -1.55,
+       0.24
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheaves": {
+      "blender": [
+       0.65,
+       -0.84
+      ],
+      "file": [
+       0.65,
+       0.84
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "stooks": {
+      "blender": [
+       0.65,
+       -1.93
+      ],
+      "file": [
+       0.65,
+       1.93
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "stooks_alt": {
+      "blender": [
+       -0.55,
+       -1.93
+      ],
+      "file": [
+       -0.55,
+       1.93
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 30.0
+     }
+    },
+    "W": {
+     "farmstead": {
+      "blender": [
+       -1.11,
+       -1.46
+      ],
+      "file": [
+       -1.11,
+       1.46
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "farmstead_alt": {
+      "blender": [
+       -1.59,
+       -0.18
+      ],
+      "file": [
+       -1.59,
+       0.18
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "racks": {
+      "blender": [
+       -1.89,
+       0.38
+      ],
+      "file": [
+       -1.89,
+       -0.38
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "racks_alt": {
+      "blender": [
+       -1.49,
+       0.06
+      ],
+      "file": [
+       -1.49,
+       -0.06
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "scarecrow": {
+      "blender": [
+       -1.07,
+       -0.08
+      ],
+      "file": [
+       -1.07,
+       0.08
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "scarecrow_alt": {
+      "blender": [
+       -1.55,
+       -0.24
+      ],
+      "file": [
+       -1.55,
+       0.24
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheaves": {
+      "blender": [
+       -0.47,
+       -0.84
+      ],
+      "file": [
+       -0.47,
+       0.84
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "stooks": {
+      "blender": [
+       -0.55,
+       -1.93
+      ],
+      "file": [
+       -0.55,
+       1.93
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 30.0
+     }
+    }
+   },
+   "yard_material": "Mat_Fields_track"
+  },
+  "Forest": {
+   "heroes": {
+    "broadleaf1": {
+     "anchor": {
+      "blender": [
+       -0.24,
+       -0.16
+      ],
+      "file": [
+       -0.24,
+       0.16
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.52,
+     "ground_bound": false,
+     "nodes": [
+      "Forest_broadleaf"
+     ],
+     "note": "broadleaf",
+     "select_r": 0.3
+    },
+    "broadleaf2": {
+     "anchor": {
+      "blender": [
+       -1.81,
+       -0.33
+      ],
+      "file": [
+       -1.81,
+       0.33
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.467,
+     "ground_bound": false,
+     "nodes": [
+      "Forest_broadleaf"
+     ],
+     "note": "broadleaf",
+     "select_r": 0.3
+    },
+    "broadleaf3": {
+     "anchor": {
+      "blender": [
+       -1.82,
+       0.57
+      ],
+      "file": [
+       -1.82,
+       -0.57
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.467,
+     "ground_bound": false,
+     "nodes": [
+      "Forest_broadleaf"
+     ],
+     "note": "broadleaf",
+     "select_r": 0.3
+    },
+    "conifer1": {
+     "anchor": {
+      "blender": [
+       1.6,
+       1.28
+      ],
+      "file": [
+       1.6,
+       -1.28
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.402,
+     "ground_bound": false,
+     "nodes": [
+      "Forest_conifers"
+     ],
+     "note": "conifer",
+     "select_r": 0.3
+    },
+    "conifer2": {
+     "anchor": {
+      "blender": [
+       0.75,
+       -1.55
+      ],
+      "file": [
+       0.75,
+       1.55
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.38,
+     "ground_bound": false,
+     "nodes": [
+      "Forest_conifers"
+     ],
+     "note": "conifer",
+     "select_r": 0.3
+    },
+    "conifer3": {
+     "anchor": {
+      "blender": [
+       -1.51,
+       1.33
+      ],
+      "file": [
+       -1.51,
+       -1.33
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.384,
+     "ground_bound": false,
+     "nodes": [
+      "Forest_conifers"
+     ],
+     "note": "conifer",
+     "select_r": 0.3
+    },
+    "conifer4": {
+     "anchor": {
+      "blender": [
+       -1.28,
+       -1.49
+      ],
+      "file": [
+       -1.28,
+       1.49
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.362,
+     "ground_bound": false,
+     "nodes": [
+      "Forest_conifers"
+     ],
+     "note": "conifer",
+     "select_r": 0.3
+    },
+    "conifer5": {
+     "anchor": {
+      "blender": [
+       1.96,
+       0.43
+      ],
+      "file": [
+       1.96,
+       -0.43
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.343,
+     "ground_bound": false,
+     "nodes": [
+      "Forest_conifers"
+     ],
+     "note": "conifer",
+     "select_r": 0.3
+    },
+    "conifer6": {
+     "anchor": {
+      "blender": [
+       -0.3,
+       -2.1
+      ],
+      "file": [
+       -0.3,
+       2.1
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.32,
+     "ground_bound": false,
+     "nodes": [
+      "Forest_conifers"
+     ],
+     "note": "conifer",
+     "select_r": 0.3
+    },
+    "conifer7": {
+     "anchor": {
+      "blender": [
+       1.85,
+       -1.2
+      ],
+      "file": [
+       1.85,
+       1.2
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.304,
+     "ground_bound": false,
+     "nodes": [
+      "Forest_conifers"
+     ],
+     "note": "conifer",
+     "select_r": 0.3
+    },
+    "woodcutter": {
+     "anchor": {
+      "blender": [
+       1.22,
+       -0.55
+      ],
+      "file": [
+       1.22,
+       0.55
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.67,
+     "ground_bound": false,
+     "nodes": [
+      "Forest_woodcutter"
+     ],
+     "note": "hut and log pile",
+     "select_r": null
+    }
+   },
+   "keep": {
+    "min_conifers": 7,
+    "min_trees": 7,
+    "note": "every conifer has a spot in every direction (some at scale 0.75-0.85); broadleaf may drop"
+   },
+   "river_spots": {
+    "E_NW": {
+     "broadleaf1": {
+      "blender": [
+       -1.12,
+       0.56
+      ],
+      "file": [
+       -1.12,
+       -0.56
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 90.0
+     },
+     "broadleaf2": {
+      "blender": [
+       0.35,
+       -0.01
+      ],
+      "file": [
+       0.35,
+       0.01
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 60.0
+     },
+     "broadleaf3": {
+      "blender": [
+       -1.98,
+       0.81
+      ],
+      "file": [
+       -1.98,
+       -0.81
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "conifer1": {
+      "blender": [
+       1.6,
+       1.28
+      ],
+      "file": [
+       1.6,
+       -1.28
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer2": {
+      "blender": [
+       1.07,
+       0.53
+      ],
+      "file": [
+       1.07,
+       -0.53
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer2_alt": {
+      "blender": [
+       -1.01,
+       0.45
+      ],
+      "file": [
+       -1.01,
+       -0.45
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "conifer3": {
+      "blender": [
+       -1.51,
+       1.33
+      ],
+      "file": [
+       -1.51,
+       -1.33
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer4": {
+      "blender": [
+       -1.28,
+       -1.49
+      ],
+      "file": [
+       -1.28,
+       1.49
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer5": {
+      "blender": [
+       1.96,
+       0.43
+      ],
+      "file": [
+       1.96,
+       -0.43
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer6": {
+      "blender": [
+       -0.3,
+       -2.1
+      ],
+      "file": [
+       -0.3,
+       2.1
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer7": {
+      "blender": [
+       1.85,
+       -1.2
+      ],
+      "file": [
+       1.85,
+       1.2
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "woodcutter": {
+      "blender": [
+       1.22,
+       -0.39
+      ],
+      "file": [
+       1.22,
+       0.39
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -60.0
+     },
+     "woodcutter_alt": {
+      "blender": [
+       1.7,
+       -0.23
+      ],
+      "file": [
+       1.7,
+       0.23
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     }
+    },
+    "E_SW": {
+     "broadleaf1": {
+      "blender": [
+       0.08,
+       -1.36
+      ],
+      "file": [
+       0.08,
+       1.36
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "broadleaf1_alt": {
+      "blender": [
+       -1.92,
+       0.64
+      ],
+      "file": [
+       -1.92,
+       -0.64
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "broadleaf2": {
+      "blender": [
+       -1.97,
+       0.63
+      ],
+      "file": [
+       -1.97,
+       -0.63
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "broadleaf3": {
+      "blender": [
+       0.42,
+       -2.07
+      ],
+      "file": [
+       0.42,
+       2.07
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer1": {
+      "blender": [
+       -1.2,
+       0.64
+      ],
+      "file": [
+       -1.2,
+       -0.64
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer1_alt": {
+      "blender": [
+       0.0,
+       -1.36
+      ],
+      "file": [
+       0.0,
+       1.36
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer2": {
+      "blender": [
+       0.75,
+       -1.55
+      ],
+      "file": [
+       0.75,
+       1.55
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer3": {
+      "blender": [
+       -1.51,
+       1.33
+      ],
+      "file": [
+       -1.51,
+       -1.33
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer4": {
+      "blender": [
+       -1.12,
+       -1.65
+      ],
+      "file": [
+       -1.12,
+       1.65
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer5": {
+      "blender": [
+       1.96,
+       0.43
+      ],
+      "file": [
+       1.96,
+       -0.43
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer6": {
+      "blender": [
+       -0.3,
+       -2.1
+      ],
+      "file": [
+       -0.3,
+       2.1
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer7": {
+      "blender": [
+       1.85,
+       -1.2
+      ],
+      "file": [
+       1.85,
+       1.2
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "woodcutter": {
+      "blender": [
+       1.22,
+       -0.55
+      ],
+      "file": [
+       1.22,
+       0.55
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     }
+    },
+    "E_W_A": {
+     "broadleaf1": {
+      "blender": [
+       -0.48,
+       -1.44
+      ],
+      "file": [
+       -0.48,
+       1.44
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "broadleaf1_alt": {
+      "blender": [
+       -1.84,
+       -0.96
+      ],
+      "file": [
+       -1.84,
+       0.96
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "broadleaf2": {
+      "blender": [
+       -1.81,
+       -0.89
+      ],
+      "file": [
+       -1.81,
+       0.89
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "broadleaf3": {
+      "blender": [
+       -0.06,
+       -1.35
+      ],
+      "file": [
+       -0.06,
+       1.35
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": 60.0
+     },
+     "conifer1": {
+      "blender": [
+       1.6,
+       1.28
+      ],
+      "file": [
+       1.6,
+       -1.28
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer2": {
+      "blender": [
+       0.59,
+       -1.55
+      ],
+      "file": [
+       0.59,
+       1.55
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer2_alt": {
+      "blender": [
+       0.43,
+       -2.03
+      ],
+      "file": [
+       0.43,
+       2.03
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer3": {
+      "blender": [
+       -1.51,
+       1.33
+      ],
+      "file": [
+       -1.51,
+       -1.33
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer4": {
+      "blender": [
+       -1.28,
+       -1.49
+      ],
+      "file": [
+       -1.28,
+       1.49
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer5": {
+      "blender": [
+       1.24,
+       0.67
+      ],
+      "file": [
+       1.24,
+       -0.67
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer5_alt": {
+      "blender": [
+       0.84,
+       0.35
+      ],
+      "file": [
+       0.84,
+       -0.35
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "conifer6": {
+      "blender": [
+       -0.3,
+       -2.1
+      ],
+      "file": [
+       -0.3,
+       2.1
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer7": {
+      "blender": [
+       0.41,
+       -2.16
+      ],
+      "file": [
+       0.41,
+       2.16
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "conifer7_alt": {
+      "blender": [
+       -0.15,
+       -1.36
+      ],
+      "file": [
+       -0.15,
+       1.36
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "woodcutter": {
+      "blender": [
+       1.46,
+       -1.19
+      ],
+      "file": [
+       1.46,
+       1.19
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "woodcutter_alt": {
+      "blender": [
+       1.06,
+       -1.51
+      ],
+      "file": [
+       1.06,
+       1.51
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     }
+    },
+    "E_W_B": {
+     "broadleaf1": {
+      "blender": [
+       -1.28,
+       0.72
+      ],
+      "file": [
+       -1.28,
+       -0.72
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 60.0
+     },
+     "broadleaf2": {
+      "blender": [
+       -1.89,
+       -1.13
+      ],
+      "file": [
+       -1.89,
+       1.13
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 120.0
+     },
+     "broadleaf3": {
+      "blender": [
+       -0.62,
+       -1.51
+      ],
+      "file": [
+       -0.62,
+       1.51
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "conifer1": {
+      "blender": [
+       1.6,
+       1.28
+      ],
+      "file": [
+       1.6,
+       -1.28
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer2": {
+      "blender": [
+       0.59,
+       -1.55
+      ],
+      "file": [
+       0.59,
+       1.55
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer2_alt": {
+      "blender": [
+       0.43,
+       -2.03
+      ],
+      "file": [
+       0.43,
+       2.03
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer3": {
+      "blender": [
+       -1.51,
+       1.33
+      ],
+      "file": [
+       -1.51,
+       -1.33
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer4": {
+      "blender": [
+       -1.28,
+       -1.49
+      ],
+      "file": [
+       -1.28,
+       1.49
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer5": {
+      "blender": [
+       -0.12,
+       -1.33
+      ],
+      "file": [
+       -0.12,
+       1.33
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer5_alt": {
+      "blender": [
+       -0.68,
+       0.27
+      ],
+      "file": [
+       -0.68,
+       -0.27
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "conifer6": {
+      "blender": [
+       -0.3,
+       -2.1
+      ],
+      "file": [
+       -0.3,
+       2.1
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer7": {
+      "blender": [
+       0.41,
+       -2.16
+      ],
+      "file": [
+       0.41,
+       2.16
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "woodcutter": {
+      "blender": [
+       1.46,
+       -1.03
+      ],
+      "file": [
+       1.46,
+       1.03
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "woodcutter_alt": {
+      "blender": [
+       0.98,
+       -1.19
+      ],
+      "file": [
+       0.98,
+       1.19
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     }
+    },
+    "NE_SE": {
+     "broadleaf1": {
+      "blender": [
+       -0.24,
+       -0.16
+      ],
+      "file": [
+       -0.24,
+       0.16
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "broadleaf2": {
+      "blender": [
+       0.99,
+       0.15
+      ],
+      "file": [
+       0.99,
+       -0.15
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "broadleaf3": {
+      "blender": [
+       0.02,
+       -1.59
+      ],
+      "file": [
+       0.02,
+       1.59
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "conifer1": {
+      "blender": [
+       1.6,
+       1.28
+      ],
+      "file": [
+       1.6,
+       -1.28
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer2": {
+      "blender": [
+       0.75,
+       -1.55
+      ],
+      "file": [
+       0.75,
+       1.55
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer3": {
+      "blender": [
+       0.25,
+       0.05
+      ],
+      "file": [
+       0.25,
+       -0.05
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "conifer3_alt": {
+      "blender": [
+       0.73,
+       0.21
+      ],
+      "file": [
+       0.73,
+       -0.21
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer4": {
+      "blender": [
+       -0.24,
+       -0.93
+      ],
+      "file": [
+       -0.24,
+       0.93
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer4_alt": {
+      "blender": [
+       -0.08,
+       -1.49
+      ],
+      "file": [
+       -0.08,
+       1.49
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer5": {
+      "blender": [
+       1.96,
+       0.43
+      ],
+      "file": [
+       1.96,
+       -0.43
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer6": {
+      "blender": [
+       0.02,
+       -2.26
+      ],
+      "file": [
+       0.02,
+       2.26
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer6_alt": {
+      "blender": [
+       0.02,
+       -1.62
+      ],
+      "file": [
+       0.02,
+       1.62
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer7": {
+      "blender": [
+       1.85,
+       -1.2
+      ],
+      "file": [
+       1.85,
+       1.2
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "woodcutter": {
+      "blender": [
+       1.22,
+       -0.55
+      ],
+      "file": [
+       1.22,
+       0.55
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     }
+    },
+    "NE_SW": {
+     "broadleaf1": {
+      "blender": [
+       0.32,
+       -2.08
+      ],
+      "file": [
+       0.32,
+       2.08
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "broadleaf2": {
+      "blender": [
+       -1.81,
+       -0.33
+      ],
+      "file": [
+       -1.81,
+       0.33
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "broadleaf3": {
+      "blender": [
+       -1.82,
+       0.57
+      ],
+      "file": [
+       -1.82,
+       -0.57
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer1": {
+      "blender": [
+       -0.72,
+       0.24
+      ],
+      "file": [
+       -0.72,
+       -0.24
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer1_alt": {
+      "blender": [
+       -1.2,
+       0.56
+      ],
+      "file": [
+       -1.2,
+       -0.56
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer2": {
+      "blender": [
+       0.75,
+       -1.55
+      ],
+      "file": [
+       0.75,
+       1.55
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer3": {
+      "blender": [
+       -1.51,
+       1.33
+      ],
+      "file": [
+       -1.51,
+       -1.33
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer4": {
+      "blender": [
+       -2.0,
+       -1.17
+      ],
+      "file": [
+       -2.0,
+       1.17
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer5": {
+      "blender": [
+       2.04,
+       0.11
+      ],
+      "file": [
+       2.04,
+       -0.11
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer6": {
+      "blender": [
+       -0.3,
+       -2.1
+      ],
+      "file": [
+       -0.3,
+       2.1
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer7": {
+      "blender": [
+       1.85,
+       -1.2
+      ],
+      "file": [
+       1.85,
+       1.2
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "woodcutter": {
+      "blender": [
+       1.38,
+       -0.71
+      ],
+      "file": [
+       1.38,
+       0.71
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "woodcutter_alt": {
+      "blender": [
+       1.06,
+       -1.11
+      ],
+      "file": [
+       1.06,
+       1.11
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     }
+    },
+    "NE_W": {
+     "broadleaf1": {
+      "blender": [
+       -0.96,
+       0.32
+      ],
+      "file": [
+       -0.96,
+       -0.32
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "broadleaf2": {
+      "blender": [
+       -1.81,
+       -0.33
+      ],
+      "file": [
+       -1.81,
+       0.33
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "broadleaf3": {
+      "blender": [
+       -1.82,
+       0.57
+      ],
+      "file": [
+       -1.82,
+       -0.57
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer1": {
+      "blender": [
+       1.6,
+       1.28
+      ],
+      "file": [
+       1.6,
+       -1.28
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer2": {
+      "blender": [
+       -0.53,
+       -0.27
+      ],
+      "file": [
+       -0.53,
+       0.27
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer2_alt": {
+      "blender": [
+       0.99,
+       0.45
+      ],
+      "file": [
+       0.99,
+       -0.45
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer3": {
+      "blender": [
+       -1.51,
+       1.33
+      ],
+      "file": [
+       -1.51,
+       -1.33
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer4": {
+      "blender": [
+       -1.84,
+       -1.17
+      ],
+      "file": [
+       -1.84,
+       1.17
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer5": {
+      "blender": [
+       1.88,
+       0.51
+      ],
+      "file": [
+       1.88,
+       -0.51
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer5_alt": {
+      "blender": [
+       1.32,
+       0.67
+      ],
+      "file": [
+       1.32,
+       -0.67
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "conifer6": {
+      "blender": [
+       -0.3,
+       -2.18
+      ],
+      "file": [
+       -0.3,
+       2.18
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer7": {
+      "blender": [
+       1.93,
+       -1.28
+      ],
+      "file": [
+       1.93,
+       1.28
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "woodcutter": {
+      "blender": [
+       0.66,
+       -1.59
+      ],
+      "file": [
+       0.66,
+       1.59
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "woodcutter_alt": {
+      "blender": [
+       1.86,
+       0.73
+      ],
+      "file": [
+       1.86,
+       -0.73
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     }
+    },
+    "NW_SE": {
+     "broadleaf1": {
+      "blender": [
+       -1.28,
+       -0.72
+      ],
+      "file": [
+       -1.28,
+       0.72
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "broadleaf1_alt": {
+      "blender": [
+       -0.48,
+       -1.36
+      ],
+      "file": [
+       -0.48,
+       1.36
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "broadleaf2": {
+      "blender": [
+       -1.97,
+       -1.05
+      ],
+      "file": [
+       -1.97,
+       1.05
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "broadleaf3": {
+      "blender": [
+       -0.46,
+       -1.27
+      ],
+      "file": [
+       -0.46,
+       1.27
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "conifer1": {
+      "blender": [
+       1.6,
+       1.28
+      ],
+      "file": [
+       1.6,
+       -1.28
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer2": {
+      "blender": [
+       0.35,
+       -2.03
+      ],
+      "file": [
+       0.35,
+       2.03
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer2_alt": {
+      "blender": [
+       -0.45,
+       -1.47
+      ],
+      "file": [
+       -0.45,
+       1.47
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "conifer3": {
+      "blender": [
+       -1.91,
+       -0.03
+      ],
+      "file": [
+       -1.91,
+       0.03
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer3_alt": {
+      "blender": [
+       -1.67,
+       -0.51
+      ],
+      "file": [
+       -1.67,
+       0.51
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer4": {
+      "blender": [
+       -1.28,
+       -1.49
+      ],
+      "file": [
+       -1.28,
+       1.49
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer5": {
+      "blender": [
+       1.96,
+       0.75
+      ],
+      "file": [
+       1.96,
+       -0.75
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "conifer5_alt": {
+      "blender": [
+       1.48,
+       0.59
+      ],
+      "file": [
+       1.48,
+       -0.59
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "conifer6": {
+      "blender": [
+       -0.3,
+       -2.1
+      ],
+      "file": [
+       -0.3,
+       2.1
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer7": {
+      "blender": [
+       1.93,
+       -1.12
+      ],
+      "file": [
+       1.93,
+       1.12
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer7_alt": {
+      "blender": [
+       1.93,
+       -0.56
+      ],
+      "file": [
+       1.93,
+       0.56
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "woodcutter": {
+      "blender": [
+       1.54,
+       -0.07
+      ],
+      "file": [
+       1.54,
+       0.07
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "woodcutter_alt": {
+      "blender": [
+       1.06,
+       0.09
+      ],
+      "file": [
+       1.06,
+       -0.09
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     }
+    },
+    "NW_SW": {
+     "broadleaf1": {
+      "blender": [
+       -0.72,
+       -0.64
+      ],
+      "file": [
+       -0.72,
+       0.64
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "broadleaf1_alt": {
+      "blender": [
+       -1.12,
+       0.4
+      ],
+      "file": [
+       -1.12,
+       -0.4
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "broadleaf2": {
+      "blender": [
+       -1.81,
+       -0.33
+      ],
+      "file": [
+       -1.81,
+       0.33
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "broadleaf3": {
+      "blender": [
+       -1.82,
+       0.57
+      ],
+      "file": [
+       -1.82,
+       -0.57
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer1": {
+      "blender": [
+       -0.48,
+       0.08
+      ],
+      "file": [
+       -0.48,
+       -0.08
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer1_alt": {
+      "blender": [
+       -0.4,
+       -0.48
+      ],
+      "file": [
+       -0.4,
+       0.48
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer2": {
+      "blender": [
+       0.11,
+       -1.47
+      ],
+      "file": [
+       0.11,
+       1.47
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer2_alt": {
+      "blender": [
+       -0.05,
+       -0.99
+      ],
+      "file": [
+       -0.05,
+       0.99
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer3": {
+      "blender": [
+       -1.51,
+       1.33
+      ],
+      "file": [
+       -1.51,
+       -1.33
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer4": {
+      "blender": [
+       -1.28,
+       -1.49
+      ],
+      "file": [
+       -1.28,
+       1.49
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer5": {
+      "blender": [
+       -0.12,
+       -0.77
+      ],
+      "file": [
+       -0.12,
+       0.77
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer5_alt": {
+      "blender": [
+       -0.6,
+       -0.53
+      ],
+      "file": [
+       -0.6,
+       0.53
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer6": {
+      "blender": [
+       -0.3,
+       -2.1
+      ],
+      "file": [
+       -0.3,
+       2.1
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer7": {
+      "blender": [
+       -0.55,
+       -1.52
+      ],
+      "file": [
+       -0.55,
+       1.52
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer7_alt": {
+      "blender": [
+       -0.63,
+       -0.72
+      ],
+      "file": [
+       -0.63,
+       0.72
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "woodcutter": {
+      "blender": [
+       0.5,
+       -0.15
+      ],
+      "file": [
+       0.5,
+       0.15
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "woodcutter_alt": {
+      "blender": [
+       0.18,
+       -0.55
+      ],
+      "file": [
+       0.18,
+       0.55
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     }
+    },
+    "W_SE": {
+     "broadleaf1": {
+      "blender": [
+       -1.04,
+       -0.72
+      ],
+      "file": [
+       -1.04,
+       0.72
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "broadleaf1_alt": {
+      "blender": [
+       -1.68,
+       -0.88
+      ],
+      "file": [
+       -1.68,
+       0.88
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "broadleaf2": {
+      "blender": [
+       -1.81,
+       -0.33
+      ],
+      "file": [
+       -1.81,
+       0.33
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "broadleaf3": {
+      "blender": [
+       -1.74,
+       -0.95
+      ],
+      "file": [
+       -1.74,
+       0.95
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "conifer1": {
+      "blender": [
+       1.6,
+       1.28
+      ],
+      "file": [
+       1.6,
+       -1.28
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer2": {
+      "blender": [
+       -0.13,
+       -1.31
+      ],
+      "file": [
+       -0.13,
+       1.31
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer2_alt": {
+      "blender": [
+       -0.61,
+       -1.15
+      ],
+      "file": [
+       -0.61,
+       1.15
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer3": {
+      "blender": [
+       -1.99,
+       0.45
+      ],
+      "file": [
+       -1.99,
+       -0.45
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer4": {
+      "blender": [
+       -1.28,
+       -1.49
+      ],
+      "file": [
+       -1.28,
+       1.49
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer5": {
+      "blender": [
+       1.96,
+       0.75
+      ],
+      "file": [
+       1.96,
+       -0.75
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "conifer5_alt": {
+      "blender": [
+       1.24,
+       0.51
+      ],
+      "file": [
+       1.24,
+       -0.51
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer6": {
+      "blender": [
+       -0.3,
+       -2.1
+      ],
+      "file": [
+       -0.3,
+       2.1
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer7": {
+      "blender": [
+       1.13,
+       0.4
+      ],
+      "file": [
+       1.13,
+       -0.4
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "woodcutter": {
+      "blender": [
+       0.74,
+       -1.67
+      ],
+      "file": [
+       0.74,
+       1.67
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "woodcutter_alt": {
+      "blender": [
+       0.26,
+       -1.51
+      ],
+      "file": [
+       0.26,
+       1.51
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     }
+    }
+   },
+   "spots": {
+    "E": {
+     "conifer1": {
+      "blender": [
+       1.44,
+       1.44
+      ],
+      "file": [
+       1.44,
+       -1.44
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer2": {
+      "blender": [
+       0.75,
+       -1.55
+      ],
+      "file": [
+       0.75,
+       1.55
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer3": {
+      "blender": [
+       1.45,
+       -1.47
+      ],
+      "file": [
+       1.45,
+       1.47
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer4": {
+      "blender": [
+       0.56,
+       -0.93
+      ],
+      "file": [
+       0.56,
+       0.93
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer5": {
+      "blender": [
+       1.96,
+       0.43
+      ],
+      "file": [
+       1.96,
+       -0.43
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer6": {
+      "blender": [
+       0.5,
+       -2.1
+      ],
+      "file": [
+       0.5,
+       2.1
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "conifer7": {
+      "blender": [
+       -0.47,
+       -2.16
+      ],
+      "file": [
+       -0.47,
+       2.16
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "woodcutter": {
+      "blender": [
+       1.62,
+       -0.15
+      ],
+      "file": [
+       1.62,
+       0.15
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 120.0
+     }
+    },
+    "NE": {
+     "broadleaf3": {
+      "blender": [
+       -1.98,
+       -0.23
+      ],
+      "file": [
+       -1.98,
+       0.23
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "conifer1": {
+      "blender": [
+       1.44,
+       1.44
+      ],
+      "file": [
+       1.44,
+       -1.44
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer2": {
+      "blender": [
+       -1.41,
+       1.41
+      ],
+      "file": [
+       -1.41,
+       -1.41
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer3": {
+      "blender": [
+       -1.91,
+       0.45
+      ],
+      "file": [
+       -1.91,
+       -0.45
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer3_alt": {
+      "blender": [
+       -1.51,
+       0.13
+      ],
+      "file": [
+       -1.51,
+       -0.13
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer4": {
+      "blender": [
+       -1.28,
+       -0.13
+      ],
+      "file": [
+       -1.28,
+       0.13
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer5": {
+      "blender": [
+       1.96,
+       0.43
+      ],
+      "file": [
+       1.96,
+       -0.43
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer6": {
+      "blender": [
+       -1.26,
+       -1.06
+      ],
+      "file": [
+       -1.26,
+       1.06
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "conifer6_alt": {
+      "blender": [
+       1.22,
+       -1.22
+      ],
+      "file": [
+       1.22,
+       1.22
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "conifer7": {
+      "blender": [
+       1.61,
+       -1.44
+      ],
+      "file": [
+       1.61,
+       1.44
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "woodcutter": {
+      "blender": [
+       1.62,
+       -0.15
+      ],
+      "file": [
+       1.62,
+       0.15
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 120.0
+     }
+    },
+    "NW": {
+     "broadleaf2": {
+      "blender": [
+       -1.81,
+       -0.33
+      ],
+      "file": [
+       -1.81,
+       0.33
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer1": {
+      "blender": [
+       1.44,
+       1.44
+      ],
+      "file": [
+       1.44,
+       -1.44
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer2": {
+      "blender": [
+       -1.97,
+       0.45
+      ],
+      "file": [
+       -1.97,
+       -0.45
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer2_alt": {
+      "blender": [
+       -1.41,
+       1.41
+      ],
+      "file": [
+       -1.41,
+       -1.41
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer3": {
+      "blender": [
+       -1.43,
+       1.49
+      ],
+      "file": [
+       -1.43,
+       -1.49
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 120.0
+     },
+     "conifer4": {
+      "blender": [
+       1.12,
+       -0.05
+      ],
+      "file": [
+       1.12,
+       0.05
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer5": {
+      "blender": [
+       1.96,
+       0.43
+      ],
+      "file": [
+       1.96,
+       -0.43
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer6": {
+      "blender": [
+       -0.06,
+       -1.54
+      ],
+      "file": [
+       -0.06,
+       1.54
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "conifer6_alt": {
+      "blender": [
+       -1.26,
+       -1.22
+      ],
+      "file": [
+       -1.26,
+       1.22
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer7": {
+      "blender": [
+       2.01,
+       -0.08
+      ],
+      "file": [
+       2.01,
+       0.08
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -90.0
+     },
+     "woodcutter": {
+      "blender": [
+       -1.26,
+       0.09
+      ],
+      "file": [
+       -1.26,
+       -0.09
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": -60.0
+     },
+     "woodcutter_alt": {
+      "blender": [
+       -1.74,
+       0.33
+      ],
+      "file": [
+       -1.74,
+       -0.33
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": -30.0
+     }
+    },
+    "SE": {
+     "conifer1": {
+      "blender": [
+       1.44,
+       -1.44
+      ],
+      "file": [
+       1.44,
+       1.44
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer1_alt": {
+      "blender": [
+       -0.56,
+       -0.96
+      ],
+      "file": [
+       -0.56,
+       0.96
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer2": {
+      "blender": [
+       0.75,
+       -1.55
+      ],
+      "file": [
+       0.75,
+       1.55
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer3": {
+      "blender": [
+       -0.55,
+       -0.99
+      ],
+      "file": [
+       -0.55,
+       0.99
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 60.0
+     },
+     "conifer4": {
+      "blender": [
+       -0.64,
+       -1.89
+      ],
+      "file": [
+       -0.64,
+       1.89
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer5": {
+      "blender": [
+       1.96,
+       0.43
+      ],
+      "file": [
+       1.96,
+       -0.43
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer6": {
+      "blender": [
+       0.5,
+       -2.1
+      ],
+      "file": [
+       0.5,
+       2.1
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "conifer6_alt": {
+      "blender": [
+       0.5,
+       -0.9
+      ],
+      "file": [
+       0.5,
+       0.9
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer7": {
+      "blender": [
+       0.57,
+       -0.96
+      ],
+      "file": [
+       0.57,
+       0.96
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "woodcutter": {
+      "blender": [
+       1.62,
+       -0.15
+      ],
+      "file": [
+       1.62,
+       0.15
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 120.0
+     }
+    },
+    "SW": {
+     "broadleaf2": {
+      "blender": [
+       -1.81,
+       -0.33
+      ],
+      "file": [
+       -1.81,
+       0.33
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer1": {
+      "blender": [
+       0.56,
+       -0.96
+      ],
+      "file": [
+       0.56,
+       0.96
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer1_alt": {
+      "blender": [
+       -1.2,
+       0.08
+      ],
+      "file": [
+       -1.2,
+       -0.08
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer2": {
+      "blender": [
+       0.59,
+       -1.95
+      ],
+      "file": [
+       0.59,
+       1.95
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer3": {
+      "blender": [
+       -1.91,
+       0.45
+      ],
+      "file": [
+       -1.91,
+       -0.45
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer4": {
+      "blender": [
+       -1.28,
+       -1.49
+      ],
+      "file": [
+       -1.28,
+       1.49
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer5": {
+      "blender": [
+       1.64,
+       -1.49
+      ],
+      "file": [
+       1.64,
+       1.49
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer5_alt": {
+      "blender": [
+       -1.0,
+       0.03
+      ],
+      "file": [
+       -1.0,
+       -0.03
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer6": {
+      "blender": [
+       -1.1,
+       -0.02
+      ],
+      "file": [
+       -1.1,
+       0.02
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer7": {
+      "blender": [
+       1.37,
+       1.6
+      ],
+      "file": [
+       1.37,
+       -1.6
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "woodcutter": {
+      "blender": [
+       -0.62,
+       -1.43
+      ],
+      "file": [
+       -0.62,
+       1.43
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -120.0
+     }
+    },
+    "W": {
+     "broadleaf2": {
+      "blender": [
+       -1.81,
+       -0.33
+      ],
+      "file": [
+       -1.81,
+       0.33
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer1": {
+      "blender": [
+       -1.2,
+       0.08
+      ],
+      "file": [
+       -1.2,
+       -0.08
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer2": {
+      "blender": [
+       -1.97,
+       0.37
+      ],
+      "file": [
+       -1.97,
+       -0.37
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer3": {
+      "blender": [
+       -1.43,
+       1.49
+      ],
+      "file": [
+       -1.43,
+       -1.49
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 120.0
+     },
+     "conifer4": {
+      "blender": [
+       -1.28,
+       -1.49
+      ],
+      "file": [
+       -1.28,
+       1.49
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "conifer5": {
+      "blender": [
+       0.52,
+       -1.65
+      ],
+      "file": [
+       0.52,
+       1.65
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "conifer6": {
+      "blender": [
+       0.42,
+       -2.18
+      ],
+      "file": [
+       0.42,
+       2.18
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "conifer7": {
+      "blender": [
+       1.37,
+       1.68
+      ],
+      "file": [
+       1.37,
+       -1.68
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "woodcutter": {
+      "blender": [
+       -0.62,
+       -1.43
+      ],
+      "file": [
+       -0.62,
+       1.43
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -120.0
+     }
+    }
+   },
+   "yard_material": "Mat_Forest_trail"
+  },
+  "Hills": {
+   "heroes": {
+    "kiln": {
+     "anchor": {
+      "blender": [
+       -0.01,
+       -0.35
+      ],
+      "file": [
+       -0.01,
+       0.35
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.479,
+     "ground_bound": false,
+     "nodes": [
+      "Hills_kiln"
+     ],
+     "note": "the kiln: the tile's one tall identity piece",
+     "select_r": 0.5
+    },
+    "shed": {
+     "anchor": {
+      "blender": [
+       -1.22,
+       0.1
+      ],
+      "file": [
+       -1.22,
+       -0.1
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.711,
+     "ground_bound": false,
+     "nodes": [
+      "Hills_dryingshed",
+      "Hills_kiln",
+      "Hills_brickworks"
+     ],
+     "note": "drying shed with its rows of green bricks",
+     "select_r": 0.55
+    },
+    "stacks": {
+     "anchor": {
+      "blender": [
+       1.13,
+       0.32
+      ],
+      "file": [
+       1.13,
+       -0.32
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.557,
+     "ground_bound": false,
+     "nodes": [
+      "Hills_brickworks"
+     ],
+     "note": "the fired brick stacks",
+     "select_r": 0.4
+    }
+   },
+   "keep": {},
+   "river_spots": {},
+   "spots": {
+    "E": {
+     "kiln": {
+      "blender": [
+       0.71,
+       -1.15
+      ],
+      "file": [
+       0.71,
+       1.15
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "kiln_alt": {
+      "blender": [
+       1.43,
+       -0.03
+      ],
+      "file": [
+       1.43,
+       0.03
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "shed": {
+      "blender": [
+       1.58,
+       -0.14
+      ],
+      "file": [
+       1.58,
+       0.14
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "stacks": {
+      "blender": [
+       1.29,
+       -1.44
+      ],
+      "file": [
+       1.29,
+       1.44
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "stacks_alt": {
+      "blender": [
+       0.65,
+       -1.84
+      ],
+      "file": [
+       0.65,
+       1.84
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     }
+    },
+    "NE": {
+     "kiln": {
+      "blender": [
+       1.43,
+       -0.03
+      ],
+      "file": [
+       1.43,
+       0.03
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "kiln_alt": {
+      "blender": [
+       1.83,
+       0.29
+      ],
+      "file": [
+       1.83,
+       -0.29
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "shed": {
+      "blender": [
+       -1.7,
+       0.18
+      ],
+      "file": [
+       -1.7,
+       -0.18
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "stacks": {
+      "blender": [
+       1.93,
+       0.4
+      ],
+      "file": [
+       1.93,
+       -0.4
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "stacks_alt": {
+      "blender": [
+       2.01,
+       -0.48
+      ],
+      "file": [
+       2.01,
+       0.48
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": -60.0
+     }
+    },
+    "NW": {
+     "kiln": {
+      "blender": [
+       -1.29,
+       -0.03
+      ],
+      "file": [
+       -1.29,
+       0.03
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "kiln_alt": {
+      "blender": [
+       -1.77,
+       -0.27
+      ],
+      "file": [
+       -1.77,
+       0.27
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "shed": {
+      "blender": [
+       -2.02,
+       0.34
+      ],
+      "file": [
+       -2.02,
+       -0.34
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "shed_alt": {
+      "blender": [
+       -1.94,
+       -0.38
+      ],
+      "file": [
+       -1.94,
+       0.38
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": -60.0
+     },
+     "stacks": {
+      "blender": [
+       1.45,
+       0.08
+      ],
+      "file": [
+       1.45,
+       -0.08
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "stacks_alt": {
+      "blender": [
+       1.93,
+       0.32
+      ],
+      "file": [
+       1.93,
+       -0.32
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     }
+    },
+    "SE": {
+     "kiln": {
+      "blender": [
+       0.71,
+       -1.15
+      ],
+      "file": [
+       0.71,
+       1.15
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "kiln_alt": {
+      "blender": [
+       1.43,
+       -0.03
+      ],
+      "file": [
+       1.43,
+       0.03
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "shed": {
+      "blender": [
+       1.58,
+       -0.14
+      ],
+      "file": [
+       1.58,
+       0.14
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "stacks": {
+      "blender": [
+       1.29,
+       -1.44
+      ],
+      "file": [
+       1.29,
+       1.44
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "stacks_alt": {
+      "blender": [
+       0.65,
+       -1.84
+      ],
+      "file": [
+       0.65,
+       1.84
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     }
+    },
+    "SW": {
+     "kiln": {
+      "blender": [
+       -0.65,
+       -1.15
+      ],
+      "file": [
+       -0.65,
+       1.15
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "kiln_alt": {
+      "blender": [
+       -1.29,
+       -0.03
+      ],
+      "file": [
+       -1.29,
+       0.03
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "shed": {
+      "blender": [
+       -1.46,
+       -0.06
+      ],
+      "file": [
+       -1.46,
+       0.06
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 60.0
+     },
+     "stacks": {
+      "blender": [
+       0.65,
+       -1.84
+      ],
+      "file": [
+       0.65,
+       1.84
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "stacks_alt": {
+      "blender": [
+       -0.63,
+       -1.84
+      ],
+      "file": [
+       -0.63,
+       1.84
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": -60.0
+     }
+    },
+    "W": {
+     "kiln": {
+      "blender": [
+       -0.65,
+       -1.15
+      ],
+      "file": [
+       -0.65,
+       1.15
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "kiln_alt": {
+      "blender": [
+       -1.29,
+       -0.03
+      ],
+      "file": [
+       -1.29,
+       0.03
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "shed": {
+      "blender": [
+       -1.46,
+       -0.06
+      ],
+      "file": [
+       -1.46,
+       0.06
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 60.0
+     },
+     "stacks": {
+      "blender": [
+       -0.63,
+       -1.84
+      ],
+      "file": [
+       -0.63,
+       1.84
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": -60.0
+     }
+    }
+   },
+   "yard_material": "Mat_Hills_path"
+  },
+  "Lake": {
+   "heroes": {
+    "boat": {
+     "anchor": {
+      "blender": [
+       1.07,
+       -0.63
+      ],
+      "file": [
+       1.07,
+       0.63
+      ]
+     },
+     "drape": false,
+     "fixed": true,
+     "footprint_r": 0.405,
+     "ground_bound": false,
+     "nodes": [
+      "Lake_boat"
+     ],
+     "note": "fixed: floats at the lake's water level (0.19); spot must be on water, beside a deck/boardwalk",
+     "select_r": null
+    },
+    "jetty": {
+     "anchor": {
+      "blender": [
+       0.89,
+       -0.9
+      ],
+      "file": [
+       0.89,
+       0.9
+      ]
+     },
+     "drape": false,
+     "fixed": true,
+     "footprint_r": 0.529,
+     "ground_bound": false,
+     "nodes": [
+      "Lake_jetty"
+     ],
+     "note": "fixed: drop it where the lake town's boardwalks or stilts come within 0.1; never moved",
+     "select_r": null
+    }
+   },
+   "keep": {
+    "drop_always": [
+     "Lake_jetty"
+    ],
+    "never_drop": [
+     "Lake_water",
+     "Lake_bed",
+     "Lake_bank"
+    ],
+    "note": "the lake town's boardwalks replace the jetty; the boat is fixed (water level) and its spot is always on water",
+    "town": "LakeTown_<DIR>, not Town_Tile + family"
+   },
+   "river_spots": {},
+   "spots": {
+    "E": {
+     "boat": {
+      "blender": [
+       0.75,
+       -1.11
+      ],
+      "file": [
+       0.75,
+       1.11
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "boat_alt": {
+      "blender": [
+       0.43,
+       -1.51
+      ],
+      "file": [
+       0.43,
+       1.51
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     }
+    },
+    "NE": {
+     "boat": {
+      "blender": [
+       0.35,
+       -0.87
+      ],
+      "file": [
+       0.35,
+       0.87
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "boat_alt": {
+      "blender": [
+       -0.05,
+       -1.19
+      ],
+      "file": [
+       -0.05,
+       1.19
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     }
+    },
+    "NW": {
+     "boat": {
+      "blender": [
+       0.43,
+       -0.79
+      ],
+      "file": [
+       0.43,
+       0.79
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "boat_alt": {
+      "blender": [
+       -0.05,
+       -0.95
+      ],
+      "file": [
+       -0.05,
+       0.95
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -60.0
+     }
+    },
+    "SE": {
+     "boat": {
+      "blender": [
+       0.75,
+       -1.11
+      ],
+      "file": [
+       0.75,
+       1.11
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "boat_alt": {
+      "blender": [
+       0.43,
+       -1.51
+      ],
+      "file": [
+       0.43,
+       1.51
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     }
+    },
+    "SW": {
+     "boat": {
+      "blender": [
+       0.75,
+       -1.11
+      ],
+      "file": [
+       0.75,
+       1.11
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "boat_alt": {
+      "blender": [
+       0.43,
+       -1.51
+      ],
+      "file": [
+       0.43,
+       1.51
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     }
+    },
+    "W": {
+     "boat": {
+      "blender": [
+       0.75,
+       -0.95
+      ],
+      "file": [
+       0.75,
+       0.95
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "boat_alt": {
+      "blender": [
+       0.43,
+       -1.35
+      ],
+      "file": [
+       0.43,
+       1.35
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     }
+    }
+   },
+   "yard_material": "Mat_Pasture_dirt"
+  },
+  "Mountains": {
+   "heroes": {
+    "mine": {
+     "anchor": {
+      "blender": [
+       1.26,
+       0.58
+      ],
+      "file": [
+       1.26,
+       -0.58
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.847,
+     "ground_bound": false,
+     "nodes": [
+      "Mountains_mine"
+     ],
+     "note": "headframe, spoil and cart",
+     "select_r": null
+    }
+   },
+   "keep": {
+    "note": "the peaks are the ground mesh itself; Mountains_massif is dropped under the town like any prop"
+   },
+   "river_spots": {},
+   "spots": {
+    "E": {
+     "mine": {
+      "blender": [
+       1.58,
+       0.18
+      ],
+      "file": [
+       1.58,
+       -0.18
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "mine_alt": {
+      "blender": [
+       1.74,
+       -0.3
+      ],
+      "file": [
+       1.74,
+       0.3
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 120.0
+     }
+    },
+    "NE": {
+     "mine": {
+      "blender": [
+       1.58,
+       0.18
+      ],
+      "file": [
+       1.58,
+       -0.18
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "mine_alt": {
+      "blender": [
+       1.82,
+       -0.3
+      ],
+      "file": [
+       1.82,
+       0.3
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": -90.0
+     }
+    },
+    "NW": {
+     "mine": {
+      "blender": [
+       -1.54,
+       -0.06
+      ],
+      "file": [
+       -1.54,
+       0.06
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     }
+    },
+    "SE": {
+     "mine": {
+      "blender": [
+       1.58,
+       0.18
+      ],
+      "file": [
+       1.58,
+       -0.18
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "mine_alt": {
+      "blender": [
+       1.74,
+       -0.3
+      ],
+      "file": [
+       1.74,
+       0.3
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 120.0
+     }
+    },
+    "SW": {
+     "mine": {
+      "blender": [
+       -0.66,
+       -1.34
+      ],
+      "file": [
+       -0.66,
+       1.34
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "mine_alt": {
+      "blender": [
+       -1.54,
+       -0.06
+      ],
+      "file": [
+       -1.54,
+       0.06
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     }
+    },
+    "W": {
+     "mine": {
+      "blender": [
+       -0.66,
+       -1.34
+      ],
+      "file": [
+       -0.66,
+       1.34
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "mine_alt": {
+      "blender": [
+       -1.54,
+       -0.06
+      ],
+      "file": [
+       -1.54,
+       0.06
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     }
+    }
+   },
+   "yard_material": "Mat_Mountains_scree_warm"
+  },
+  "Pasture": {
+   "heroes": {
+    "farm": {
+     "anchor": {
+      "blender": [
+       -1.63,
+       0.76
+      ],
+      "file": [
+       -1.63,
+       -0.76
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.789,
+     "ground_bound": false,
+     "nodes": [
+      "Pasture_farm"
+     ],
+     "note": "the barn",
+     "select_r": 0.5
+    },
+    "hayrack": {
+     "anchor": {
+      "blender": [
+       1.4,
+       -0.88
+      ],
+      "file": [
+       1.4,
+       0.88
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.697,
+     "ground_bound": false,
+     "nodes": [
+      "Pasture_hayrack"
+     ],
+     "note": "hay rack and trough",
+     "select_r": 0.6
+    },
+    "pond": {
+     "anchor": {
+      "blender": [
+       -0.83,
+       -0.84
+      ],
+      "file": [
+       -0.83,
+       0.84
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 1.149,
+     "ground_bound": true,
+     "nodes": [
+      "Pasture_pond"
+     ],
+     "note": "ground-bound: the ground mesh is dug for it. Never moves, never dropped; clip any spoke paving over it",
+     "select_r": null
+    },
+    "sheep1": {
+     "anchor": {
+      "blender": [
+       1.17,
+       0.47
+      ],
+      "file": [
+       1.17,
+       -0.47
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.22,
+     "ground_bound": false,
+     "nodes": [
+      "Pasture_sheep"
+     ],
+     "note": "sheep",
+     "select_r": 0.22
+    },
+    "sheep2": {
+     "anchor": {
+      "blender": [
+       0.22,
+       -0.97
+      ],
+      "file": [
+       0.22,
+       0.97
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.244,
+     "ground_bound": false,
+     "nodes": [
+      "Pasture_sheep"
+     ],
+     "note": "sheep",
+     "select_r": 0.22
+    },
+    "sheep3": {
+     "anchor": {
+      "blender": [
+       1.18,
+       -0.92
+      ],
+      "file": [
+       1.18,
+       0.92
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.23,
+     "ground_bound": false,
+     "nodes": [
+      "Pasture_sheep"
+     ],
+     "note": "sheep",
+     "select_r": 0.22
+    },
+    "sheep4": {
+     "anchor": {
+      "blender": [
+       0.52,
+       -1.34
+      ],
+      "file": [
+       0.52,
+       1.34
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.231,
+     "ground_bound": false,
+     "nodes": [
+      "Pasture_sheep"
+     ],
+     "note": "sheep",
+     "select_r": 0.22
+    },
+    "sheep5": {
+     "anchor": {
+      "blender": [
+       1.68,
+       1.06
+      ],
+      "file": [
+       1.68,
+       -1.06
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.212,
+     "ground_bound": false,
+     "nodes": [
+      "Pasture_sheep"
+     ],
+     "note": "sheep",
+     "select_r": 0.22
+    },
+    "sheep6": {
+     "anchor": {
+      "blender": [
+       -0.75,
+       0.42
+      ],
+      "file": [
+       -0.75,
+       -0.42
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.227,
+     "ground_bound": false,
+     "nodes": [
+      "Pasture_sheep"
+     ],
+     "note": "sheep",
+     "select_r": 0.22
+    },
+    "sheep7": {
+     "anchor": {
+      "blender": [
+       1.47,
+       -1.56
+      ],
+      "file": [
+       1.47,
+       1.56
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.222,
+     "ground_bound": false,
+     "nodes": [
+      "Pasture_sheep"
+     ],
+     "note": "sheep",
+     "select_r": 0.22
+    },
+    "sheep8": {
+     "anchor": {
+      "blender": [
+       -1.23,
+       1.68
+      ],
+      "file": [
+       -1.23,
+       -1.68
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.194,
+     "ground_bound": false,
+     "nodes": [
+      "Pasture_sheep"
+     ],
+     "note": "sheep",
+     "select_r": 0.22
+    }
+   },
+   "keep": {
+    "clip_paving_over": [
+     "pond"
+    ],
+    "ground_bound": [
+     "pond"
+    ],
+    "min_sheep": 8
+   },
+   "river_spots": {},
+   "spots": {
+    "E": {
+     "farm": {
+      "blender": [
+       0.85,
+       -1.48
+      ],
+      "file": [
+       0.85,
+       1.48
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "hayrack": {
+      "blender": [
+       1.72,
+       -0.32
+      ],
+      "file": [
+       1.72,
+       0.32
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "hayrack_alt": {
+      "blender": [
+       1.56,
+       0.16
+      ],
+      "file": [
+       1.56,
+       -0.16
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "pond": {
+      "blender": [
+       -0.83,
+       -0.84
+      ],
+      "file": [
+       -0.83,
+       0.84
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "sheep1": {
+      "blender": [
+       1.33,
+       0.31
+      ],
+      "file": [
+       1.33,
+       -0.31
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep1_alt": {
+      "blender": [
+       0.93,
+       -0.01
+      ],
+      "file": [
+       0.93,
+       0.01
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "sheep2": {
+      "blender": [
+       0.78,
+       -0.97
+      ],
+      "file": [
+       0.78,
+       0.97
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep2_alt": {
+      "blender": [
+       0.38,
+       -1.85
+      ],
+      "file": [
+       0.38,
+       1.85
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep3": {
+      "blender": [
+       1.18,
+       -1.16
+      ],
+      "file": [
+       1.18,
+       1.16
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep3_alt": {
+      "blender": [
+       1.58,
+       -1.48
+      ],
+      "file": [
+       1.58,
+       1.48
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep4": {
+      "blender": [
+       0.36,
+       -1.82
+      ],
+      "file": [
+       0.36,
+       1.82
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "sheep4_alt": {
+      "blender": [
+       1.56,
+       -1.34
+      ],
+      "file": [
+       1.56,
+       1.34
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep5": {
+      "blender": [
+       1.44,
+       1.3
+      ],
+      "file": [
+       1.44,
+       -1.3
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep5_alt": {
+      "blender": [
+       1.84,
+       0.58
+      ],
+      "file": [
+       1.84,
+       -0.58
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep6": {
+      "blender": [
+       0.93,
+       0.02
+      ],
+      "file": [
+       0.93,
+       -0.02
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep6_alt": {
+      "blender": [
+       1.17,
+       1.06
+      ],
+      "file": [
+       1.17,
+       -1.06
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -60.0
+     },
+     "sheep7": {
+      "blender": [
+       1.47,
+       -1.56
+      ],
+      "file": [
+       1.47,
+       1.56
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "sheep8": {
+      "blender": [
+       -1.23,
+       1.68
+      ],
+      "file": [
+       -1.23,
+       -1.68
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     }
+    },
+    "NE": {
+     "farm": {
+      "blender": [
+       1.33,
+       0.04
+      ],
+      "file": [
+       1.33,
+       -0.04
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": -90.0
+     },
+     "hayrack": {
+      "blender": [
+       1.96,
+       -0.48
+      ],
+      "file": [
+       1.96,
+       0.48
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -60.0
+     },
+     "pond": {
+      "blender": [
+       -0.83,
+       -0.84
+      ],
+      "file": [
+       -0.83,
+       0.84
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "sheep1": {
+      "blender": [
+       1.17,
+       1.11
+      ],
+      "file": [
+       1.17,
+       -1.11
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep1_alt": {
+      "blender": [
+       1.81,
+       0.63
+      ],
+      "file": [
+       1.81,
+       -0.63
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep2": {
+      "blender": [
+       1.58,
+       -0.17
+      ],
+      "file": [
+       1.58,
+       0.17
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep2_alt": {
+      "blender": [
+       1.74,
+       0.55
+      ],
+      "file": [
+       1.74,
+       -0.55
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 60.0
+     },
+     "sheep3": {
+      "blender": [
+       2.22,
+       -0.04
+      ],
+      "file": [
+       2.22,
+       0.04
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "sheep3_alt": {
+      "blender": [
+       2.06,
+       0.44
+      ],
+      "file": [
+       2.06,
+       -0.44
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep4": {
+      "blender": [
+       1.96,
+       0.42
+      ],
+      "file": [
+       1.96,
+       -0.42
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep4_alt": {
+      "blender": [
+       1.4,
+       1.38
+      ],
+      "file": [
+       1.4,
+       -1.38
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep5": {
+      "blender": [
+       1.44,
+       1.3
+      ],
+      "file": [
+       1.44,
+       -1.3
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep5_alt": {
+      "blender": [
+       2.08,
+       0.74
+      ],
+      "file": [
+       2.08,
+       -0.74
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep6": {
+      "blender": [
+       -1.15,
+       1.14
+      ],
+      "file": [
+       -1.15,
+       -1.14
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep6_alt": {
+      "blender": [
+       -1.63,
+       1.38
+      ],
+      "file": [
+       -1.63,
+       -1.38
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep7": {
+      "blender": [
+       2.03,
+       0.76
+      ],
+      "file": [
+       2.03,
+       -0.76
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep7_alt": {
+      "blender": [
+       1.71,
+       1.4
+      ],
+      "file": [
+       1.71,
+       -1.4
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 120.0
+     },
+     "sheep8": {
+      "blender": [
+       -1.23,
+       1.68
+      ],
+      "file": [
+       -1.23,
+       -1.68
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     }
+    },
+    "NW": {
+     "farm": {
+      "blender": [
+       -1.87,
+       0.28
+      ],
+      "file": [
+       -1.87,
+       -0.28
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "hayrack": {
+      "blender": [
+       1.4,
+       1.52
+      ],
+      "file": [
+       1.4,
+       -1.52
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "hayrack_alt": {
+      "blender": [
+       -1.16,
+       0.08
+      ],
+      "file": [
+       -1.16,
+       -0.08
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "pond": {
+      "blender": [
+       -0.83,
+       -0.84
+      ],
+      "file": [
+       -0.83,
+       0.84
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "sheep1": {
+      "blender": [
+       -0.99,
+       -0.01
+      ],
+      "file": [
+       -0.99,
+       0.01
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep1_alt": {
+      "blender": [
+       -1.15,
+       1.11
+      ],
+      "file": [
+       -1.15,
+       -1.11
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "sheep2": {
+      "blender": [
+       -1.3,
+       0.07
+      ],
+      "file": [
+       -1.3,
+       -0.07
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep2_alt": {
+      "blender": [
+       -2.02,
+       -0.65
+      ],
+      "file": [
+       -2.02,
+       0.65
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep3": {
+      "blender": [
+       -1.14,
+       1.16
+      ],
+      "file": [
+       -1.14,
+       -1.16
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 60.0
+     },
+     "sheep3_alt": {
+      "blender": [
+       -1.78,
+       0.52
+      ],
+      "file": [
+       -1.78,
+       -0.52
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 60.0
+     },
+     "sheep4": {
+      "blender": [
+       -2.04,
+       -0.7
+      ],
+      "file": [
+       -2.04,
+       0.7
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep4_alt": {
+      "blender": [
+       1.16,
+       1.06
+      ],
+      "file": [
+       1.16,
+       -1.06
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 60.0
+     },
+     "sheep5": {
+      "blender": [
+       1.2,
+       1.06
+      ],
+      "file": [
+       1.2,
+       -1.06
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 60.0
+     },
+     "sheep6": {
+      "blender": [
+       -1.79,
+       0.58
+      ],
+      "file": [
+       -1.79,
+       -0.58
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep6_alt": {
+      "blender": [
+       -1.47,
+       1.3
+      ],
+      "file": [
+       -1.47,
+       -1.3
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep7": {
+      "blender": [
+       -1.49,
+       1.4
+      ],
+      "file": [
+       -1.49,
+       -1.4
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep8": {
+      "blender": [
+       -1.23,
+       1.68
+      ],
+      "file": [
+       -1.23,
+       -1.68
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     }
+    },
+    "SE": {
+     "farm": {
+      "blender": [
+       0.85,
+       -1.48
+      ],
+      "file": [
+       0.85,
+       1.48
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "hayrack": {
+      "blender": [
+       1.72,
+       -0.32
+      ],
+      "file": [
+       1.72,
+       0.32
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "hayrack_alt": {
+      "blender": [
+       1.56,
+       0.16
+      ],
+      "file": [
+       1.56,
+       -0.16
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "pond": {
+      "blender": [
+       -0.83,
+       -0.84
+      ],
+      "file": [
+       -0.83,
+       0.84
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "sheep1": {
+      "blender": [
+       1.33,
+       0.31
+      ],
+      "file": [
+       1.33,
+       -0.31
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep1_alt": {
+      "blender": [
+       0.93,
+       -0.01
+      ],
+      "file": [
+       0.93,
+       0.01
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "sheep2": {
+      "blender": [
+       0.78,
+       -0.97
+      ],
+      "file": [
+       0.78,
+       0.97
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep2_alt": {
+      "blender": [
+       0.38,
+       -1.85
+      ],
+      "file": [
+       0.38,
+       1.85
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep3": {
+      "blender": [
+       1.18,
+       -1.16
+      ],
+      "file": [
+       1.18,
+       1.16
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep3_alt": {
+      "blender": [
+       1.58,
+       -1.48
+      ],
+      "file": [
+       1.58,
+       1.48
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep4": {
+      "blender": [
+       0.36,
+       -1.82
+      ],
+      "file": [
+       0.36,
+       1.82
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "sheep4_alt": {
+      "blender": [
+       1.56,
+       -1.34
+      ],
+      "file": [
+       1.56,
+       1.34
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep5": {
+      "blender": [
+       1.84,
+       0.58
+      ],
+      "file": [
+       1.84,
+       -0.58
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep5_alt": {
+      "blender": [
+       1.68,
+       0.1
+      ],
+      "file": [
+       1.68,
+       -0.1
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep6": {
+      "blender": [
+       0.93,
+       0.02
+      ],
+      "file": [
+       0.93,
+       -0.02
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep6_alt": {
+      "blender": [
+       -0.35,
+       -1.66
+      ],
+      "file": [
+       -0.35,
+       1.66
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep7": {
+      "blender": [
+       1.47,
+       -1.56
+      ],
+      "file": [
+       1.47,
+       1.56
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "sheep8": {
+      "blender": [
+       -1.23,
+       1.68
+      ],
+      "file": [
+       -1.23,
+       -1.68
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     }
+    },
+    "SW": {
+     "farm": {
+      "blender": [
+       -1.87,
+       0.28
+      ],
+      "file": [
+       -1.87,
+       -0.28
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "hayrack": {
+      "blender": [
+       0.76,
+       -1.92
+      ],
+      "file": [
+       0.76,
+       1.92
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "pond": {
+      "blender": [
+       -0.83,
+       -0.84
+      ],
+      "file": [
+       -0.83,
+       0.84
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "sheep1": {
+      "blender": [
+       0.53,
+       -0.81
+      ],
+      "file": [
+       0.53,
+       0.81
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep1_alt": {
+      "blender": [
+       1.65,
+       -1.45
+      ],
+      "file": [
+       1.65,
+       1.45
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep2": {
+      "blender": [
+       0.78,
+       -0.97
+      ],
+      "file": [
+       0.78,
+       0.97
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -60.0
+     },
+     "sheep2_alt": {
+      "blender": [
+       -0.34,
+       -1.69
+      ],
+      "file": [
+       -0.34,
+       1.69
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "sheep3": {
+      "blender": [
+       1.58,
+       -1.48
+      ],
+      "file": [
+       1.58,
+       1.48
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep3_alt": {
+      "blender": [
+       0.38,
+       -2.04
+      ],
+      "file": [
+       0.38,
+       2.04
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 90.0
+     },
+     "sheep4": {
+      "blender": [
+       0.52,
+       -1.34
+      ],
+      "file": [
+       0.52,
+       1.34
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "sheep5": {
+      "blender": [
+       -0.96,
+       0.1
+      ],
+      "file": [
+       -0.96,
+       -0.1
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep5_alt": {
+      "blender": [
+       -0.32,
+       -1.58
+      ],
+      "file": [
+       -0.32,
+       1.58
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -60.0
+     },
+     "sheep6": {
+      "blender": [
+       -1.23,
+       0.1
+      ],
+      "file": [
+       -1.23,
+       -0.1
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep6_alt": {
+      "blender": [
+       -1.79,
+       0.58
+      ],
+      "file": [
+       -1.79,
+       -0.58
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep7": {
+      "blender": [
+       0.43,
+       -2.2
+      ],
+      "file": [
+       0.43,
+       2.2
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep8": {
+      "blender": [
+       -1.71,
+       0.56
+      ],
+      "file": [
+       -1.71,
+       -0.56
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep8_alt": {
+      "blender": [
+       -0.99,
+       -0.16
+      ],
+      "file": [
+       -0.99,
+       0.16
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     }
+    },
+    "W": {
+     "farm": {
+      "blender": [
+       -1.87,
+       0.28
+      ],
+      "file": [
+       -1.87,
+       -0.28
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "hayrack": {
+      "blender": [
+       -0.68,
+       -1.92
+      ],
+      "file": [
+       -0.68,
+       1.92
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "hayrack_alt": {
+      "blender": [
+       -1.16,
+       0.08
+      ],
+      "file": [
+       -1.16,
+       -0.08
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "pond": {
+      "blender": [
+       -0.83,
+       -0.84
+      ],
+      "file": [
+       -0.83,
+       0.84
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     },
+     "sheep1": {
+      "blender": [
+       -0.99,
+       -0.01
+      ],
+      "file": [
+       -0.99,
+       0.01
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep1_alt": {
+      "blender": [
+       -1.15,
+       1.11
+      ],
+      "file": [
+       -1.15,
+       -1.11
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "sheep2": {
+      "blender": [
+       -0.34,
+       -2.17
+      ],
+      "file": [
+       -0.34,
+       2.17
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "sheep2_alt": {
+      "blender": [
+       -1.3,
+       0.07
+      ],
+      "file": [
+       -1.3,
+       -0.07
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep3": {
+      "blender": [
+       -1.22,
+       0.12
+      ],
+      "file": [
+       -1.22,
+       -0.12
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep3_alt": {
+      "blender": [
+       -1.14,
+       1.16
+      ],
+      "file": [
+       -1.14,
+       -1.16
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 60.0
+     },
+     "sheep4": {
+      "blender": [
+       -1.88,
+       -1.5
+      ],
+      "file": [
+       -1.88,
+       1.5
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep4_alt": {
+      "blender": [
+       -2.04,
+       -0.7
+      ],
+      "file": [
+       -2.04,
+       0.7
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep5": {
+      "blender": [
+       -1.2,
+       1.06
+      ],
+      "file": [
+       -1.2,
+       -1.06
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep6": {
+      "blender": [
+       -1.79,
+       0.58
+      ],
+      "file": [
+       -1.79,
+       -0.58
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep6_alt": {
+      "blender": [
+       -1.47,
+       1.38
+      ],
+      "file": [
+       -1.47,
+       -1.38
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "sheep7": {
+      "blender": [
+       -1.33,
+       1.32
+      ],
+      "file": [
+       -1.33,
+       -1.32
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "sheep8": {
+      "blender": [
+       -1.23,
+       1.68
+      ],
+      "file": [
+       -1.23,
+       -1.68
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     }
+    }
+   },
+   "yard_material": "Mat_Pasture_dirt"
+  },
+  "Swamp": {
+   "heroes": {
+    "hut": {
+     "anchor": {
+      "blender": [
+       0.6,
+       -0.96
+      ],
+      "file": [
+       0.6,
+       0.96
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.82,
+     "ground_bound": false,
+     "nodes": [
+      "Swamp_hut"
+     ],
+     "note": "the stilt hut",
+     "select_r": null
+    },
+    "pool1": {
+     "anchor": {
+      "blender": [
+       -1.37,
+       0.15
+      ],
+      "file": [
+       -1.37,
+       -0.15
+      ]
+     },
+     "drape": true,
+     "fixed": false,
+     "footprint_r": 0.651,
+     "ground_bound": false,
+     "nodes": [
+      "Swamp_pool_01"
+     ],
+     "note": "drape: a flat pool; re-drape on the composed ground after moving",
+     "select_r": null
+    },
+    "pool2": {
+     "anchor": {
+      "blender": [
+       1.57,
+       -0.18
+      ],
+      "file": [
+       1.57,
+       0.18
+      ]
+     },
+     "drape": true,
+     "fixed": false,
+     "footprint_r": 0.826,
+     "ground_bound": false,
+     "nodes": [
+      "Swamp_pool_02"
+     ],
+     "note": "drape: a flat pool; re-drape on the composed ground after moving",
+     "select_r": null
+    },
+    "pool3": {
+     "anchor": {
+      "blender": [
+       -1.3,
+       -1.34
+      ],
+      "file": [
+       -1.3,
+       1.34
+      ]
+     },
+     "drape": true,
+     "fixed": false,
+     "footprint_r": 0.643,
+     "ground_bound": false,
+     "nodes": [
+      "Swamp_pool_03"
+     ],
+     "note": "drape: a flat pool; re-drape on the composed ground after moving",
+     "select_r": null
+    },
+    "pool4": {
+     "anchor": {
+      "blender": [
+       0.88,
+       -1.33
+      ],
+      "file": [
+       0.88,
+       1.33
+      ]
+     },
+     "drape": true,
+     "fixed": false,
+     "footprint_r": 0.757,
+     "ground_bound": false,
+     "nodes": [
+      "Swamp_pool_04"
+     ],
+     "note": "drape: a flat pool; re-drape on the composed ground after moving",
+     "select_r": null
+    },
+    "pool5": {
+     "anchor": {
+      "blender": [
+       1.65,
+       0.94
+      ],
+      "file": [
+       1.65,
+       -0.94
+      ]
+     },
+     "drape": true,
+     "fixed": false,
+     "footprint_r": 0.665,
+     "ground_bound": false,
+     "nodes": [
+      "Swamp_pool_05"
+     ],
+     "note": "drape: a flat pool; re-drape on the composed ground after moving",
+     "select_r": null
+    },
+    "pool6": {
+     "anchor": {
+      "blender": [
+       -1.75,
+       0.89
+      ],
+      "file": [
+       -1.75,
+       -0.89
+      ]
+     },
+     "drape": true,
+     "fixed": false,
+     "footprint_r": 0.657,
+     "ground_bound": false,
+     "nodes": [
+      "Swamp_pool_06"
+     ],
+     "note": "drape: a flat pool; re-drape on the composed ground after moving",
+     "select_r": null
+    },
+    "punt": {
+     "anchor": {
+      "blender": [
+       1.1,
+       -1.57
+      ],
+      "file": [
+       1.1,
+       1.57
+      ]
+     },
+     "drape": false,
+     "fixed": false,
+     "footprint_r": 0.232,
+     "ground_bound": false,
+     "nodes": [
+      "Swamp_punt"
+     ],
+     "note": "punt; set it down on a pool if moved",
+     "select_r": null
+    }
+   },
+   "keep": {
+    "clip_nodes": [
+     "Swamp_pool_01",
+     "Swamp_pool_02",
+     "Swamp_pool_03",
+     "Swamp_pool_04",
+     "Swamp_pool_05",
+     "Swamp_pool_06",
+     "Swamp_lilies"
+    ],
+    "drape_heroes": [
+     "pool1",
+     "pool2",
+     "pool3",
+     "pool4",
+     "pool5",
+     "pool6"
+    ],
+    "note": "pools are flat water decals: a moved pool is re-draped (z = ground + 0.006), a pool the town covers is clipped rather than dropped"
+   },
+   "river_spots": {},
+   "spots": {
+    "E": {
+     "hut": {
+      "blender": [
+       0.68,
+       -1.44
+      ],
+      "file": [
+       0.68,
+       1.44
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -60.0
+     },
+     "pool1": {
+      "blender": [
+       1.51,
+       0.07
+      ],
+      "file": [
+       1.51,
+       -0.07
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "punt": {
+      "blender": [
+       1.1,
+       -1.57
+      ],
+      "file": [
+       1.1,
+       1.57
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     }
+    },
+    "NE": {
+     "hut": {
+      "blender": [
+       1.64,
+       -0.24
+      ],
+      "file": [
+       1.64,
+       0.24
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "hut_alt": {
+      "blender": [
+       1.8,
+       0.24
+      ],
+      "file": [
+       1.8,
+       -0.24
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -90.0
+     },
+     "pool1": {
+      "blender": [
+       -1.77,
+       0.23
+      ],
+      "file": [
+       -1.77,
+       -0.23
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -90.0
+     },
+     "pool2": {
+      "blender": [
+       1.73,
+       0.14
+      ],
+      "file": [
+       1.73,
+       -0.14
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": -120.0
+     },
+     "punt": {
+      "blender": [
+       1.66,
+       -0.61
+      ],
+      "file": [
+       1.66,
+       0.61
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "punt_alt": {
+      "blender": [
+       2.14,
+       -0.93
+      ],
+      "file": [
+       2.14,
+       0.93
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     }
+    },
+    "NW": {
+     "hut": {
+      "blender": [
+       -1.56,
+       -0.16
+      ],
+      "file": [
+       -1.56,
+       0.16
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "hut_alt": {
+      "blender": [
+       -1.8,
+       0.32
+      ],
+      "file": [
+       -1.8,
+       -0.32
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "pool1": {
+      "blender": [
+       -1.85,
+       0.39
+      ],
+      "file": [
+       -1.85,
+       -0.39
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": -90.0
+     },
+     "pool2": {
+      "blender": [
+       1.65,
+       0.06
+      ],
+      "file": [
+       1.65,
+       -0.06
+      ],
+      "scale": 0.85,
+      "stays": false,
+      "yaw": -120.0
+     },
+     "punt": {
+      "blender": [
+       1.26,
+       1.15
+      ],
+      "file": [
+       1.26,
+       -1.15
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "punt_alt": {
+      "blender": [
+       -1.54,
+       -0.45
+      ],
+      "file": [
+       -1.54,
+       0.45
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     }
+    },
+    "SE": {
+     "hut": {
+      "blender": [
+       0.68,
+       -1.44
+      ],
+      "file": [
+       0.68,
+       1.44
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -60.0
+     },
+     "pool1": {
+      "blender": [
+       1.51,
+       0.07
+      ],
+      "file": [
+       1.51,
+       -0.07
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "pool3": {
+      "blender": [
+       -0.58,
+       -1.82
+      ],
+      "file": [
+       -0.58,
+       1.82
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "punt": {
+      "blender": [
+       1.1,
+       -1.57
+      ],
+      "file": [
+       1.1,
+       1.57
+      ],
+      "scale": 1.0,
+      "stays": true,
+      "yaw": 0.0
+     }
+    },
+    "SW": {
+     "hut": {
+      "blender": [
+       -0.92,
+       -1.6
+      ],
+      "file": [
+       -0.92,
+       1.6
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "hut_alt": {
+      "blender": [
+       -1.56,
+       -0.16
+      ],
+      "file": [
+       -1.56,
+       0.16
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "pool1": {
+      "blender": [
+       -1.69,
+       -0.01
+      ],
+      "file": [
+       -1.69,
+       0.01
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "pool3": {
+      "blender": [
+       -0.58,
+       -1.1
+      ],
+      "file": [
+       -0.58,
+       1.1
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": -30.0
+     },
+     "pool3_alt": {
+      "blender": [
+       0.62,
+       -1.82
+      ],
+      "file": [
+       0.62,
+       1.82
+      ],
+      "scale": 0.75,
+      "stays": false,
+      "yaw": 180.0
+     },
+     "punt": {
+      "blender": [
+       1.1,
+       -1.81
+      ],
+      "file": [
+       1.1,
+       1.81
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "punt_alt": {
+      "blender": [
+       0.62,
+       -1.57
+      ],
+      "file": [
+       0.62,
+       1.57
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     }
+    },
+    "W": {
+     "hut": {
+      "blender": [
+       -0.92,
+       -1.6
+      ],
+      "file": [
+       -0.92,
+       1.6
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "hut_alt": {
+      "blender": [
+       -1.56,
+       -0.16
+      ],
+      "file": [
+       -1.56,
+       0.16
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 30.0
+     },
+     "pool1": {
+      "blender": [
+       -1.69,
+       -0.01
+      ],
+      "file": [
+       -1.69,
+       0.01
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "punt": {
+      "blender": [
+       -0.5,
+       -1.41
+      ],
+      "file": [
+       -0.5,
+       1.41
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": 0.0
+     },
+     "punt_alt": {
+      "blender": [
+       -0.42,
+       -2.05
+      ],
+      "file": [
+       -0.42,
+       2.05
+      ],
+      "scale": 1.0,
+      "stays": false,
+      "yaw": -30.0
+     }
+    }
+   },
+   "yard_material": "Mat_Swamp_peat"
+  }
+ },
+ "layout": {
+  "E": [
+   "W",
+   0,
+   true
+  ],
+  "NE": [
+   "W",
+   300,
+   true
+  ],
+  "NW": [
+   "W",
+   300,
+   false
+  ],
+  "SE": [
+   "SW",
+   0,
+   true
+  ],
+  "SW": [
+   "SW",
+   0,
+   false
+  ],
+  "W": [
+   "W",
+   0,
+   false
+  ]
+ },
+ "parts": {
+  "LakeTown_E_bed": {
+   "file": "laketown_e.glb",
+   "footprint_r": 2.5482,
+   "materials": [],
+   "role": "bed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 8,
+   "yaw": 0.0
+  },
+  "LakeTown_E_boardwalk_01": {
+   "corner_deg": 270,
+   "file": "laketown_e.glb",
+   "footprint_r": 2.1839,
+   "materials": [
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 84,
+   "yaw": 0.0
+  },
+  "LakeTown_E_boardwalk_02": {
+   "corner_deg": 330,
+   "file": "laketown_e.glb",
+   "footprint_r": 1.7648,
+   "materials": [
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 60,
+   "yaw": 0.0
+  },
+  "LakeTown_E_deck": {
+   "file": "laketown_e.glb",
+   "footprint_r": 0.66,
+   "materials": [
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 78,
+   "yaw": 0.0
+  },
+  "LakeTown_E_hall": {
+   "file": "laketown_e.glb",
+   "footprint_r": 0.4879,
+   "materials": [
+    "Mat_Castle_stone_lt",
+    "Mat_Castle_stone",
+    "Mat_Roof_verdigris"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     -1.95,
+     0.35
+    ],
+    "file": [
+     -1.95,
+     -0.35
+    ]
+   },
+   "tris": 38,
+   "yaw": 0.0
+  },
+  "LakeTown_E_house_01": {
+   "file": "laketown_e.glb",
+   "footprint_r": 0.3227,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Pasture_roof",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     -1.95,
+     -0.5
+    ],
+    "file": [
+     -1.95,
+     0.5
+    ]
+   },
+   "tris": 32,
+   "yaw": 90.0
+  },
+  "LakeTown_E_house_02": {
+   "file": "laketown_e.glb",
+   "footprint_r": 0.335,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Roof_ochre",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     -1.2,
+     0.7
+    ],
+    "file": [
+     -1.2,
+     -0.7
+    ]
+   },
+   "tris": 32,
+   "yaw": 60.0
+  },
+  "LakeTown_E_house_03": {
+   "file": "laketown_e.glb",
+   "footprint_r": 0.2957,
+   "materials": [
+    "Mat_Castle_stone_lt",
+    "Mat_Roof_ochre",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     -1.85,
+     1.15
+    ],
+    "file": [
+     -1.85,
+     -1.15
+    ]
+   },
+   "tris": 32,
+   "yaw": 60.0
+  },
+  "LakeTown_E_paving_01": {
+   "corner_deg": 30,
+   "file": "laketown_e.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 24,
+   "yaw": 0.0
+  },
+  "LakeTown_E_paving_02": {
+   "corner_deg": 90,
+   "file": "laketown_e.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 24,
+   "yaw": 0.0
+  },
+  "LakeTown_E_paving_03": {
+   "corner_deg": 270,
+   "file": "laketown_e.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 6,
+   "yaw": 0.0
+  },
+  "LakeTown_E_paving_04": {
+   "corner_deg": 330,
+   "file": "laketown_e.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 10,
+   "yaw": 0.0
+  },
+  "LakeTown_E_stall_01": {
+   "file": "laketown_e.glb",
+   "footprint_r": 0.1985,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Trader_merchant_goods",
+    "Mat_Trader_merchant_goods",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     -0.2294,
+     -0.3277
+    ],
+    "file": [
+     -0.2294,
+     0.3277
+    ]
+   },
+   "tris": 112,
+   "yaw": 325.0
+  },
+  "LakeTown_E_stall_02": {
+   "file": "laketown_e.glb",
+   "footprint_r": 0.1985,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Trader_merchant_goods",
+    "Mat_Trader_merchant_goods",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     -0.3464,
+     0.2
+    ],
+    "file": [
+     -0.3464,
+     -0.2
+    ]
+   },
+   "tris": 112,
+   "yaw": 240.0
+  },
+  "LakeTown_E_stilts_01": {
+   "file": "laketown_e.glb",
+   "footprint_r": 0.3608,
+   "materials": [
+    "Mat_Castle_stone_lt",
+    "Mat_Port_frame",
+    "Mat_Roof_ochre",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     -1.0,
+     -0.55
+    ],
+    "file": [
+     -1.0,
+     0.55
+    ]
+   },
+   "tris": 66,
+   "yaw": 120.0
+  },
+  "LakeTown_E_stilts_02": {
+   "file": "laketown_e.glb",
+   "footprint_r": 0.3608,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Pasture_roof",
+    "Mat_Port_frame",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     -0.72,
+     -1.38
+    ],
+    "file": [
+     -0.72,
+     1.38
+    ]
+   },
+   "tris": 66,
+   "yaw": 150.0
+  },
+  "LakeTown_E_well": {
+   "file": "laketown_e.glb",
+   "footprint_r": 0.177,
+   "materials": [
+    "Mat_Castle_stone",
+    "Mat_Pasture_roof",
+    "Mat_Pasture_water",
+    "Mat_Pasture_wood"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     0.44,
+     -0.0
+    ],
+    "file": [
+     0.44,
+     0.0
+    ]
+   },
+   "tris": 88,
+   "yaw": 450.0
+  },
+  "LakeTown_NE_bed": {
+   "file": "laketown_ne.glb",
+   "footprint_r": 2.5343,
+   "materials": [],
+   "role": "bed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 6,
+   "yaw": 0.0
+  },
+  "LakeTown_NE_boardwalk_01": {
+   "corner_deg": 330,
+   "file": "laketown_ne.glb",
+   "footprint_r": 1.7648,
+   "materials": [
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 60,
+   "yaw": 0.0
+  },
+  "LakeTown_NE_deck": {
+   "file": "laketown_ne.glb",
+   "footprint_r": 0.66,
+   "materials": [
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 78,
+   "yaw": 0.0
+  },
+  "LakeTown_NE_hall": {
+   "file": "laketown_ne.glb",
+   "footprint_r": 0.4879,
+   "materials": [
+    "Mat_Castle_stone_lt",
+    "Mat_Castle_stone",
+    "Mat_Roof_verdigris"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     -1.95,
+     -0.5
+    ],
+    "file": [
+     -1.95,
+     0.5
+    ]
+   },
+   "tris": 38,
+   "yaw": 0.0
+  },
+  "LakeTown_NE_house_01": {
+   "file": "laketown_ne.glb",
+   "footprint_r": 0.3227,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Pasture_roof",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     -1.95,
+     0.35
+    ],
+    "file": [
+     -1.95,
+     -0.35
+    ]
+   },
+   "tris": 32,
+   "yaw": 90.0
+  },
+  "LakeTown_NE_house_02": {
+   "file": "laketown_ne.glb",
+   "footprint_r": 0.335,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Roof_ochre",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     1.25,
+     -1.55
+    ],
+    "file": [
+     1.25,
+     1.55
+    ]
+   },
+   "tris": 32,
+   "yaw": 210.0
+  },
+  "LakeTown_NE_paving_01": {
+   "corner_deg": 30,
+   "file": "laketown_ne.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 24,
+   "yaw": 0.0
+  },
+  "LakeTown_NE_paving_02": {
+   "corner_deg": 90,
+   "file": "laketown_ne.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 24,
+   "yaw": 0.0
+  },
+  "LakeTown_NE_paving_03": {
+   "corner_deg": 150,
+   "file": "laketown_ne.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 24,
+   "yaw": 0.0
+  },
+  "LakeTown_NE_paving_04": {
+   "corner_deg": 330,
+   "file": "laketown_ne.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 10,
+   "yaw": 0.0
+  },
+  "LakeTown_NE_stall_01": {
+   "file": "laketown_ne.glb",
+   "footprint_r": 0.1985,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Trader_merchant_goods",
+    "Mat_Trader_merchant_goods",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     0.169,
+     -0.3625
+    ],
+    "file": [
+     0.169,
+     0.3625
+    ]
+   },
+   "tris": 112,
+   "yaw": 385.0
+  },
+  "LakeTown_NE_stall_02": {
+   "file": "laketown_ne.glb",
+   "footprint_r": 0.1985,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Trader_merchant_goods",
+    "Mat_Trader_merchant_goods",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     -0.3985,
+     -0.0349
+    ],
+    "file": [
+     -0.3985,
+     0.0349
+    ]
+   },
+   "tris": 112,
+   "yaw": 275.0
+  },
+  "LakeTown_NE_stilts_01": {
+   "file": "laketown_ne.glb",
+   "footprint_r": 0.3608,
+   "materials": [
+    "Mat_Castle_stone_lt",
+    "Mat_Port_frame",
+    "Mat_Roof_ochre",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     -1.0,
+     -0.55
+    ],
+    "file": [
+     -1.0,
+     0.55
+    ]
+   },
+   "tris": 66,
+   "yaw": 120.0
+  },
+  "LakeTown_NE_stilts_02": {
+   "file": "laketown_ne.glb",
+   "footprint_r": 0.3608,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Pasture_roof",
+    "Mat_Port_frame",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     -0.72,
+     -1.38
+    ],
+    "file": [
+     -0.72,
+     1.38
+    ]
+   },
+   "tris": 66,
+   "yaw": 150.0
+  },
+  "LakeTown_NE_stilts_03": {
+   "file": "laketown_ne.glb",
+   "footprint_r": 0.3608,
+   "materials": [
+    "Mat_Castle_stone_lt",
+    "Mat_Port_frame",
+    "Mat_Pasture_roof",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     0.58,
+     -1.35
+    ],
+    "file": [
+     0.58,
+     1.35
+    ]
+   },
+   "tris": 66,
+   "yaw": 210.0
+  },
+  "LakeTown_NE_well": {
+   "file": "laketown_ne.glb",
+   "footprint_r": 0.177,
+   "materials": [
+    "Mat_Castle_stone",
+    "Mat_Pasture_roof",
+    "Mat_Pasture_water",
+    "Mat_Pasture_wood"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     0.44,
+     -0.0
+    ],
+    "file": [
+     0.44,
+     0.0
+    ]
+   },
+   "tris": 88,
+   "yaw": 450.0
+  },
+  "LakeTown_NW_bed": {
+   "file": "laketown_nw.glb",
+   "footprint_r": 2.7808,
+   "materials": [],
+   "role": "bed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 6,
+   "yaw": 0.0
+  },
+  "LakeTown_NW_boardwalk_01": {
+   "corner_deg": 210,
+   "file": "laketown_nw.glb",
+   "footprint_r": 1.705,
+   "materials": [
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 54,
+   "yaw": 0.0
+  },
+  "LakeTown_NW_deck": {
+   "file": "laketown_nw.glb",
+   "footprint_r": 0.66,
+   "materials": [
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 78,
+   "yaw": 0.0
+  },
+  "LakeTown_NW_hall": {
+   "file": "laketown_nw.glb",
+   "footprint_r": 0.4879,
+   "materials": [
+    "Mat_Castle_stone_lt",
+    "Mat_Castle_stone",
+    "Mat_Roof_verdigris"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     1.95,
+     -1.0
+    ],
+    "file": [
+     1.95,
+     1.0
+    ]
+   },
+   "tris": 38,
+   "yaw": 0.0
+  },
+  "LakeTown_NW_house_01": {
+   "file": "laketown_nw.glb",
+   "footprint_r": 0.3227,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Pasture_roof",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     2.0,
+     -0.25
+    ],
+    "file": [
+     2.0,
+     0.25
+    ]
+   },
+   "tris": 32,
+   "yaw": 270.0
+  },
+  "LakeTown_NW_house_02": {
+   "file": "laketown_nw.glb",
+   "footprint_r": 0.335,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Roof_ochre",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     1.25,
+     -1.55
+    ],
+    "file": [
+     1.25,
+     1.55
+    ]
+   },
+   "tris": 32,
+   "yaw": 210.0
+  },
+  "LakeTown_NW_paving_01": {
+   "corner_deg": 30,
+   "file": "laketown_nw.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 24,
+   "yaw": 0.0
+  },
+  "LakeTown_NW_paving_02": {
+   "corner_deg": 90,
+   "file": "laketown_nw.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 24,
+   "yaw": 0.0
+  },
+  "LakeTown_NW_paving_03": {
+   "corner_deg": 150,
+   "file": "laketown_nw.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 24,
+   "yaw": 0.0
+  },
+  "LakeTown_NW_paving_04": {
+   "corner_deg": 210,
+   "file": "laketown_nw.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 12,
+   "yaw": 0.0
+  },
+  "LakeTown_NW_stall_01": {
+   "file": "laketown_nw.glb",
+   "footprint_r": 0.1985,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Trader_merchant_goods",
+    "Mat_Trader_merchant_goods",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     0.3985,
+     -0.0349
+    ],
+    "file": [
+     0.3985,
+     0.0349
+    ]
+   },
+   "tris": 112,
+   "yaw": 445.0
+  },
+  "LakeTown_NW_stall_02": {
+   "file": "laketown_nw.glb",
+   "footprint_r": 0.1985,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Trader_merchant_goods",
+    "Mat_Trader_merchant_goods",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     -0.169,
+     -0.3625
+    ],
+    "file": [
+     -0.169,
+     0.3625
+    ]
+   },
+   "tris": 112,
+   "yaw": 335.0
+  },
+  "LakeTown_NW_stilts_01": {
+   "file": "laketown_nw.glb",
+   "footprint_r": 0.3608,
+   "materials": [
+    "Mat_Castle_stone_lt",
+    "Mat_Port_frame",
+    "Mat_Roof_ochre",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     1.12,
+     -0.45
+    ],
+    "file": [
+     1.12,
+     0.45
+    ]
+   },
+   "tris": 66,
+   "yaw": 240.0
+  },
+  "LakeTown_NW_stilts_02": {
+   "file": "laketown_nw.glb",
+   "footprint_r": 0.3608,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Pasture_roof",
+    "Mat_Port_frame",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     0.58,
+     -1.35
+    ],
+    "file": [
+     0.58,
+     1.35
+    ]
+   },
+   "tris": 66,
+   "yaw": 210.0
+  },
+  "LakeTown_NW_stilts_03": {
+   "file": "laketown_nw.glb",
+   "footprint_r": 0.3608,
+   "materials": [
+    "Mat_Castle_stone_lt",
+    "Mat_Port_frame",
+    "Mat_Pasture_roof",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     -0.1,
+     -1.6
+    ],
+    "file": [
+     -0.1,
+     1.6
+    ]
+   },
+   "tris": 66,
+   "yaw": 180.0
+  },
+  "LakeTown_NW_well": {
+   "file": "laketown_nw.glb",
+   "footprint_r": 0.177,
+   "materials": [
+    "Mat_Castle_stone",
+    "Mat_Pasture_roof",
+    "Mat_Pasture_water",
+    "Mat_Pasture_wood"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     -0.44,
+     0.0
+    ],
+    "file": [
+     -0.44,
+     -0.0
+    ]
+   },
+   "tris": 88,
+   "yaw": 270.0
+  },
+  "LakeTown_SE_bed": {
+   "file": "laketown_se.glb",
+   "footprint_r": 2.5426,
+   "materials": [],
+   "role": "bed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 8,
+   "yaw": 0.0
+  },
+  "LakeTown_SE_boardwalk_01": {
+   "corner_deg": 210,
+   "file": "laketown_se.glb",
+   "footprint_r": 1.705,
+   "materials": [
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 54,
+   "yaw": 0.0
+  },
+  "LakeTown_SE_boardwalk_02": {
+   "corner_deg": 270,
+   "file": "laketown_se.glb",
+   "footprint_r": 2.1839,
+   "materials": [
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 84,
+   "yaw": 0.0
+  },
+  "LakeTown_SE_boardwalk_03": {
+   "corner_deg": 330,
+   "file": "laketown_se.glb",
+   "footprint_r": 1.7648,
+   "materials": [
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 60,
+   "yaw": 0.0
+  },
+  "LakeTown_SE_deck": {
+   "file": "laketown_se.glb",
+   "footprint_r": 0.66,
+   "materials": [
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 78,
+   "yaw": 0.0
+  },
+  "LakeTown_SE_hall": {
+   "file": "laketown_se.glb",
+   "footprint_r": 0.4879,
+   "materials": [
+    "Mat_Castle_stone_lt",
+    "Mat_Castle_stone",
+    "Mat_Roof_verdigris"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     -1.95,
+     0.35
+    ],
+    "file": [
+     -1.95,
+     -0.35
+    ]
+   },
+   "tris": 38,
+   "yaw": 0.0
+  },
+  "LakeTown_SE_house_01": {
+   "file": "laketown_se.glb",
+   "footprint_r": 0.3227,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Pasture_roof",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     -1.2,
+     0.7
+    ],
+    "file": [
+     -1.2,
+     -0.7
+    ]
+   },
+   "tris": 32,
+   "yaw": 60.0
+  },
+  "LakeTown_SE_house_02": {
+   "file": "laketown_se.glb",
+   "footprint_r": 0.335,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Roof_ochre",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     -1.85,
+     1.15
+    ],
+    "file": [
+     -1.85,
+     -1.15
+    ]
+   },
+   "tris": 32,
+   "yaw": 60.0
+  },
+  "LakeTown_SE_paving_01": {
+   "corner_deg": 30,
+   "file": "laketown_se.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 24,
+   "yaw": 0.0
+  },
+  "LakeTown_SE_paving_02": {
+   "corner_deg": 210,
+   "file": "laketown_se.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 12,
+   "yaw": 0.0
+  },
+  "LakeTown_SE_paving_03": {
+   "corner_deg": 270,
+   "file": "laketown_se.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 6,
+   "yaw": 0.0
+  },
+  "LakeTown_SE_paving_04": {
+   "corner_deg": 330,
+   "file": "laketown_se.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 10,
+   "yaw": 0.0
+  },
+  "LakeTown_SE_stall_01": {
+   "file": "laketown_se.glb",
+   "footprint_r": 0.1985,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Trader_merchant_goods",
+    "Mat_Trader_merchant_goods",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     -0.3985,
+     0.0349
+    ],
+    "file": [
+     -0.3985,
+     -0.0349
+    ]
+   },
+   "tris": 112,
+   "yaw": 265.0
+  },
+  "LakeTown_SE_stall_02": {
+   "file": "laketown_se.glb",
+   "footprint_r": 0.1985,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Trader_merchant_goods",
+    "Mat_Trader_merchant_goods",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     0.3985,
+     0.0349
+    ],
+    "file": [
+     0.3985,
+     -0.0349
+    ]
+   },
+   "tris": 112,
+   "yaw": 95.0
+  },
+  "LakeTown_SE_well": {
+   "file": "laketown_se.glb",
+   "footprint_r": 0.177,
+   "materials": [
+    "Mat_Castle_stone",
+    "Mat_Pasture_roof",
+    "Mat_Pasture_water",
+    "Mat_Pasture_wood"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     0.22,
+     -0.3811
+    ],
+    "file": [
+     0.22,
+     0.3811
+    ]
+   },
+   "tris": 88,
+   "yaw": 390.0
+  },
+  "LakeTown_SE_yard": {
+   "file": "laketown_se.glb",
+   "footprint_r": 0.3597,
+   "materials": [
+    "Mat_Pasture_wood",
+    "Mat_Pasture_hay",
+    "Mat_Port_cargo"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     -1.95,
+     -0.5
+    ],
+    "file": [
+     -1.95,
+     0.5
+    ]
+   },
+   "tris": 144,
+   "yaw": 0.0
+  },
+  "LakeTown_SE_yardfloor": {
+   "file": "laketown_se.glb",
+   "footprint_r": 0.493,
+   "materials": [
+    "Mat_Trade_yard"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     -1.95,
+     -0.5
+    ],
+    "file": [
+     -1.95,
+     0.5
+    ]
+   },
+   "tris": 18,
+   "yaw": 0.0
+  },
+  "LakeTown_SW_bed": {
+   "file": "laketown_sw.glb",
+   "footprint_r": 2.5894,
+   "materials": [],
+   "role": "bed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 8,
+   "yaw": 0.0
+  },
+  "LakeTown_SW_boardwalk_01": {
+   "corner_deg": 210,
+   "file": "laketown_sw.glb",
+   "footprint_r": 1.705,
+   "materials": [
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 54,
+   "yaw": 0.0
+  },
+  "LakeTown_SW_boardwalk_02": {
+   "corner_deg": 270,
+   "file": "laketown_sw.glb",
+   "footprint_r": 2.1839,
+   "materials": [
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 84,
+   "yaw": 0.0
+  },
+  "LakeTown_SW_boardwalk_03": {
+   "corner_deg": 330,
+   "file": "laketown_sw.glb",
+   "footprint_r": 1.7648,
+   "materials": [
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 60,
+   "yaw": 0.0
+  },
+  "LakeTown_SW_deck": {
+   "file": "laketown_sw.glb",
+   "footprint_r": 0.66,
+   "materials": [
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 78,
+   "yaw": 0.0
+  },
+  "LakeTown_SW_hall": {
+   "file": "laketown_sw.glb",
+   "footprint_r": 0.4879,
+   "materials": [
+    "Mat_Castle_stone_lt",
+    "Mat_Castle_stone",
+    "Mat_Roof_verdigris"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     1.4,
+     0.4
+    ],
+    "file": [
+     1.4,
+     -0.4
+    ]
+   },
+   "tris": 38,
+   "yaw": 0.0
+  },
+  "LakeTown_SW_house_01": {
+   "file": "laketown_sw.glb",
+   "footprint_r": 0.3227,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Pasture_roof",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     2.05,
+     0.7
+    ],
+    "file": [
+     2.05,
+     -0.7
+    ]
+   },
+   "tris": 32,
+   "yaw": -60.0
+  },
+  "LakeTown_SW_house_02": {
+   "file": "laketown_sw.glb",
+   "footprint_r": 0.335,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Roof_ochre",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     1.42,
+     1.32
+    ],
+    "file": [
+     1.42,
+     -1.32
+    ]
+   },
+   "tris": 32,
+   "yaw": -60.0
+  },
+  "LakeTown_SW_paving_01": {
+   "corner_deg": 150,
+   "file": "laketown_sw.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 24,
+   "yaw": 0.0
+  },
+  "LakeTown_SW_paving_02": {
+   "corner_deg": 210,
+   "file": "laketown_sw.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 12,
+   "yaw": 0.0
+  },
+  "LakeTown_SW_paving_03": {
+   "corner_deg": 270,
+   "file": "laketown_sw.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 6,
+   "yaw": 0.0
+  },
+  "LakeTown_SW_paving_04": {
+   "corner_deg": 330,
+   "file": "laketown_sw.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 10,
+   "yaw": 0.0
+  },
+  "LakeTown_SW_stall_01": {
+   "file": "laketown_sw.glb",
+   "footprint_r": 0.1985,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Trader_merchant_goods",
+    "Mat_Trader_merchant_goods",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     0.3985,
+     0.0349
+    ],
+    "file": [
+     0.3985,
+     -0.0349
+    ]
+   },
+   "tris": 112,
+   "yaw": 95.0
+  },
+  "LakeTown_SW_stall_02": {
+   "file": "laketown_sw.glb",
+   "footprint_r": 0.1985,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Trader_merchant_goods",
+    "Mat_Trader_merchant_goods",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     -0.3985,
+     0.0349
+    ],
+    "file": [
+     -0.3985,
+     -0.0349
+    ]
+   },
+   "tris": 112,
+   "yaw": 265.0
+  },
+  "LakeTown_SW_well": {
+   "file": "laketown_sw.glb",
+   "footprint_r": 0.177,
+   "materials": [
+    "Mat_Castle_stone",
+    "Mat_Pasture_roof",
+    "Mat_Pasture_water",
+    "Mat_Pasture_wood"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     -0.22,
+     -0.3811
+    ],
+    "file": [
+     -0.22,
+     0.3811
+    ]
+   },
+   "tris": 88,
+   "yaw": 330.0
+  },
+  "LakeTown_SW_yard": {
+   "file": "laketown_sw.glb",
+   "footprint_r": 0.3597,
+   "materials": [
+    "Mat_Pasture_wood",
+    "Mat_Pasture_hay",
+    "Mat_Port_cargo"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     1.93,
+     -0.42
+    ],
+    "file": [
+     1.93,
+     0.42
+    ]
+   },
+   "tris": 144,
+   "yaw": 180.0
+  },
+  "LakeTown_SW_yardfloor": {
+   "file": "laketown_sw.glb",
+   "footprint_r": 0.493,
+   "materials": [
+    "Mat_Trade_yard"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     1.93,
+     -0.42
+    ],
+    "file": [
+     1.93,
+     0.42
+    ]
+   },
+   "tris": 18,
+   "yaw": 180.0
+  },
+  "LakeTown_W_bed": {
+   "file": "laketown_w.glb",
+   "footprint_r": 2.5855,
+   "materials": [],
+   "role": "bed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 12,
+   "yaw": 0.0
+  },
+  "LakeTown_W_boardwalk_01": {
+   "corner_deg": 210,
+   "file": "laketown_w.glb",
+   "footprint_r": 1.705,
+   "materials": [
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 54,
+   "yaw": 0.0
+  },
+  "LakeTown_W_boardwalk_02": {
+   "corner_deg": 270,
+   "file": "laketown_w.glb",
+   "footprint_r": 2.1839,
+   "materials": [
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 84,
+   "yaw": 0.0
+  },
+  "LakeTown_W_deck": {
+   "file": "laketown_w.glb",
+   "footprint_r": 0.66,
+   "materials": [
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 78,
+   "yaw": 0.0
+  },
+  "LakeTown_W_hall": {
+   "file": "laketown_w.glb",
+   "footprint_r": 0.4879,
+   "materials": [
+    "Mat_Castle_stone_lt",
+    "Mat_Castle_stone",
+    "Mat_Roof_verdigris"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     2.0,
+     -0.25
+    ],
+    "file": [
+     2.0,
+     0.25
+    ]
+   },
+   "tris": 38,
+   "yaw": 0.0
+  },
+  "LakeTown_W_house_01": {
+   "file": "laketown_w.glb",
+   "footprint_r": 0.3227,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Pasture_roof",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     1.4,
+     0.4
+    ],
+    "file": [
+     1.4,
+     -0.4
+    ]
+   },
+   "tris": 32,
+   "yaw": -60.0
+  },
+  "LakeTown_W_house_02": {
+   "file": "laketown_w.glb",
+   "footprint_r": 0.335,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Roof_ochre",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     2.05,
+     0.7
+    ],
+    "file": [
+     2.05,
+     -0.7
+    ]
+   },
+   "tris": 32,
+   "yaw": -60.0
+  },
+  "LakeTown_W_house_03": {
+   "file": "laketown_w.glb",
+   "footprint_r": 0.2957,
+   "materials": [
+    "Mat_Castle_stone_lt",
+    "Mat_Roof_ochre",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     1.42,
+     1.32
+    ],
+    "file": [
+     1.42,
+     -1.32
+    ]
+   },
+   "tris": 32,
+   "yaw": -60.0
+  },
+  "LakeTown_W_house_04": {
+   "file": "laketown_w.glb",
+   "footprint_r": 0.3075,
+   "materials": [
+    "Mat_Castle_stone_lt",
+    "Mat_Port_frame",
+    "Mat_Roof_ochre"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     1.95,
+     -1.0
+    ],
+    "file": [
+     1.95,
+     1.0
+    ]
+   },
+   "tris": 32,
+   "yaw": 240.0
+  },
+  "LakeTown_W_paving_01": {
+   "corner_deg": 90,
+   "file": "laketown_w.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 24,
+   "yaw": 0.0
+  },
+  "LakeTown_W_paving_02": {
+   "corner_deg": 150,
+   "file": "laketown_w.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 24,
+   "yaw": 0.0
+  },
+  "LakeTown_W_paving_03": {
+   "corner_deg": 210,
+   "file": "laketown_w.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 12,
+   "yaw": 0.0
+  },
+  "LakeTown_W_paving_04": {
+   "corner_deg": 270,
+   "file": "laketown_w.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 6,
+   "yaw": 0.0
+  },
+  "LakeTown_W_stall_01": {
+   "file": "laketown_w.glb",
+   "footprint_r": 0.1985,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Trader_merchant_goods",
+    "Mat_Trader_merchant_goods",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     0.2294,
+     -0.3277
+    ],
+    "file": [
+     0.2294,
+     0.3277
+    ]
+   },
+   "tris": 112,
+   "yaw": 35.0
+  },
+  "LakeTown_W_stall_02": {
+   "file": "laketown_w.glb",
+   "footprint_r": 0.1985,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Trader_merchant_goods",
+    "Mat_Trader_merchant_goods",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     -0.169,
+     -0.3625
+    ],
+    "file": [
+     -0.169,
+     0.3625
+    ]
+   },
+   "tris": 112,
+   "yaw": -25.0
+  },
+  "LakeTown_W_stilts_01": {
+   "file": "laketown_w.glb",
+   "footprint_r": 0.3608,
+   "materials": [
+    "Mat_Castle_stone_lt",
+    "Mat_Port_frame",
+    "Mat_Roof_ochre",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "fixed",
+   "seat": {
+    "blender": [
+     1.12,
+     -0.45
+    ],
+    "file": [
+     1.12,
+     0.45
+    ]
+   },
+   "tris": 66,
+   "yaw": 240.0
+  },
+  "LakeTown_W_well": {
+   "file": "laketown_w.glb",
+   "footprint_r": 0.177,
+   "materials": [
+    "Mat_Castle_stone",
+    "Mat_Pasture_roof",
+    "Mat_Pasture_water",
+    "Mat_Pasture_wood"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     -0.44,
+     0.0
+    ],
+    "file": [
+     -0.44,
+     -0.0
+    ]
+   },
+   "tris": 88,
+   "yaw": 270.0
+  },
+  "LakeTown_W_yard": {
+   "file": "laketown_w.glb",
+   "footprint_r": 0.3597,
+   "materials": [
+    "Mat_Pasture_wood",
+    "Mat_Pasture_hay",
+    "Mat_Port_cargo"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     1.25,
+     -1.55
+    ],
+    "file": [
+     1.25,
+     1.55
+    ]
+   },
+   "tris": 144,
+   "yaw": 120.0
+  },
+  "LakeTown_W_yardfloor": {
+   "file": "laketown_w.glb",
+   "footprint_r": 0.493,
+   "materials": [
+    "Mat_Trade_yard"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     1.25,
+     -1.55
+    ],
+    "file": [
+     1.25,
+     1.55
+    ]
+   },
+   "tris": 18,
+   "yaw": 120.0
+  },
+  "Town_SW_bed": {
+   "file": "town_sw.glb",
+   "footprint_r": 2.6865,
+   "materials": [],
+   "role": "bed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 14,
+   "yaw": 0.0
+  },
+  "Town_SW_hall": {
+   "file": "town_sw.glb",
+   "footprint_r": 0.4879,
+   "materials": [
+    "Mat_Castle_stone_lt",
+    "Mat_Castle_stone",
+    "Mat_Roof_verdigris"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     1.35,
+     0.05
+    ],
+    "file": [
+     1.35,
+     -0.05
+    ]
+   },
+   "tris": 38,
+   "yaw": 0.0
+  },
+  "Town_SW_house_01": {
+   "file": "town_sw.glb",
+   "footprint_r": 0.3585,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Pasture_roof",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     1.1,
+     -1.45
+    ],
+    "file": [
+     1.1,
+     1.45
+    ]
+   },
+   "tris": 32,
+   "yaw": -30.0
+  },
+  "Town_SW_house_02": {
+   "file": "town_sw.glb",
+   "footprint_r": 0.3722,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Roof_ochre",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     2.02,
+     -0.28
+    ],
+    "file": [
+     2.02,
+     0.28
+    ]
+   },
+   "tris": 32,
+   "yaw": 90.0
+  },
+  "Town_SW_house_03": {
+   "file": "town_sw.glb",
+   "footprint_r": 0.2957,
+   "materials": [
+    "Mat_Castle_stone_lt",
+    "Mat_Roof_ochre",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     2.02,
+     0.35
+    ],
+    "file": [
+     2.02,
+     -0.35
+    ]
+   },
+   "tris": 32,
+   "yaw": 0.0
+  },
+  "Town_SW_house_04": {
+   "file": "town_sw.glb",
+   "footprint_r": 0.2734,
+   "materials": [
+    "Mat_Castle_stone_lt",
+    "Mat_Port_frame",
+    "Mat_Roof_ochre"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     -1.42,
+     1.52
+    ],
+    "file": [
+     -1.42,
+     -1.52
+    ]
+   },
+   "tris": 32,
+   "yaw": 30.0
+  },
+  "Town_SW_house_05": {
+   "file": "town_sw.glb",
+   "footprint_r": 0.2734,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Pasture_roof",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     0.95,
+     0.62
+    ],
+    "file": [
+     0.95,
+     -0.62
+    ]
+   },
+   "tris": 32,
+   "yaw": 60.0
+  },
+  "Town_SW_paving_01": {
+   "corner_deg": 150,
+   "file": "town_sw.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 24,
+   "yaw": 0.0
+  },
+  "Town_SW_paving_02": {
+   "corner_deg": 210,
+   "file": "town_sw.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 24,
+   "yaw": 0.0
+  },
+  "Town_SW_paving_03": {
+   "corner_deg": 270,
+   "file": "town_sw.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 24,
+   "yaw": 0.0
+  },
+  "Town_SW_paving_04": {
+   "corner_deg": 330,
+   "file": "town_sw.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 24,
+   "yaw": 0.0
+  },
+  "Town_SW_stall_01": {
+   "file": "town_sw.glb",
+   "footprint_r": 0.1985,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Trader_merchant_goods",
+    "Mat_Trader_merchant_goods",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     0.55,
+     0.08
+    ],
+    "file": [
+     0.55,
+     -0.08
+    ]
+   },
+   "tris": 112,
+   "yaw": 90.0
+  },
+  "Town_SW_stall_02": {
+   "file": "town_sw.glb",
+   "footprint_r": 0.1985,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Trader_merchant_goods",
+    "Mat_Trader_merchant_goods",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     0.22,
+     -0.46
+    ],
+    "file": [
+     0.22,
+     0.46
+    ]
+   },
+   "tris": 112,
+   "yaw": 20.0
+  },
+  "Town_SW_well": {
+   "file": "town_sw.glb",
+   "footprint_r": 0.177,
+   "materials": [
+    "Mat_Castle_stone",
+    "Mat_Pasture_roof",
+    "Mat_Pasture_water",
+    "Mat_Pasture_wood"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     -0.45,
+     0.02
+    ],
+    "file": [
+     -0.45,
+     -0.02
+    ]
+   },
+   "tris": 88,
+   "yaw": 0.0
+  },
+  "Town_SW_yard": {
+   "file": "town_sw.glb",
+   "footprint_r": 0.3997,
+   "materials": [
+    "Mat_Pasture_wood",
+    "Mat_Pasture_hay",
+    "Mat_Port_cargo"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     1.88,
+     0.98
+    ],
+    "file": [
+     1.88,
+     -0.98
+    ]
+   },
+   "tris": 144,
+   "yaw": 0.0
+  },
+  "Town_SW_yardfloor": {
+   "file": "town_sw.glb",
+   "footprint_r": 0.5478,
+   "materials": [
+    "Mat_Trade_yard"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     1.88,
+     0.98
+    ],
+    "file": [
+     1.88,
+     -0.98
+    ]
+   },
+   "tris": 18,
+   "yaw": 0.0
+  },
+  "Town_Tile_bed": {
+   "file": "town_tile.glb",
+   "footprint_r": 0.8,
+   "materials": [],
+   "role": "bed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 60,
+   "yaw": 0.0
+  },
+  "Town_Tile_plaza": {
+   "file": "town_tile.glb",
+   "footprint_r": 0.7,
+   "materials": [
+    "Mat_Castle_stone",
+    "Mat_Castle_stone_lt"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 100,
+   "yaw": 0.0
+  },
+  "Town_W_bed": {
+   "file": "town_w.glb",
+   "footprint_r": 2.7209,
+   "materials": [],
+   "role": "bed",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 16,
+   "yaw": 0.0
+  },
+  "Town_W_hall": {
+   "file": "town_w.glb",
+   "footprint_r": 0.4879,
+   "materials": [
+    "Mat_Castle_stone_lt",
+    "Mat_Castle_stone",
+    "Mat_Roof_verdigris"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     1.82,
+     -0.02
+    ],
+    "file": [
+     1.82,
+     0.02
+    ]
+   },
+   "tris": 38,
+   "yaw": 0.0
+  },
+  "Town_W_house_01": {
+   "file": "town_w.glb",
+   "footprint_r": 0.3585,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Pasture_roof",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     1.1,
+     0.42
+    ],
+    "file": [
+     1.1,
+     -0.42
+    ]
+   },
+   "tris": 32,
+   "yaw": 90.0
+  },
+  "Town_W_house_02": {
+   "file": "town_w.glb",
+   "footprint_r": 0.3722,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Roof_ochre",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     1.42,
+     1.12
+    ],
+    "file": [
+     1.42,
+     -1.12
+    ]
+   },
+   "tris": 32,
+   "yaw": 0.0
+  },
+  "Town_W_house_03": {
+   "file": "town_w.glb",
+   "footprint_r": 0.3286,
+   "materials": [
+    "Mat_Castle_stone_lt",
+    "Mat_Roof_ochre",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     2.08,
+     0.58
+    ],
+    "file": [
+     2.08,
+     -0.58
+    ]
+   },
+   "tris": 32,
+   "yaw": 90.0
+  },
+  "Town_W_house_04": {
+   "file": "town_w.glb",
+   "footprint_r": 0.3417,
+   "materials": [
+    "Mat_Castle_stone_lt",
+    "Mat_Port_frame",
+    "Mat_Roof_ochre"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     1.12,
+     -0.42
+    ],
+    "file": [
+     1.12,
+     0.42
+    ]
+   },
+   "tris": 32,
+   "yaw": 0.0
+  },
+  "Town_W_house_05": {
+   "file": "town_w.glb",
+   "footprint_r": 0.3417,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Pasture_roof",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     1.28,
+     -1.35
+    ],
+    "file": [
+     1.28,
+     1.35
+    ]
+   },
+   "tris": 32,
+   "yaw": 90.0
+  },
+  "Town_W_house_06": {
+   "file": "town_w.glb",
+   "footprint_r": 0.3417,
+   "materials": [
+    "Mat_Castle_stone_lt",
+    "Mat_Port_frame",
+    "Mat_Pasture_roof"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     0.62,
+     -1.15
+    ],
+    "file": [
+     0.62,
+     1.15
+    ]
+   },
+   "tris": 32,
+   "yaw": 15.0
+  },
+  "Town_W_paving_01": {
+   "corner_deg": 90,
+   "file": "town_w.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 24,
+   "yaw": 0.0
+  },
+  "Town_W_paving_02": {
+   "corner_deg": 150,
+   "file": "town_w.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 24,
+   "yaw": 0.0
+  },
+  "Town_W_paving_03": {
+   "corner_deg": 210,
+   "file": "town_w.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 24,
+   "yaw": 0.0
+  },
+  "Town_W_paving_04": {
+   "corner_deg": 270,
+   "file": "town_w.glb",
+   "footprint_r": 2.423,
+   "materials": [
+    "Mat_Castle_stone"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     0.0,
+     0.0
+    ],
+    "file": [
+     0.0,
+     -0.0
+    ]
+   },
+   "tris": 24,
+   "yaw": 0.0
+  },
+  "Town_W_stall_01": {
+   "file": "town_w.glb",
+   "footprint_r": 0.1985,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Trader_merchant_goods",
+    "Mat_Trader_merchant_goods",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     0.48,
+     0.12
+    ],
+    "file": [
+     0.48,
+     -0.12
+    ]
+   },
+   "tris": 112,
+   "yaw": 90.0
+  },
+  "Town_W_stall_02": {
+   "file": "town_w.glb",
+   "footprint_r": 0.1985,
+   "materials": [
+    "Mat_Castle_banner",
+    "Mat_Trader_merchant_goods",
+    "Mat_Trader_merchant_goods",
+    "Mat_Pasture_wood",
+    "Mat_Port_frame"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     0.36,
+     -0.42
+    ],
+    "file": [
+     0.36,
+     0.42
+    ]
+   },
+   "tris": 112,
+   "yaw": 50.0
+  },
+  "Town_W_tree_01": {
+   "file": "town_w.glb",
+   "footprint_r": 0.2463,
+   "materials": [
+    "Mat_Forest_bark",
+    "Mat_Forest_leaf"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     0.95,
+     -1.9
+    ],
+    "file": [
+     0.95,
+     1.9
+    ]
+   },
+   "tris": 44,
+   "yaw": 0.0
+  },
+  "Town_W_tree_02": {
+   "file": "town_w.glb",
+   "footprint_r": 0.2409,
+   "materials": [
+    "Mat_Forest_bark",
+    "Mat_Forest_leaf"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     1.98,
+     1.32
+    ],
+    "file": [
+     1.98,
+     -1.32
+    ]
+   },
+   "tris": 44,
+   "yaw": 0.0
+  },
+  "Town_W_well": {
+   "file": "town_w.glb",
+   "footprint_r": 0.177,
+   "materials": [
+    "Mat_Castle_stone",
+    "Mat_Pasture_roof",
+    "Mat_Pasture_water",
+    "Mat_Pasture_wood"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     -0.22,
+     -0.42
+    ],
+    "file": [
+     -0.22,
+     0.42
+    ]
+   },
+   "tris": 88,
+   "yaw": 0.0
+  },
+  "Town_W_yard": {
+   "file": "town_w.glb",
+   "footprint_r": 0.3997,
+   "materials": [
+    "Mat_Pasture_wood",
+    "Mat_Pasture_hay",
+    "Mat_Port_cargo"
+   ],
+   "role": "rigid",
+   "seat": {
+    "blender": [
+     1.97,
+     -0.92
+    ],
+    "file": [
+     1.97,
+     0.92
+    ]
+   },
+   "tris": 144,
+   "yaw": 90.0
+  },
+  "Town_W_yardfloor": {
+   "file": "town_w.glb",
+   "footprint_r": 0.5478,
+   "materials": [
+    "Mat_Trade_yard"
+   ],
+   "role": "drape",
+   "seat": {
+    "blender": [
+     1.97,
+     -0.92
+    ],
+    "file": [
+     1.97,
+     0.92
+    ]
+   },
+   "tris": 18,
+   "yaw": 90.0
+  }
+ },
+ "version": 1
+}

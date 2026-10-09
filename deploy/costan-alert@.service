@@ -1,0 +1,28 @@
+# Templated OnFailure= handler: posts "unit X failed" plus its last log lines to
+# the Discord mod channel. Wired from costan.service and costan-backup.service as
+#   OnFailure=costan-alert@%n.service
+# so the instance name (%i) is the unit that failed.
+#
+# This is the only alerting path in the deployment (no Prometheus, expvar or
+# Sentry).
+#
+# Install:
+#   sudo cp deploy/costan-alert@.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+# Test it (fails on purpose, then alerts):
+#   sudo systemd-run --unit=costan-alert-test --property=OnFailure=costan-alert@costan-alert-test.service /bin/false
+[Unit]
+Description=Alert to Discord that %i failed
+Documentation=file:///opt/costan/DEPLOY.md
+
+[Service]
+Type=oneshot
+# COSTAN_ALERT_CHANNEL_ID lives here. Set it: the fallback is to read the channel
+# out of mod_config in the database, which cannot work when the database is what
+# failed.
+EnvironmentFile=-/etc/costan/backup.env
+# Runs as root, unlike everything else here: it reads /etc/costan/age.key to
+# decrypt the bot token, and reads the failed unit's journal.
+ExecStart=/opt/costan/deploy/alert.sh %I
+# An alert that hangs must not pile up; an alert that fails must not loop.
+TimeoutStartSec=30

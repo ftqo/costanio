@@ -1,0 +1,91 @@
+# Cloudflare Pages applies these headers to static assets. Every rule that
+# matches is applied, so the site-wide block below stands for everything and the
+# per-directory blocks only add caching on top of it.
+
+# Allow the app to be embedded as a Discord Activity (iframe under
+# discord.com / discordsays.com).
+/*
+  Content-Security-Policy: frame-ancestors https://discord.com https://*.discord.com https://*.discordsays.com
+
+# Caching, per directory.
+#
+# Pages' default is `max-age=0, must-revalidate`: right for `index.html`, wrong
+# for the board models, because the homepage mounts the real renderer and a
+# first visit pulls the models before an island appears. The hero recording
+# draws 13 files and the landing warm-up asks for the base ruleset's 17; as
+# shipped (meshopt, `npm run models:compress`) those are 809 KB and 967 KB, and
+# all 37 are 1,692 KB. The counts drift: recount with
+# `find frontend/public/models -name '*.glb'` and `boardModelFiles("base")` in
+# lib/board3d/loader.ts.
+#
+# That is also the difference somebody reported as "the map only loads when I am
+# logged in": a logged-in player has played, so their browser holds the models
+# and revalidation is a handful of 304s. Nobody else has them.
+
+# THE HTML, SPELLED OUT RATHER THAN INHERITED.
+#
+# This is Pages' own default (`public, max-age=0, must-revalidate`), so it
+# changes nothing today. It is written down because it is the one cache decision
+# in this file that would be most damaging to get wrong, and an unstated default
+# reads exactly like an oversight: index.html names the content-hashed entry
+# chunk, so a cached copy pins the visitor to the build it was cached from. That
+# failure is quiet -- every /assets/* URL the stale HTML names is immutable and
+# still resolvable, so nothing 404s and nothing looks broken; they just run an
+# old app until the copy expires.
+#
+# Two exact paths, not a wildcard, because these rules match the REQUEST path.
+# `/` and `/index.html` are the two ways to ask for it directly. Every other SPA
+# route (/play, /game/<id>, ...) is served the same bytes through the _redirects
+# catch-all and matches neither, so it takes the same Pages default by
+# inheritance, which is the answer we want. A wildcard broad enough to catch
+# those routes would also catch /assets/*, and the rule below is the one thing
+# here that must not be weakened.
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Vite's own output, content-hashed by the build. A new build is a new filename,
+# so these can be cached as hard as the header allows.
+#
+# `immutable` here is why /assets/* goes through the Pages Function: these
+# headers are matched on the request path, so a miss that the _redirects
+# catch-all turned into index.html would be pinned as a year-long, immutable
+# lump of HTML at a JavaScript URL. functions/_middleware.js turns that miss back
+# into a no-store 404 before it can be cached.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Not content-hashed: `pieces.glb` has the same name in every build, so a year
+# would keep new art from anyone who had the old. A day fresh, then a week of
+# stale-while-revalidate. `immutable` would need hashed names, which means
+# teaching `make export-assets`, `manifest.generated.ts` and loader.ts's
+# COMMON_MODELS/KNIGHTS_MODELS about the hash; not worth it for a return visit
+# that is already instant.
+#
+# cf-cache-status: DYNAMIC cannot be fixed from this file. Cloudflare decides
+# cache eligibility from the file extension before reading Cache-Control, and
+# `.glb` is not in its default set (changing Content-Type does not help). The
+# same check is why these are served with no content-encoding.
+#
+# The fix is a dashboard change on the zone, and it has to be made by hand:
+#   Cloudflare dashboard, costan.io, Caching, Cache Rules, Create rule
+#     - When incoming requests match: URI Path starts with /models/
+#     - Cache eligibility: Eligible for cache
+#     - Edge TTL: Use cache-control header from origin
+#   and, on the same screen's sibling (Rules, Compression Rules), a rule for the
+#   same path with Brotli enabled if the plan offers it.
+# Meshopt-compressed .glb is already entropy-coded, so the compression rule is
+# worth a few percent; the cache rule is the one that matters, and it turns a
+# first visit from an origin fetch into an edge hit.
+/models/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/cosmetics/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# Subset and stable: the file only changes when the character set does, which is
+# a deliberate act (scripts/gen-title-fonts.py) and rare.
+/fonts/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=604800

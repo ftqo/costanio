@@ -1,0 +1,44 @@
+{
+  "//": [
+    "Budget for skipped tests. See scripts/skip-budget.py and CONTRIBUTING.md.",
+    "A package with no entry here is budgeted at zero: any skip in it that is",
+    "not matched by `exempt` below fails the check, so a conditional skip that",
+    "becomes unconditional fails the gate."
+  ],
+  "exempt": [
+    {
+      "pattern": "COSTAN_SIM_SLOW",
+      "why": "sim/'s heavy seeded batches. Opt-in; the skip message names the variable."
+    },
+    {
+      "pattern": "COSTAN_LADDERS|A/B ladder",
+      "why": "sim/'s A/B ladders. They skip under -race and without COSTAN_LADDERS, so they never run in the gate."
+    },
+    {
+      "pattern": "node not on PATH",
+      "why": "verify/ runs the JavaScript port and needs node. The flake provides it."
+    },
+    {
+      "pattern": "set (LOADTEST|ROPROBE|COSTAN_FIXTURE)",
+      "why": "Env-var opt-ins: sim/'s load test, store/'s read-pool and WAL-growth probes, and verify/'s fixture regeneration. Listed by name so each new opt-in is added here explicitly."
+    }
+  ],
+  "budgets": {
+    "github.com/ftqo/costan.io/game": {
+      "max": 0,
+      "why": "game/ has five conditional skips (four seed-conditional in manager_test, coverage_test, legalcache_test and actor_test, one per-ruleset in rebuild_ext_maps_test). None fire today."
+    },
+    "github.com/ftqo/costan.io/server": {
+      "max": 0,
+      "why": "server/'s one skip fires only when the frontend error-copy table is unreadable. It guards the Go half of the error-code contract, so it must not skip."
+    },
+    "github.com/ftqo/costan.io/sim": {
+      "max": 0,
+      "why": "Measured on a full-tree run: zero counted, 67 opt-in skips excused. The three seed-conditional skips (combined_test x2, nopeek_test) do not fire on the current seeds."
+    },
+    "github.com/ftqo/costan.io/store": {
+      "max": 0,
+      "why": "store/'s two skips are the ROPROBE probes, which are exempt."
+    }
+  }
+}

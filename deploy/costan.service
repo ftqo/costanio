@@ -1,0 +1,89 @@
+# systemd unit for the costan backend (the static Go binary, no Docker).
+#
+# Install (see DEPLOY.md for the full first-time setup):
+#   sudo useradd --system --no-create-home --shell /usr/sbin/nologin costan
+#   sudo install -D -m 600 -o root -g root your-age.key /etc/costan/age.key
+#   sudo install -m 600 -o root -g root secrets.enc.yaml /etc/costan/secrets.enc.yaml
+#   sudo install -m 644 -o root -g root deploy/costan.env.example /etc/costan/costan.env
+#   sudoedit /etc/costan/costan.env           # fill in your hostnames and ids
+#   sudo cp deploy/costan.service /etc/systemd/system/costan.service
+#   sudo systemctl daemon-reload && sudo systemctl enable --now costan
+#
+# On every (re)start, ExecStartPre SOPS-decrypts the three secrets from
+# /etc/costan/secrets.enc.yaml into the tmpfs RuntimeDirectory (/run/costan); the binary reads
+# them via the *_FILE env vars. Plaintext secrets never touch persistent disk.
+[Unit]
+Description=costan game backend
+After=network-online.target
+Wants=network-online.target
+# The only alerting path in this deployment (no Prometheus, no Sentry): post to
+# the Discord mod channel when the service fails, so the operator does not first
+# hear about it from players. See deploy/costan-alert@.service.
+OnFailure=costan-alert@%n.service
+
+[Service]
+Type=exec
+User=costan
+Group=costan
+WorkingDirectory=/opt/costan
+
+# /var/lib/costan (DB) and /run/costan (tmpfs, decrypted secrets). systemd
+# creates both with the right ownership and wipes the runtime dir on stop.
+StateDirectory=costan
+RuntimeDirectory=costan
+
+# Non-secret operator config (COSTAN_BASE_URL, client ids, guild id, public key…).
+# Lives on the server, outside the checkout; the template is
+# deploy/costan.env.example.
+EnvironmentFile=/etc/costan/costan.env
+# Fixed config the operator shouldn't have to set.
+Environment=COSTAN_ADDR=127.0.0.1:4757
+Environment=COSTAN_DB=/var/lib/costan/costan.db
+Environment=COSTAN_SECURE_COOKIES=1
+Environment=COSTAN_REAL_IP_HEADER=CF-Connecting-IP
+# Secrets are read from files in the tmpfs RuntimeDirectory (see ExecStartPre).
+Environment=DISCORD_CLIENT_SECRET_FILE=/run/costan/discord_client_secret
+Environment=GOOGLE_CLIENT_SECRET_FILE=/run/costan/google_client_secret
+Environment=DISCORD_BOT_TOKEN_FILE=/run/costan/discord_bot_token
+
+# '+' runs as full-privilege root (outside the sandbox) so it can read the age key
+# and write the tmpfs dir; the script chowns the files to the service user.
+ExecStartPre=+/opt/costan/deploy/secrets-decrypt.sh /run/costan
+ExecStart=/usr/local/bin/costan
+Restart=on-failure
+RestartSec=2
+# Sized against the worst-case shutdown drain. systemd SIGKILLs the process when
+# this expires, losing whatever the append writer had queued. The bounded
+# stages, in the order main's defers unwind them:
+#
+#   10s  httpSrv.Shutdown            cmd/costan/main.go (httpShutdownTimeout)
+#   15s  join the periodic sweeps    cmd/costan/main.go (sweepJoinTimeout)
+#   15s  join websockets + matchmaker  server.connJoinTimeout
+#   15s  join the game actors        game.stopAllTimeout
+#   15s  join the manager's own bg   game.stopAllTimeout, a second wait
+#    ~    store.Close                unbounded; a writer flush in practice
+#   ---
+#   70s  bounded total
+#
+# 90s leaves 20s for the unbounded tail; a normal restart takes under a second.
+# If a budget above changes, change this and nix/module.nix (the same unit for
+# a NixOS host).
+# Nothing tests that module, so drift goes unnoticed.
+TimeoutStopSec=90
+
+# Hardening: a static binary needs almost nothing.
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET AF_INET6
+RestrictNamespaces=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+
+[Install]
+WantedBy=multi-user.target

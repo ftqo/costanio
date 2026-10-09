@@ -1,0 +1,942 @@
+{
+  "cases": [
+    {
+      "name": "exact single kind",
+      "ratios": [
+        0,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "hand": [
+        0,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bank": [
+        0,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "spend": [
+        0,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "want": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "legal": true
+    },
+    {
+      "name": "one kind funds two different kinds",
+      "ratios": [
+        0,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "hand": [
+        0,
+        8,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bank": [
+        0,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "spend": [
+        0,
+        8,
+        0,
+        0,
+        0,
+        0
+      ],
+      "want": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      "legal": true
+    },
+    {
+      "name": "two kinds, one ask",
+      "ratios": [
+        0,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "hand": [
+        0,
+        4,
+        4,
+        0,
+        0,
+        0
+      ],
+      "bank": [
+        0,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "spend": [
+        0,
+        4,
+        4,
+        0,
+        0,
+        0
+      ],
+      "want": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "legal": true
+    },
+    {
+      "name": "two kinds fund two different kinds",
+      "ratios": [
+        0,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "hand": [
+        0,
+        4,
+        4,
+        0,
+        0,
+        0
+      ],
+      "bank": [
+        0,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "spend": [
+        0,
+        4,
+        4,
+        0,
+        0,
+        0
+      ],
+      "want": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      "legal": true
+    },
+    {
+      "name": "two 2:1 ports in one trade",
+      "ratios": [
+        0,
+        2,
+        2,
+        4,
+        4,
+        4
+      ],
+      "hand": [
+        0,
+        2,
+        2,
+        0,
+        0,
+        0
+      ],
+      "bank": [
+        0,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "spend": [
+        0,
+        2,
+        2,
+        0,
+        0,
+        0
+      ],
+      "want": [
+        0,
+        0,
+        0,
+        2,
+        0,
+        0
+      ],
+      "legal": true
+    },
+    {
+      "name": "a 2:1 port buys two different kinds",
+      "ratios": [
+        0,
+        2,
+        4,
+        4,
+        4,
+        4
+      ],
+      "hand": [
+        0,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bank": [
+        0,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "spend": [
+        0,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "want": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0
+      ],
+      "legal": true
+    },
+    {
+      "name": "mixed rates fund one ask",
+      "ratios": [
+        0,
+        4,
+        4,
+        4,
+        4,
+        2
+      ],
+      "hand": [
+        0,
+        0,
+        0,
+        0,
+        4,
+        2
+      ],
+      "bank": [
+        0,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "spend": [
+        0,
+        0,
+        0,
+        0,
+        4,
+        2
+      ],
+      "want": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0
+      ],
+      "legal": true
+    },
+    {
+      "name": "a 3:1 generic port",
+      "ratios": [
+        0,
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "hand": [
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bank": [
+        0,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "spend": [
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "want": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "legal": true
+    },
+    {
+      "name": "underfunded",
+      "ratios": [
+        0,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "hand": [
+        0,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bank": [
+        0,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "spend": [
+        0,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "want": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "legal": false,
+      "err": "those cards do not pay for what you asked for"
+    },
+    {
+      "name": "overfunded",
+      "ratios": [
+        0,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "hand": [
+        0,
+        8,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bank": [
+        0,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "spend": [
+        0,
+        8,
+        0,
+        0,
+        0,
+        0
+      ],
+      "want": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "legal": false,
+      "err": "those cards do not pay for what you asked for"
+    },
+    {
+      "name": "indivisible stake in a mixed basket",
+      "ratios": [
+        0,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "hand": [
+        0,
+        4,
+        3,
+        0,
+        0,
+        0
+      ],
+      "bank": [
+        0,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "spend": [
+        0,
+        4,
+        3,
+        0,
+        0,
+        0
+      ],
+      "want": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "legal": false,
+      "err": "those cards do not pay for what you asked for"
+    },
+    {
+      "name": "single indivisible stake",
+      "ratios": [
+        0,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "hand": [
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bank": [
+        0,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "spend": [
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "want": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "legal": false,
+      "err": "those cards do not pay for what you asked for"
+    },
+    {
+      "name": "odd card at a port rate",
+      "ratios": [
+        0,
+        2,
+        4,
+        4,
+        4,
+        4
+      ],
+      "hand": [
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bank": [
+        0,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "spend": [
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "want": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "legal": false,
+      "err": "those cards do not pay for what you asked for"
+    },
+    {
+      "name": "same kind both sides",
+      "ratios": [
+        0,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "hand": [
+        0,
+        8,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bank": [
+        0,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "spend": [
+        0,
+        8,
+        0,
+        0,
+        0,
+        0
+      ],
+      "want": [
+        0,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "legal": false,
+      "err": "cannot trade a resource for the same resource"
+    },
+    {
+      "name": "overlap alongside a legal leg",
+      "ratios": [
+        0,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "hand": [
+        0,
+        4,
+        4,
+        0,
+        0,
+        0
+      ],
+      "bank": [
+        0,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "spend": [
+        0,
+        4,
+        4,
+        0,
+        0,
+        0
+      ],
+      "want": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      "legal": false,
+      "err": "cannot trade a resource for the same resource"
+    },
+    {
+      "name": "hand short",
+      "ratios": [
+        0,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "hand": [
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bank": [
+        0,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "spend": [
+        0,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "want": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "legal": false,
+      "err": "insufficient resources"
+    },
+    {
+      "name": "hand short on the second kind",
+      "ratios": [
+        0,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "hand": [
+        0,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bank": [
+        0,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "spend": [
+        0,
+        4,
+        4,
+        0,
+        0,
+        0
+      ],
+      "want": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ],
+      "legal": false,
+      "err": "insufficient resources"
+    },
+    {
+      "name": "bank dry of the asked kind",
+      "ratios": [
+        0,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "hand": [
+        0,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bank": [
+        0,
+        19,
+        0,
+        0,
+        0,
+        0
+      ],
+      "spend": [
+        0,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "want": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "legal": false,
+      "err": "insufficient resources"
+    },
+    {
+      "name": "bank short on one of two asked kinds",
+      "ratios": [
+        0,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "hand": [
+        0,
+        8,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bank": [
+        0,
+        19,
+        0,
+        0,
+        0,
+        1
+      ],
+      "spend": [
+        0,
+        8,
+        0,
+        0,
+        0,
+        0
+      ],
+      "want": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+      ],
+      "legal": false,
+      "err": "insufficient resources"
+    },
+    {
+      "name": "empty ask",
+      "ratios": [
+        0,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "hand": [
+        0,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bank": [
+        0,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "spend": [
+        0,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "want": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "legal": false,
+      "err": "malformed command data"
+    },
+    {
+      "name": "empty stake",
+      "ratios": [
+        0,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "hand": [
+        0,
+        4,
+        0,
+        0,
+        0,
+        0
+      ],
+      "bank": [
+        0,
+        19,
+        19,
+        19,
+        19,
+        19
+      ],
+      "spend": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "want": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "legal": false,
+      "err": "those cards do not pay for what you asked for"
+    }
+  ],
+  "note": "Generated by engine.TestBankBasketFixture (go test ./engine -run TestBankBasketFixture -update). The frontend's bank.legality.test.ts asserts maritimeTrade agrees with every row."
+}

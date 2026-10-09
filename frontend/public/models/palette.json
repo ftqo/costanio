@@ -1,0 +1,2765 @@
+{
+ "Mat_Barbarian_belt": {
+  "color": [
+   0.24,
+   0.05,
+   0.03
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Barbarian_helm": {
+  "color": [
+   0.86,
+   0.8,
+   0.64
+  ],
+  "metalness": 0.0,
+  "roughness": 0.7
+ },
+ "Mat_Barbarian_iron": {
+  "color": [
+   0.07,
+   0.065,
+   0.07
+  ],
+  "metalness": 0.0,
+  "roughness": 0.6
+ },
+ "Mat_Barbarian_tunic": {
+  "color": [
+   0.46,
+   0.1,
+   0.05
+  ],
+  "metalness": 0.0,
+  "roughness": 0.85
+ },
+ "Mat_Boarder_skin": {
+  "color": [
+   0.78,
+   0.56,
+   0.4
+  ],
+  "metalness": 0.0,
+  "roughness": 0.8
+ },
+ "Mat_Camel_blanket": {
+  "color": [
+   0.196,
+   0.058,
+   0.046
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Camel_body": {
+  "color": [
+   0.43,
+   0.298,
+   0.172
+  ],
+  "metalness": 0.0,
+  "roughness": 0.85
+ },
+ "Mat_Camel_leg": {
+  "color": [
+   0.238,
+   0.162,
+   0.096
+  ],
+  "metalness": 0.0,
+  "roughness": 0.85
+ },
+ "Mat_Camel_pack": {
+  "color": [
+   0.855,
+   0.815,
+   0.7
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Card_print": {
+  "color": [
+   0.235,
+   0.255,
+   0.325
+  ],
+  "metalness": 0.0,
+  "roughness": 0.55
+ },
+ "Mat_Card_stock": {
+  "color": [
+   0.912,
+   0.868,
+   0.755
+  ],
+  "metalness": 0.0,
+  "roughness": 0.7
+ },
+ "Mat_Castle_banner": {
+  "color": [
+   0.898,
+   0.855,
+   0.745
+  ],
+  "metalness": 0.0,
+  "roughness": 0.8
+ },
+ "Mat_Castle_roof": {
+  "color": [
+   0.573,
+   0.196,
+   0.145
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Castle_stone": {
+  "color": [
+   0.58,
+   0.5,
+   0.4
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Castle_stone_dk": {
+  "color": [
+   0.4,
+   0.34,
+   0.27
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Castle_stone_lt": {
+  "color": [
+   0.72,
+   0.64,
+   0.52
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Chip_Body": {
+  "color": [
+   0.9,
+   0.845,
+   0.7
+  ],
+  "metalness": 0.0,
+  "roughness": 0.65
+ },
+ "Mat_Chip_Face": {
+  "color": [
+   0.955,
+   0.92,
+   0.815
+  ],
+  "metalness": 0.0,
+  "roughness": 0.6
+ },
+ "Mat_Chip_Ink_Dark": {
+  "color": [
+   0.105,
+   0.1,
+   0.095
+  ],
+  "metalness": 0.0,
+  "roughness": 0.45
+ },
+ "Mat_Chip_Ink_Red": {
+  "color": [
+   0.62,
+   0.055,
+   0.055
+  ],
+  "metalness": 0.0,
+  "roughness": 0.45
+ },
+ "Mat_Council_dark": {
+  "color": [
+   0.09,
+   0.08,
+   0.07
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Desert": {
+  "color": [
+   0.85,
+   0.618,
+   0.306
+  ],
+  "metalness": 0.0,
+  "roughness": 0.85
+ },
+ "Mat_Desert_bone": {
+  "color": [
+   0.945,
+   0.915,
+   0.82
+  ],
+  "metalness": 0.0,
+  "roughness": 0.75
+ },
+ "Mat_Desert_cactus": {
+  "color": [
+   0.2332,
+   0.55,
+   0.154
+  ],
+  "metalness": 0.0,
+  "roughness": 0.8
+ },
+ "Mat_Desert_crust": {
+  "color": [
+   0.9562,
+   0.7315,
+   0.4922
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Desert_gravel": {
+  "color": [
+   0.6683,
+   0.5216,
+   0.3343
+  ],
+  "metalness": 0.0,
+  "roughness": 0.95
+ },
+ "Mat_Desert_rock": {
+  "color": [
+   0.72,
+   0.352,
+   0.216
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Desert_rock_lite": {
+  "color": [
+   0.895,
+   0.585,
+   0.34
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Desert_sand_lit": {
+  "color": [
+   0.97,
+   0.719,
+   0.4601
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Desert_sand_shade": {
+  "color": [
+   0.8476,
+   0.538,
+   0.3335
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Desert_stone": {
+  "color": [
+   0.545,
+   0.41,
+   0.218
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Desert_tumble": {
+  "color": [
+   0.72,
+   0.53,
+   0.24
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Desert_wood": {
+  "color": [
+   0.43,
+   0.295,
+   0.16
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Fields": {
+  "color": [
+   0.596,
+   0.529,
+   0.18
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Fields_bale": {
+  "color": [
+   0.776,
+   0.678,
+   0.333
+  ],
+  "metalness": 0.0,
+  "roughness": 0.93
+ },
+ "Mat_Fields_bale_end": {
+  "color": [
+   0.663,
+   0.549,
+   0.243
+  ],
+  "metalness": 0.0,
+  "roughness": 0.93
+ },
+ "Mat_Fields_bark": {
+  "color": [
+   0.322,
+   0.235,
+   0.153
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Fields_cloth": {
+  "color": [
+   0.545,
+   0.239,
+   0.235
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Fields_crop_dk": {
+  "color": [
+   0.643,
+   0.529,
+   0.196
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Fields_crop_lit": {
+  "color": [
+   0.871,
+   0.769,
+   0.325
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Fields_crop_mid": {
+  "color": [
+   0.769,
+   0.647,
+   0.251
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Fields_dark": {
+  "color": [
+   0.09,
+   0.08,
+   0.07
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Fields_fallow": {
+  "color": [
+   0.396,
+   0.502,
+   0.235
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Fields_fallow_dk": {
+  "color": [
+   0.31,
+   0.416,
+   0.192
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Fields_hat": {
+  "color": [
+   0.741,
+   0.639,
+   0.353
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Fields_head": {
+  "color": [
+   0.812,
+   0.706,
+   0.4
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Fields_hedge": {
+  "color": [
+   0.267,
+   0.427,
+   0.18
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Fields_hedge_dk": {
+  "color": [
+   0.196,
+   0.341,
+   0.145
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Fields_leaf": {
+  "color": [
+   0.353,
+   0.522,
+   0.204
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Fields_leaf_lit": {
+  "color": [
+   0.451,
+   0.612,
+   0.243
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Fields_plough_dk": {
+  "color": [
+   0.275,
+   0.204,
+   0.137
+  ],
+  "metalness": 0.0,
+  "roughness": 0.94
+ },
+ "Mat_Fields_plough_lt": {
+  "color": [
+   0.396,
+   0.302,
+   0.192
+  ],
+  "metalness": 0.0,
+  "roughness": 0.94
+ },
+ "Mat_Fields_post": {
+  "color": [
+   0.478,
+   0.365,
+   0.204
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Fields_ripe": {
+  "color": [
+   0.84,
+   0.6,
+   0.13
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Fields_ripe_dk": {
+  "color": [
+   0.72,
+   0.49,
+   0.1
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Fields_ripe_lit": {
+  "color": [
+   0.92,
+   0.7,
+   0.2
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Fields_sheaf": {
+  "color": [
+   0.831,
+   0.714,
+   0.29
+  ],
+  "metalness": 0.0,
+  "roughness": 0.93
+ },
+ "Mat_Fields_sheaf_dk": {
+  "color": [
+   0.702,
+   0.573,
+   0.216
+  ],
+  "metalness": 0.0,
+  "roughness": 0.93
+ },
+ "Mat_Fields_stubble": {
+  "color": [
+   0.729,
+   0.686,
+   0.396
+  ],
+  "metalness": 0.0,
+  "roughness": 0.93
+ },
+ "Mat_Fields_stubble_dk": {
+  "color": [
+   0.616,
+   0.573,
+   0.318
+  ],
+  "metalness": 0.0,
+  "roughness": 0.93
+ },
+ "Mat_Fields_track": {
+  "color": [
+   0.518,
+   0.435,
+   0.298
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Fields_twine": {
+  "color": [
+   0.482,
+   0.376,
+   0.18
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Fields_wheat_dk": {
+  "color": [
+   0.596,
+   0.522,
+   0.184
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Fields_wheat_lit": {
+  "color": [
+   0.827,
+   0.741,
+   0.31
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Fields_wheat_mid": {
+  "color": [
+   0.722,
+   0.627,
+   0.235
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Fishground_shallow": {
+  "color": [
+   0.05,
+   0.3,
+   0.36
+  ],
+  "metalness": 0.0,
+  "roughness": 0.3
+ },
+ "Mat_Fishground_shallow_lit": {
+  "color": [
+   0.12,
+   0.45,
+   0.46
+  ],
+  "metalness": 0.0,
+  "roughness": 0.3
+ },
+ "Mat_Fog_cloud": {
+  "color": [
+   0.9,
+   0.915,
+   0.94
+  ],
+  "metalness": 0.0,
+  "roughness": 0.95
+ },
+ "Mat_Fog_cloud_belly": {
+  "color": [
+   0.55,
+   0.6,
+   0.72
+  ],
+  "metalness": 0.0,
+  "roughness": 0.95
+ },
+ "Mat_Forest": {
+  "color": [
+   0.086,
+   0.245,
+   0.105
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Forest_bark": {
+  "color": [
+   0.271,
+   0.18,
+   0.106
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Forest_bark_dk": {
+  "color": [
+   0.192,
+   0.129,
+   0.082
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Forest_berry": {
+  "color": [
+   0.129,
+   0.318,
+   0.208
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Forest_fern": {
+  "color": [
+   0.235,
+   0.443,
+   0.153
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Forest_floor_lit": {
+  "color": [
+   0.243,
+   0.412,
+   0.157
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Forest_floor_mid": {
+  "color": [
+   0.176,
+   0.325,
+   0.122
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Forest_floor_shade": {
+  "color": [
+   0.113,
+   0.231,
+   0.094
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Forest_leaf": {
+  "color": [
+   0.271,
+   0.51,
+   0.153
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Forest_leaf_gold": {
+  "color": [
+   0.502,
+   0.451,
+   0.145
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Forest_leaf_lit": {
+  "color": [
+   0.376,
+   0.612,
+   0.196
+  ],
+  "metalness": 0.0,
+  "roughness": 0.86
+ },
+ "Mat_Forest_moss": {
+  "color": [
+   0.318,
+   0.49,
+   0.157
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Forest_needle_dk": {
+  "color": [
+   0.078,
+   0.239,
+   0.113
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Forest_needle_lit": {
+  "color": [
+   0.176,
+   0.427,
+   0.18
+  ],
+  "metalness": 0.0,
+  "roughness": 0.86
+ },
+ "Mat_Forest_needle_mid": {
+  "color": [
+   0.114,
+   0.325,
+   0.145
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Forest_rock": {
+  "color": [
+   0.352,
+   0.36,
+   0.333
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Forest_rock_moss": {
+  "color": [
+   0.29,
+   0.404,
+   0.212
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Forest_shrub": {
+  "color": [
+   0.161,
+   0.361,
+   0.129
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Forest_trail": {
+  "color": [
+   0.4,
+   0.302,
+   0.18
+  ],
+  "metalness": 0.0,
+  "roughness": 0.95
+ },
+ "Mat_Forest_trail_dk": {
+  "color": [
+   0.325,
+   0.239,
+   0.141
+  ],
+  "metalness": 0.0,
+  "roughness": 0.95
+ },
+ "Mat_Generic": {
+  "color": [
+   0.57,
+   0.5491,
+   0.5272
+  ],
+  "metalness": 0.0,
+  "roughness": 0.6
+ },
+ "Mat_Gold": {
+  "color": [
+   0.4,
+   0.318,
+   0.129
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Gold_boulder": {
+  "color": [
+   0.463,
+   0.427,
+   0.365
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Gold_boulder_dk": {
+  "color": [
+   0.365,
+   0.333,
+   0.286
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Gold_dark": {
+  "color": [
+   0.086,
+   0.075,
+   0.067
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Gold_dirt_dk": {
+  "color": [
+   0.353,
+   0.286,
+   0.137
+  ],
+  "metalness": 0.0,
+  "roughness": 0.93
+ },
+ "Mat_Gold_dirt_lit": {
+  "color": [
+   0.565,
+   0.478,
+   0.235
+  ],
+  "metalness": 0.0,
+  "roughness": 0.93
+ },
+ "Mat_Gold_dirt_mid": {
+  "color": [
+   0.463,
+   0.38,
+   0.18
+  ],
+  "metalness": 0.0,
+  "roughness": 0.93
+ },
+ "Mat_Gold_grass": {
+  "color": [
+   0.365,
+   0.427,
+   0.212
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Gold_gravel": {
+  "color": [
+   0.522,
+   0.478,
+   0.365
+  ],
+  "metalness": 0.0,
+  "roughness": 0.94
+ },
+ "Mat_Gold_iron": {
+  "color": [
+   0.239,
+   0.239,
+   0.251
+  ],
+  "metalness": 0.35,
+  "roughness": 0.55
+ },
+ "Mat_Gold_nugget": {
+  "color": [
+   0.949,
+   0.812,
+   0.243
+  ],
+  "metalness": 0.65,
+  "roughness": 0.28
+ },
+ "Mat_Gold_plank": {
+  "color": [
+   0.494,
+   0.373,
+   0.216
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Gold_rock": {
+  "color": [
+   0.475,
+   0.435,
+   0.376
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Gold_scrub": {
+  "color": [
+   0.322,
+   0.404,
+   0.216
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Gold_scrub_dk": {
+  "color": [
+   0.243,
+   0.318,
+   0.169
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Gold_seam": {
+  "color": [
+   0.937,
+   0.792,
+   0.235
+  ],
+  "metalness": 0.65,
+  "roughness": 0.28
+ },
+ "Mat_Gold_tailings": {
+  "color": [
+   0.549,
+   0.475,
+   0.278
+  ],
+  "metalness": 0.0,
+  "roughness": 0.94
+ },
+ "Mat_Gold_tailings_dk": {
+  "color": [
+   0.451,
+   0.38,
+   0.216
+  ],
+  "metalness": 0.0,
+  "roughness": 0.94
+ },
+ "Mat_Gold_timber": {
+  "color": [
+   0.4,
+   0.286,
+   0.169
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Gold_timber_dk": {
+  "color": [
+   0.302,
+   0.212,
+   0.129
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Gold_water": {
+  "color": [
+   0.353,
+   0.478,
+   0.478
+  ],
+  "metalness": 0.0,
+  "roughness": 0.3
+ },
+ "Mat_Goldfield_canvas": {
+  "color": [
+   0.74,
+   0.63,
+   0.46
+  ],
+  "metalness": 0.0,
+  "roughness": 0.85
+ },
+ "Mat_Goldfield_pay": {
+  "color": [
+   0.82,
+   0.57,
+   0.1
+  ],
+  "metalness": 0.0,
+  "roughness": 0.85
+ },
+ "Mat_Goldfield_pay_dk": {
+  "color": [
+   0.64,
+   0.4,
+   0.07
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Goldfield_pay_lit": {
+  "color": [
+   0.93,
+   0.72,
+   0.22
+  ],
+  "metalness": 0.0,
+  "roughness": 0.8
+ },
+ "Mat_Goldfield_ridge_blue": {
+  "color": [
+   0.1,
+   0.22,
+   0.5
+  ],
+  "metalness": 0.0,
+  "roughness": 0.8
+ },
+ "Mat_Haul_body": {
+  "color": [
+   0.46,
+   0.54,
+   0.64
+  ],
+  "metalness": 0.0,
+  "roughness": 0.45
+ },
+ "Mat_Haul_fin": {
+  "color": [
+   0.2,
+   0.31,
+   0.45
+  ],
+  "metalness": 0.0,
+  "roughness": 0.6
+ },
+ "Mat_Hills": {
+  "color": [
+   0.502,
+   0.243,
+   0.169
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Hills_brick": {
+  "color": [
+   0.667,
+   0.298,
+   0.216
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Hills_brick_dk": {
+  "color": [
+   0.553,
+   0.235,
+   0.176
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Hills_brick_lt": {
+  "color": [
+   0.741,
+   0.4,
+   0.29
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Hills_clay_dk": {
+  "color": [
+   0.502,
+   0.235,
+   0.145
+  ],
+  "metalness": 0.0,
+  "roughness": 0.93
+ },
+ "Mat_Hills_clay_lit": {
+  "color": [
+   0.741,
+   0.404,
+   0.243
+  ],
+  "metalness": 0.0,
+  "roughness": 0.93
+ },
+ "Mat_Hills_clay_mid": {
+  "color": [
+   0.639,
+   0.318,
+   0.192
+  ],
+  "metalness": 0.0,
+  "roughness": 0.93
+ },
+ "Mat_Hills_clay_wet": {
+  "color": [
+   0.573,
+   0.29,
+   0.204
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Hills_iron": {
+  "color": [
+   0.29,
+   0.286,
+   0.286
+  ],
+  "metalness": 0.0,
+  "roughness": 0.6
+ },
+ "Mat_Hills_kiln": {
+  "color": [
+   0.596,
+   0.325,
+   0.243
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Hills_kiln_dk": {
+  "color": [
+   0.478,
+   0.247,
+   0.184
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Hills_kiln_lt": {
+  "color": [
+   0.678,
+   0.404,
+   0.298
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Hills_path": {
+  "color": [
+   0.596,
+   0.463,
+   0.353
+  ],
+  "metalness": 0.0,
+  "roughness": 0.94
+ },
+ "Mat_Hills_rock": {
+  "color": [
+   0.478,
+   0.412,
+   0.365
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Hills_scrub": {
+  "color": [
+   0.31,
+   0.435,
+   0.212
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Hills_scrub_dk": {
+  "color": [
+   0.239,
+   0.353,
+   0.169
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Hills_soot": {
+  "color": [
+   0.176,
+   0.157,
+   0.149
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Hills_spoil": {
+  "color": [
+   0.435,
+   0.278,
+   0.196
+  ],
+  "metalness": 0.0,
+  "roughness": 0.94
+ },
+ "Mat_Hills_spoil_a": {
+  "color": [
+   0.529,
+   0.318,
+   0.243
+  ],
+  "metalness": 0.0,
+  "roughness": 0.94
+ },
+ "Mat_Hills_spoil_b": {
+  "color": [
+   0.612,
+   0.376,
+   0.267
+  ],
+  "metalness": 0.0,
+  "roughness": 0.94
+ },
+ "Mat_Hills_wood": {
+  "color": [
+   0.427,
+   0.31,
+   0.196
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Hmark_Face_3to1": {
+  "color": [
+   0.82,
+   0.78,
+   0.66
+  ],
+  "metalness": 0.0,
+  "roughness": 0.68
+ },
+ "Mat_Hmark_Face_Brick": {
+  "color": [
+   0.72,
+   0.26,
+   0.14
+  ],
+  "metalness": 0.0,
+  "roughness": 0.66
+ },
+ "Mat_Hmark_Face_Grain": {
+  "color": [
+   0.88,
+   0.68,
+   0.12
+  ],
+  "metalness": 0.0,
+  "roughness": 0.62
+ },
+ "Mat_Hmark_Face_Ore": {
+  "color": [
+   0.16,
+   0.28,
+   0.45
+  ],
+  "metalness": 0.0,
+  "roughness": 0.58
+ },
+ "Mat_Hmark_Face_Wood": {
+  "color": [
+   0.055,
+   0.32,
+   0.13
+  ],
+  "metalness": 0.0,
+  "roughness": 0.66
+ },
+ "Mat_Hmark_Face_Wool": {
+  "color": [
+   0.34,
+   0.68,
+   0.16
+  ],
+  "metalness": 0.0,
+  "roughness": 0.66
+ },
+ "Mat_Improve_politics_body": {
+  "color": [
+   0.2747,
+   0.4793,
+   1.0
+  ],
+  "metalness": 0.0,
+  "roughness": 0.6
+ },
+ "Mat_Improve_politics_detail": {
+  "color": [
+   1.0,
+   0.624,
+   0.107
+  ],
+  "metalness": 0.0,
+  "roughness": 0.45
+ },
+ "Mat_Improve_politics_shade": {
+  "color": [
+   0.159,
+   0.314,
+   0.7379
+  ],
+  "metalness": 0.0,
+  "roughness": 0.62
+ },
+ "Mat_Improve_science_body": {
+  "color": [
+   0.4851,
+   0.7084,
+   0.3613
+  ],
+  "metalness": 0.0,
+  "roughness": 0.6
+ },
+ "Mat_Improve_science_detail": {
+  "color": [
+   0.8632,
+   0.7682,
+   0.5395
+  ],
+  "metalness": 0.0,
+  "roughness": 0.6
+ },
+ "Mat_Improve_science_shade": {
+  "color": [
+   0.3278,
+   0.5457,
+   0.227
+  ],
+  "metalness": 0.0,
+  "roughness": 0.6
+ },
+ "Mat_Improve_trade_body": {
+  "color": [
+   0.8879,
+   0.3813,
+   0.4969
+  ],
+  "metalness": 0.0,
+  "roughness": 0.6
+ },
+ "Mat_Improve_trade_detail": {
+  "color": [
+   0.1144,
+   0.0252,
+   0.0529
+  ],
+  "metalness": 0.0,
+  "roughness": 0.6
+ },
+ "Mat_Improve_trade_shade": {
+  "color": [
+   0.7231,
+   0.2582,
+   0.3663
+  ],
+  "metalness": 0.0,
+  "roughness": 0.6
+ },
+ "Mat_Knight_crest": {
+  "color": [
+   0.98,
+   0.72,
+   0.06
+  ],
+  "metalness": 0.3,
+  "roughness": 0.34
+ },
+ "Mat_Knight_sword_dark": {
+  "color": [
+   0.16,
+   0.175,
+   0.2
+  ],
+  "metalness": 0.55,
+  "roughness": 0.42
+ },
+ "Mat_Lake_bank": {
+  "color": [
+   0.3,
+   0.47,
+   0.18
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Lake_bank_shade": {
+  "color": [
+   0.15,
+   0.27,
+   0.1
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Lake_bed": {
+  "color": [
+   0.07,
+   0.18,
+   0.196
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Lake_grass": {
+  "color": [
+   0.4,
+   0.51,
+   0.22
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Lake_leaf": {
+  "color": [
+   0.235,
+   0.443,
+   0.153
+  ],
+  "metalness": 0.0,
+  "roughness": 0.8
+ },
+ "Mat_Lake_mud": {
+  "color": [
+   0.3,
+   0.255,
+   0.17
+  ],
+  "metalness": 0.0,
+  "roughness": 0.94
+ },
+ "Mat_Lake_reed": {
+  "color": [
+   0.353,
+   0.545,
+   0.176
+  ],
+  "metalness": 0.0,
+  "roughness": 0.82
+ },
+ "Mat_Lake_shallows": {
+  "color": [
+   0.18,
+   0.255,
+   0.235
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Lake_shoal": {
+  "color": [
+   0.098,
+   0.404,
+   0.42
+  ],
+  "metalness": 0.0,
+  "roughness": 0.14
+ },
+ "Mat_Lake_stone": {
+  "color": [
+   0.25,
+   0.258,
+   0.243
+  ],
+  "metalness": 0.0,
+  "roughness": 0.95
+ },
+ "Mat_Lake_trunk": {
+  "color": [
+   0.271,
+   0.18,
+   0.106
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Lake_verge": {
+  "color": [
+   0.235,
+   0.4,
+   0.157
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Lake_water": {
+  "color": [
+   0.047,
+   0.286,
+   0.325
+  ],
+  "metalness": 0.0,
+  "roughness": 0.14
+ },
+ "Mat_Metro_politics_banner": {
+  "color": [
+   0.898,
+   0.855,
+   0.745
+  ],
+  "metalness": 0.0,
+  "roughness": 0.8
+ },
+ "Mat_Metro_politics_keep": {
+  "color": [
+   0.72,
+   0.64,
+   0.52
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Metro_politics_pole": {
+  "color": [
+   0.27,
+   0.165,
+   0.09
+  ],
+  "metalness": 0.0,
+  "roughness": 0.75
+ },
+ "Mat_Metro_science_dome": {
+  "color": [
+   0.26,
+   0.5,
+   0.42
+  ],
+  "metalness": 0.0,
+  "roughness": 0.6
+ },
+ "Mat_Metro_science_drum": {
+  "color": [
+   0.72,
+   0.64,
+   0.52
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Metro_science_scope": {
+  "color": [
+   0.72,
+   0.52,
+   0.2
+  ],
+  "metalness": 0.0,
+  "roughness": 0.45
+ },
+ "Mat_Metro_trade_crate": {
+  "color": [
+   0.463,
+   0.333,
+   0.208
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Metro_trade_hall": {
+  "color": [
+   0.72,
+   0.64,
+   0.52
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Metro_trade_roof": {
+  "color": [
+   0.8,
+   0.5,
+   0.12
+  ],
+  "metalness": 0.0,
+  "roughness": 0.8
+ },
+ "Mat_Metro_trade_sign": {
+  "color": [
+   0.898,
+   0.855,
+   0.745
+  ],
+  "metalness": 0.0,
+  "roughness": 0.8
+ },
+ "Mat_Mountains": {
+  "color": [
+   0.259,
+   0.282,
+   0.333
+  ],
+  "metalness": 0.0,
+  "roughness": 0.85
+ },
+ "Mat_Mountains_adit": {
+  "color": [
+   0.05,
+   0.045,
+   0.045
+  ],
+  "metalness": 0.0,
+  "roughness": 0.95
+ },
+ "Mat_Mountains_bark": {
+  "color": [
+   0.259,
+   0.196,
+   0.145
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Mountains_conifer": {
+  "color": [
+   0.129,
+   0.29,
+   0.192
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Mountains_conifer_dk": {
+  "color": [
+   0.086,
+   0.216,
+   0.145
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Mountains_moss": {
+  "color": [
+   0.333,
+   0.424,
+   0.29
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Mountains_ore": {
+  "color": [
+   0.404,
+   0.435,
+   0.478
+  ],
+  "metalness": 0.55,
+  "roughness": 0.45
+ },
+ "Mat_Mountains_ore_rust": {
+  "color": [
+   0.478,
+   0.353,
+   0.239
+  ],
+  "metalness": 0.0,
+  "roughness": 0.7
+ },
+ "Mat_Mountains_rock_dk": {
+  "color": [
+   0.255,
+   0.275,
+   0.322
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Mountains_rock_lit": {
+  "color": [
+   0.475,
+   0.502,
+   0.557
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Mountains_rock_mid": {
+  "color": [
+   0.357,
+   0.384,
+   0.439
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Mountains_scree": {
+  "color": [
+   0.51,
+   0.522,
+   0.549
+  ],
+  "metalness": 0.0,
+  "roughness": 0.93
+ },
+ "Mat_Mountains_scree_dk": {
+  "color": [
+   0.408,
+   0.42,
+   0.451
+  ],
+  "metalness": 0.0,
+  "roughness": 0.93
+ },
+ "Mat_Mountains_scree_warm": {
+  "color": [
+   0.53,
+   0.43,
+   0.32
+  ],
+  "metalness": 0.0,
+  "roughness": 0.93
+ },
+ "Mat_Mountains_scree_warm_dk": {
+  "color": [
+   0.42,
+   0.33,
+   0.24
+  ],
+  "metalness": 0.0,
+  "roughness": 0.93
+ },
+ "Mat_Mountains_scrub": {
+  "color": [
+   0.278,
+   0.365,
+   0.243
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Mountains_shale": {
+  "color": [
+   0.216,
+   0.231,
+   0.275
+  ],
+  "metalness": 0.0,
+  "roughness": 0.86
+ },
+ "Mat_Mountains_shale_warm": {
+  "color": [
+   0.31,
+   0.25,
+   0.2
+  ],
+  "metalness": 0.0,
+  "roughness": 0.93
+ },
+ "Mat_Mountains_snow": {
+  "color": [
+   0.941,
+   0.949,
+   0.965
+  ],
+  "metalness": 0.0,
+  "roughness": 0.75
+ },
+ "Mat_Mountains_vein": {
+  "color": [
+   0.58,
+   0.3,
+   0.14
+  ],
+  "metalness": 0.0,
+  "roughness": 0.85
+ },
+ "Mat_Oasis_bank": {
+  "color": [
+   0.478,
+   0.373,
+   0.259
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Oasis_bed": {
+  "color": [
+   0.129,
+   0.161,
+   0.145
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Oasis_crust": {
+  "color": [
+   0.573,
+   0.451,
+   0.31
+  ],
+  "metalness": 0.0,
+  "roughness": 0.95
+ },
+ "Mat_Oasis_frond": {
+  "color": [
+   0.204,
+   0.4,
+   0.169
+  ],
+  "metalness": 0.0,
+  "roughness": 0.8
+ },
+ "Mat_Oasis_grass": {
+  "color": [
+   0.376,
+   0.478,
+   0.243
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Oasis_gravel": {
+  "color": [
+   0.583,
+   0.529,
+   0.387
+  ],
+  "metalness": 0.0,
+  "roughness": 0.95
+ },
+ "Mat_Oasis_reed": {
+  "color": [
+   0.322,
+   0.494,
+   0.208
+  ],
+  "metalness": 0.0,
+  "roughness": 0.82
+ },
+ "Mat_Oasis_sand": {
+  "color": [
+   0.847,
+   0.729,
+   0.533
+  ],
+  "metalness": 0.0,
+  "roughness": 0.95
+ },
+ "Mat_Oasis_sand_shade": {
+  "color": [
+   0.714,
+   0.588,
+   0.412
+  ],
+  "metalness": 0.0,
+  "roughness": 0.95
+ },
+ "Mat_Oasis_shallows": {
+  "color": [
+   0.376,
+   0.353,
+   0.243
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Oasis_slab": {
+  "color": [
+   0.451,
+   0.361,
+   0.243
+  ],
+  "metalness": 0.0,
+  "roughness": 0.95
+ },
+ "Mat_Oasis_stone": {
+  "color": [
+   0.498,
+   0.435,
+   0.361
+  ],
+  "metalness": 0.0,
+  "roughness": 0.95
+ },
+ "Mat_Oasis_trunk": {
+  "color": [
+   0.325,
+   0.224,
+   0.133
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Oasis_verge": {
+  "color": [
+   0.259,
+   0.318,
+   0.18
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Oasis_water": {
+  "color": [
+   0.047,
+   0.286,
+   0.325
+  ],
+  "metalness": 0.0,
+  "roughness": 0.14
+ },
+ "Mat_Ocean": {
+  "color": [
+   0.02,
+   0.12,
+   0.33
+  ],
+  "metalness": 0.0,
+  "roughness": 0.1
+ },
+ "Mat_Ocean_water": {
+  "color": [
+   0.012,
+   0.06,
+   0.26
+  ],
+  "metalness": 0.0,
+  "roughness": 0.18
+ },
+ "Mat_Pasture": {
+  "color": [
+   0.31,
+   0.498,
+   0.18
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Pasture_barn": {
+  "color": [
+   0.529,
+   0.216,
+   0.157
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Pasture_clover": {
+  "color": [
+   0.545,
+   0.694,
+   0.29
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Pasture_dirt": {
+  "color": [
+   0.463,
+   0.373,
+   0.239
+  ],
+  "metalness": 0.0,
+  "roughness": 0.94
+ },
+ "Mat_Pasture_grass_dk": {
+  "color": [
+   0.267,
+   0.443,
+   0.145
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Pasture_grass_lit": {
+  "color": [
+   0.451,
+   0.639,
+   0.22
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Pasture_grass_mid": {
+  "color": [
+   0.353,
+   0.545,
+   0.176
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Pasture_hay": {
+  "color": [
+   0.769,
+   0.647,
+   0.294
+  ],
+  "metalness": 0.0,
+  "roughness": 0.93
+ },
+ "Mat_Pasture_hay_dk": {
+  "color": [
+   0.647,
+   0.529,
+   0.22
+  ],
+  "metalness": 0.0,
+  "roughness": 0.93
+ },
+ "Mat_Pasture_hedge": {
+  "color": [
+   0.216,
+   0.4,
+   0.157
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Pasture_hedge_dk": {
+  "color": [
+   0.157,
+   0.302,
+   0.125
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Pasture_mud": {
+  "color": [
+   0.373,
+   0.302,
+   0.196
+  ],
+  "metalness": 0.0,
+  "roughness": 0.94
+ },
+ "Mat_Pasture_reed": {
+  "color": [
+   0.4,
+   0.51,
+   0.22
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Pasture_roof": {
+  "color": [
+   0.298,
+   0.31,
+   0.325
+  ],
+  "metalness": 0.0,
+  "roughness": 0.85
+ },
+ "Mat_Pasture_sheep_dark": {
+  "color": [
+   0.239,
+   0.212,
+   0.204
+  ],
+  "metalness": 0.0,
+  "roughness": 0.75
+ },
+ "Mat_Pasture_stone": {
+  "color": [
+   0.647,
+   0.635,
+   0.588
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Pasture_stone_dk": {
+  "color": [
+   0.522,
+   0.51,
+   0.478
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Pasture_water": {
+  "color": [
+   0.271,
+   0.451,
+   0.518
+  ],
+  "metalness": 0.0,
+  "roughness": 0.35
+ },
+ "Mat_Pasture_water_dk": {
+  "color": [
+   0.196,
+   0.353,
+   0.427
+  ],
+  "metalness": 0.0,
+  "roughness": 0.35
+ },
+ "Mat_Pasture_wood": {
+  "color": [
+   0.463,
+   0.333,
+   0.208
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Pasture_wool": {
+  "color": [
+   0.906,
+   0.89,
+   0.843
+  ],
+  "metalness": 0.0,
+  "roughness": 0.85
+ },
+ "Mat_Pasture_wool_shade": {
+  "color": [
+   0.796,
+   0.769,
+   0.714
+  ],
+  "metalness": 0.0,
+  "roughness": 0.85
+ },
+ "Mat_Path": {
+  "color": [
+   0.612,
+   0.516,
+   0.396
+  ],
+  "metalness": 0.0,
+  "roughness": 0.95
+ },
+ "Mat_Port_cargo": {
+  "color": [
+   0.64,
+   0.5,
+   0.29
+  ],
+  "metalness": 0.0,
+  "roughness": 0.75
+ },
+ "Mat_Port_deck": {
+  "color": [
+   0.43,
+   0.27,
+   0.145
+  ],
+  "metalness": 0.0,
+  "roughness": 0.75
+ },
+ "Mat_Port_frame": {
+  "color": [
+   0.27,
+   0.165,
+   0.09
+  ],
+  "metalness": 0.0,
+  "roughness": 0.75
+ },
+ "Mat_River_bed": {
+  "color": [
+   0.29,
+   0.259,
+   0.208
+  ],
+  "metalness": 0.0,
+  "roughness": 0.94
+ },
+ "Mat_River_shingle": {
+  "color": [
+   0.514,
+   0.478,
+   0.416
+  ],
+  "metalness": 0.0,
+  "roughness": 0.95
+ },
+ "Mat_River_water": {
+  "color": [
+   0.145,
+   0.376,
+   0.42
+  ],
+  "metalness": 0.0,
+  "roughness": 0.22
+ },
+ "Mat_River_water_dk": {
+  "color": [
+   0.086,
+   0.267,
+   0.322
+  ],
+  "metalness": 0.0,
+  "roughness": 0.22
+ },
+ "Mat_Robber": {
+  "color": [
+   0.08,
+   0.08,
+   0.085
+  ],
+  "metalness": 0.0,
+  "roughness": 0.6
+ },
+ "Mat_Roof_ochre": {
+  "color": [
+   0.56,
+   0.39,
+   0.17
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Roof_verdigris": {
+  "color": [
+   0.3,
+   0.47,
+   0.41
+  ],
+  "metalness": 0.0,
+  "roughness": 0.8
+ },
+ "Mat_Ship_barbarian_eye": {
+  "color": [
+   0.1,
+   0.95,
+   0.3
+  ],
+  "metalness": 0.0,
+  "roughness": 0.3
+ },
+ "Mat_Ship_barbarian_hull": {
+  "color": [
+   0.05,
+   0.045,
+   0.05
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Ship_barbarian_iron": {
+  "color": [
+   0.42,
+   0.45,
+   0.48
+  ],
+  "metalness": 0.9,
+  "roughness": 0.32
+ },
+ "Mat_Ship_barbarian_oar": {
+  "color": [
+   0.22,
+   0.135,
+   0.07
+  ],
+  "metalness": 0.0,
+  "roughness": 0.85
+ },
+ "Mat_Ship_barbarian_sail": {
+  "color": [
+   0.46,
+   0.1,
+   0.05
+  ],
+  "metalness": 0.0,
+  "roughness": 0.85
+ },
+ "Mat_Ship_barbarian_shield": {
+  "color": [
+   0.86,
+   0.8,
+   0.64
+  ],
+  "metalness": 0.0,
+  "roughness": 0.7
+ },
+ "Mat_Ship_pirate_bone": {
+  "color": [
+   0.96,
+   0.95,
+   0.88
+  ],
+  "metalness": 0.0,
+  "roughness": 0.45
+ },
+ "Mat_Ship_pirate_eye": {
+  "color": [
+   0.004,
+   0.004,
+   0.006
+  ],
+  "metalness": 0.0,
+  "roughness": 0.65
+ },
+ "Mat_Ship_pirate_hull": {
+  "color": [
+   0.035,
+   0.035,
+   0.045
+  ],
+  "metalness": 0.0,
+  "roughness": 0.5
+ },
+ "Mat_Ship_pirate_mast": {
+  "color": [
+   0.17,
+   0.1,
+   0.055
+  ],
+  "metalness": 0.0,
+  "roughness": 0.8
+ },
+ "Mat_Ship_pirate_pennant": {
+  "color": [
+   0.88,
+   0.03,
+   0.06
+  ],
+  "metalness": 0.0,
+  "roughness": 0.55
+ },
+ "Mat_Ship_pirate_sail": {
+  "color": [
+   0.015,
+   0.015,
+   0.022
+  ],
+  "metalness": 0.0,
+  "roughness": 0.85
+ },
+ "Mat_Shoal_fish": {
+  "color": [
+   0.08,
+   0.19,
+   0.26
+  ],
+  "metalness": 0.0,
+  "roughness": 0.55
+ },
+ "Mat_Shore_sand": {
+  "color": [
+   0.865,
+   0.775,
+   0.56
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Shore_wetsand": {
+  "color": [
+   0.4551,
+   0.3799,
+   0.2714
+  ],
+  "metalness": 0.0,
+  "roughness": 0.72
+ },
+ "Mat_Spice_sack": {
+  "color": [
+   0.78,
+   0.63,
+   0.4
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Spice_tie": {
+  "color": [
+   0.28,
+   0.19,
+   0.12
+  ],
+  "metalness": 0.0,
+  "roughness": 0.85
+ },
+ "Mat_Spoke_cap": {
+  "color": [
+   0.855,
+   0.815,
+   0.7
+  ],
+  "metalness": 0.0,
+  "roughness": 0.85
+ },
+ "Mat_Spoke_post": {
+  "color": [
+   0.135,
+   0.118,
+   0.105
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Spoke_stone": {
+  "color": [
+   0.285,
+   0.258,
+   0.228
+  ],
+  "metalness": 0.0,
+  "roughness": 0.95
+ },
+ "Mat_Swamp": {
+  "color": [
+   0.145,
+   0.169,
+   0.118
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Swamp_bog": {
+  "color": [
+   0.34,
+   0.44,
+   0.19
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Swamp_bog_dk": {
+  "color": [
+   0.25,
+   0.32,
+   0.14
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Swamp_dark": {
+  "color": [
+   0.09,
+   0.08,
+   0.07
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Swamp_deadwood": {
+  "color": [
+   0.278,
+   0.251,
+   0.216
+  ],
+  "metalness": 0.0,
+  "roughness": 0.93
+ },
+ "Mat_Swamp_lily": {
+  "color": [
+   0.28,
+   0.5,
+   0.14
+  ],
+  "metalness": 0.0,
+  "roughness": 0.7
+ },
+ "Mat_Swamp_moss": {
+  "color": [
+   0.47,
+   0.56,
+   0.23
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Swamp_mud": {
+  "color": [
+   0.36,
+   0.31,
+   0.2
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Swamp_peat": {
+  "color": [
+   0.34,
+   0.27,
+   0.17
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Swamp_pool": {
+  "color": [
+   0.13,
+   0.3,
+   0.31
+  ],
+  "metalness": 0.0,
+  "roughness": 0.3
+ },
+ "Mat_Swamp_reed": {
+  "color": [
+   0.56,
+   0.58,
+   0.26
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Swamp_reed_dk": {
+  "color": [
+   0.36,
+   0.45,
+   0.17
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Swamp_sedge": {
+  "color": [
+   0.74,
+   0.7,
+   0.4
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Swamp_silt_dk": {
+  "color": [
+   0.121,
+   0.155,
+   0.091
+  ],
+  "metalness": 0.0,
+  "roughness": 0.95
+ },
+ "Mat_Trader2_canopy_a": {
+  "color": [
+   0.58,
+   0.29,
+   0.18
+  ],
+  "metalness": 0.0,
+  "roughness": 0.7
+ },
+ "Mat_Trader2_canopy_b": {
+  "color": [
+   0.86,
+   0.8,
+   0.68
+  ],
+  "metalness": 0.0,
+  "roughness": 0.7
+ },
+ "Mat_Trader2_frame": {
+  "color": [
+   0.36,
+   0.245,
+   0.135
+  ],
+  "metalness": 0.0,
+  "roughness": 0.8
+ },
+ "Mat_Trader2_goods": {
+  "color": [
+   0.78,
+   0.58,
+   0.24
+  ],
+  "metalness": 0.0,
+  "roughness": 0.85
+ },
+ "Mat_Trader2_trim": {
+  "color": [
+   0.17,
+   0.32,
+   0.34
+  ],
+  "metalness": 0.0,
+  "roughness": 0.65
+ },
+ "Mat_Trader_merchant_canopy_a": {
+  "color": [
+   0.9,
+   0.09,
+   0.12
+  ],
+  "metalness": 0.0,
+  "roughness": 0.55
+ },
+ "Mat_Trader_merchant_canopy_b": {
+  "color": [
+   0.99,
+   0.95,
+   0.83
+  ],
+  "metalness": 0.0,
+  "roughness": 0.55
+ },
+ "Mat_Trader_merchant_coins": {
+  "color": [
+   1.0,
+   0.81,
+   0.16
+  ],
+  "metalness": 1.0,
+  "roughness": 0.25
+ },
+ "Mat_Trader_merchant_counter": {
+  "color": [
+   0.07,
+   0.46,
+   0.66
+  ],
+  "metalness": 0.0,
+  "roughness": 0.5
+ },
+ "Mat_Trader_merchant_flag": {
+  "color": [
+   0.96,
+   0.34,
+   0.04
+  ],
+  "metalness": 0.0,
+  "roughness": 0.55
+ },
+ "Mat_Trader_merchant_frame": {
+  "color": [
+   0.48,
+   0.26,
+   0.11
+  ],
+  "metalness": 0.0,
+  "roughness": 0.75
+ },
+ "Mat_Trader_merchant_goods": {
+  "color": [
+   0.88,
+   0.63,
+   0.26
+  ],
+  "metalness": 0.0,
+  "roughness": 0.8
+ },
+ "Mat_Trader_merchant_platform": {
+  "color": [
+   0.72,
+   0.42,
+   0.18
+  ],
+  "metalness": 0.0,
+  "roughness": 0.75
+ },
+ "Mat_Trader_merchant_ridge": {
+  "color": [
+   0.04,
+   0.52,
+   0.54
+  ],
+  "metalness": 0.0,
+  "roughness": 0.5
+ },
+ "Mat_Trader_merchant_scales": {
+  "color": [
+   0.78,
+   0.48,
+   0.1
+  ],
+  "metalness": 0.9,
+  "roughness": 0.35
+ },
+ "Mat_Wall_roof": {
+  "color": [
+   0.245,
+   0.268,
+   0.31
+  ],
+  "metalness": 0.0,
+  "roughness": 0.7
+ },
+ "Mat_Wall_stone": {
+  "color": [
+   0.56,
+   0.552,
+   0.52
+  ],
+  "metalness": 0.0,
+  "roughness": 0.88
+ },
+ "Mat_Wall_stone_dark": {
+  "color": [
+   0.33,
+   0.322,
+   0.3
+  ],
+  "metalness": 0.0,
+  "roughness": 0.92
+ },
+ "Mat_Weir_float": {
+  "color": [
+   0.842,
+   0.336,
+   0.088
+  ],
+  "metalness": 0.0,
+  "roughness": 0.55
+ },
+ "Mat_Weir_net": {
+  "color": [
+   0.47,
+   0.487,
+   0.418
+  ],
+  "metalness": 0.0,
+  "roughness": 0.9
+ },
+ "Mat_Weir_post": {
+  "color": [
+   0.146,
+   0.107,
+   0.078
+  ],
+  "metalness": 0.0,
+  "roughness": 0.85
+ },
+ "Seat_Body": {
+  "color": [
+   0.735,
+   0.145,
+   0.115
+  ],
+  "metalness": 0.0,
+  "roughness": 0.6
+ },
+ "Seat_Detail": {
+  "color": [
+   0.88,
+   0.845,
+   0.78
+  ],
+  "metalness": 0.0,
+  "roughness": 0.7
+ },
+ "Seat_Shade": {
+  "color": [
+   0.33,
+   0.07,
+   0.06
+  ],
+  "metalness": 0.0,
+  "roughness": 0.6
+ }
+}

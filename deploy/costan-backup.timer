@@ -1,0 +1,24 @@
+# Fire costan-backup.service every 6 hours.
+#
+#   sudo systemctl enable --now costan-backup.timer
+#   systemctl list-timers costan-backup.timer      # next + last run
+[Unit]
+Description=Run the costan.io database backup every 6h
+Documentation=file:///opt/costan/DEPLOY.md
+
+[Timer]
+# Offset off the hour on purpose: :00 is when every cron-shaped job on every host
+# fires, and the log rotation and the nix GC in DEPLOY.md are two of them here.
+OnCalendar=*-*-* 01,07,13,19:23:00
+# A missed run (host down, deploy in progress) is taken as soon as the machine is
+# back rather than skipped to the next slot. Without this a reboot at 01:20 loses
+# that window entirely, and windows are what the age-based prune counts.
+Persistent=true
+# Up to 10 minutes of jitter, so the backup does not land on the same second as
+# whatever else the OnCalendar above lines up with.
+RandomizedDelaySec=10min
+AccuracySec=1min
+Unit=costan-backup.service
+
+[Install]
+WantedBy=timers.target

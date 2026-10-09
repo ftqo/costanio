@@ -1,0 +1,71 @@
+# One verified SQLite backup: VACUUM INTO -> verify -> gzip -> prune by age
+# (-> optional off-host push). Driven by costan-backup.timer every 6h; run it by
+# hand with `sudo systemctl start costan-backup.service`.
+#
+# Install (see DEPLOY.md §7 and §10):
+#   sudo dnf install -y sqlite                    # the CLI is not otherwise on the box
+#   sudo install -d -m 750 -o costan -g costan /var/backups/costan
+#   sudo cp deploy/costan-backup.service deploy/costan-backup.timer /etc/systemd/system/
+#   sudo cp deploy/costan-alert@.service /etc/systemd/system/
+#   sudo systemctl daemon-reload && sudo systemctl enable --now costan-backup.timer
+[Unit]
+Description=costan.io database backup (VACUUM INTO, verified)
+Documentation=file:///opt/costan/DEPLOY.md
+# Not a dependency: the backup is correct against a stopped server too (it just
+# reads the file). After= only keeps the ordering sane on a boot-time catch-up.
+After=costan.service
+# The only alerting path in this deployment. Without it a failing timer is
+# silent, which is the same as having no backup at all.
+OnFailure=costan-alert@%n.service
+
+[Service]
+Type=oneshot
+User=costan
+Group=costan
+WorkingDirectory=/opt/costan
+
+# Defaults first, EnvironmentFile second, because systemd applies these in the
+# order they appear and last write wins: this way /etc/costan/backup.env can
+# override any of them rather than being overridden by them.
+Environment=COSTAN_DB=/var/lib/costan/costan.db
+# Only relevant when BACKUP_RCLONE_REMOTE is set. rclone looks in $HOME for its
+# config and cache; the costan user has no home (--no-create-home) and
+# ProtectHome=true would hide one anyway, so name both explicitly. The config is
+# a root-owned file the costan group can read; the cache goes in the unit's own
+# PrivateTmp, which exists and is writable and is discarded on exit.
+Environment=RCLONE_CONFIG=/etc/costan/rclone.conf
+Environment=XDG_CACHE_HOME=/tmp
+Environment=HOME=/tmp
+# Operator settings: COSTAN_ALERT_CHANNEL_ID (read by the alert unit), BACKUP_DIR,
+# BACKUP_KEEP_DAYS, BACKUP_RCLONE_REMOTE. The leading '-' means "skip if absent".
+EnvironmentFile=-/etc/costan/backup.env
+
+ExecStart=/opt/costan/deploy/backup.sh
+
+# A backup must never win a fight with a live game for disk or CPU.
+Nice=10
+IOSchedulingClass=idle
+# VACUUM INTO on a large database is not instant; this is a ceiling, not a budget.
+TimeoutStartSec=30min
+
+# Hardening. Mirrors costan.service, minus MemoryDenyWriteExecute: this unit runs
+# third-party binaries (sqlite3, gzip, optionally rclone) rather than our own, and
+# that restriction is not worth a mystery failure in the one job that has to work.
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictNamespaces=true
+LockPersonality=true
+# ProtectSystem=strict makes the whole filesystem read-only, so name the two
+# directories that must not be: the database (sqlite3 opens the source
+# read-write, since a WAL reader maps the -shm) and the backup destination.
+# Widen this if BACKUP_DIR is moved.
+ReadWritePaths=/var/lib/costan /var/backups/costan
+# AF_UNIX is the resolver, AF_INET/AF_INET6 the optional rclone push. Drop all
+# three if you never enable BACKUP_RCLONE_REMOTE.
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6

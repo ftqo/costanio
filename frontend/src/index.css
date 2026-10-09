@@ -1,0 +1,4655 @@
+@import "tailwindcss";
+
+/* The column layout is chosen by shape, not width.
+ *
+ * `lg` decides whether the chrome stands in columns beside the board or in
+ * bands above and below it. Bands cost height, columns cost width, so a phone
+ * held sideways (wide, very short) needs columns: with bands at 844x390 the
+ * board had no room at all.
+ *
+ * So the variant has a second arm for wide-and-short screens: 700px wide
+ * because two columns and a board need it, and up to 600px tall to match
+ * `FLAT_MAX_PX`, where the board becomes a map rather than a scene.
+ *
+ * The variant is redefined rather than `--breakpoint-lg`, because a length
+ * cannot express a shape. */
+@custom-variant lg {
+  @media (min-width: 1024px),
+    (min-width: 700px) and (max-height: 600px),
+    (min-width: 560px) and (max-height: 500px) {
+    @slot;
+  }
+}
+
+/* Its negation. `max-lg` is its own variant, not derived from the one above,
+   so overriding only `lg` would let a landscape phone match both.
+ *
+ * Written as a conjunction of positive queries rather than
+ * `not ((A) or (B))`, which Lightning CSS rewrote into
+ * `not all and (min-width:1024px) or (...)`, a different and invalid
+ * condition. This is `not A and not B` multiplied out.
+ *
+ * The half-pixel offsets keep the two variants from both matching, or both
+ * failing, on the boundary. */
+@custom-variant max-lg {
+  @media (max-width: 559.98px),
+    (max-width: 699.98px) and (min-height: 500.02px),
+    (max-width: 1023.98px) and (min-height: 600.02px) {
+    @slot;
+  }
+}
+
+/* A phone held sideways gets a layout of its own.
+ *
+ * Wide enough for two columns, too short for any band: 390px of height is
+ * less than the portrait phone's top chrome and dock together. It is zoomed at
+ * 1 (see the zoom block below), and the game screen re-docks for it: the board
+ * takes the full height in the middle, the seat rail is the left column, and
+ * the hand, dock and turn controls are the right one (`attachBottomRow` in
+ * routes/Game.tsx). Site pages collapse their nav to the menu, as in portrait.
+ *
+ * 560px wide because two columns and a board need it and the smallest
+ * supported phone is 667x375 sideways; 500px tall, above every phone's
+ * landscape height (max 430) and below every tablet's (min 600). The width
+ * stops at lg's 1024px, so a short desktop window does not get the phone
+ * layout. The JS twin is `SQUAT_QUERY` in lib/hudChrome; the column test
+ * holds them equal. */
+@custom-variant squat {
+  @media (min-width: 560px) and (max-width: 1023.98px) and (max-height: 500px) {
+    @slot;
+  }
+}
+
+/* Self-hosted brand fonts, bundled same-origin rather than fetched from
+   fonts.googleapis.com, because the Discord Activity iframe's CSP blocks
+   external origins (as with avatars and /api/avatar). Both families are
+   variable fonts (one file per subset spans the weight range), so each weight
+   maps to the same file via a font-weight range. The latin and latin-ext
+   subsets cover the English UI and accented names; other scripts fall back to
+   the system stack in --font-* below.
+
+   The Vietnamese subset is required. Google's `latin-ext` excludes U+1EA0-1EF1
+   (ạ ả ấ ầ ậ ắ ẻ ế ệ ị ọ ố ộ ớ ợ ụ ứ ự ...) because its `vietnamese` subset
+   owns that block, so without it most accented Vietnamese vowels fall back to
+   the system face mid-word. Declared after latin-ext so it wins the shared
+   codepoints (U+0102-0103, U+01A0-01B0, ...), the same order Google's CSS
+   uses. */
+@font-face {
+  font-family: "Baloo 2";
+  font-style: normal;
+  font-weight: 500 800;
+  font-display: swap;
+  src: url("/fonts/baloo2-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Baloo 2";
+  font-style: normal;
+  font-weight: 500 800;
+  font-display: swap;
+  src: url("/fonts/baloo2-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+@font-face {
+  font-family: "Baloo 2";
+  font-style: normal;
+  font-weight: 500 800;
+  font-display: swap;
+  src: url("/fonts/baloo2-vietnamese.woff2") format("woff2");
+  unicode-range:
+    U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301,
+    U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* Harbour: the previous type set. The Punchboard block at the end of this file
+   now sets the families (Dela Gothic One, M PLUS Rounded 1c, Podkova); these
+   faces stay because Nunito still supplies the ellipsis glyph and the scripts
+   the new faces lack fall back through them.
+
+   - Baloo 2 (display): the wordmark, page titles, section and dialog
+     headings, the homepage headline, the big numbers. Set at 800
+     (`font-heavy`). The files above are Google's, 500-800.
+   - Nunito (text): everything else, including labels, buttons and figures.
+     Google's variable files, served as 400-800.
+   - Vollkorn SC (card titles): further down, under "Costan Title".
+
+   No separate numerals face. Nunito's lining figures are tabular by default
+   (digits, plus, times and minus are all 600 units at every weight), so
+   --font-num is just the text stack. `tabular-nums` on a call site is harmless.
+
+   Baloo 2 has no Cyrillic, so Russian and Ukrainian headings fall through to
+   Nunito at the same weight, which is why it is second in --font-display; both
+   are rounded sans, so the fallback reads as the same voice.
+
+   All three are OFL-1.1 (public/fonts/OFL-*.txt). Subsets are Google's latin,
+   latin-ext, vietnamese and cyrillic, in that order for the reason the Baloo
+   note gives. Devanagari and CJK are in none of them: hi, ja and zh-Hans use
+   the per-script system stacks further down, behind these faces. */
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("/fonts/nunito-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("/fonts/nunito-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("/fonts/nunito-vietnamese.woff2") format("woff2");
+  unicode-range:
+    U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301,
+    U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: "Nunito";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("/fonts/nunito-cyrillic.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+/* Metric-matched fallbacks, so swapping from system face to web face moves
+   nothing. Each is a local system face scaled to the web face's average advance
+   over English letter frequencies (measured with fontTools against macOS's
+   Arial and Arial Bold, which match Windows' metrics: Nunito at 600, the main
+   text weight, and Baloo 2 at 800), with the web face's typo ascent and descent
+   restated in the scaled em. They sit second in each stack: before the web
+   font loads they are the text; after, they only catch uncovered glyphs. */
+@font-face {
+  font-family: "Nunito Fallback";
+  src: local("Arial"), local("ArialMT"), local("Helvetica Neue"), local("Helvetica");
+  size-adjust: 103.75%;
+  ascent-override: 97.44%;
+  descent-override: 34.02%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Baloo 2 Fallback";
+  font-weight: 500 800;
+  src: local("Arial Bold"), local("Arial-BoldMT");
+  size-adjust: 96.17%;
+  ascent-override: 112.1%;
+  descent-override: 54.49%;
+  line-gap-override: 0%;
+}
+
+@theme {
+  /* Brand accents, the same in light and dark. `ink` is a fixed dark navy for
+     borders and text on light accents (yellow chips, the press shadow,
+     ink-filled pills). Themeable surfaces use the semantic tokens below. */
+  --color-ink: #1c2b4a;
+  /* The one ocean blue, shared by the 2D and 3D boards so the SVG board, map
+     previews and thumbnails match the rendered sea. lib/board3d/seaColor.ts
+     pins the 3D side to this value. */
+  --color-sea: var(--sea);
+  --color-ocean: var(--sea); /* board backdrop = open ocean; foreign land is drawn as tiles */
+
+  /* The landing hero's tile panel. Separate from --sea, which is pinned to
+     the 3D board's render and used by every map preview, so it cannot change
+     for a landing-page reason. The panel matches the game-mode cards below it. */
+  --color-hero-panel: var(--hero-panel);
+
+  --color-yellow: #ffd23f;
+  --color-red: #ff4f64;
+  --color-green: #2fa45c;
+  --color-blue: #3d8bff;
+  --color-purple: #8c6fd1;
+  --color-orange: #ff8a4a;
+  --color-amber: #ffb02e;
+
+  /* The same accents as marks: text, glyphs and thin graphics on a surface
+     rather than filling one.
+
+     The base accents are bright fills that carry ink or white text. As marks
+     on a light surface they fail AA (red 3.20:1 on white, amber 1.83:1, orange
+     1.71:1). They cannot simply be darkened because they are also fills behind
+     text-ink (amber chips, the danger button, the yellow shop tile).
+
+     So each role has its own token. In dark mode the pastels already clear AA,
+     so each -ink token points back at its base; only light mode changes. */
+  --color-red-ink: var(--red-ink);
+  --color-green-ink: var(--green-ink);
+  --color-blue-ink: var(--blue-ink);
+  --color-amber-ink: var(--amber-ink);
+  --color-orange-ink: var(--orange-ink);
+
+  /* Marks on a theme-independent fill (bg-yellow, bg-amber, bg-desert). The
+     -ink tokens flip with the theme, which is wrong on a fill that does not
+     (e.g. the scoreboard's luck column on the winner's yellow row was ~2:1 in
+     dark mode). These are the light-mode -ink values, and the light theme
+     sources its -ink tokens from them so there is one value. */
+  --color-red-on-light: #c20017;
+  --color-green-on-light: #1b6b3a;
+
+  --color-sheep: #8fd14f;
+  --color-ore: #9aa7b8;
+  --color-fishermen: #2bb3b3;
+  --color-caravans: #a07850;
+  /* Harbormaster: a deep harbour navy, distinct from --color-blue (Islands)
+     and the fishermen teal. Like them it is a chip fill under
+     --main-foreground text, so it is dark enough for white. */
+  --color-harbormaster: #2f6b9a;
+  /* Rivers: a deeper, greener water than --color-lake (the flooded desert),
+     which can share a board with it; they must differ at ruleset-chip size. */
+  --color-rivers: #3f8fa8;
+  /* Raiders: the module's tag hue, a dark iron red, distinct from the other
+     module hues (teal, tan) and from --color-red (#ff4f64), the danger accent.
+     Not in SEAT_COLORS (lib/hexgeo), unlike the other two: a raider must never
+     be mistaken for a seat's piece. The 3D figures take their neutral tone
+     from board3d, not from here. */
+  --color-raiders: #9e3b32;
+  --color-explorers: #3d7f5a;
+  /* Podium medals: decorative, theme-independent (gold reuses yellow). */
+  --color-silver: #cdd6e0;
+  --color-bronze: #e3a86b;
+  /* Knights commodities: game-art palette, theme-independent. */
+  --color-cloth: #f2a6bb;
+  --color-papyrus: #b9dba2;
+  --color-coin: #8fb8ff;
+  /* The commodities as marks: the metropolis progress pips on a seat's card,
+     10px slivers of colour. The card-face pastels above measured as low as
+     1.12:1 against the HUD panel and the unfilled pip (--color-line). These
+     keep each hue and clear WCAG's 3:1 non-text floor against both
+     (3.53-3.97). Dark keeps the pastels, which already measure 4.3-5.7:1. */
+  --color-cloth-ink: var(--cloth-ink);
+  --color-papyrus-ink: var(--papyrus-ink);
+  --color-coin-ink: var(--coin-ink);
+  /* The merchant is a neutral token any seat can hold, so it gets its own
+     gold: coin is blue, and blue is seat 2's colour. */
+  --color-merchant: #f7cf5c;
+  --color-desert: #ffe9b3;
+  --color-paper: #e9e8e4;
+
+  /* Board-art terrain and token shades: theme-independent. */
+  --color-gold: #e0a01e; /* deep goldenrod, distinct from wheat (--color-yellow) */
+  --color-lake: #6fb7d8;
+  --color-fog: #c2d4e6;
+  --color-land: #a7c97e;
+  --color-land-border: #9ba08c;
+  --color-tile-unknown: #c9c4ba;
+  --color-port-any: #7c8aa5;
+  --color-knight: #2b1b3a;
+  --color-hex-edge-fade: #d2b48c; /* tan rim on every non-water tile edge so pieces on coasts and borders read clearly */
+  /* Deterministic land tints for shape previews. */
+  --color-land-tint-1: #7fae5a;
+  --color-land-tint-2: #8cb86a;
+  --color-land-tint-3: var(--color-land);
+  --color-land-tint-4: #bfd08a;
+  --color-land-tint-5: #c9c98a;
+  --color-land-tint-6: #9bbf6e;
+  /* Extra seat colors beyond the shared accents. */
+  --color-rose: #f06fae;
+  --color-slate: #5b7494;
+
+  /* Brand colours (login and connect buttons). Google's button is white with
+     dark text per its sign-in guidelines, the same in light and dark. */
+  --color-discord: #5865f2;
+  --color-google-surface: #ffffff;
+  --color-google-ink: #1f1f1f;
+  /* Text on the fixed-navy `ink` surface (footer, ink panels). Theme-independent,
+     like `ink`. */
+  --color-on-ink: #bfd4ef;
+  --color-on-ink-muted: #8fa5cc;
+
+  /* Semantic tokens (from https://neobrutalism.dev). Surfaces and text flip with
+     the theme; the border and hard shadow stay constant. Raw values are in :root
+     and .dark below. */
+  --color-background: var(--background);
+  --color-on-background: var(--on-background);
+  --color-on-background-muted: var(--on-background-muted);
+  --color-secondary-background: var(--secondary-background);
+  --color-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-main: var(--main);
+  /* --main as a mark, split like the -ink accents above. --main is mainly a
+     fill (bg-main buttons carry --main-foreground); a hovered menu icon using
+     it measured 2.78:1 on --main-tint. */
+  --color-main-ink: var(--main-ink);
+  --color-main-foreground: var(--main-foreground);
+  /* Menu-row hover tints: the accent mixed into the surface, so the fill is
+     subtle and follows the theme (pale blue on white, muted slate in dark). */
+  --color-main-tint: color-mix(in srgb, var(--main) 16%, var(--secondary-background));
+  --color-red-tint: color-mix(in srgb, var(--color-red) 16%, var(--secondary-background));
+  /* Washes and rims mixed into the card they sit on: the colour a `/NN` alpha
+     would give there, but opaque. */
+  --color-green-tint: color-mix(in srgb, var(--color-green) 15%, var(--secondary-background));
+  --color-amber-tint: color-mix(in srgb, var(--color-amber) 20%, var(--secondary-background));
+  --color-toggle-tint: color-mix(in srgb, var(--toggle) 7%, var(--secondary-background));
+  --color-toggle-edge: color-mix(in srgb, var(--toggle) 45%, var(--secondary-background));
+  --color-dash-muted: color-mix(in srgb, var(--muted) 60%, var(--elev2));
+  --color-google-rim: #e6e6e6;
+  /* The page's own steps (the ocean by day, the ground by night): a dashed
+     placeholder's well and edge, the footer rule, a waiting pill. */
+  --color-page-line: var(--page-line);
+  --color-page-well: var(--page-well);
+  --color-page-dash: var(--page-dash);
+  --color-page-dash-strong: var(--page-dash-strong);
+  --color-page-inset: var(--page-inset);
+  --color-page-skeleton: var(--page-skeleton);
+  --color-hud-bad-tint: var(--hud-bad-tint);
+  --color-hud-track: var(--hud-track);
+  /* Extra surface tiers beyond the semantic two. */
+  --color-elev: var(--elev);
+  --color-elev2: var(--elev2);
+  --color-line: var(--line);
+  /* --line is both a hairline inside a solid card and a fill (Stat.tsx uses
+     `bg-line text-muted`), and both want it pale. The 2px box separating an
+     inactive seat tile from the board behind the HUD needs contrast (it
+     measured 1.08:1), and darkening --line would break the fill
+     (muted-on-line 4.13 to 2.80), so that boundary gets its own token. */
+  --color-line-strong: var(--line-strong);
+  --color-muted: var(--muted);
+  --color-muted2: var(--muted2);
+  --color-panel: var(--elev);
+  --color-panel2: var(--elev2);
+
+  /* Whose turn it is, in the seat rail. Separate from --border, which stays dark
+     in both themes: a near-black line only signals state on a light surface. On
+     the dark panel the active border would look quieter than the inactive one,
+     so this token flips with the theme and --border does not. */
+  --color-seat-active: var(--seat-active);
+
+  /* Shadow system. The offsets are spacing tokens so
+     `translate-x-boxShadowX translate-y-boxShadowY` slides an element into its
+     shadow and `shadow-none` drops it; `reverse*` go the other way.
+     `shadow-shadow` is the hard offset shadow, coloured by the border. */
+  --spacing-boxShadowX: 4px;
+  --spacing-boxShadowY: 4px;
+  --spacing-reverseBoxShadowX: -4px;
+  --spacing-reverseBoxShadowY: -4px;
+  /* The four shadow names read variables. On the site those are soft
+     two-layer lifts (see the site-material block below); inside `.hud-root` they
+     are the HUD's values. Tailwind inlines a shadow token's value into the
+     utility, so the indirection has to live here rather than in an override. */
+  --shadow-shadow: var(--ui-shadow-press);
+  --shadow-hard-sm: var(--ui-shadow-sm);
+  --shadow-hard: var(--ui-shadow);
+  --shadow-hard-lg: var(--ui-shadow-lg);
+
+  /* Harbour (see the @font-face block): `font-sans` is the text face and the
+     default (Tailwind's preflight reads it for html, and body below);
+     `font-display` is for headings and big numbers; the wordmark is the display
+     face under its own token. `font-num` names figure slots but is the text
+     stack, since Nunito's figures are tabular.
+
+     A label is the text face at a small semibold size, in sentence case.
+
+     Every stack ends in sans-serif: the web faces carry only Latin (and Cyrillic
+     for Nunito), so other scripts fall through to the next family. Per-script
+     stacks are declared below. */
+  --font-wordmark: "Baloo 2", "Baloo 2 Fallback", "Nunito", sans-serif;
+  --font-sans: "Nunito", "Nunito Fallback", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Baloo 2", "Nunito", "Baloo 2 Fallback", system-ui, sans-serif;
+  --font-num: var(--font-sans);
+  /* The display weight. A separate name because --font-weight-extrabold and
+     --font-weight-black are remapped down (below) for the text face. */
+  --font-weight-heavy: 800;
+
+  /* Site radii. `.hud-root` restores the rounder values (20/24/14) the HUD uses. */
+  --radius-card: 14px;
+  --radius-card-lg: 16px;
+  --radius-base: 10px;
+  /* The control radius for buttons, inputs, pills and segmented groups. The
+     `pill` button prop and rounded-full controls read it; `.hud-root` keeps them
+     fully round (9999px). */
+  --radius-control: var(--ui-radius-control);
+
+  /* A 1px rim for surfaces that need an edge against the page (mostly dark
+     mode; in light the soft shadow does it). */
+  --color-rim: var(--rim);
+
+  /* The site's button fills by tone. The site has one filled action colour,
+     amber, so `primary` (default tone), `accent` and `success` all use it;
+     `danger` stays red. `.hud-root` re-points these to blue, green and
+     transparent. */
+  --color-btn-primary: var(--btn-primary);
+  --color-btn-primary-ink: var(--btn-primary-ink);
+  --color-btn-accent: var(--btn-primary);
+  --color-btn-accent-ink: var(--btn-primary-ink);
+  --color-btn-success: var(--btn-primary);
+  --color-btn-success-ink: var(--btn-primary-ink);
+  --color-btn-danger: var(--btn-danger);
+  --color-btn-danger-ink: #ffffff;
+  --color-btn-rim: var(--btn-rim);
+  /* An ON switch and a slider's range: the site's one cool accent, the sea. */
+  --color-toggle: var(--toggle);
+  --color-toggle-thumb: #ffffff;
+  /* Selected state of a toggle (pill, segmented thumb): ink, not a colour. */
+  --color-selected: var(--selected);
+  --color-selected-ink: var(--selected-ink);
+}
+
+:root {
+  /* What the browser paints: the canvas before the document paints, scrollbars,
+     native form controls and the mobile overscroll area. Without this they stay
+     light in dark mode and the page flashes white on load. lib/theme.ts sets
+     the same property inline before this stylesheet loads. */
+  color-scheme: light;
+
+  /* The ocean, sampled from the board's render (#1159c1, the median of ~39k
+     water pixels), so the site and the game share one sea.
+
+     It is a mid-dark surface, so text on it uses --on-background, not
+     --foreground; --foreground is the ink for the white cards on top. */
+  --background: #1159c1;
+  --sea: #1159c1;
+  /* Opaque near-white panels on the ocean, lifted by a soft shadow rather than
+     outlined in ink; --elev/--elev2 are wells and raised rows inside a panel,
+     neutral grey. --border is a soft rim: every `border-border` on the site
+     follows it, and the HUD re-points it to --hud-edge. */
+  --hero-panel: #f8fafc;
+  --secondary-background: #f8fafc;
+  --elev: #eef2f6;
+  --elev2: #e4e9f0;
+  --border: #d3dbe4;
+  --line: #e1e6ec;
+  --line-strong: #537ca2;
+  --seat-active: #131722;
+  --foreground: #141a22;
+  --on-background: #ffffff;
+  --on-background-muted: #cfe0ff;
+  --page-line: #3572ca;
+  --page-well: #1f63c5;
+  --page-dash: #588bd4;
+  --page-dash-strong: #709bda;
+  --page-inset: #c9d9f1;
+  --page-skeleton: #9cbae4;
+  /* Muted text, darkened to clear AA on every light surface it lands on,
+     including the HUD panel (`bg-secondary-background/80` composites to about
+     #cfdef3 over the ocean, a step darker than the white card). Darkened along
+     the same hue so the greys still read as greys. In dark the composite goes
+     the other way, so only light values change. */
+  --muted: #4f5d70;
+  --muted2: #56637a;
+  --ring: #141a22;
+  --main: #3d8bff;
+  --main-foreground: #ffffff;
+
+  /* Accent marks on a light surface (see the -ink block in the theme). Each
+     keeps its accent's hue and clears 4.5:1 on all four light surfaces: the
+     white card (6.33-7.32), --elev (5.79-6.70), --elev2 (5.46-6.31) and the HUD
+     panel (4.64-5.37), which is the binding one.
+
+     `orange` is the middle step of the barbarian countdown (red = landing,
+     orange = one roll away, muted = further out). Once red and orange both
+     clear 4.5 on the same pale surface they land at nearly the same luminance,
+     so orange is held at the most orange value that clears the floor, and the
+     pip prints the `at/dist` numbers beside the colour. */
+  --red-ink: var(--color-red-on-light);
+  --green-ink: var(--color-green-on-light);
+  --blue-ink: #004ec2;
+  --amber-ink: #8a5300;
+  --orange-ink: #a83b00;
+  --cloth-ink: #c9365e;
+  --papyrus-ink: #4f7e30;
+  --coin-ink: #2f6eda;
+  /* --main is the same blue as --color-blue in both themes, so its mark form is
+     the same value. Spelled out rather than aliased because the two may diverge
+     (--main is the brand fill, --color-blue an accent). */
+  --main-ink: #004ec2;
+}
+
+/* Dark theme: the border and hard shadow stay dark and constant; surfaces
+   darken, text lightens, and the focus ring flips to white. Surfaces are
+   medium-dark (not OLED black) so the near-black border and shadow stay crisp. */
+.dark {
+  /* The browser-painted half of the theme; see :root above. */
+  color-scheme: dark;
+
+  /* The ground stays #05070d because it is also the 3D board's fog in dark
+     (lib/board3d/boardTheme, pinned by its test). Surfaces are deep navy
+     (#111a2a family), each a step above the ground. */
+  --background: #05070d;
+  --sea: #0b1a33;
+  --hero-panel: #121b2b;
+  --secondary-background: #121b2b;
+  --elev: #1a2538;
+  --elev2: #223048;
+  --border: #2b3950;
+  --line: #243149;
+  /* --line against the dark HUD panel (#232632) is 1.7:1, so an inactive seat
+     tile has no visible edge. 3.78:1 clears the non-text floor and stays well
+     under the active seat's yellow border (10.4:1). */
+  --line-strong: #767f9a;
+  /* Yellow, not white: it is already the HUD's active/held accent, and clears
+     9:1 on the dark panel. Not the seat's own colour, since slate and caravans
+     would fall under 3.5:1. */
+  --seat-active: #ffd23f;
+  --foreground: #eef3fa;
+  --on-background: #eef3fa;
+  --on-background-muted: #a9b5ca;
+  --page-line: #282a30;
+  --page-well: #13151b;
+  --page-dash: #4b4e54;
+  --page-dash-strong: #62656c;
+  --page-inset: #0e1522;
+  --page-skeleton: #0d131f;
+  --muted: #a9b5ca;
+  /* Lifted along its hue until every dark surface clears 4.5:1: --elev2 4.68,
+     --elev 5.55, the HUD panel 7.00. */
+  --muted2: #aab6cc;
+  --ring: #7aadff;
+
+  /* Dark keeps the base accents: on dark surfaces the bright pastels already
+     have better contrast (red 4.70:1 on the HUD panel, commodity pips
+     7.5-9.8:1). Each -ink token points at its base so the intent is explicit.
+
+     Known gap: on the solid dark card (--secondary-background) red, green and
+     blue measure 4.22, 4.24 and 4.08, just under AA, and 3.42-3.56 on --elev.
+     Fixing that means lightening them in dark across ~35 call sites, a
+     separate decision. */
+  --red-ink: var(--color-red);
+  --green-ink: var(--color-green);
+  --blue-ink: var(--color-blue);
+  --amber-ink: var(--color-amber);
+  --orange-ink: var(--color-orange);
+  --cloth-ink: var(--color-cloth);
+  --papyrus-ink: var(--color-papyrus);
+  --coin-ink: var(--color-coin);
+  --main-ink: var(--main);
+}
+
+/* The landing hero tiles use fixed saturated brand colours, too bright on the
+   dark background, so they are muted in dark mode. */
+.dark .hero-cluster {
+  filter: saturate(0.82) brightness(0.88);
+}
+
+/* === Site material === */
+/* The site's material, matching the in-game HUD: opaque near-white panels on
+   the ocean by day and deep navy by night, a soft two-layer lift instead of a
+   hard offset shadow, no ink outlines, the Harbour type (top of this file),
+   and one filled colour for the action (amber). The round brand face is used
+   only for the wordmark.
+
+   The primitives in components/ui read these through their existing theme
+   names (`shadow-shadow`, `shadow-hard*`, `rounded-base`, `rounded-card`,
+   `translate-x-boxShadowX`), so every page picks them up. `.hud-root` at the
+   bottom of this block restores the HUD's values. */
+:root {
+  --ui-shadow-sm: 0 1px 2px rgba(10, 24, 48, 0.08), 0 2px 6px rgba(8, 30, 70, 0.08);
+  --ui-shadow: 0 1px 2px rgba(10, 24, 48, 0.1), 0 8px 24px rgba(8, 30, 70, 0.14);
+  --ui-shadow-lg: 0 2px 6px rgba(10, 24, 48, 0.12), 0 18px 44px rgba(8, 30, 70, 0.26);
+  /* A control's lift: the HUD button's shadow (highlight included), without
+     travel. */
+  --ui-shadow-press:
+    inset 0 1px 0 rgb(255 255 255 / 0.25), 0 1px 2px rgba(10, 24, 48, 0.14),
+    0 4px 10px rgba(8, 30, 70, 0.12);
+  --ui-radius-control: 10px;
+  --rim: #e6eaf0;
+  /* The one filled action: the HUD's amber, same hue and ink. */
+  --btn-primary: #f5a524;
+  --btn-primary-ink: #1b1203;
+  --btn-rim: transparent;
+  --btn-danger: #c9302c;
+  /* A selected toggle is ink on the panel, not a second accent colour. */
+  --selected: #141a22;
+  --selected-ink: #f8fafc;
+  --toggle: #1159c1;
+  /* No press offset: elements do not slide into their shadow. */
+  --spacing-boxShadowX: 0px;
+  --spacing-boxShadowY: 0px;
+  --spacing-reverseBoxShadowX: 0px;
+  --spacing-reverseBoxShadowY: 0px;
+  /* The text face is served 400-800. Nunito is light and round, so Tailwind's
+     stock 700/800 hold up on the blue ground; 900 has no file, so
+     `font-black` stops at 800 rather than being synthesised. Display type uses
+     `font-heavy`. */
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 800;
+}
+.dark {
+  --ui-shadow-sm: 0 1px 0 rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.28);
+  --ui-shadow: 0 1px 0 rgba(0, 0, 0, 0.35), 0 10px 28px rgba(0, 0, 0, 0.42);
+  --ui-shadow-lg: 0 1px 0 rgba(0, 0, 0, 0.4), 0 20px 48px rgba(0, 0, 0, 0.55);
+  --ui-shadow-press: 0 1px 0 rgba(0, 0, 0, 0.35), 0 4px 12px rgba(0, 0, 0, 0.32);
+  /* In dark the panels get a faint lit rim, which separates a navy panel from
+     the navy ground. */
+  --rim: #253044;
+  --btn-primary: #ffb547;
+  --btn-danger: #e5484d;
+  --selected: #eef3fa;
+  --selected-ink: #05070d;
+  --toggle: #4d8ff0;
+}
+
+/* The button's hover and press feedback. Site-only (`:not(.hud-root *)`), since
+   the HUD styles the same button itself. In the components layer so a utility
+   on the call site still wins. */
+@layer components {
+  [data-ui-button]:not(.hud-root *):hover {
+    filter: brightness(1.04) saturate(1.04);
+  }
+  [data-ui-button][data-variant="secondary"]:not(.hud-root *):hover,
+  [data-ui-button][data-variant="ghost"]:not(.hud-root *):hover {
+    filter: brightness(0.96);
+  }
+  .dark [data-ui-button][data-variant="secondary"]:not(.hud-root *):hover,
+  .dark [data-ui-button][data-variant="ghost"]:not(.hud-root *):hover {
+    filter: brightness(1.18);
+  }
+  [data-ui-button]:not(.hud-root *):active {
+    filter: brightness(0.94);
+  }
+
+  /* The HUD's small label (`hud-lab`) for the site: an eyebrow over a section,
+     a settings row's name. The text face, small and semibold, in sentence case:
+     no mono, caps or tracking. */
+  .ui-label {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.2;
+    color: var(--color-muted);
+  }
+  /* A panel: opaque, borderless, lifted. The site's `hud-surf-solid`. */
+  .ui-surface {
+    background: var(--color-secondary-background);
+    border-radius: var(--radius-card);
+    box-shadow:
+      inset 0 0 0 1px var(--rim),
+      var(--ui-shadow);
+  }
+}
+
+/* The HUD keeps its own values. Each value here is what the site token held
+   before the site-material block, re-declared on the HUD root so in-game
+   elements resolve site tokens as before.
+
+   Except the shadows and press travel: the HUD's tokens are its soft lift, so
+   anything in game reading them (a link styled as a button, a dialog, a card,
+   a menu, a toast, a pill) gets the soft lift too. */
+.hud-root {
+  --ui-shadow-press:
+    inset 0 1px 0 rgb(255 255 255 / 0.25), 0 1px 2px rgb(10 24 48 / 0.14),
+    0 4px 10px rgb(8 30 70 / 0.12);
+  --ui-shadow-sm: 0 1px 2px rgb(10 24 48 / 0.1), 0 2px 6px rgb(8 30 70 / 0.1);
+  --ui-shadow: 0 1px 2px rgb(10 24 48 / 0.12), 0 8px 24px rgb(8 30 70 / 0.16);
+  --ui-shadow-lg: 0 2px 6px rgb(10 24 48 / 0.14), 0 18px 44px rgb(8 30 70 / 0.28);
+  --spacing-boxShadowX: 0px;
+  --spacing-boxShadowY: 0px;
+  --spacing-reverseBoxShadowX: 0px;
+  --spacing-reverseBoxShadowY: 0px;
+  --radius-control: calc(infinity * 1px);
+  --radius-card: 20px;
+  --radius-card-lg: 24px;
+  --radius-base: 14px;
+  --color-rim: transparent;
+  --color-btn-primary: transparent;
+  --color-btn-primary-ink: var(--color-ink);
+  --color-btn-accent: var(--color-blue);
+  --color-btn-accent-ink: var(--color-main-foreground);
+  --color-btn-success: var(--color-green);
+  --color-btn-success-ink: var(--color-main-foreground);
+  --color-btn-danger: var(--color-red);
+  --color-btn-danger-ink: var(--color-main-foreground);
+  --color-btn-rim: var(--color-border);
+  --color-selected: var(--color-main);
+  --color-selected-ink: var(--color-main-foreground);
+  --font-wordmark: var(--hud-font);
+  --color-background: #1159c1;
+  --color-main-tint: color-mix(in srgb, var(--main) 16%, #ffffff);
+  --color-red-tint: color-mix(in srgb, var(--color-red) 16%, #ffffff);
+}
+.hud-root [data-ui-seg],
+.hud-root [data-ui-seg-thumb] {
+  border-width: 2px;
+  border-color: var(--color-border);
+}
+.hud-root [data-ui-seg-thumb] {
+  border-radius: calc(infinity * 1px);
+  box-shadow: none;
+}
+.hud-root [data-ui-seg] > button {
+  font-size: 11px;
+}
+.hud-root [data-ui-seg] > button[aria-pressed="false"] {
+  color: var(--color-foreground);
+}
+.hud-root [data-ui-button][data-variant="quiet"] {
+  border-width: 0;
+}
+.hud-root [data-ui-avatar] {
+  border-color: var(--color-border);
+  box-shadow: none;
+}
+/* A site Menu opened inside the HUD (the profile menu) keeps the HUD's
+   panel and rows: 2px edge, 14px of padding, the accent bar on hover. */
+.hud-root [data-ui-menu] {
+  border-width: 2px;
+  border-color: var(--color-border);
+  padding: 14px;
+  gap: 4px;
+}
+.hud-root [data-ui-menu-item] {
+  font-weight: var(--font-weight-extrabold);
+  border-radius: var(--radius-base);
+}
+.hud-root [data-ui-menu-item] svg {
+  color: inherit;
+}
+.hud-root [data-ui-menu-item]:not([data-tone="danger"]):is(:hover, :focus-visible) {
+  background-color: var(--color-main-tint);
+  box-shadow: inset 4px 0 0 0 var(--main);
+}
+.hud-root [data-ui-menu-item]:not([data-tone="danger"]):is(:hover, :focus-visible) svg {
+  color: var(--color-main-ink);
+}
+.hud-root [data-ui-menu-item][data-tone="danger"]:is(:hover, :focus-visible) {
+  box-shadow: inset 4px 0 0 0 var(--color-red);
+}
+.hud-root [data-ui-menu-sep] {
+  border-top-width: 2px;
+  border-color: var(--color-border);
+  margin-inline: -14px;
+}
+.hud-root [data-ui-menu-trigger].border {
+  border-width: 3px;
+  box-shadow: none;
+}
+.hud-root [data-ui-nudge] {
+  border-width: 2px;
+  box-shadow: none;
+}
+.hud-root [data-ui-spinner] {
+  color: var(--color-purple);
+}
+.dark .hud-root,
+.dark.hud-root {
+  --color-background: #05070d;
+  --color-main-tint: color-mix(in srgb, var(--main) 16%, #2a2e3c);
+  --color-red-tint: color-mix(in srgb, var(--color-red) 16%, #2a2e3c);
+}
+/* === end site material === */
+
+/* ---------------------------------------------------------------------------
+   Per-script typography.
+
+   The web faces have no CJK glyphs and no CJK sibling keeps the brand voice,
+   so Chinese and Japanese UIs use the reader's platform face rather than a
+   multi-megabyte substitute.
+
+   The web faces stay first in each stack so Latin runs inside a CJK UI (player
+   names, "VP", numbers, ruleset ids) keep the brand face, and only missing
+   glyphs fall through. The metric-matched fallback goes last, behind the
+   platform CJK face, so the CJK face sets the page before the web font loads.
+
+   Keyed off :lang(), the resolved locale set on html by lib/i18n.ts (and,
+   a frame earlier, by the inline script in index.html).
+   --------------------------------------------------------------------------- */
+:root:lang(zh-Hans) {
+  --font-sans:
+    "Nunito", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "Source Han Sans SC",
+    "Nunito Fallback", sans-serif;
+  --font-display:
+    "Baloo 2", "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", "Source Han Sans SC",
+    "Baloo 2 Fallback", sans-serif;
+}
+:root:lang(ja) {
+  --font-sans:
+    "Nunito", "Hiragino Sans", "Yu Gothic", "Noto Sans CJK JP", "Source Han Sans JP",
+    "Nunito Fallback", sans-serif;
+  --font-display:
+    "Baloo 2", "Hiragino Sans", "Yu Gothic", "Noto Sans CJK JP", "Source Han Sans JP",
+    "Baloo 2 Fallback", sans-serif;
+}
+
+/* Hindi, for the same reason: Nunito has no Devanagari, and the vendored
+   Baloo 2 files are Latin only.
+
+   The web faces stay first so Latin runs (and HUD figures) keep the brand
+   face. Behind them: Noto Sans Devanagari (Android, Linux, Chrome OS), Nirmala
+   UI (Windows), then the macOS and iOS faces. Display uses the same sans faces,
+   so a Hindi heading is bold platform sans. */
+:root:lang(hi) {
+  --font-sans:
+    "Nunito", "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN",
+    "Nunito Fallback", sans-serif;
+  --font-display:
+    "Baloo 2", "Noto Sans Devanagari", "Nirmala UI", "Kohinoor Devanagari", "Devanagari Sangam MN",
+    "Baloo 2 Fallback", sans-serif;
+}
+
+/* Uppercasing and Latin tracking, both wrong for CJK.
+
+   `text-transform: uppercase` is not a no-op for kana: some engines fold small
+   kana (ゃ ゅ ょ っ ァ ィ ゥ) to full size, changing how the word reads.
+
+   Letter-spacing tuned for Latin caps (0.5-1px on glyphs filling ~0.7 of the
+   em) looks wrong on Han glyphs that fill the whole em box. CJK display
+   tracking is a much larger value used only where wanted, so this resets it.
+
+   The compound selector outranks the single utility class, so it beats
+   Tailwind's `uppercase` and `tracking-[...]` without !important. */
+:root:lang(zh-Hans) .uppercase,
+:root:lang(ja) .uppercase,
+:root:lang(zh-Hans) .capitalize,
+:root:lang(ja) .capitalize {
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* Hindi takes only the letter-spacing half of that rule.
+
+   `text-transform` is left alone. Devanagari is caseless (Unicode defines no
+   case mapping in U+0900-U+097F), so `uppercase` and `capitalize` are no-ops
+   on it, and turning them off would only affect the Latin runs inside a Hindi
+   UI (ruleset ids, "VP", names), which the class was applied for.
+
+   `letter-spacing` must go. A Devanagari word is joined along the top by the
+   shirorekha, a headstroke each glyph draws to meet its neighbour, and Latin
+   tracking (0.5-1px) cuts a gap through it. The card-title fitter does the
+   same (`devaTracking` in lib/cardTitle.ts, 0 where Latin is 0.053 em). */
+:root:lang(hi) .uppercase,
+:root:lang(hi) .capitalize,
+:root:lang(hi) .tracking-wide,
+:root:lang(hi) .tracking-wider,
+:root:lang(hi) .tracking-widest {
+  letter-spacing: normal;
+}
+
+/* Avoid `capitalize` as well: it titlecases every word, which is wrong in
+   sentence-case languages (Spanish "Al azar" would read "Al Azar"). The
+   catalogue labels are already cased correctly. */
+
+/* ---------------------------------------------------------------------------
+   Card title faces.
+
+   Card names are drawn at runtime over untitled art (lib/cardTitle,
+   components/asset/CardTitlePlate), so their faces ship. All of these are
+   subsets of the characters the 30 card titles use, generated from the
+   catalogues by frontend/scripts/gen-title-fonts.py, which keeps a CJK title
+   face to tens of kilobytes.
+
+   Vollkorn SC is the Latin and Cyrillic face, the third of the site's three
+   families (see "Harbour" above). The fitter sizes a title by the face's cap
+   height (titleMetrics.json); Georgia is a fallback only.
+
+   It ships as two subsets of one source under one family name with split
+   `unicode-range`s, because the fitter keeps separate advance tables for Latin
+   and Cyrillic locales: the same pattern as latin and latin-ext above.
+
+   The two CJK faces cannot share a family because their ranges overlap: many
+   codepoints shared by the Chinese and Japanese title sets are drawn
+   differently, so they get distinct family names chosen by :lang() on the
+   title element.
+
+   `font-display: block`, unlike the brand faces' `swap`, so a card's name plate
+   never visibly changes face. The files are 13-27 KB, or 89 KB for Devanagari,
+   which must carry its layout tables and conjunct glyphs. Each is fetched only
+   by the locale whose `unicode-range` or family name asks for it. */
+@font-face {
+  font-family: "Costan Title";
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url("/fonts/vollkornsc-titles.woff2") format("woff2");
+  /* U+1E00-1EFF (Latin Extended Additional) is for `vi`. gen-title-fonts.py
+     puts those glyphs in the subset; without this range the browser would not
+     use them and would draw accented Vietnamese in a system serif. */
+  unicode-range: U+0000-024F, U+1E00-1EFF, U+2000-206F, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Costan Title";
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url("/fonts/vollkornsc-titles-cyrl.woff2") format("woff2");
+  unicode-range: U+0400-04FF, U+0500-052F, U+2DE0-2DFF, U+A640-A69F;
+}
+@font-face {
+  font-family: "Costan Title SC";
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url("/fonts/notoserifsc-titles.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Costan Title JP";
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url("/fonts/notoserifjp-titles.woff2") format("woff2");
+}
+/* Devanagari, for hi. It joins the "Costan Title" family by `unicode-range`
+   like the Cyrillic subset, rather than taking its own family name like the
+   CJK faces, because no other face claims its block. The range is Devanagari
+   plus Devanagari Extended and the Vedic Extensions, so stray combining marks
+   land here and not in Vollkorn SC.
+
+   This is the one title face that keeps its GSUB and GPOS tables; the others
+   are unconnected capitals subset with `layout_features = []`. Devanagari
+   needs GSUB to build conjuncts and reorder the i-matra (stored after its
+   consonant, drawn before it), and GPOS to place vowel signs. See
+   `keep_layout` in frontend/scripts/gen-title-fonts.py. */
+@font-face {
+  font-family: "Costan Title";
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url("/fonts/notoserifdevanagari-titles.woff2") format("woff2");
+  unicode-range: U+0900-097F, U+1CD0-1CFF, U+A8E0-A8FF;
+}
+
+/* The title element. Positions are coordinates in the plate's 1000x1400
+   viewBox and live in the component; this sets the face per script.
+
+   No `text-transform`: the fitter uppercases the string it measures, so the
+   drawn string is the measured one. */
+.card-title {
+  font-family: "Costan Title", Georgia, serif;
+}
+.card-title:lang(zh-Hans) {
+  font-family: "Costan Title SC", "Costan Title", serif;
+}
+.card-title:lang(ja) {
+  font-family: "Costan Title JP", "Costan Title", serif;
+}
+
+/* Line breaking without spaces.
+
+   `normal` word-break (break-all would split two-character compounds) plus
+   `strict`, which forbids breaks before small kana and the Japanese
+   prolonged-sound mark. */
+:root:lang(zh-Hans),
+:root:lang(ja) {
+  word-break: normal;
+  line-break: strict;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    margin: 0;
+    background: var(--color-background);
+    font-family: var(--font-sans);
+    color: var(--color-foreground);
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Surfaces reset the ink they carry. The shell sets --on-background on the
+   ocean page, which every card would otherwise inherit (white text on a white
+   card). A card is a light surface wherever it is, so it says so.
+
+   :where() keeps specificity at zero, so an element naming its own colour
+   (text-muted, text-blue, a seat tint) still wins. */
+:where(.bg-secondary-background, .bg-elev, .bg-elev2, .bg-white) {
+  color: var(--color-foreground);
+}
+
+/* The layout is built around a ~1240px column, so on large displays zoom
+   scales the whole UI up (unlike transform:scale, zoom keeps layout flow and
+   fixed overlays aligned). Dropdown menus are CSS-anchored (see ui/menu.tsx)
+   so they position correctly under zoom.
+ *
+ * It also zooms down (0.75) for a short window with room to spare (a desktop dragged
+ * flat, a small tablet on its side), giving the column layout space.
+ *
+ * Media queries do not see the zoom: `zoom` on the root changes `clientWidth`
+ * but `matchMedia` reads the physical viewport. So the query that enables the
+ * zoom cannot be toggled by it, and there is no oscillation.
+ *
+ * The board's flat-map trigger (`FLAT_MAX_PX`) reads the measured host box in
+ * layout px, not a media query.
+ *
+ * The `squat` shape (under 1024 wide, 500 tall or less) is excluded and keeps
+ * zoom 1; it has its own layout (the `squat` variant at the top of this file). */
+@media (min-width: 1024px) and (max-height: 600px),
+  (min-width: 700px) and (min-height: 500.02px) and (max-height: 600px) {
+  html {
+    zoom: 0.75;
+    --ui-zoom: 0.75;
+  }
+}
+
+@media (min-width: 1700px) {
+  html {
+    zoom: 1.2;
+    --ui-zoom: 1.2;
+  }
+}
+@media (min-width: 2200px) {
+  html {
+    zoom: 1.45;
+    --ui-zoom: 1.45;
+  }
+}
+@media (min-width: 2800px) {
+  html {
+    zoom: 1.7;
+    --ui-zoom: 1.7;
+  }
+}
+@media (min-width: 3400px) {
+  html {
+    zoom: 2;
+    --ui-zoom: 2;
+  }
+}
+
+/* Name decorations: an animated GIF painted behind the username. The GIFs are
+   transparent, so the text stays readable. A static first-frame PNG is used
+   under prefers-reduced-motion. lib/decorations.ts applies the classes via the
+   DecoratedName component. */
+.decorated {
+  position: relative;
+  background-repeat: repeat;
+  /* Anchor the tile at the name's left edge so the pattern starts cleanly at
+     the start of the text. */
+  background-position: left center;
+  /* Sparkle tile height. Lower = smaller/sparser sparkles. */
+  background-size: auto 1.4em;
+  padding-inline: 0.15em;
+}
+.decorated--sparkle-pink {
+  background-image: url("/cosmetics/decorations/sparkle_pink.gif");
+}
+.decorated--sparkle-blue {
+  background-image: url("/cosmetics/decorations/sparkle_blue.gif");
+}
+.decorated--sparkle-yellow {
+  background-image: url("/cosmetics/decorations/sparkle_yellow.gif");
+}
+/* Staff fire is a horizontal flame strip (not a tile), repeated across and
+   sized down so it does not dominate the name. */
+.decorated--fire-red {
+  background-image: url("/cosmetics/decorations/fire_red.gif");
+  background-repeat: repeat-x;
+  background-size: auto 1em;
+}
+/* Gift-role decorations. */
+.decorated--fire-black {
+  background-image: url("/cosmetics/decorations/fire_black.gif");
+  background-repeat: repeat-x;
+  background-size: auto 1em;
+}
+.decorated--fire-blue {
+  background-image: url("/cosmetics/decorations/fire_blue.gif");
+  background-repeat: repeat-x;
+  background-size: auto 1em;
+}
+.decorated--fire-green {
+  background-image: url("/cosmetics/decorations/fire_green.gif");
+  background-repeat: repeat-x;
+  background-size: auto 1em;
+}
+.decorated--fire-grey {
+  background-image: url("/cosmetics/decorations/fire_grey.gif");
+  background-repeat: repeat-x;
+  background-size: auto 1em;
+}
+.decorated--fire-lime {
+  background-image: url("/cosmetics/decorations/fire_lime.gif");
+  background-repeat: repeat-x;
+  background-size: auto 1em;
+}
+.decorated--fire-orange {
+  background-image: url("/cosmetics/decorations/fire_orange.gif");
+  background-repeat: repeat-x;
+  background-size: auto 1em;
+}
+.decorated--fire-purple {
+  background-image: url("/cosmetics/decorations/fire_purple.gif");
+  background-repeat: repeat-x;
+  background-size: auto 1em;
+}
+.decorated--fire-teal {
+  background-image: url("/cosmetics/decorations/fire_teal.gif");
+  background-repeat: repeat-x;
+  background-size: auto 1em;
+}
+.decorated--fire-white {
+  background-image: url("/cosmetics/decorations/fire_white.gif");
+  background-repeat: repeat-x;
+  background-size: auto 1em;
+}
+.decorated--sparkle-blue-light {
+  background-image: url("/cosmetics/decorations/sparkle_blue_light.gif");
+}
+.decorated--sparkle-brown {
+  background-image: url("/cosmetics/decorations/sparkle_brown.gif");
+}
+.decorated--sparkle-green {
+  background-image: url("/cosmetics/decorations/sparkle_green.gif");
+}
+.decorated--sparkle-green-light {
+  background-image: url("/cosmetics/decorations/sparkle_green_light.gif");
+}
+.decorated--sparkle-grey {
+  background-image: url("/cosmetics/decorations/sparkle_grey.gif");
+}
+.decorated--sparkle-lime {
+  background-image: url("/cosmetics/decorations/sparkle_lime.gif");
+}
+.decorated--sparkle-orange {
+  background-image: url("/cosmetics/decorations/sparkle_orange.gif");
+}
+.decorated--sparkle-purple {
+  background-image: url("/cosmetics/decorations/sparkle_purple.gif");
+}
+.decorated--sparkle-red {
+  background-image: url("/cosmetics/decorations/sparkle_red.gif");
+}
+.decorated--sparkle-teal {
+  background-image: url("/cosmetics/decorations/sparkle_teal.gif");
+}
+.decorated--sparkle-white {
+  background-image: url("/cosmetics/decorations/sparkle_white.gif");
+}
+.decorated--sparkle-yellow-light {
+  background-image: url("/cosmetics/decorations/sparkle_yellow_light.gif");
+}
+@media (prefers-reduced-motion: reduce) {
+  .decorated--sparkle-pink.decorated--static {
+    background-image: url("/cosmetics/decorations/sparkle_pink_static.png");
+  }
+  .decorated--sparkle-blue.decorated--static {
+    background-image: url("/cosmetics/decorations/sparkle_blue_static.png");
+  }
+  .decorated--sparkle-yellow.decorated--static {
+    background-image: url("/cosmetics/decorations/sparkle_yellow_static.png");
+  }
+  .decorated--fire-red.decorated--static {
+    background-image: url("/cosmetics/decorations/fire_red_static.png");
+  }
+  .decorated--fire-black.decorated--static {
+    background-image: url("/cosmetics/decorations/fire_black_static.png");
+  }
+  .decorated--fire-blue.decorated--static {
+    background-image: url("/cosmetics/decorations/fire_blue_static.png");
+  }
+  .decorated--fire-green.decorated--static {
+    background-image: url("/cosmetics/decorations/fire_green_static.png");
+  }
+  .decorated--fire-grey.decorated--static {
+    background-image: url("/cosmetics/decorations/fire_grey_static.png");
+  }
+  .decorated--fire-lime.decorated--static {
+    background-image: url("/cosmetics/decorations/fire_lime_static.png");
+  }
+  .decorated--fire-orange.decorated--static {
+    background-image: url("/cosmetics/decorations/fire_orange_static.png");
+  }
+  .decorated--fire-purple.decorated--static {
+    background-image: url("/cosmetics/decorations/fire_purple_static.png");
+  }
+  .decorated--fire-teal.decorated--static {
+    background-image: url("/cosmetics/decorations/fire_teal_static.png");
+  }
+  .decorated--fire-white.decorated--static {
+    background-image: url("/cosmetics/decorations/fire_white_static.png");
+  }
+  .decorated--sparkle-blue-light.decorated--static {
+    background-image: url("/cosmetics/decorations/sparkle_blue_light_static.png");
+  }
+  .decorated--sparkle-brown.decorated--static {
+    background-image: url("/cosmetics/decorations/sparkle_brown_static.png");
+  }
+  .decorated--sparkle-green.decorated--static {
+    background-image: url("/cosmetics/decorations/sparkle_green_static.png");
+  }
+  .decorated--sparkle-green-light.decorated--static {
+    background-image: url("/cosmetics/decorations/sparkle_green_light_static.png");
+  }
+  .decorated--sparkle-grey.decorated--static {
+    background-image: url("/cosmetics/decorations/sparkle_grey_static.png");
+  }
+  .decorated--sparkle-lime.decorated--static {
+    background-image: url("/cosmetics/decorations/sparkle_lime_static.png");
+  }
+  .decorated--sparkle-orange.decorated--static {
+    background-image: url("/cosmetics/decorations/sparkle_orange_static.png");
+  }
+  .decorated--sparkle-purple.decorated--static {
+    background-image: url("/cosmetics/decorations/sparkle_purple_static.png");
+  }
+  .decorated--sparkle-red.decorated--static {
+    background-image: url("/cosmetics/decorations/sparkle_red_static.png");
+  }
+  .decorated--sparkle-teal.decorated--static {
+    background-image: url("/cosmetics/decorations/sparkle_teal_static.png");
+  }
+  .decorated--sparkle-white.decorated--static {
+    background-image: url("/cosmetics/decorations/sparkle_white_static.png");
+  }
+  .decorated--sparkle-yellow-light.decorated--static {
+    background-image: url("/cosmetics/decorations/sparkle_yellow_light_static.png");
+  }
+}
+
+/* Location-first ("inspect") board spots (see components/board/LiveBoard.tsx).
+   Hidden at rest and revealed under the cursor. `pointer-events: all` keeps an
+   invisible spot hit-testable, so hovering lights it and a click opens its
+   action menu. */
+.inspect-spot {
+  opacity: 0;
+  pointer-events: all;
+  cursor: pointer;
+  transition: opacity 120ms ease;
+}
+.inspect-spot:hover {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .inspect-spot {
+    transition: none;
+  }
+}
+
+/* Hide the scrollbar while keeping the element scrollable. Used on the game
+   screen's scrolling panels (players/turn order, event log, chat), where
+   ScrollFade's edge gradients show that the box scrolls.
+
+   `@utility`, not a plain `.no-scrollbar` rule, because Tailwind can only put a
+   variant in front of a utility it knows; as a plain class `lg:no-scrollbar`
+   generates nothing, silently. */
+@utility no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* legacy Edge */
+
+  &::-webkit-scrollbar {
+    display: none; /* WebKit/Blink */
+  }
+}
+
+/* Softens the top and bottom edges of a scrolling rail, so a list that runs off
+   the end shows it. The seat rail hides its scrollbar (a native bar over the
+   panel looks bad and its width would shift the board's camera framing). Here
+   rather than inline because the gradient stops are alpha-only.
+
+   Both stops are set by the rail from its scroll position and default to 0 (no
+   fade), since a fade claims there is more content past that edge. */
+.scroll-fade-y {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 var(--scroll-fade-top, 0px),
+    #000 calc(100% - var(--scroll-fade-bottom, 0px)),
+    transparent 100%
+  );
+}
+
+/* Valid-move placement pips (the yellow vertex/edge ghosts in LiveBoard): a
+   combined opacity and scale throb so legal spots catch the eye. Its own
+   keyframe rather than animate.css's `pulse`, whose name collides with
+   Tailwind v4's opacity-only `pulse` (which loads later and wins). SVG circles
+   need transform-box: fill-box so the scale is about each pip's own centre.
+   Honours reduced-motion. */
+@keyframes move-pip {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.28);
+  }
+}
+.move-pip {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: move-pip 2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .move-pip {
+    animation: none;
+  }
+}
+
+/* Indeterminate "slider" loader (see components/LoadingScreen.tsx): a fill that
+   shuttles between a sliver and full width with a thumb on its leading edge.
+   Under reduced-motion it holds a static partial fill. */
+@keyframes loading-shuttle {
+  from {
+    width: 12%;
+  }
+  to {
+    width: 100%;
+  }
+}
+.animate-loading-shuttle {
+  animation: loading-shuttle 1.15s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-loading-shuttle {
+    width: 58%;
+    animation: none;
+  }
+}
+
+/* Toast slide-in (see components/ui/toast.tsx). Honours reduced-motion. */
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.animate-toast-in {
+  animation: toast-in 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-toast-in {
+    animation: none;
+  }
+}
+
+/* Seat turn timer (see components/game/hud/SeatTimerBar.tsx and
+   lib/seatRing.ts): the on-the-clock seat's remaining budget, draining right to
+   left. The whole countdown is one animation with a negative animation-delay,
+   so React does not re-render per frame; it restarts only when the server
+   sends a new remaining/budget pair.
+
+   Animated with `transform` (scaleX from a left origin) so it runs on the
+   compositor. A non-compositable property such as stroke-dashoffset makes the
+   browser restyle and repaint the whole document every frame while a seat is
+   on the clock. Do not add a property other than transform or opacity;
+   seatRing.css.test.ts checks this. */
+@keyframes seat-timer-deplete {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+.seat-timer-fill {
+  transform-origin: left center;
+  animation: seat-timer-deplete linear 1 forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  /* Hold a static full bar. The exact seconds are still on the expanded card's
+     TileCountdown. */
+  .seat-timer-fill {
+    animation: none;
+  }
+}
+
+/* The dice landing, used by the live game's dock dice (routes/Game) and the
+   replay's control strip (components/replay/ReplayPlayer).
+
+   Other players' rolls need something to catch the eye; a replay even more so,
+   at up to eight times speed.
+
+   Both callers key the pair on the roll, so a new roll mounts a new element
+   and the animation runs; a die that only re-renders does not replay it.
+
+   A full turn over a quarter second with a small overshoot, short enough not
+   to outlast a roll at 4x. */
+@keyframes die-tumble {
+  0% {
+    transform: rotate(-140deg) scale(0.7);
+  }
+  70% {
+    transform: rotate(12deg) scale(1.08);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+.die-tumble > * {
+  animation: die-tumble 260ms cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+/* The second die lands a beat after the first, so the pair reads as two
+   objects. */
+.die-tumble > *:nth-child(2) {
+  animation-delay: 55ms;
+}
+@media (prefers-reduced-motion: reduce) {
+  .die-tumble > * {
+    animation: none;
+  }
+}
+
+/* Memory mode's event log: a line that removes itself.
+
+   Each row carries its own `animation-delay` (see LogRow in routes/Game.tsx),
+   computed from when it arrived, so this is only the ending: opacity to zero,
+   held by `forwards` until lib/fadingLog drops the row.
+
+   Opacity only, because it runs on the compositor and this can animate a dozen
+   rows at once over a live 3D board; collapsing the height would reflow the
+   feed every frame.
+
+   Not disabled under prefers-reduced-motion: nothing moves, and an instant
+   disappearance would be worse for those players. */
+@keyframes log-expire {
+  to {
+    opacity: 0;
+  }
+}
+
+/* The specular sweep on the pips gem (see components/PipIcon.tsx): a white bar
+   crossing the stone, clipped to its silhouette. Slow and low-contrast because
+   it runs constantly in the site header. `transform-box: fill-box` so the
+   translate is measured against the bar, not the SVG origin. Under
+   reduced-motion the bar parks off to one side. */
+@keyframes pip-gem-sweep {
+  0%,
+  100% {
+    transform: translateX(-16px);
+  }
+  50% {
+    transform: translateX(16px);
+  }
+}
+.pip-gem-sweep {
+  /* Not a theme token: a specular is the light source's colour, not the
+     stone's, so it is the same value on the dark amber of a light pill and the
+     bright amber of a dark one. Set here rather than as a `fill` attribute so
+     the whole highlight lives in one place. */
+  --pip-gem-specular: #fff;
+  fill: var(--pip-gem-specular);
+  transform-box: fill-box;
+  animation: pip-gem-sweep 3.2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pip-gem-sweep {
+    animation: none;
+    transform: translateX(-16px);
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   The in-game HUD's material.
+
+   One token table, two themes, read by all HUD chrome, so retuning the look
+   is an edit here. Light is pale panels; dark is smoked navy with a glow.
+
+   Opaque in both themes. Each value is the composite an earlier translucent
+   fill produced over its usual backdrop, adjusted so the four steps stay
+   distinct:
+
+     light  well #edf1f5 < panel #f2f5f9 < own/dialog #f8fafc < raised #fff
+     dark   well #0c1321 < own/dialog #111a2a < panel #141d2e < raised #222d42
+
+   (In dark the panel sits slightly above the dialog colour, so it reads
+   against the open sea while the dialog and your own seat keep the value
+   their text was tuned on. Your seat is distinguished by its doubled rim.)
+
+   No `backdrop-filter`: GLASS in hud/HudLayer records the cost of 19 blurred
+   panels over the WebGL canvas (27 layers, 386% memory, 256% overdraw per
+   frame).
+
+   Intentionally translucent: `.hud-dim` (the scrim behind a dialog), shadows
+   and glows, disabled-state opacity, and the card and die art.
+   --------------------------------------------------------------------------- */
+:root {
+  /* Surfaces */
+  --hud-fill: #f2f5f9;
+  --hud-fill-solid: #f8fafc;
+  --hud-rim: #cbd8ec;
+  --hud-highlight: #ffffff;
+  --hud-shadow: 0 1px 2px rgba(10, 24, 48, 0.16), 0 8px 24px rgba(8, 30, 70, 0.2);
+  --hud-raised: #ffffff;
+  --hud-well: #edf1f5;
+  --hud-hairline: #dde3eb;
+  --ic-halo: none;
+  --hud-hatch: #dfe3e8;
+  /* A boundary strong enough to separate two tiles inside a panel (a build
+     tile's edge, an inactive seat). Derived from the rim so it moves with it. */
+  --hud-edge: #b5c8e5;
+  /* Text */
+  --hud-ink: #141a22;
+  --hud-muted: #5a6679;
+  --hud-focus: #1159c1;
+  /* Action and state */
+  --hud-primary: #f5a524;
+  --hud-primary-ink: #1b1203;
+  --hud-primary-glow: rgba(245, 165, 36, 0.3);
+  --hud-bad: #c2302a;
+  --rate-bg: #e3f4ea;
+  --rate-ink: #12663b;
+  --hud-award-bg: #fff1d0;
+  --hud-award-ink: #8a5300;
+  /* Tints on the panel, mixed into it rather than laid over it. */
+  --hud-bad-tint: color-mix(in srgb, var(--hud-bad) 14%, var(--hud-fill));
+  /* A secondary button inside a dialog or target prompt. By day a step up
+     (white keys on a pale sheet); by night just below the dialog, since
+     anything lighter would cost the button's text contrast. */
+  --hud-dialog-btn: var(--hud-raised);
+  --hud-track: color-mix(in srgb, var(--hud-well) 60%, var(--hud-fill));
+  --hud-glow: 22%;
+  /* A seat colour as a ring or a line of text: darkened a step on the pale
+     panel (yellow becomes gold), lifted a step on the smoked one (blue becomes
+     periwinkle). The piece colour itself never changes. */
+  --hud-pc-keep: 84%;
+  --hud-pc-toward: #000000;
+  /* Objects: cards and dice stay objects in both themes */
+  --card-face: #ffffff;
+  --card-ink: #141a22;
+  --card-muted: #5f6b7d;
+  --card-edge: #dcdfe4;
+  --card-shadow: 0 6px 14px rgba(8, 22, 50, 0.24);
+  --card-back: #2f4c8c;
+  --card-back-rim: #ffffff;
+  --die-face: #ffffff;
+  --die-pip: #141a22;
+  --die-red: #d0342c;
+  --die-red-pip: #fff6ee;
+  /* Type. The HUD uses the text face, whose figures are tabular, so numbers
+     hold their width; --hud-num names number-only places and is the same
+     stack. Both follow the per-script --font-sans, so a Japanese HUD needs no
+     rule of its own. */
+  --hud-font: var(--font-num);
+  --hud-num: var(--font-num);
+}
+.dark {
+  --hud-fill: #141d2e;
+  --hud-fill-solid: #111a2a;
+  --hud-rim: #2f3a4e;
+  --hud-highlight: #1f293b;
+  --hud-shadow: 0 1px 0 rgba(0, 0, 0, 0.35), 0 10px 28px rgba(0, 0, 0, 0.42);
+  --hud-raised: #222d42;
+  --hud-well: #0c1321;
+  --hud-hairline: #29344a;
+  --ic-halo: drop-shadow(0 0 1.2px rgba(236, 243, 255, 0.8));
+  --hud-hatch: #1f2838;
+  --hud-edge: #3e4a5e;
+  --hud-ink: #eef3fa;
+  --hud-muted: #a9b5ca;
+  --hud-focus: #7aadff;
+  --hud-primary: #ffb547;
+  --hud-primary-ink: #1b1203;
+  --hud-primary-glow: rgba(255, 181, 71, 0.34);
+  --hud-bad: #ff8a80;
+  --rate-bg: #173b2c;
+  --rate-ink: #7bebb9;
+  --hud-award-bg: #3e3528;
+  --hud-dialog-btn: #0e1624;
+  --hud-award-ink: #ffc870;
+  --hud-glow: 48%;
+  --hud-pc-keep: 70%;
+  --hud-pc-toward: #ffffff;
+  --card-face: #e3e8ef;
+  --card-ink: #141a22;
+  --card-muted: #5f6b7d;
+  --card-edge: #070c15;
+  --card-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+  --card-back: #3a5ba6;
+  --card-back-rim: #0d1523;
+  --die-face: #e9eef5;
+  --die-pip: #141a22;
+  --die-red: #c92f28;
+}
+
+/* The HUD root. HudLayer's root carries this class, and inside it the site's
+   tokens are re-pointed at the HUD ones, so `text-muted`, `bg-panel` or
+   `border-border` in a HUD component pick up the HUD material. It redeclares
+   the `--color-*` aliases too, because a custom property's var() resolves
+   where it is declared (:root), so re-pointing `--border` alone would not
+   reach a `border-border` utility.
+
+   Outside the HUD (the lobby, the site chrome) nothing changes. */
+.hud-root {
+  --color-foreground: var(--hud-ink);
+  --color-muted: var(--hud-muted);
+  --color-muted2: var(--hud-muted);
+  --color-border: var(--hud-edge);
+  --color-line: var(--hud-hairline);
+  --color-line-strong: var(--hud-edge);
+  --color-elev: var(--hud-raised);
+  --color-elev2: var(--hud-well);
+  --color-panel: var(--hud-well);
+  --color-panel2: var(--hud-raised);
+  --color-secondary-background: var(--hud-fill-solid);
+  --color-ring: var(--hud-focus);
+  --color-seat-active: var(--hud-focus);
+  --border: var(--hud-edge);
+  --foreground: var(--hud-ink);
+  --muted: var(--hud-muted);
+  --line: var(--hud-hairline);
+  --elev: var(--hud-raised);
+  --secondary-background: var(--hud-fill-solid);
+  --font-sans: var(--hud-font);
+  /* The text face's bold is pulled down a step so labels read as instrument
+     type; the theme variables are what the utilities read. */
+  --font-weight-bold: 600;
+  --font-weight-extrabold: 600;
+  --font-weight-black: 700;
+  font-family: var(--hud-font);
+  font-variant-numeric: tabular-nums;
+  color: var(--hud-ink);
+}
+
+/* The site's button inside the HUD: it keeps its fill and shape but drops the
+   press (a 1px rim, a soft lift, no travel). Unlayered so it outranks the
+   button's own utilities without !important; scoped to the HUD so the lobby
+   is unaffected. */
+.hud-root [data-ui-button].border-2 {
+  border-width: 1px;
+}
+.hud-root [data-ui-button] {
+  translate: none;
+}
+.hud-root [data-ui-button].shadow-shadow {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.25),
+    0 1px 2px rgb(10 24 48 / 0.14),
+    0 4px 10px rgb(8 30 70 / 0.12);
+}
+
+/* Everything below is in the components layer so a Tailwind utility on the
+   same element (a `bg-*`, a `rounded-*`) can adjust it. Unlayered, these
+   would beat every utility regardless of order. */
+@layer components {
+  /* A panel. GLASS in hud/HudLayer is this plus `isolate`. */
+  .hud-surf {
+    background: var(--hud-fill);
+    border: 1px solid var(--hud-rim);
+    border-radius: 12px;
+    box-shadow:
+      inset 0 1px 0 var(--hud-highlight),
+      var(--hud-shadow);
+  }
+  /* The same panel, never see-through: tooltips, sheets, a card that has to read
+   over anything. */
+  .hud-surf-solid {
+    background: var(--hud-fill-solid);
+    border: 1px solid var(--hud-rim);
+    border-radius: 12px;
+    box-shadow:
+      inset 0 1px 0 var(--hud-highlight),
+      var(--hud-shadow);
+  }
+  /* Your own seat: a step up from the panel, so it reads as yours at a glance
+   without a second colour. */
+  .hud-surf-own {
+    background: var(--hud-fill-solid);
+    border: 1px solid var(--hud-rim);
+    border-radius: 12px;
+    box-shadow:
+      inset 0 1px 0 var(--hud-highlight),
+      0 0 0 1px var(--hud-rim),
+      var(--hud-shadow);
+  }
+  /* Section label: the text face, small and semibold, in sentence case. */
+  .hud-lab {
+    font: 600 11px/1.1 var(--hud-font);
+    color: var(--hud-muted);
+  }
+  /* A seat colour's ink, for rings, timers and dots. `--pc` is set inline. */
+  .hud-pc {
+    --pc-ink: color-mix(in oklab, var(--pc) var(--hud-pc-keep), var(--hud-pc-toward));
+  }
+  /* Small resource art sitting on chrome: a rim light in dark so Ore and Wood
+   survive the smoked fill. Not on cards. */
+  .hud-ic {
+    filter: var(--ic-halo);
+  }
+
+  /* The HUD's pieces: cards in hand, the tiles you buy from, the chips on seat
+   panels, the bank's piles. Every visual decision is a custom property, so
+   components only say what a thing is (`hud-card-face`, `hud-chip`) and pass
+   the one data value, a card's resource colour, as `--card-color`.
+
+   Plain classes rather than `@utility`, since none takes a variant (see
+   lib/utilityClasses.css.test.ts for why a variant on a plain class does
+   nothing). State is a data attribute or a sibling class. */
+  :root {
+    --hud-piece-border: 1px;
+    --hud-piece-ink: var(--card-edge);
+    --hud-card-radius: 9px;
+    --hud-tile-radius: 9px;
+    --hud-chip-radius: 7px;
+    --hud-card-shadow: 0 0 0 1px var(--card-edge), var(--card-shadow);
+    --hud-card-shadow-lift: 0 0 0 1px var(--card-edge), 0 12px 22px rgba(8, 22, 50, 0.3);
+    /* The disc the art sits in: the resource colour, washed into the card. */
+    --hud-card-disc-mix: 22%;
+    /* A build tile's stock: a cream price card, in both themes. */
+    --hud-tile-stock: #fbf7ee;
+    --hud-tile-ink: #2a2016;
+    --hud-tile-muted: #5a4630;
+    --hud-tile-frame: #cec3b1;
+    /* The count badge on a card's corner. */
+    --hud-badge-bg: var(--hud-ink);
+    --hud-badge-ink: var(--hud-fill-solid);
+    --hud-badge-ring: var(--card-face);
+    /* Chips: a counter's cell on a seat card, a count in the bank. */
+    --hud-chip-bg: var(--hud-well);
+    --hud-chip-line: var(--hud-hairline);
+    --hud-award-held-bg: var(--hud-award-bg);
+    --hud-award-held-ink: var(--hud-award-ink);
+    /* The primary turn action (Roll, End turn) is the one filled button. */
+    --hud-action-roll-bg: var(--hud-primary);
+    --hud-action-roll-ink: var(--hud-primary-ink);
+    --hud-action-end-bg: var(--hud-primary);
+    --hud-action-end-ink: var(--hud-primary-ink);
+    --hud-banner-bg: var(--hud-fill);
+    --hud-banner-ink: var(--hud-ink);
+    --hud-banner-mine-bg: var(--hud-fill-solid);
+    --hud-banner-mine-ink: var(--hud-ink);
+  }
+  .dark {
+    --hud-tile-stock: #e6dfd1;
+    --hud-tile-frame: #bfb29d;
+    --hud-card-shadow-lift: 0 0 0 1px var(--card-edge), 0 14px 26px rgba(0, 0, 0, 0.6);
+  }
+
+  /* A framed playing card: the resource's colour, lit from the top left, with
+   a thin inner frame. The element is the card's full box. */
+  .hud-card-face {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    border-radius: var(--hud-card-radius);
+    /* Its colour, lit from the top left. Written here, not as a :root token:
+       a token would resolve --card-color at the root, where it is unset. */
+    background: linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--card-color, var(--card-face)) 70%, #fff) 0%,
+      var(--card-color, var(--card-face)) 45%,
+      color-mix(in srgb, var(--card-color, var(--card-face)) 78%, #000) 100%
+    );
+    box-shadow: var(--hud-card-shadow);
+  }
+  .hud-card-face::before {
+    content: "";
+    position: absolute;
+    inset: 4px;
+    border: 1.5px solid rgba(255, 255, 255, 0.6);
+    border-radius: 6px;
+    pointer-events: none;
+  }
+  /* One card further down a pile: the same stock, edge only. */
+  .hud-card-back {
+    border-radius: var(--hud-card-radius);
+    /* Its colour, lit from the top left. Written here, not as a :root token:
+       a token would resolve --card-color at the root, where it is unset. */
+    background: linear-gradient(
+      160deg,
+      color-mix(in srgb, var(--card-color, var(--card-face)) 70%, #fff) 0%,
+      var(--card-color, var(--card-face)) 45%,
+      color-mix(in srgb, var(--card-color, var(--card-face)) 78%, #000) 100%
+    );
+    box-shadow: 0 0 0 1px var(--card-edge);
+  }
+  /* The round white well the resource art sits in, so the art reads on any
+   card colour in either theme. */
+  .hud-card-well {
+    border-radius: 9999px;
+    background: #fff;
+    box-shadow:
+      0 0 0 3px rgba(255, 255, 255, 0.35),
+      inset 0 -2px 0 rgba(0, 0, 0, 0.08);
+  }
+  /* The name plate along the card's foot, inside the frame. */
+  .hud-card-label {
+    border-radius: 0 0 6px 6px;
+    background: rgba(0, 0, 0, 0.22);
+    color: #fff;
+    font-family: var(--hud-font);
+    font-weight: 600;
+  }
+  /* The count on a card: a white coin ringed in the card's colour. */
+  .hud-card-badge {
+    background: #fff;
+    color: #141a22;
+    border: 0;
+    box-shadow:
+      0 0 0 2px var(--card-color, var(--hud-ink)),
+      0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  /* The count on a card's corner. */
+  .hud-badge {
+    border: 2px solid var(--hud-badge-ring);
+    border-radius: 9999px;
+    background: var(--hud-badge-bg);
+    color: var(--hud-badge-ink);
+    font-family: var(--hud-font);
+  }
+  /* The trade rate you get for a card, where it beats your default. */
+  .hud-rate {
+    font: 600 11px/1 var(--hud-num);
+    padding: 3px 5px;
+    border-radius: 6px;
+    background: var(--rate-bg);
+    color: var(--rate-ink);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    white-space: nowrap;
+  }
+  .hud-rate[data-better="false"] {
+    background: var(--hud-well);
+    color: var(--hud-ink);
+    box-shadow: 0 0 0 1px var(--hud-rim);
+  }
+  /* Your rate for one bank pile, under its count. Green where it beats your
+     default. */
+  .hud-rate-mark {
+    font: 600 9.5px/1 var(--hud-num);
+    padding: 2px 3px;
+    border-radius: 4px;
+    color: var(--hud-muted);
+    white-space: nowrap;
+  }
+  .hud-rate-mark[data-better="true"] {
+    background: var(--rate-bg);
+    color: var(--rate-ink);
+  }
+  .hud-rate-mark-sm {
+    font-size: 8.5px;
+    padding: 1px 2px;
+    margin-left: 1px;
+  }
+  /* Anything framed like a card that is not a resource: the development cards'
+   art, a picker's piece tile. */
+  .hud-card-frame {
+    border-radius: var(--hud-card-radius);
+    box-shadow: var(--hud-card-shadow);
+  }
+  /* A build tile. Every one is the same box (HOTBAR_TILE); the states are data
+   attributes so a test can read them and a stylesheet can draw them. */
+  .hud-tile {
+    position: relative;
+    border-radius: var(--hud-tile-radius);
+    background: var(--hud-tile-stock);
+    box-shadow:
+      0 0 0 1px var(--card-edge),
+      0 4px 10px rgba(8, 22, 50, 0.18);
+    color: var(--hud-tile-ink);
+  }
+  /* The price card's inner frame. */
+  .hud-tile::before {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border: 1px solid var(--hud-tile-frame);
+    border-radius: 6px;
+    pointer-events: none;
+  }
+  .hud-tile[data-state="short"],
+  .hud-tile[data-state="lock"] {
+    filter: saturate(0.6);
+  }
+  .hud-tile[data-state="out"] {
+    background: repeating-linear-gradient(
+      -45deg,
+      var(--hud-tile-stock) 0 5px,
+      color-mix(in srgb, var(--hud-tile-stock) 90%, #000) 5px 6px
+    );
+  }
+  .hud-tile[data-selected="true"] {
+    background: color-mix(in srgb, var(--hud-primary) 26%, var(--hud-tile-stock));
+    box-shadow: inset 0 0 0 2px var(--hud-primary);
+    color: var(--hud-tile-ink);
+  }
+  .hud-tile:focus-visible {
+    outline: 2px solid var(--hud-focus);
+    outline-offset: 2px;
+  }
+  /* A tile's art (the piece's own render). Short and locked tiles dim it, an
+     out-of-pieces tile dims it further under the hatching. */
+  .hud-tile-art {
+    border-radius: 7px;
+  }
+  .hud-tile[data-state="short"] .hud-tile-art,
+  .hud-tile[data-state="lock"] .hud-tile-art {
+    filter: grayscale(1);
+    opacity: 0.55;
+  }
+  .hud-tile[data-state="out"] .hud-tile-art {
+    filter: grayscale(1);
+    opacity: 0.4;
+  }
+  /* The pieces-left count in a tile's corner, red at zero. Above the hover
+     lift's z-index 5 (`.hud-lift` below), since the count sits beside the
+     button and a lifted tile would otherwise cover it. */
+  .hud-left {
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    z-index: 6;
+    font: 600 9.5px/1 var(--hud-num);
+    padding: 3px 6px;
+    border-radius: 9999px;
+    background: var(--hud-tile-ink);
+    color: var(--hud-tile-stock);
+    pointer-events: none;
+  }
+  /* A tile's corner badge (an improvement's chevron, a gold count): the same
+     corner and the same stacking as the count, which no badged tile carries. */
+  .hud-tile-badge {
+    z-index: 6;
+  }
+  .hud-left[data-out="true"] {
+    background: var(--hud-bad);
+    color: #fff;
+  }
+  /* One resource in a price: the art and the count. `data-short` underlines the
+   one you are missing. */
+  .hud-cc {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+  .hud-cc > sub {
+    font: 700 9.5px/1 var(--hud-num);
+    vertical-align: 0;
+    margin-left: 1px;
+    color: var(--hud-tile-muted);
+  }
+  .hud-cc > sub::before {
+    content: "\00D7";
+  }
+  .hud-cc[data-short="true"]::after {
+    content: "";
+    position: absolute;
+    left: 1px;
+    right: 1px;
+    bottom: -3px;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--hud-bad);
+  }
+  .hud-cc[data-short="true"] > sub {
+    color: var(--hud-bad);
+  }
+  /* A lift under the pointer, for any of the above that can be pressed. A plain
+     hover rule rather than a Tailwind variant, for the reason at the top of
+     this block. */
+  .hud-lift {
+    transition:
+      transform 120ms ease-out,
+      box-shadow 120ms ease-out;
+  }
+  .hud-lift:hover:not(:disabled):not([aria-disabled="true"]) {
+    transform: translateY(-4px);
+  }
+  /* A lifted card comes to the front; otherwise the next pile's backs (which
+     reach left under their neighbour) cover it. */
+  .hud-lift:hover:not(:disabled):not([aria-disabled="true"]),
+  .hud-lift:focus-visible {
+    z-index: 5;
+  }
+  .hud-lift:hover:not(:disabled):not([aria-disabled="true"]) .hud-card-face,
+  .hud-lift.hud-card-frame:hover:not(:disabled):not([aria-disabled="true"]) {
+    box-shadow: var(--hud-card-shadow-lift);
+  }
+  .hud-lift.hud-tile:hover:not(:disabled):not([aria-disabled="true"]) {
+    transform: none;
+    box-shadow:
+      0 0 0 1.5px var(--hud-focus),
+      0 4px 10px rgba(8, 22, 50, 0.18);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hud-lift {
+      transition: none;
+    }
+  }
+  /* A stat on a seat panel: a recessed well, a glyph, a number. */
+  .hud-chip {
+    border-radius: var(--hud-chip-radius);
+    background: var(--hud-chip-bg);
+    color: var(--hud-muted);
+  }
+  .hud-chip[data-hot="true"] {
+    box-shadow: inset 0 0 0 1px var(--hud-bad);
+  }
+  .hud-root [data-hot="true"] > span:last-child {
+    color: var(--hud-bad);
+  }
+  /* The score: a numeral with its unit, no pill. */
+  .hud-vp {
+    color: var(--hud-ink);
+  }
+  /* The fan of card backs that stands for a hand's size. */
+  .hud-fan {
+    position: relative;
+    display: inline-block;
+    width: 18px;
+    height: 16px;
+    flex: none;
+  }
+  .hud-fan > i {
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 9px;
+    height: 13px;
+    border-radius: 2px;
+    background: var(--card-back);
+    box-shadow: 0 0 0 1px var(--card-back-rim);
+    transform-origin: 50% 100%;
+  }
+  .hud-fan > i:nth-child(1) {
+    transform: rotate(-20deg) translateX(-2px);
+  }
+  .hud-fan > i:nth-child(2) {
+    transform: rotate(-7deg);
+  }
+  .hud-fan > i:nth-child(3) {
+    transform: rotate(7deg);
+  }
+  .hud-fan > i:nth-child(4) {
+    transform: rotate(20deg) translateX(2px);
+  }
+  /* The one filled button in the HUD. */
+  .hud-primary {
+    background: var(--hud-primary);
+    color: var(--hud-primary-ink);
+    border: 0;
+    border-radius: 11px;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.45),
+      0 8px 22px var(--hud-primary-glow);
+  }
+  .hud-secondary {
+    background: var(--hud-fill);
+    color: var(--hud-ink);
+    border: 0;
+    border-radius: 11px;
+    box-shadow:
+      inset 0 0 0 1px var(--hud-rim),
+      inset 0 1px 0 var(--hud-highlight),
+      var(--hud-shadow);
+  }
+  /* A seat panel on the clock: a 2px ring in the seat's own ink and a glow of
+     it (faint by day, a real light at night). `.hud-pc` supplies --pc-ink. */
+  .hud-seat {
+    transition: box-shadow 150ms ease-out;
+  }
+  /* The ring is inset because the opponents' panels sit in the rail's
+     scroller, whose overflow would clip an outer ring and glow. It is drawn on
+     a layer above the panel's content, because the solid on-the-clock backing
+     inside the panel would paint over an inset shadow on the panel itself. */
+  .hud-seat[data-active="true"] {
+    border-color: transparent;
+  }
+  .hud-seat[data-active="true"]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow:
+      inset 0 0 0 2px var(--pc-ink),
+      inset 0 0 14px color-mix(in srgb, var(--pc-ink) var(--hud-glow), transparent);
+  }
+  /* One line of the compact rail (7 to 10 seats). */
+  .hud-crow[data-active="true"] {
+    background: var(--hud-raised);
+    box-shadow: inset 0 0 0 1.5px var(--pc-ink);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hud-seat {
+      transition: none;
+    }
+  }
+}
+
+/* === Knights HUD and dialogs === */
+/* The Knights HUD and the shared in-game dialogs (Overlay, the pickers, the
+   discard tray, the target prompts). Everything reads the token table above;
+   the only colour of its own is the event die's glyph ink. */
+
+/* Buttons in a dialog or target prompt that still come from the site's
+   `Button` (module panels and code older than HudButton): the quiet and
+   secondary variants, and a primary with no fill of its own, become the HUD
+   secondary. A button given a fill at its call site keeps it; only its frame
+   softens, via the rule at the top of this section. */
+.hud-root [role="dialog"] [data-ui-button].bg-panel,
+.hud-root [role="dialog"] [data-ui-button].bg-secondary-background,
+.hud-root [role="dialog"] [data-ui-button]:not([class*="bg-"]),
+.hud-root[data-hud-prompt] [data-ui-button].bg-panel,
+.hud-root[data-hud-prompt] [data-ui-button]:not([class*="bg-"]) {
+  border-width: 0;
+  border-radius: 11px;
+  background: var(--hud-dialog-btn);
+  color: var(--hud-dialog-btn-ink, var(--hud-ink));
+  box-shadow:
+    inset 0 0 0 1px var(--hud-rim),
+    inset 0 1px 0 var(--hud-highlight);
+}
+/* HudButton's secondary inside a dialog: the same `--hud-dialog-btn`, and a
+   hover that darkens (light) or lifts (dark) from there. */
+.hud-root [role="dialog"] .hud-btn.hud-secondary {
+  background: var(--hud-dialog-btn);
+}
+.hud-root [role="dialog"] .hud-btn.hud-secondary:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--hud-dialog-btn) 93%, var(--hud-ink));
+}
+/* The same for a button stacked on HudButton's classes: unlayered, so the
+   site button's border and shadow utilities cannot win. */
+.hud-root .hud-btn {
+  border-width: 0;
+}
+
+@layer components {
+  /* HudButton (components/game/hud/HudButton.tsx). The fill and rim come from
+     hud-primary / hud-secondary; this is the shape, the type and the states. */
+  .hud-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: var(--hud-font);
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+      filter 120ms ease-out,
+      background-color 120ms ease-out;
+  }
+  .hud-btn:hover:not(:disabled) {
+    filter: brightness(1.04);
+  }
+  .hud-btn.hud-secondary:hover:not(:disabled) {
+    background: var(--hud-raised);
+    filter: none;
+  }
+  .hud-btn:disabled {
+    cursor: default;
+    opacity: 0.45;
+    box-shadow: inset 0 0 0 1px var(--hud-rim);
+  }
+  .hud-btn:focus-visible {
+    outline: 2px solid var(--hud-focus);
+    outline-offset: 2px;
+  }
+  .hud-btn-danger {
+    color: var(--hud-bad);
+  }
+  .hud-btn[data-pressed="true"] {
+    background: var(--hud-raised);
+    box-shadow:
+      inset 0 0 0 1.5px var(--hud-focus),
+      inset 0 1px 0 var(--hud-highlight);
+  }
+  /* Phones: a thumb's height. */
+  @media (pointer: coarse) {
+    .hud-btn {
+      min-height: 40px;
+    }
+  }
+
+  /* Overlay: the dim behind a dialog, a cool navy wash rather than black, so
+     the board keeps its colour and the panel is the brightest thing. */
+  .hud-dim {
+    background: rgba(8, 18, 36, 0.42);
+  }
+  .dark .hud-dim {
+    background: rgba(2, 6, 14, 0.55);
+  }
+  /* The dialog's panel: the solid material, a softer and deeper shadow than a
+     docked panel because it floats over everything. */
+  .hud-dialog {
+    background: var(--hud-fill-solid);
+    border: 1px solid var(--hud-rim);
+    border-radius: 16px;
+    box-shadow:
+      inset 0 1px 0 var(--hud-highlight),
+      0 2px 6px rgba(8, 22, 50, 0.14),
+      0 22px 48px rgba(8, 22, 50, 0.3);
+  }
+  .dark .hud-dialog {
+    box-shadow:
+      inset 0 1px 0 var(--hud-highlight),
+      0 2px 6px rgba(0, 0, 0, 0.4),
+      0 24px 56px rgba(0, 0, 0, 0.6);
+  }
+  .hud-dialog-title {
+    font: 700 17px/1.25 var(--font-display);
+    color: var(--hud-ink);
+    text-wrap: balance;
+  }
+  /* The round dismiss in a dialog's corner. */
+  .hud-dismiss {
+    border-radius: 9999px;
+    color: var(--hud-muted);
+    background: transparent;
+    box-shadow: inset 0 0 0 1px var(--hud-rim);
+  }
+  .hud-dismiss:hover {
+    background: var(--hud-raised);
+    color: var(--hud-ink);
+  }
+  .hud-dismiss:focus-visible {
+    outline: 2px solid var(--hud-focus);
+    outline-offset: 2px;
+  }
+  /* A dialog's pinned footer. */
+  .hud-dialog-foot {
+    background: var(--hud-fill-solid);
+    border-top: 1px solid var(--hud-hairline);
+  }
+  /* Body copy in a dialog: the one line under the title that says what the
+     pick does. */
+  .hud-dialog-note {
+    font: 400 12px/1.4 var(--hud-font);
+    color: var(--hud-muted);
+    text-wrap: pretty;
+  }
+
+  /* SeatChoice: one opponent as a pickable tile. The seat colour is the ring
+     (as ink, so yellow reads on the pale panel), the piece stands in a light
+     well, the name is plain type. */
+  .hud-seatpick {
+    border-radius: 12px;
+    transition:
+      background-color 120ms ease-out,
+      transform 120ms ease-out;
+  }
+  .hud-seatpick:hover:not(:disabled) {
+    background: var(--hud-raised);
+    box-shadow: inset 0 0 0 1px var(--hud-rim);
+  }
+  .hud-seatpick:focus-visible {
+    outline: 2px solid var(--hud-focus);
+    outline-offset: 2px;
+  }
+  .hud-seatpick-well {
+    border-radius: 9999px;
+    background: #fff;
+    box-shadow:
+      0 0 0 2px var(--pc-ink),
+      0 0 0 5px color-mix(in srgb, var(--pc-ink) 18%, var(--hud-fill-solid)),
+      0 3px 8px rgba(8, 22, 50, 0.18);
+  }
+  .dark .hud-seatpick-well {
+    background: #e3e8ef;
+  }
+
+  /* The discard tray's lane and the staging lanes like it: a recessed well
+     with a dashed hairline, where the chosen cards land. */
+  .hud-lane {
+    border-radius: 11px;
+    background: var(--hud-well);
+    box-shadow: inset 0 0 0 1px var(--hud-hairline);
+  }
+  .hud-lane[data-empty="true"] {
+    background: transparent;
+    box-shadow: none;
+    outline: 1px dashed var(--hud-edge);
+    outline-offset: -1px;
+  }
+
+  /* The two small count pills under a card in a picker: the give-back one
+     (CommitPill, pressable) and the read-only one (HoldPill). */
+  .hud-pill-count {
+    border-radius: 9999px;
+    font: 600 9.5px/1 var(--hud-num);
+    box-shadow:
+      0 0 0 2px var(--hud-fill-solid),
+      0 2px 4px rgba(0, 0, 0, 0.25);
+  }
+  .hud-pill-count[data-tone="hold"] {
+    background: var(--hud-raised);
+    color: var(--hud-ink);
+    box-shadow:
+      0 0 0 2px var(--hud-fill-solid),
+      inset 0 0 0 1px var(--hud-edge);
+  }
+
+  /* The Knights event die: its face colour is the track (or the ship's ink),
+     and the glyph on it is what says which, for a reader who cannot tell
+     yellow from green. */
+  .hud-event-die {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+  .hud-event-die[data-face="trade"] {
+    color: #3b2a00;
+  }
+
+  /* A progress card in the hand: the deck's colour as a band across the top,
+     drawn above the face and never greyed with it, so a card you cannot play
+     yet still says which deck it came out of. */
+  .hud-deck-band {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    height: 7px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.18);
+  }
+
+  /* The barbarian rail's verdict: the sum under the track. */
+  .hud-verdict-sum {
+    font: 600 12px/1 var(--hud-font);
+    color: var(--hud-ink);
+  }
+  .hud-verdict-sum > i {
+    font: 600 10.5px/1 var(--hud-font);
+    font-style: normal;
+    color: var(--hud-muted);
+  }
+
+  /* An improvement track's empty pip on a cream shop tile; the site's hairline
+     disappeared on the tile stock. */
+  .hud-tile {
+    --pip-empty: var(--hud-tile-frame);
+  }
+
+  /* A build tile's name (ShopTile in routes/Game.tsx). 9px semibold on the 44px
+     tile (phones in portrait and in the `squat` shape), 10.5px medium on the
+     68px tile from sm. The 1.2 leading on the small tile keeps descenders
+     ("lung", "Дорога") inside the line clamp; at 1.05 they were cut. The
+     -0.01em at 10.5px fits "Politics" in the 60px frame. The last query is
+     the `squat` variant's, written out because variants do not reach plain
+     CSS. */
+  .hud-tile-name {
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  @media (min-width: 40rem) {
+    .hud-tile-name {
+      font-size: 10.5px;
+      font-weight: 500;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+  }
+  @media (min-width: 560px) and (max-width: 1023.98px) and (max-height: 500px) {
+    .hud-tile-name {
+      font-size: 9px;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: normal;
+    }
+  }
+}
+/* A dialog's lone button (a Cancel under a row of choices) sits centred at its
+   own width rather than stretching across the panel like a form's submit.
+   `Overlay` wraps the body in a box-less fieldset (CommandHold), so the
+   button is a flex item of the panel one level further down. */
+.hud-dialog > .hud-btn,
+.hud-dialog > fieldset > .hud-btn {
+  align-self: center;
+  min-width: 120px;
+}
+
+/* === Raiders, Wagons and Explorers panels === */
+/* Raiders, Wagons and Explorers: the module panels' parts
+   (components/game/moduleUi.tsx), all from the HUD's tokens. The one filled
+   control is `hud-primary`; `hud-secondary` is the rimmed alternative. In the
+   components layer for the reason at the top of the HUD block. */
+/* The Explorers mission tracks' colours (identity, like a resource colour). */
+:root {
+  --modp-track-lairs: #9e3b32;
+  --modp-track-fish: #1e97aa;
+  --modp-track-spice: #c4702e;
+}
+.dark {
+  --modp-track-lairs: #e06a5e;
+  --modp-track-fish: #3cc0d2;
+  --modp-track-spice: #e8914a;
+}
+@layer components {
+  .modp-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font: 400 13px/1.35 var(--hud-font);
+    color: var(--hud-ink);
+  }
+  .modp-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    min-height: 24px;
+  }
+  .modp-head-end {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .modp-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .modp-grow {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .modp-sep {
+    border-top: 1px solid var(--hud-hairline);
+    padding-top: 10px;
+  }
+  .modp-small {
+    font: 400 12px/1.35 var(--hud-font);
+    color: var(--hud-muted);
+  }
+  .modp-key {
+    font: 500 12px/1.3 var(--hud-font);
+    color: var(--hud-muted);
+    min-width: 64px;
+  }
+  .modp-num {
+    font: 600 16px/1 var(--hud-font);
+    font-variant-numeric: tabular-nums;
+  }
+  .modp-warn {
+    font: 500 12px/1.35 var(--hud-font);
+    color: var(--hud-award-ink);
+  }
+  /* Buttons. The size is the dialog's 40px touch target; the look is the HUD's
+     primary or secondary material. */
+  .modp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 36px;
+    padding: 0 12px;
+    border-radius: 9px;
+    font: 500 12.5px/1.15 var(--hud-font);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: box-shadow 120ms ease-out;
+  }
+  .modp-btn.hud-primary {
+    font-weight: 600;
+  }
+  .modp-btn.hud-secondary {
+    background: var(--hud-raised);
+  }
+  .modp-btn.hud-secondary:hover:not(:disabled) {
+    box-shadow:
+      inset 0 0 0 1px var(--hud-focus),
+      inset 0 1px 0 var(--hud-highlight);
+  }
+  .modp-btn[aria-pressed="true"] {
+    box-shadow:
+      inset 0 0 0 2px var(--hud-focus),
+      inset 0 1px 0 var(--hud-highlight);
+  }
+  .modp-btn-quiet {
+    background: transparent;
+    color: var(--hud-muted);
+    border: 0;
+  }
+  .modp-btn-quiet:hover:not(:disabled) {
+    background: var(--hud-well);
+    color: var(--hud-ink);
+  }
+  .modp-btn:disabled {
+    opacity: 0.42;
+    cursor: not-allowed;
+    box-shadow: inset 0 0 0 1px var(--hud-hairline);
+  }
+  .modp-btn.hud-primary:disabled {
+    box-shadow: none;
+  }
+  .modp-btn:focus-visible {
+    outline: 2px solid var(--hud-focus);
+    outline-offset: 2px;
+  }
+  .modp-btn .hud-ic,
+  .modp-btn img {
+    width: 15px;
+    height: 15px;
+  }
+  /* A counter chip in a panel: the seat card's well, a glyph, a number. */
+  .modp-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 7px;
+    font: 600 12px/1 var(--hud-font);
+    font-variant-numeric: tabular-nums;
+    color: var(--hud-ink);
+    white-space: nowrap;
+  }
+  .modp-chip > .modp-unit {
+    font-weight: 400;
+    color: var(--hud-muted);
+  }
+  .modp-chip[data-tone="bad"] {
+    color: var(--hud-bad);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--hud-bad) 45%, var(--hud-fill));
+  }
+  .modp-chip[data-tone="good"] {
+    background: var(--rate-bg);
+    color: var(--rate-ink);
+  }
+  .modp-chip[data-tone="focus"] {
+    background: var(--hud-award-bg);
+    color: var(--hud-award-ink);
+  }
+  /* The movement bar. */
+  .modp-bar {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 40px;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--hud-well);
+    box-shadow: inset 0 0 0 1px var(--hud-hairline);
+    overflow: hidden;
+  }
+  .modp-bar > i {
+    position: absolute;
+    inset: 0 auto 0 0;
+    background: var(--hud-focus);
+    border-radius: 3px;
+  }
+  /* A cargo slot: an empty well, or the load's art on a raised tile. */
+  .modp-slots {
+    display: inline-flex;
+    gap: 4px;
+  }
+  .modp-slot {
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    display: grid;
+    place-items: center;
+    background: var(--hud-well);
+    box-shadow: inset 0 0 0 1px var(--hud-hairline);
+    color: var(--hud-muted);
+  }
+  .modp-slot[data-full] {
+    background: var(--hud-raised);
+    box-shadow: inset 0 0 0 1px var(--hud-rim);
+    color: var(--hud-ink);
+  }
+  /* A row that is a thing of its own inside the panel: one rider, one ship, one
+     trade hex. A raised card, no outline. */
+  .modp-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 9px 10px;
+    border-radius: 10px;
+    background: var(--hud-raised);
+    box-shadow:
+      inset 0 0 0 1px var(--hud-rim),
+      inset 0 1px 0 var(--hud-highlight);
+  }
+  .modp-card[data-owed] {
+    box-shadow:
+      inset 0 0 0 1.5px var(--hud-primary),
+      inset 0 1px 0 var(--hud-highlight);
+  }
+  /* A pressable row card (a rider, a trade offer). */
+  button.modp-card {
+    text-align: left;
+    color: inherit;
+    font: inherit;
+    border: 0;
+    cursor: pointer;
+    transition: box-shadow 120ms ease-out;
+  }
+  button.modp-card:hover:not(:disabled) {
+    box-shadow:
+      inset 0 0 0 1.5px var(--hud-focus),
+      inset 0 1px 0 var(--hud-highlight);
+  }
+  button.modp-card:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+  button.modp-card:focus-visible {
+    outline: 2px solid var(--hud-focus);
+    outline-offset: 2px;
+  }
+  /* A resource choice: its art and a figure under it, one equal tile each. */
+  .modp-picks {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 6px;
+  }
+  .modp-pick {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-height: 56px;
+    padding: 6px 2px;
+    border: 0;
+    border-radius: 9px;
+    background: var(--hud-raised);
+    color: var(--hud-ink);
+    box-shadow:
+      inset 0 0 0 1px var(--hud-rim),
+      inset 0 1px 0 var(--hud-highlight);
+    font: 600 11px/1 var(--hud-num);
+    cursor: pointer;
+  }
+  .modp-pick:hover:not(:disabled) {
+    box-shadow: inset 0 0 0 1.5px var(--hud-focus);
+  }
+  .modp-pick:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: transparent;
+  }
+  .modp-pick:focus-visible {
+    outline: 2px solid var(--hud-focus);
+    outline-offset: 2px;
+  }
+  .modp-pick .modp-sub {
+    font: 400 10px/1 var(--hud-num);
+    color: var(--hud-muted);
+  }
+  /* A price row inside a panel: the build tiles' cost chips. */
+  .modp-cost {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+  }
+  /* The phase stepper (Explorers): three steps, the current one filled. */
+  .modp-phase {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+  .modp-phase > span {
+    font: 500 11px/1 var(--hud-font);
+    padding: 6px 9px;
+    border-radius: 999px;
+    color: var(--hud-muted);
+    background: var(--hud-well);
+    white-space: nowrap;
+  }
+  .modp-phase > span[data-on] {
+    background: var(--hud-ink);
+    color: var(--hud-fill-solid);
+  }
+  .modp-phase > span[data-done] {
+    opacity: 0.6;
+  }
+  /* A mission track: seven hex cells, filled to the seat's space. */
+  .modp-track {
+    display: grid;
+    grid-template-columns: 18px minmax(64px, auto) 1fr auto;
+    gap: 8px;
+    align-items: center;
+  }
+  .modp-cells {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+  }
+  .modp-cells > i {
+    width: 16px;
+    height: 18px;
+    clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+    background: color-mix(in srgb, var(--hud-ink) 13%, var(--hud-fill));
+  }
+  .modp-cells > i[data-on] {
+    background: var(--tc, var(--hud-focus));
+  }
+  /* A sticky footer's actions, centred. */
+  .modp-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  /* A collapsed section of a panel: a raised card whose whole top row toggles. */
+  .modp-disclosure {
+    border-radius: 10px;
+    background: var(--hud-well);
+    box-shadow: inset 0 0 0 1px var(--hud-hairline);
+  }
+  .modp-summary {
+    font: 500 13px/1.2 var(--hud-font);
+    color: var(--hud-ink);
+    list-style-position: inside;
+  }
+  .modp-summary::marker {
+    color: var(--hud-muted);
+  }
+  /* A key swatch in the Treason planner's legend. */
+  .modp-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 14px;
+    font: 400 12px/1.3 var(--hud-font);
+    color: var(--hud-muted);
+  }
+}
+
+/* === Islands, Fishermen, Caravans, Harbormaster and Rivers panels === */
+/* Islands, Fishermen, Caravans, Harbormaster and Rivers: the module panels and
+   choosers, in the base HUD's material. Every value is a --hud-* token, so
+   light and dark come from the table above. `hudx-` rather than `hud-` so
+   nothing here collides with the shared primitives. */
+@layer components {
+  /* An either/or: one recessed well, the chosen half raised out of it. */
+  .hudx-seg {
+    display: inline-flex;
+    gap: 2px;
+    padding: 2px;
+    border-radius: 9px;
+    background: var(--hud-well);
+  }
+  .hudx-seg > button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 0;
+    border-radius: 7px;
+    padding: 7px 11px;
+    background: transparent;
+    color: var(--hud-muted);
+    font: 500 12.5px/1 var(--hud-font);
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  @media (max-width: 639px) {
+    .hudx-seg > button {
+      padding: 5px 9px;
+    }
+  }
+  .hudx-seg > button[aria-pressed="true"] {
+    background: var(--hud-raised);
+    color: var(--hud-ink);
+    box-shadow:
+      inset 0 0 0 1px var(--hud-rim),
+      0 1px 2px rgba(10, 24, 48, 0.12);
+  }
+  .hudx-seg > button:focus-visible {
+    outline: 2px solid var(--hud-focus);
+    outline-offset: 1px;
+  }
+  .hudx-seg-ic {
+    display: inline-grid;
+    place-items: center;
+    width: 16px;
+    height: 16px;
+  }
+
+  /* A pressable cell in a row of equal ones: a rung of the fish ladder, one
+     resource in the coins panel, a caravan to name. Raised, 1px rim; a cell you
+     cannot take dims and loses its fill, so a row of them reads as a readout of
+     what you can do. */
+  .hudx-cell {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    min-width: 0;
+    padding: 7px 3px 6px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--hud-raised);
+    color: var(--hud-ink);
+    box-shadow: inset 0 0 0 1px var(--hud-rim);
+    font: 500 11px/1.15 var(--hud-font);
+    text-align: center;
+    cursor: pointer;
+    transition: box-shadow 120ms ease-out;
+  }
+  .hudx-cell:hover:not(:disabled) {
+    box-shadow: inset 0 0 0 1.5px var(--hud-focus);
+  }
+  .hudx-cell:focus-visible {
+    outline: 2px solid var(--hud-focus);
+    outline-offset: 1px;
+  }
+  .hudx-cell:disabled {
+    background: transparent;
+    opacity: 0.55;
+    cursor: default;
+  }
+  .hudx-cell[aria-pressed="true"],
+  .hudx-cell[data-lit="true"] {
+    box-shadow: inset 0 0 0 2px var(--hud-focus);
+  }
+  /* The number a cell is about (a price, a rate), set in the mono. */
+  .hudx-cell > b,
+  .hudx-num {
+    font: 600 14px/1 var(--hud-num);
+    font-variant-numeric: tabular-nums;
+  }
+  /* A row of equal cells. The count comes in as --n. */
+  .hudx-row {
+    display: grid;
+    grid-template-columns: repeat(var(--n, 5), minmax(0, 1fr));
+    gap: 4px;
+  }
+
+  /* Minus, the value, plus: one raised capsule. */
+  .hudx-step {
+    display: inline-flex;
+    align-items: center;
+    flex: none;
+    border-radius: 8px;
+    background: var(--hud-raised);
+    box-shadow: inset 0 0 0 1px var(--hud-rim);
+  }
+  .hudx-step > button {
+    width: 34px;
+    height: 34px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--hud-ink);
+    font: 600 16px/1 var(--hud-font);
+    cursor: pointer;
+  }
+  .hudx-step > button:disabled {
+    color: var(--hud-muted);
+    opacity: 0.45;
+    cursor: default;
+  }
+  .hudx-step > button:focus-visible {
+    outline: 2px solid var(--hud-focus);
+    outline-offset: -2px;
+  }
+  .hudx-step > [role="spinbutton"] {
+    min-width: 24px;
+    text-align: center;
+    font: 600 14px/1 var(--hud-font);
+    font-variant-numeric: tabular-nums;
+  }
+  @media (pointer: coarse) {
+    .hudx-step > button {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  /* A figure with its glyph in a panel's header: "4 tiles, worth 6", "5 coins",
+     "22 left". */
+  .hudx-figure {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 8px;
+    border-radius: 7px;
+    background: var(--hud-well);
+    color: var(--hud-ink);
+    font: 600 12px/1 var(--hud-font);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  /* A line inside a panel, and the hairline between two of them. */
+  .hudx-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+  .hudx-rule {
+    height: 1px;
+    background: var(--hud-hairline);
+  }
+  /* The small explanatory type under a control. */
+  .hudx-note {
+    font: 400 12px/1.35 var(--hud-font);
+    color: var(--hud-muted);
+  }
+  .hudx-note[data-warn="true"] {
+    color: var(--hud-award-ink);
+    font-weight: 500;
+  }
+  /* The HUD's two buttons, sized for a panel. The colours are hud-primary and
+     hud-secondary; this only adds the box, the type and a disabled state. */
+  .hudx-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    min-height: 36px;
+    padding: 0 14px;
+    font: 600 13px/1 var(--hud-font);
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .hudx-btn:disabled {
+    opacity: 0.45;
+    cursor: default;
+    box-shadow: none;
+  }
+  .hudx-btn:focus-visible {
+    outline: 2px solid var(--hud-focus);
+    outline-offset: 2px;
+  }
+  @media (pointer: coarse) {
+    .hudx-btn {
+      min-height: 40px;
+    }
+  }
+}
+
+/* === Post-game scoreboard === */
+/* The post-game scoreboard (components/game/PostGameScoreboard.tsx and its two
+   charts), drawn in the end-of-game dialog inside the HUD and in a profile's
+   match history on the site. The `--hud-*` tokens are on :root, so both read
+   the same material; `--pg-bg` must match the panel it sits on (the matrix's
+   frozen column is opaque) and follows the site's panel outside the HUD.
+
+   No outlines: it already sits in a dialog. Sections are separated by
+   hairlines; the winner is the one warm row. */
+@layer components {
+  .pg-board {
+    --pg-bg: var(--hud-fill-solid);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-family: var(--hud-font);
+    font-variant-numeric: tabular-nums;
+    color: var(--hud-ink);
+  }
+  .pg-board:not(.hud-root *) {
+    --pg-bg: var(--color-secondary-background);
+  }
+  .pg-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 0 2px 10px;
+  }
+  /* The view switch: a well with a raised selected segment, without the HUD's
+     2px capsule. */
+  .pg-tabs {
+    display: inline-grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    padding: 3px;
+    border-radius: 9px;
+    background: var(--hud-well);
+    box-shadow: inset 0 0 0 1px var(--hud-hairline);
+  }
+  .pg-tab {
+    padding: 5px 12px;
+    border-radius: 7px;
+    font: 500 12px/1.2 var(--hud-font);
+    color: var(--hud-muted);
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .pg-tab:hover {
+    color: var(--hud-ink);
+  }
+  .pg-tab[aria-selected="true"] {
+    background: var(--hud-fill-solid);
+    color: var(--hud-ink);
+    font-weight: 600;
+    box-shadow:
+      inset 0 0 0 1px var(--hud-rim),
+      0 1px 2px rgba(10, 24, 48, 0.12);
+  }
+  .dark .pg-tab[aria-selected="true"] {
+    background: var(--hud-raised);
+  }
+  .pg-tab:focus-visible {
+    outline: 2px solid var(--hud-focus);
+    outline-offset: 1px;
+  }
+
+  /* The standings. Four columns on a wide screen (rank, seat, points by
+     source, total); on a phone the sources drop under the name, which is what
+     lets eleven of them fit 390px without scrolling sideways. */
+  .pg-standings {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .pg-row {
+    display: grid;
+    grid-template-columns: 22px minmax(0, 190px) minmax(0, 1fr) auto;
+    grid-template-areas: "rank who src total";
+    align-items: center;
+    column-gap: 12px;
+    row-gap: 6px;
+    padding: 9px 12px;
+  }
+  .pg-row + .pg-row {
+    border-top: 1px solid var(--hud-hairline);
+  }
+  .pg-row[data-winner="true"] {
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--hud-primary) 13%, var(--pg-bg));
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--hud-primary) 50%, var(--pg-bg));
+  }
+  .pg-row[data-winner="true"] + .pg-row {
+    border-top-color: transparent;
+  }
+  .pg-rank {
+    grid-area: rank;
+    font: 500 12px/1 var(--hud-num);
+    color: var(--hud-muted);
+    text-align: center;
+  }
+  .pg-row[data-winner="true"] .pg-rank {
+    color: var(--hud-award-ink);
+    font-weight: 600;
+  }
+  .pg-who {
+    grid-area: who;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+  .pg-dot {
+    flex: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 9999px;
+    background: var(--pc);
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--hud-ink) 35%, var(--pg-bg));
+  }
+  .pg-name {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font: 600 14px/1.25 var(--hud-font);
+  }
+  /* The winner's name is the one line of display type in a row. */
+  .pg-row[data-winner="true"] .pg-name {
+    font: 800 15px/1.25 var(--font-display);
+  }
+  .pg-winner {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 6px;
+    border-radius: 6px;
+    background: var(--hud-award-bg);
+    color: var(--hud-award-ink);
+    font: 600 11px/1 var(--hud-font);
+  }
+  .pg-winner svg {
+    width: 11px;
+    height: 11px;
+  }
+  .pg-sources {
+    grid-area: src;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    min-width: 0;
+  }
+  .pg-src {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 5px;
+    padding: 3px 7px;
+    border-radius: 6px;
+    background: var(--hud-well);
+    box-shadow: inset 0 0 0 1px var(--hud-hairline);
+    white-space: nowrap;
+    cursor: default;
+  }
+  .pg-row[data-winner="true"] .pg-src {
+    background: color-mix(
+      in srgb,
+      var(--hud-fill-solid) 70%,
+      color-mix(in srgb, var(--hud-primary) 13%, var(--pg-bg))
+    );
+  }
+  .pg-src-l {
+    font: 500 11px/1.2 var(--hud-font);
+    color: var(--hud-muted);
+  }
+  .pg-src-v {
+    font: 600 12px/1.2 var(--hud-num);
+    color: var(--hud-ink);
+  }
+  .pg-src[data-negative="true"] .pg-src-v {
+    color: var(--hud-bad);
+  }
+  .pg-total {
+    grid-area: total;
+    justify-self: end;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 5px;
+    cursor: help;
+    white-space: nowrap;
+  }
+  .pg-total-n {
+    font: 800 22px/1 var(--font-display);
+    color: var(--hud-ink);
+  }
+  .pg-total-u {
+    font: 500 11px/1 var(--hud-font);
+    color: var(--hud-muted);
+  }
+  @media (max-width: 639px) {
+    .pg-row {
+      grid-template-columns: 18px minmax(0, 1fr) auto;
+      grid-template-areas:
+        "rank who total"
+        ". src src";
+      column-gap: 8px;
+      padding: 8px 8px;
+    }
+    .pg-total-n {
+      font-size: 20px;
+    }
+  }
+
+  .pg-section {
+    margin-top: 14px;
+    padding: 14px 2px 0;
+    border-top: 1px solid var(--hud-hairline);
+  }
+  .pg-section-h {
+    margin-bottom: 8px;
+  }
+  /* The race chart's key: a line swatch (halo and ink, as drawn) and a name. */
+  .pg-key {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    margin: 0;
+    padding: 0 4px;
+    list-style: none;
+    font: 500 11px/1.3 var(--hud-font);
+    color: var(--hud-ink);
+  }
+  .pg-key li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .pg-key li[data-winner="true"] {
+    font-weight: 600;
+  }
+  .pg-empty {
+    padding: 16px 4px;
+    font: 500 13px/1.3 var(--hud-font);
+    color: var(--hud-muted);
+  }
+  /* The figures about the table as a whole, not any one seat. */
+  .pg-facts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px 20px;
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px solid var(--hud-hairline);
+    font: 500 12px/1.3 var(--hud-font);
+    color: var(--hud-muted);
+  }
+
+  /* The details matrix: a reference document, so it is plain. Hairline rows,
+     a frozen stat column, the winner's column the same warm tint as the
+     winner's row. */
+  .pg-scroll {
+    overflow-x: auto;
+  }
+  .pg-matrix {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font: 500 13px/1.3 var(--hud-font);
+    font-variant-numeric: tabular-nums;
+  }
+  .pg-matrix th {
+    padding: 8px;
+    background: var(--pg-bg);
+    border-bottom: 1px solid var(--hud-edge);
+    font: 600 11px/1.2 var(--hud-font);
+    color: var(--hud-muted);
+    white-space: nowrap;
+  }
+  .pg-matrix .pg-stat-h {
+    text-align: left;
+  }
+  .pg-matrix .pg-seat-h {
+    min-width: 76px;
+    font: 600 12px/1.2 var(--hud-font);
+    color: var(--hud-ink);
+  }
+  .pg-seat-h-in {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .pg-seat-name {
+    max-width: 96px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .pg-seat-h svg {
+    flex: none;
+    width: 12px;
+    height: 12px;
+    color: var(--hud-award-ink);
+  }
+  .pg-matrix td {
+    padding: 6px 8px;
+    border-top: 1px solid var(--hud-hairline);
+    text-align: center;
+    color: var(--hud-ink);
+  }
+  .pg-matrix [data-winner="true"] {
+    background: color-mix(in srgb, var(--hud-primary) 9%, var(--pg-bg));
+  }
+  .dark .pg-matrix [data-winner="true"] {
+    background: color-mix(in srgb, var(--hud-primary) 14%, var(--pg-bg));
+  }
+  .pg-matrix .pg-stat {
+    text-align: left;
+    background: var(--pg-bg);
+    color: var(--hud-muted);
+    font-weight: 400;
+    font-size: 12.5px;
+  }
+  .pg-matrix .pg-sec td {
+    padding: 16px 8px 6px;
+    border-top: none;
+    background: var(--pg-bg);
+    text-align: left;
+    font: 600 11px/1 var(--hud-font);
+    color: var(--hud-muted);
+  }
+  .pg-held {
+    margin-left: 3px;
+    font-size: 11px;
+    color: var(--hud-award-ink);
+  }
+  .pg-luck {
+    font-weight: 600;
+    cursor: help;
+  }
+  .pg-luck[data-sign="up"] {
+    color: var(--rate-ink);
+  }
+  .pg-luck[data-sign="down"] {
+    color: var(--hud-bad);
+  }
+  .pg-boot {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    vertical-align: -3px;
+    color: var(--hud-muted);
+  }
+}
+/* === end post-game scoreboard === */
+
+/* === Punchboard ===
+   Die-cut board pieces. Two tiers: a piece (anything that floats or can be
+   pressed) has a 2px keyline and a solid 4px board edge, drawn as box-shadow so
+   nothing moves; print (anything on a piece) is flat fill with no line or edge.
+   No alpha anywhere. Only styling: no element changes position. */
+/* M PLUS Rounded draws the ellipsis (U+2026) as three centred dots, which reads
+   as "···". Take that one glyph from Nunito (already shipped), so truncation
+   and copy show a baseline ellipsis. */
+@font-face {
+  font-family: "Costan Ellipsis";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("/fonts/nunito-latin.woff2") format("woff2");
+  unicode-range: U+2026;
+}
+@font-face {
+  font-family: "Dela Gothic One";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/delagothic-400-cyrillic.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+  /* 32% wider than Baloo 2 at full size; at 85% it keeps its weight and fits
+     where Baloo did, in Baloo's line box. */
+  size-adjust: 85%;
+  ascent-override: 127%;
+  descent-override: 61%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Dela Gothic One";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/delagothic-400-vietnamese.woff2") format("woff2");
+  unicode-range:
+    U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301,
+    U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+  /* 32% wider than Baloo 2 at full size; at 85% it keeps its weight and fits
+     where Baloo did, in Baloo's line box. */
+  size-adjust: 85%;
+  ascent-override: 127%;
+  descent-override: 61%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Dela Gothic One";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/delagothic-400-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+  /* 32% wider than Baloo 2 at full size; at 85% it keeps its weight and fits
+     where Baloo did, in Baloo's line box. */
+  size-adjust: 85%;
+  ascent-override: 127%;
+  descent-override: 61%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Dela Gothic One";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/delagothic-400-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  /* 32% wider than Baloo 2 at full size; at 85% it keeps its weight and fits
+     where Baloo did, in Baloo's line box. */
+  size-adjust: 85%;
+  ascent-override: 127%;
+  descent-override: 61%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "M PLUS Rounded 1c";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/mplusrounded-400-cyrillic-ext.woff2") format("woff2");
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+  /* Matched to Nunito, the face it replaces: same width and x-height at 95%,
+     same line box, so no element moves. */
+  size-adjust: 95%;
+  ascent-override: 106.3%;
+  descent-override: 36.8%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "M PLUS Rounded 1c";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/mplusrounded-400-cyrillic.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+  /* Matched to Nunito, the face it replaces: same width and x-height at 95%,
+     same line box, so no element moves. */
+  size-adjust: 95%;
+  ascent-override: 106.3%;
+  descent-override: 36.8%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "M PLUS Rounded 1c";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/mplusrounded-400-vietnamese.woff2") format("woff2");
+  unicode-range:
+    U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301,
+    U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+  /* Matched to Nunito, the face it replaces: same width and x-height at 95%,
+     same line box, so no element moves. */
+  size-adjust: 95%;
+  ascent-override: 106.3%;
+  descent-override: 36.8%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "M PLUS Rounded 1c";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/mplusrounded-400-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+  /* Matched to Nunito, the face it replaces: same width and x-height at 95%,
+     same line box, so no element moves. */
+  size-adjust: 95%;
+  ascent-override: 106.3%;
+  descent-override: 36.8%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "M PLUS Rounded 1c";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/mplusrounded-400-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  /* Matched to Nunito, the face it replaces: same width and x-height at 95%,
+     same line box, so no element moves. */
+  size-adjust: 95%;
+  ascent-override: 106.3%;
+  descent-override: 36.8%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "M PLUS Rounded 1c";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/mplusrounded-500-cyrillic-ext.woff2") format("woff2");
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+  /* Matched to Nunito, the face it replaces: same width and x-height at 95%,
+     same line box, so no element moves. */
+  size-adjust: 95%;
+  ascent-override: 106.3%;
+  descent-override: 36.8%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "M PLUS Rounded 1c";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/mplusrounded-500-cyrillic.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+  /* Matched to Nunito, the face it replaces: same width and x-height at 95%,
+     same line box, so no element moves. */
+  size-adjust: 95%;
+  ascent-override: 106.3%;
+  descent-override: 36.8%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "M PLUS Rounded 1c";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/mplusrounded-500-vietnamese.woff2") format("woff2");
+  unicode-range:
+    U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301,
+    U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+  /* Matched to Nunito, the face it replaces: same width and x-height at 95%,
+     same line box, so no element moves. */
+  size-adjust: 95%;
+  ascent-override: 106.3%;
+  descent-override: 36.8%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "M PLUS Rounded 1c";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/mplusrounded-500-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+  /* Matched to Nunito, the face it replaces: same width and x-height at 95%,
+     same line box, so no element moves. */
+  size-adjust: 95%;
+  ascent-override: 106.3%;
+  descent-override: 36.8%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "M PLUS Rounded 1c";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/mplusrounded-500-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  /* Matched to Nunito, the face it replaces: same width and x-height at 95%,
+     same line box, so no element moves. */
+  size-adjust: 95%;
+  ascent-override: 106.3%;
+  descent-override: 36.8%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "M PLUS Rounded 1c";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/mplusrounded-700-cyrillic-ext.woff2") format("woff2");
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+  /* Matched to Nunito, the face it replaces: same width and x-height at 95%,
+     same line box, so no element moves. */
+  size-adjust: 95%;
+  ascent-override: 106.3%;
+  descent-override: 36.8%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "M PLUS Rounded 1c";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/mplusrounded-700-cyrillic.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+  /* Matched to Nunito, the face it replaces: same width and x-height at 95%,
+     same line box, so no element moves. */
+  size-adjust: 95%;
+  ascent-override: 106.3%;
+  descent-override: 36.8%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "M PLUS Rounded 1c";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/mplusrounded-700-vietnamese.woff2") format("woff2");
+  unicode-range:
+    U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301,
+    U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+  /* Matched to Nunito, the face it replaces: same width and x-height at 95%,
+     same line box, so no element moves. */
+  size-adjust: 95%;
+  ascent-override: 106.3%;
+  descent-override: 36.8%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "M PLUS Rounded 1c";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/mplusrounded-700-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+  /* Matched to Nunito, the face it replaces: same width and x-height at 95%,
+     same line box, so no element moves. */
+  size-adjust: 95%;
+  ascent-override: 106.3%;
+  descent-override: 36.8%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "M PLUS Rounded 1c";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/mplusrounded-700-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  /* Matched to Nunito, the face it replaces: same width and x-height at 95%,
+     same line box, so no element moves. */
+  size-adjust: 95%;
+  ascent-override: 106.3%;
+  descent-override: 36.8%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "M PLUS Rounded 1c";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/mplusrounded-800-cyrillic-ext.woff2") format("woff2");
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+  /* Matched to Nunito, the face it replaces: same width and x-height at 95%,
+     same line box, so no element moves. */
+  size-adjust: 95%;
+  ascent-override: 106.3%;
+  descent-override: 36.8%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "M PLUS Rounded 1c";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/mplusrounded-800-cyrillic.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+  /* Matched to Nunito, the face it replaces: same width and x-height at 95%,
+     same line box, so no element moves. */
+  size-adjust: 95%;
+  ascent-override: 106.3%;
+  descent-override: 36.8%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "M PLUS Rounded 1c";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/mplusrounded-800-vietnamese.woff2") format("woff2");
+  unicode-range:
+    U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301,
+    U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+  /* Matched to Nunito, the face it replaces: same width and x-height at 95%,
+     same line box, so no element moves. */
+  size-adjust: 95%;
+  ascent-override: 106.3%;
+  descent-override: 36.8%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "M PLUS Rounded 1c";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/mplusrounded-800-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+  /* Matched to Nunito, the face it replaces: same width and x-height at 95%,
+     same line box, so no element moves. */
+  size-adjust: 95%;
+  ascent-override: 106.3%;
+  descent-override: 36.8%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "M PLUS Rounded 1c";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/mplusrounded-800-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  /* Matched to Nunito, the face it replaces: same width and x-height at 95%,
+     same line box, so no element moves. */
+  size-adjust: 95%;
+  ascent-override: 106.3%;
+  descent-override: 36.8%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Podkova";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/podkova-700-cyrillic-ext.woff2") format("woff2");
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: "Podkova";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/podkova-700-cyrillic.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Podkova";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/podkova-700-vietnamese.woff2") format("woff2");
+  unicode-range:
+    U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301,
+    U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: "Podkova";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/podkova-700-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+@font-face {
+  font-family: "Podkova";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/podkova-700-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Podkova";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/podkova-800-cyrillic-ext.woff2") format("woff2");
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: "Podkova";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/podkova-800-cyrillic.woff2") format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: "Podkova";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/podkova-800-vietnamese.woff2") format("woff2");
+  unicode-range:
+    U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301,
+    U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: "Podkova";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/podkova-800-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+@font-face {
+  font-family: "Podkova";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/podkova-800-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+:root {
+  font-synthesis: none;
+  --font-wordmark: "Dela Gothic One", "M PLUS Rounded 1c", sans-serif;
+  --font-display: "Dela Gothic One", "M PLUS Rounded 1c", system-ui, sans-serif;
+  --font-sans:
+    "Costan Ellipsis", "M PLUS Rounded 1c", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-weight-heavy: 400;
+
+  --pb-edge: #1b1f3b;
+  --pb-deep: #1b1f3b;
+  --pb-hatch: #d9dde5;
+  --on-background-muted: #e8f0ff;
+  /* Ink for anything printed straight on the page ground (the blue sea by
+     day): navy on it is 2.5:1, white 6.5:1. Same value as --on-background,
+     named for what it is for. */
+  --on-ground: #ffffff;
+  --on-ground-muted: #e8f0ff;
+
+  /* State and role tokens shared by every primitive (pb-primitives.css).
+     Disabled is one flat grey with muted ink in both themes, never faded. */
+  --pb-disabled: #dfe3ea;
+  --pb-disabled-ink: #545a78;
+  --pb-selected-disabled: #d9cf9f;
+  /* Focus recolours and thickens the piece's own keyline (never a second
+     ring): a blue distinct from the navy ink by day, yellow by night. */
+  --pb-focus: #1d5fd6;
+  /* Neutral: white with navy type. Hover fills are one step from rest and all
+     keep white type at 4.5:1 or better. */
+  --pb-neutral: #ffffff;
+  --pb-neutral-ink: #1b1f3b;
+  --pb-neutral-hover: #f0f2f6;
+  --pb-primary-hover: #1d864a;
+  --pb-danger-hover: #de3047;
+  --pb-danger-solid: #c0283a;
+  --pb-quiet-hover: #e6e9ef;
+  /* Ghost is print: no fill at rest, a print fill under the pointer. */
+  --pb-ghost-hover: #e8ebf0;
+  --pb-ghost-active: #dde1e8;
+  /* Print fills (badges, chips, wells on a panel). */
+  --pb-print: #e8ebf0;
+  --pb-chip-muted: #e1e5ec;
+  --pb-beta: #1b2a6b;
+  --pb-beta-ink: #ffffff;
+  --pb-skeleton: #dfe3ea;
+  /* An off switch track clears 3:1 against the panel it sits on. */
+  --pb-track-off: #7d8496;
+  --pb-slider-track: #b9c0cc;
+  --pb-invalid: #fde4e7;
+  --pb-invalid-ink: #c0283a;
+  /* Keyline and board edge are both drawn inside the piece's own box, so a
+     piece never overflows its slot and a scroller or overflow clip can never
+     cut its outline. The edge is the thicker bottom band. */
+  --pb-piece: inset 0 0 0 2px var(--pb-edge), inset 0 -2px 0 2px var(--pb-deep);
+  --pb-piece-down: inset 0 0 0 2px var(--pb-edge), inset 0 0 0 2px var(--pb-deep);
+  --pb-piece-up: inset 0 0 0 2px var(--pb-edge), inset 0 -2px 0 2px var(--pb-deep);
+
+  --secondary-background: #fbfbf8;
+  --hero-panel: #fbfbf8;
+  --elev: #ffffff;
+  --elev2: #e8ebf0;
+  --border: transparent;
+  --rim: transparent;
+  --line: #e8ebf0;
+  --foreground: #1b1f3b;
+  --muted: #545a78;
+  --muted2: #545a78;
+  --ring: #1b1f3b;
+  --seat-active: #1b1f3b;
+
+  --btn-primary: #1b7f46;
+  --btn-primary-ink: #ffffff;
+  --btn-danger: #d7263d;
+  --selected: #ffd84a;
+  --selected-ink: #1b1f3b;
+  --toggle: #1b7f46;
+  --ui-radius-control: 10px;
+  --ui-shadow-sm: var(--pb-piece);
+  --ui-shadow: var(--pb-piece);
+  --ui-shadow-lg: var(--pb-piece);
+  --ui-shadow-press: var(--pb-piece);
+
+  --hud-fill: #fbfbf8;
+  --hud-fill-solid: #fbfbf8;
+  --hud-raised: #ffffff;
+  --hud-well: #e8ebf0;
+  --hud-hairline: #e8ebf0;
+  --hud-rim: transparent;
+  --hud-edge: transparent;
+  --hud-highlight: transparent;
+  --hud-ink: #1b1f3b;
+  --hud-muted: #545a78;
+  --hud-focus: #1b1f3b;
+  --hud-primary: #1b7f46;
+  --hud-primary-ink: #ffffff;
+  --hud-primary-glow: transparent;
+  --hud-hatch: #d9dde5;
+  --hud-dialog-btn: #ffffff;
+  --card-shadow: none;
+  --hud-card-shadow: var(--pb-piece);
+  --hud-card-shadow-lift: var(--pb-piece-up);
+  --hud-card-radius: 10px;
+  --hud-tile-radius: 10px;
+  --hud-chip-radius: 6px;
+}
+.dark {
+  /* Ink darker than the card, as in light mode: a near-black keyline and
+     edge. Pieces separate from the ground by being lighter than it, not by a
+     light outline (which glowed). */
+  --pb-edge: #0a0e22;
+  --pb-deep: #0a0e22;
+  --on-background-muted: #c9d6f2;
+  --on-ground: #f3f4f8;
+  --on-ground-muted: #c9d6f2;
+  /* The ground is lifted off near-black and the panels a step above it, so
+     the #0a0e22 ink reads as an edge on both. Wells sit between ground and
+     panel: clearly a recess, never ink-black. */
+  --color-background: #18204a;
+  --page-well: #212a5c;
+  --page-line: #18204a;
+  --pb-hatch: #3a4786;
+  --pb-disabled: #474c66;
+  --pb-disabled-ink: #d9dce6;
+  --pb-selected-disabled: #d9cf9f;
+  --pb-focus: #ffd84a;
+  /* Dark neutral buttons are near-white with navy type (owner's call). */
+  --pb-neutral: #e9edf3;
+  --pb-neutral-ink: #1b1f3b;
+  --pb-neutral-hover: #dde2ea;
+  --pb-quiet-hover: #3f4e97;
+  --pb-ghost-hover: #36448a;
+  --pb-ghost-active: #415099;
+  --pb-print: #1f2858;
+  --pb-chip-muted: #36448a;
+  --pb-beta: #e9edf3;
+  --pb-beta-ink: #1b2a6b;
+  --pb-skeleton: #3a4786;
+  --pb-track-off: #8a93bd;
+  --pb-slider-track: #4b5899;
+  --pb-invalid: #4a1f2c;
+  --pb-invalid-ink: #ff7d8c;
+  --secondary-background: #2c3874;
+  --hero-panel: #2c3874;
+  --elev: #36448a;
+  --elev2: #1f2858;
+  --line: #1f2858;
+  --foreground: #f3f4f8;
+  /* Muted clears 4.5:1 on the raised step (4.9) as well as the panel. */
+  --muted: #b8bfdb;
+  --muted2: #b8bfdb;
+  --ring: #ffd84a;
+  --seat-active: #ffd84a;
+  --btn-primary: #1b7f46;
+  --btn-primary-ink: #ffffff;
+  --btn-danger: #d7263d;
+  --selected: #ffd84a;
+  --selected-ink: #1b1f3b;
+  --toggle: #1b7f46;
+  --ui-shadow-sm: var(--pb-piece);
+  --ui-shadow: var(--pb-piece);
+  --ui-shadow-lg: var(--pb-piece);
+  --ui-shadow-press: var(--pb-piece);
+  --hud-fill: #2c3874;
+  --hud-fill-solid: #2c3874;
+  --hud-raised: #36448a;
+  --hud-well: #1f2858;
+  --hud-hairline: #1f2858;
+  --hud-ink: #f3f4f8;
+  --hud-muted: #b8bfdb;
+  --hud-focus: #ffd84a;
+  --hud-primary: #1b7f46;
+  --hud-primary-ink: #ffffff;
+  --hud-hatch: #3a4786;
+  /* A neutral button in a dialog is near-white with navy type, as on the
+     site. */
+  --hud-dialog-btn: #e9edf3;
+  --hud-dialog-btn-ink: #1b1f3b;
+  --ic-halo: none;
+  /* Marks on the dark panels, lifted until they clear 4.5:1 on --elev
+     (#36448a) too: red 4.72, blue 4.92, green 5.24. */
+  --green-ink: #6bdc9a;
+  --blue-ink: #9cc2ff;
+  --red-ink: #ffa3ad;
+}
+.hud-root {
+  --ui-shadow-sm: var(--pb-piece);
+  --ui-shadow: var(--pb-piece);
+  --ui-shadow-lg: var(--pb-piece);
+  --ui-shadow-press: var(--pb-piece);
+  --radius-control: 10px;
+  --radius-card: 12px;
+  --radius-card-lg: 12px;
+  --radius-base: 10px;
+}
+.card-title,
+.card-title:lang(zh-Hans),
+.card-title:lang(ja) {
+  font-family: "Podkova", "Costan Title", Georgia, serif;
+  font-weight: 800;
+}
+
+/* Pieces */
+.hud-surf,
+.hud-surf-solid,
+.hud-surf-own,
+.hud-dialog,
+.ui-surface,
+[data-ui-menu],
+.hud-primary,
+.hud-secondary,
+.hud-tile,
+.hud-tile[data-selected="true"],
+.hud-lift.hud-tile:hover:not(:disabled):not([aria-disabled="true"]),
+.hud-card-back,
+.hud-root [data-ui-button].shadow-shadow,
+.hud-root [role="dialog"] [data-ui-button].bg-panel,
+.hud-root [role="dialog"] [data-ui-button].bg-secondary-background,
+.hud-root [role="dialog"] [data-ui-button]:not([class*="bg-"]),
+.hud-root[data-hud-prompt] [data-ui-button].bg-panel,
+.hud-root[data-hud-prompt] [data-ui-button]:not([class*="bg-"]) {
+  border-color: transparent;
+  box-shadow: var(--pb-piece);
+}
+.hud-surf,
+.hud-surf-solid,
+.hud-surf-own,
+.hud-dialog,
+.dark .hud-dialog {
+  border-radius: 12px;
+  box-shadow: var(--pb-piece);
+}
+.hud-primary,
+.hud-secondary,
+.hud-root [role="dialog"] [data-ui-button] {
+  border-radius: 10px;
+}
+/* Every button is a piece, filled or quiet. Ghost buttons stay print. */
+[data-ui-button]:not([data-variant="ghost"]),
+.hud-btn {
+  border-color: transparent;
+  box-shadow: var(--pb-piece);
+  transition:
+    translate 80ms,
+    box-shadow 80ms;
+}
+[data-ui-button][data-variant="ghost"] {
+  box-shadow: none;
+}
+[data-ui-button]:not([data-variant="ghost"]):active,
+.hud-root [data-ui-button]:not([data-variant="ghost"]):active,
+[data-ui-button][aria-pressed="true"]:not([data-variant="ghost"]),
+.hud-root [data-ui-button][aria-pressed="true"]:not([data-variant="ghost"]),
+.hud-btn:active:not(:disabled),
+.hud-btn[data-pressed="true"] {
+  translate: 0 2px;
+  box-shadow: var(--pb-piece-down);
+}
+[data-ui-button]:hover,
+.hud-btn:hover:not(:disabled) {
+  filter: none;
+}
+/* Disabled: flat grey, pushed down, never see-through. The site Button's
+   always-winning rule is in pb-primitives.css. */
+.hud-btn:disabled {
+  opacity: 1;
+  translate: 0 2px;
+  box-shadow: var(--pb-piece-down);
+  background: var(--pb-disabled);
+  color: var(--pb-disabled-ink);
+}
+.hud-btn[data-pressed="true"] {
+  background: var(--hud-raised);
+}
+/* Resource cards: white card stock with the resource's colour as a window,
+   the art in its white disc, and the name printed in ink on the white strip
+   along the foot. Keyline and board edge on top, as on every piece. */
+:root {
+  --pb-card-stock: #ffffff;
+}
+.dark {
+  --pb-card-stock: #e9edf3;
+}
+.hud-card-face {
+  background: var(--card-color, var(--card-face));
+  box-shadow: var(--pb-piece);
+}
+.hud-card-face::before {
+  display: none;
+}
+.hud-card-well {
+  box-shadow: none;
+}
+.hud-card-label {
+  background: var(--pb-card-stock);
+  color: #1b1f3b;
+  font-weight: 700;
+  border-radius: 3px;
+}
+/* On a resource card the strip is the card's whole foot: from keyline to
+   keyline and down to the board edge, so no card colour shows round or under
+   it. The keyline is 2px and the edge band 2px more (--pb-piece), and the
+   bottom corners follow the card's own, 2px in. */
+[data-res-card] .hud-card-label,
+[data-flight-card] .hud-card-label {
+  left: 2px;
+  right: 2px;
+  bottom: 4px;
+  border-radius: 0 0 calc(var(--hud-card-radius) - 2px) calc(var(--hud-card-radius) - 2px);
+}
+.hud-card-back {
+  background: var(--card-color, var(--card-face));
+  box-shadow: var(--pb-piece);
+}
+.hud-card-frame {
+  box-shadow: var(--pb-piece);
+}
+.hud-lift.hud-card-frame:hover:not(:disabled):not([aria-disabled="true"]) {
+  box-shadow: var(--pb-piece-up);
+}
+.hud-deck-band {
+  box-shadow: none;
+}
+.hud-fan > i {
+  box-shadow: 0 0 0 1px var(--pb-edge);
+}
+/* Build tiles: the selected one changes fill, no ring. */
+.hud-tile::before {
+  border-color: transparent;
+}
+.hud-tile[data-selected="true"] {
+  background: #ffd84a;
+}
+.hud-tile[data-state="short"],
+.hud-tile[data-state="lock"] {
+  filter: none;
+}
+.hud-tile[data-state="short"] .hud-tile-art,
+.hud-tile[data-state="lock"] .hud-tile-art,
+.hud-tile[data-state="out"] .hud-tile-art {
+  opacity: 1;
+}
+/* The seat on the clock: its keyline takes the seat colour. No glow. */
+.hud-seat[data-active="true"]::after {
+  box-shadow: inset 0 0 0 3px var(--pc-ink);
+}
+.hud-crow[data-active="true"] {
+  box-shadow: none;
+  background: #ffd84a;
+  color: #1b1f3b;
+}
+
+/* Print: flat fill, no line, no edge. */
+.hud-badge,
+.hud-card-badge {
+  border: 0;
+  box-shadow: none;
+  background: var(--hud-ink);
+  color: var(--hud-fill-solid);
+}
+.hud-rate,
+.hud-rate[data-better="false"],
+.hud-pill-count,
+.hud-pill-count[data-tone="hold"],
+.hud-chip[data-hot="true"],
+.hud-lane,
+.hud-seatpick-well,
+.hud-dismiss,
+.hud-seatpick:hover:not(:disabled),
+[data-ui-avatar],
+.hud-root [data-ui-avatar],
+[data-ui-seg],
+[data-ui-seg-thumb],
+.hud-root [data-ui-seg],
+.hud-root [data-ui-seg-thumb],
+[data-ui-nudge],
+.hud-root [data-ui-nudge],
+[data-ui-menu-item],
+.hud-root [data-ui-menu-item]:not([data-tone="danger"]):is(:hover, :focus-visible),
+.hud-root [data-ui-menu-item][data-tone="danger"]:is(:hover, :focus-visible) {
+  box-shadow: none;
+  border-color: transparent;
+}
+.hud-chip[data-hot="true"] {
+  background: color-mix(in srgb, var(--hud-bad) 18%, var(--hud-well));
+}
+.hud-seatpick-well {
+  box-shadow: 0 0 0 3px var(--pc-ink);
+}
+.hud-dialog-foot {
+  border-top-color: transparent;
+}
+.hud-root [data-ui-menu-sep] {
+  border-color: transparent;
+}
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+textarea {
+  border-color: transparent;
+  box-shadow: none;
+  background-color: var(--color-elev2);
+}
+[role="switch"] {
+  box-shadow: none;
+  border-color: transparent;
+}
+
+/* Scrims: one flat ink wash, no pattern, no blur. */
+.hud-dim,
+div[data-state][class*="bg-[rgb(8_14_26"] {
+  background: rgb(27 31 59 / 0.5);
+}
+.dark .hud-dim,
+.dark div[data-state][class*="bg-[rgb(8_14_26"] {
+  background: rgb(0 5 16 / 0.62);
+}
+/* Build tiles are printed card stock in both themes, so their marks use the
+   light values everywhere. */
+:root {
+  --hud-tile-stock: #ffffff;
+  --hud-tile-ink: #1b1f3b;
+  --hud-tile-muted: #545a78;
+  --hud-tile-frame: #e8ebf0;
+}
+.dark {
+  --hud-tile-stock: #e3e7ef;
+  --hud-tile-frame: #cfd4de;
+}
+.hud-tile {
+  --hud-bad: #b3261e;
+}
+
+/* Dice: the dock pair are pieces, the log's inline dice are print. Their
+   shadow is an inline style, hence the importance. */
+[data-die="dock"] {
+  box-shadow: var(--pb-piece) !important;
+}
+[data-die="inline"] {
+  box-shadow: none !important;
+}
+
+/* Locked choices (a supporter decoration, a taken colour) are hatched and
+   muted, never faded. */
+.opacity-40.cursor-not-allowed,
+.opacity-30.cursor-not-allowed {
+  opacity: 1;
+}
+.rounded-lg.opacity-40.cursor-not-allowed {
+  background: var(--pb-disabled);
+  color: var(--color-muted);
+}
+[class*="bg-(--swatch)"].opacity-30.cursor-not-allowed {
+  background: radial-gradient(circle, var(--swatch) 0 32%, var(--color-elev2) 34%);
+}
+
+/* A ruleset chip carries white type on its mode's colour; the lighter mode
+   hues (teal, sky, tan) fall under 4.5:1, so the chip prints a darker step of
+   the same hue. */
+[class*="bg-(--badge-fill)"] {
+  background-color: color-mix(in srgb, var(--badge-fill) 72%, #000000);
+}
+
+/* Green fills that carry white type (Accept, success buttons): the accent
+   green is 3.2:1 under white, so the fill takes a darker step of it. */
+.bg-green.text-main-foreground,
+.bg-btn-success.text-btn-success-ink {
+  background-color: #1b7f46;
+}
+
+/* The keyline is the outermost thing a piece paints. Many pieces keep a
+   transparent 1-2px border from their old rim, and a fill painted under it
+   showed as a pale ring outside the dark keyline; clipping the fill to the
+   padding box lets the parent show through there instead. */
+.hud-surf,
+.hud-surf-solid,
+.hud-surf-own,
+.hud-dialog,
+.ui-surface,
+[data-ui-menu],
+.hud-primary,
+.hud-secondary,
+.hud-tile,
+.hud-card-back,
+.hud-btn,
+[data-ui-button],
+[data-die="dock"],
+[role="dialog"],
+.shadow-hard,
+.shadow-hard-sm,
+.shadow-hard-lg,
+.shadow-shadow {
+  background-clip: padding-box !important;
+}
+
+/* A seat's colour dot: a small token, so a dark keyline and nothing else.
+   Its old pale halo (an inline style) is the white-around-dark pattern. */
+[data-identity] > .hud-pc.rounded-full {
+  box-shadow: inset 0 0 0 1.5px var(--pb-edge) !important;
+}
+/* Hairline rings are print lines. */
+.ring-line {
+  --tw-ring-color: transparent;
+}
+/* A locked or sold-out tile's name stays fully opaque in the muted ink. */
+.hud-tile-name.opacity-40,
+.hud-tile-name.opacity-60 {
+  opacity: 1;
+  color: var(--hud-tile-muted);
+}
+
+/* Badges and dots that sat on a panel-coloured halo: the halo goes, so a dark
+   badge is never ringed in white. */
+.border-secondary-background {
+  border-color: transparent;
+}
+.ring-secondary-background {
+  --tw-ring-color: var(--pb-edge);
+}
+
+/* No fades: a scrolling edge is a hard cut, never a see-through gradient. */
+.scroll-fade-y {
+  mask-image: none;
+}
+.pointer-events-none.absolute.to-transparent {
+  background: var(--tw-gradient-from) !important;
+}
+.pointer-events-none.absolute.to-transparent.bg-gradient-to-b,
+.pointer-events-none.absolute.to-transparent.bg-gradient-to-t {
+  height: 6px;
+}
+.pointer-events-none.absolute.to-transparent.bg-gradient-to-l,
+.pointer-events-none.absolute.to-transparent.bg-gradient-to-r {
+  width: 6px;
+}
+/* Disabled controls stay opaque: muted ink on the well, not a faded copy. */
+[data-ui-seg] .opacity-60,
+[data-ui-seg].opacity-60,
+[role="switch"]:disabled,
+button.disabled\:opacity-60:disabled,
+button.disabled\:opacity-40:disabled,
+button.disabled\:opacity-70:disabled {
+  opacity: 1;
+  color: var(--color-muted);
+}
+
+/* ---------------------------------------------------------------------------
+   Review pass (four reviewers, 7 Oct). Grouped by what they fix.
+   ------------------------------------------------------------------------ */
+
+/* Numbers in the display face come from M PLUS Rounded: Dela's zero is a
+   perfect circle and "0 VP" read as "O VP". Digits only, by unicode-range. */
+@font-face {
+  font-family: "Costan Digits";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/mplusrounded-800-latin.woff2") format("woff2");
+  unicode-range: U+0030-0039;
+  ascent-override: 127%;
+  descent-override: 61%;
+  line-gap-override: 0%;
+}
+:root {
+  --font-wordmark: "Costan Digits", "Dela Gothic One", "M PLUS Rounded 1c", sans-serif;
+  --font-display: "Costan Digits", "Dela Gothic One", "M PLUS Rounded 1c", system-ui, sans-serif;
+  --elev: #f0f2f6;
+  --hud-shadow: none;
+  --hud-award-bg: #ffd84a;
+  --hud-award-ink: #1b1f3b;
+  --rate-bg: #1b7f46;
+  --rate-ink: #ffffff;
+}
+.dark {
+  --elev: #36448a;
+  --hud-award-bg: #ffd84a;
+  --hud-award-ink: #1b1f3b;
+  --rate-bg: #1b7f46;
+  --rate-ink: #ffffff;
+  --selected: #ffd84a;
+  --selected-ink: #1b1f3b;
+}
+.font-display,
+.font-wordmark {
+  word-spacing: 0.12em;
+}
+.hud-root {
+  --font-wordmark: "Costan Digits", "Dela Gothic One", "M PLUS Rounded 1c", sans-serif;
+  /* The HUD's button tokens follow the site's roles. */
+  --color-btn-primary: var(--btn-primary);
+  --color-btn-primary-ink: #ffffff;
+  --color-btn-accent: var(--btn-primary);
+  --color-btn-accent-ink: #ffffff;
+  --color-btn-success: var(--btn-primary);
+  --color-btn-success-ink: #ffffff;
+  --color-btn-danger: var(--btn-danger);
+  --color-btn-danger-ink: #ffffff;
+  --color-selected: var(--selected);
+  --color-selected-ink: var(--selected-ink);
+}
+
+/* Colour roles: affirmative green, destructive red, neutral white, selected
+   yellow. Fills that carry white type are dark enough for it. */
+.bg-red.text-main-foreground {
+  background-color: #c0283a;
+}
+.hud-btn-danger {
+  background: var(--btn-danger);
+  color: #ffffff;
+}
+[data-ui-button].bg-amber {
+  background-color: var(--btn-primary);
+  color: #ffffff;
+}
+[data-ui-button].bg-yellow {
+  color: #1b1f3b;
+}
+.bg-discord {
+  background-color: #4752c4;
+}
+.dark .text-main-ink {
+  color: var(--blue-ink);
+}
+.bg-green-tint.text-green-ink {
+  background-color: #1b7f46;
+  color: #ffffff;
+}
+.bg-amber-tint.text-amber-ink {
+  background-color: #ffd84a;
+  color: #1b1f3b;
+}
+/* Dark: a neutral button is near-white with navy type. Only the plain
+   neutral (a site Button's is in pb-primitives.css, scoped to its own fill so a
+   toned secondary keeps its colour). */
+.dark .hud-secondary {
+  background-color: var(--pb-neutral);
+  color: var(--pb-neutral-ink);
+}
+/* The bank and offer actions in the trade rail, when live, are the commit:
+   green with white type. */
+.hud-surf-solid.text-\[var\(--hud-focus\)\],
+.hud-surf-solid.text-\[var\(--rate-ink\)\] {
+  background: var(--hud-primary);
+  color: #ffffff;
+  box-shadow: var(--pb-piece) !important;
+}
+
+/* Hover and press. Hover is a lift and an explicit fill (pb-primitives.css),
+   never a brightness filter, which was invisible. */
+[data-ui-button]:hover,
+.hud-primary:hover,
+.hud-secondary:hover,
+[data-ui-button]:active,
+.hud-btn:active {
+  filter: none;
+}
+.hud-surf[aria-pressed="true"],
+.hud-surf:active:not(:disabled),
+.hud-primary:active:not(:disabled),
+.hud-secondary:active:not(:disabled):not([data-waiting="true"]) {
+  translate: 0 2px;
+  box-shadow: var(--pb-piece-down);
+}
+.hud-btn[data-pressed="true"],
+.hud-surf[aria-pressed="true"] {
+  background: var(--selected);
+  color: var(--selected-ink);
+}
+
+/* Focus thickens and recolours the piece's own keyline rather than drawing
+   a second ring outside it (pb-primitives.css has the primitives'). */
+.hud-primary:focus-visible,
+.hud-secondary:focus-visible,
+.hud-surf:focus-visible,
+.hud-surf-solid:focus-visible,
+.hud-seatpick:focus-visible {
+  outline: none;
+  box-shadow:
+    inset 0 0 0 4px var(--pb-focus),
+    inset 0 0 0 4px var(--pb-deep);
+}
+
+/* Disabled pressables that are not site Buttons: the same flat, pushed-down
+   face. */
+button.hud-secondary:disabled,
+button.hud-surf:disabled,
+button.hud-surf-solid:disabled,
+.hud-secondary[data-waiting="true"],
+button.hud-surf.cursor-default {
+  background: var(--pb-disabled);
+  color: var(--pb-disabled-ink);
+  translate: 0 2px;
+  box-shadow: var(--pb-piece-down);
+  opacity: 1;
+}
+button.hud-surf.cursor-default > *,
+button:disabled:is(.opacity-40, .opacity-50, .opacity-55, .opacity-60, .opacity-70) {
+  opacity: 1;
+}
+button:disabled:is(.opacity-40, .opacity-50, .opacity-55, .opacity-60, .opacity-70) {
+  background: var(--pb-disabled);
+  color: var(--pb-disabled-ink);
+}
+
+/* Remaining fades. */
+.grayscale > .hud-card-well,
+.grayscale > .hud-card-label,
+.grayscale.opacity-60,
+.hud-tile[data-state="out"] .contents > span,
+[data-ui-badge].opacity-60,
+.opacity-60.rounded-md {
+  opacity: 1;
+}
+.grayscale > .hud-card-label {
+  color: var(--hud-muted);
+}
+.grayscale > .hud-card-face {
+  background: var(--pb-disabled);
+}
+@keyframes log-expire {
+  0%,
+  99.9% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Panels that were plain slabs (site Card with no shadow): every panel on the
+   page ground is a piece. */
+.border-rim.bg-secondary-background,
+.border.border-rim {
+  border-color: transparent;
+  box-shadow: var(--pb-piece);
+  background-clip: padding-box;
+}
+
+/* Leftover hairlines, dashes and rules: print has no lines. */
+.border-line,
+.divide-line > *,
+.border-line-strong,
+.border-page-line,
+.border-page-dash,
+.border-page-dash-strong,
+.border-dash-muted,
+[data-ui-menu-sep] {
+  border-color: transparent;
+}
+button.border-line:not([aria-pressed="true"]) {
+  background-color: var(--color-elev2);
+}
+[data-shapeaction] {
+  box-shadow: var(--pb-piece);
+  background-clip: padding-box;
+}
+.ring-black\/15 {
+  --tw-ring-color: transparent;
+}
+[class*="bg-(--swatch)"] {
+  box-shadow: none !important;
+}
+.bg-toggle-thumb {
+  box-shadow: inset 0 0 0 2px var(--pb-edge);
+}
+[role="switch"][data-state="unchecked"] {
+  background: var(--pb-track-off);
+}
+/* The error toast's red side stripe: the toast stays a piece, the icon says
+   it is an error. */
+.shadow-\[inset_3px_0_0_0_var\(--color-btn-danger\)\2c var\(--ui-shadow-lg\)\] {
+  box-shadow: var(--pb-piece) !important;
+}
+/* How-to-play's active chapter: a fill, not a side stripe. */
+.before\:bg-\(--hud-primary\)::before {
+  display: none;
+}
+
+/* The game dock's "your turn" ring sat outside its keyline. */
+.ring-\[var\(--color-btn-primary\)\] {
+  --tw-ring-color: transparent;
+}
+
+/* The home hero's legibility scrim and the footer fade are translucent. */
+.fixed.inset-0.overflow-hidden > .absolute.pointer-events-none[style*="gradient"] {
+  background: none !important;
+}
+.from-transparent.to-ink\/55 {
+  background: none;
+}
+
+/* Pressables that were flat: the header and phone menu triggers, avatars. */
+[data-ui-menu-trigger].border,
+.hud-root [data-ui-menu-trigger].border {
+  border-color: transparent;
+  box-shadow: var(--pb-piece);
+  background-clip: padding-box;
+}
+[data-ui-avatar] {
+  outline: 2px solid var(--pb-edge);
+  outline-offset: -2px;
+}
+
+/* In game. */
+/* The seat on the clock keeps its keyline and edge; its colour is an inner
+   band. The old opaque backing painted over the piece. */
+.hud-seat > .-z-10 {
+  display: none;
+}
+.hud-seat[data-active="true"]::after {
+  /* One outline, in the seat's own ink, in place of the navy one: never two
+     concentric lines. */
+  box-shadow:
+    inset 0 0 0 3px var(--pc-ink),
+    inset 0 -2px 0 3px var(--pc-ink);
+}
+/* The turn pill's seat dot: a token, no halo. */
+.hud-pc > span.rounded-full[aria-hidden] {
+  box-shadow: inset 0 0 0 1.5px var(--pb-edge) !important;
+}
+/* Picker selection: no pale offset gap, at any offset width. */
+.ring-offset-1,
+.ring-offset-2,
+.ring-offset-4,
+[class*="ring-offset-"] {
+  --tw-ring-offset-width: 0px;
+}
+/* The steal picker's seats are what you press: pieces. */
+.hud-seatpick {
+  box-shadow: var(--pb-piece);
+  border-radius: 10px;
+  background: var(--hud-raised);
+}
+.hud-seatpick:hover:not(:disabled) {
+  box-shadow: var(--pb-piece);
+  filter: brightness(0.97);
+}
+.hud-seatpick-well {
+  box-shadow: 0 0 0 3px var(--pc-ink);
+}
+/* Counts on cards and tiles: one yellow counter in both themes, distinct from
+   the keyline it sits on. Out of pieces stays red. */
+.hud-badge,
+.hud-card-badge,
+.hud-left {
+  background: #ffd84a;
+  color: #1b1f3b;
+}
+.hud-left[data-out="true"] {
+  background: #c0283a;
+  color: #ffffff;
+}
+/* Unaffordable tiles: the piece art goes pale grey, not solid black. */
+.hud-tile[data-state="short"] .hud-tile-art,
+.hud-tile[data-state="lock"] .hud-tile-art {
+  filter: grayscale(1) contrast(0.45) brightness(1.5);
+}
+.hud-tile[data-state="out"] .hud-tile-art {
+  filter: grayscale(1) contrast(0.3) brightness(1.7);
+}
+/* Non-pressable labels drawn with shadow-hard-sm (the loading screen's brand
+   pill) are print. */
+.rounded-full.shadow-hard-sm:not(button):not(a):not([data-ui-menu-trigger]):not(
+    [role="slider"]
+  ):not([data-ui-avatar]):not([data-ui-nudge]) {
+  box-shadow: none;
+}
+/* === end Punchboard === */

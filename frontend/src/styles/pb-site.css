@@ -1,0 +1,270 @@
+/* Punchboard: pb-site. Loaded after index.css (see main.tsx), so rules here win
+   over the Punchboard block at the end of index.css without !important.
+
+   The site pages (everything outside the game screen). Hooks are data
+   attributes set in the components, never class strings, so a class rename
+   cannot silently drop a rule:
+
+   - data-pb-panel   a static piece: keyline and board edge, no hover.
+   - data-pb-piece   a pressable piece that is not a Button: keyline and edge,
+                     a hover, and the press-down.
+   - data-pb-flat    a static section on the ground: flat print slab, no line
+                     and no edge (one piece per region; counters and notes are
+                     not pieces).
+   - data-pb-region  a column drawn as ONE piece; the cards directly inside it
+                     become print (no fill of their own, no line, no edge),
+                     separated by the spacing they already have.
+   - data-swatch-edge  a colour swatch too close to its panel gets a keyline.
+   Doubled attribute selectors lift a rule over index.css's two-class ones. */
+
+/* ---- Pieces and print ------------------------------------------------- */
+
+[data-pb-panel][data-pb-panel],
+[data-pb-piece][data-pb-piece] {
+  border-color: transparent;
+  box-shadow: var(--pb-piece);
+  background-clip: padding-box;
+}
+/* A panel whose rows have fills of their own (a list, a log): the keyline and
+   edge are drawn on top of the children, since an inset shadow paints under
+   them. */
+[data-pb-panel="overlay"][data-pb-panel="overlay"] {
+  position: relative;
+  box-shadow: none;
+}
+[data-pb-panel="overlay"]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: var(--pb-piece);
+  pointer-events: none;
+  z-index: 5;
+}
+/* A neutral piece: white with navy ink, the neutral Button's face. */
+[data-pb-piece][data-pb-piece] {
+  background-color: #ffffff;
+  color: #1b1f3b;
+  cursor: pointer;
+  transition:
+    translate 80ms,
+    box-shadow 80ms,
+    background-color 80ms;
+}
+[data-pb-piece][data-pb-piece]:not(:disabled):hover {
+  background-color: #f0f2f6;
+}
+[data-pb-piece][data-pb-piece]:not(:disabled):active {
+  translate: 0 2px;
+  box-shadow: var(--pb-piece-down);
+}
+/* Dark: a neutral piece is the near-white neutral button face with navy ink,
+   as the site's secondary Buttons are. */
+.dark [data-pb-piece][data-pb-piece] {
+  background-color: #e9edf3;
+  color: #1b1f3b;
+}
+.dark [data-pb-piece][data-pb-piece]:not(:disabled):hover {
+  background-color: #d7dde8;
+}
+/* Disabled: the flat grey face, pushed down, never faded. */
+[data-pb-piece][data-pb-piece]:disabled,
+.dark [data-pb-piece][data-pb-piece]:disabled {
+  background-color: var(--pb-disabled);
+  color: var(--color-muted);
+  translate: 0 2px;
+  box-shadow: var(--pb-piece-down);
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+[data-pb-flat][data-pb-flat] {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+[data-pb-region][data-pb-region] {
+  background: var(--secondary-background);
+  border-radius: 12px;
+  box-shadow: var(--pb-piece);
+  /* The bottom edge sits inside the box: keep the last section's text off it. */
+  padding-bottom: 4px;
+}
+[data-pb-region][data-pb-region] > * {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+/* ---- Header ------------------------------------------------------------ */
+
+/* The account trigger: the avatar disc is the piece (keyline and edge drawn
+   over the picture, no ring, no gap), the chevron is printed on the ground. */
+[data-pb-avatar-trigger] > [data-ui-avatar] {
+  position: relative;
+  outline: none;
+  box-shadow: none;
+}
+[data-pb-avatar-trigger] > [data-ui-avatar]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: var(--pb-piece);
+  pointer-events: none;
+  transition: box-shadow 80ms;
+}
+:not(.hud-root) [data-pb-avatar-trigger] > svg {
+  color: var(--color-on-background);
+}
+[data-ui-menu-trigger]:hover [data-pb-avatar-trigger] > [data-ui-avatar] {
+  filter: brightness(1.08);
+}
+[data-ui-menu-trigger]:active [data-pb-avatar-trigger] > [data-ui-avatar]::after {
+  box-shadow: var(--pb-piece-down);
+}
+[data-ui-menu-trigger]:active:has([data-pb-avatar-trigger]) {
+  translate: 0 2px;
+}
+
+/* The hamburger and other bordered menu triggers are pieces (index.css);
+   they hover like every other piece. */
+[data-ui-menu-trigger].border:not(:disabled):hover {
+  background-color: var(--color-elev);
+}
+
+/* ---- Selection ----------------------------------------------------------- */
+
+/* The store's "Equipped": selected yellow with navy, pushed down with its
+   outline kept, never the grey of a button you cannot afford. It is a disabled
+   button for assistive tech, so it outranks the global disabled face. */
+button[data-equipped-mark][data-equipped-mark]:disabled {
+  background: var(--selected) !important;
+  color: var(--selected-ink) !important;
+  border-color: transparent;
+  box-shadow: var(--pb-piece-down) !important;
+  translate: 0 2px;
+  opacity: 1 !important;
+  cursor: default;
+  filter: none;
+}
+
+/* The track tab strip is print, the chosen tab a yellow tile. */
+[data-track-tabs] > button[aria-pressed="true"] {
+  background: var(--selected);
+  color: var(--selected-ink);
+}
+
+/* ---- Swatches ----------------------------------------------------------- */
+
+/* A keyline only on a swatch that would vanish into its panel: near-white on
+   the white panel (light), near-black or deep navy on the navy panel (dark).
+   index.css strips swatch shadows with !important, hence the importance. */
+:root:not(.dark) [data-swatch-edge="light"] {
+  box-shadow: inset 0 0 0 1.5px var(--pb-edge) !important;
+}
+.dark [data-swatch-edge="dark"] {
+  box-shadow: inset 0 0 0 1.5px var(--muted) !important;
+}
+
+/* ---- Status ------------------------------------------------------------- */
+
+/* A ready seat is a status, not a button: green ink on a neutral chip. */
+[data-ui-badge][data-status="ready"][data-status="ready"] {
+  background: var(--color-elev2);
+  color: var(--green-ink);
+}
+
+/* Match results: Win green, Loss navy, Draw grey, the same in both themes. */
+[data-result="win"][data-result="win"] {
+  background: #1b7f46;
+  color: #ffffff;
+}
+[data-result="loss"][data-result="loss"] {
+  background: #1b1f3b;
+  color: #ffffff;
+}
+[data-result="draw"][data-result="draw"] {
+  background: var(--pb-disabled);
+  color: var(--foreground);
+}
+.dark [data-result="loss"][data-result="loss"] {
+  background: #0a0e22;
+}
+
+/* ---- Name decorations ----------------------------------------------------- */
+
+/* The name stands on the fire. The flame GIF is a tapered pixel-art strip,
+   about 9 times as wide as it is tall, with a solid flame in the middle and
+   thin flicks out to bare ends; across its frames the flame fills rows 1-14
+   of 20 and stands on about row 13. So it is centred on the name (anchored
+   left, a short name showed only the bare start) and sized and dropped so the
+   solid body sits under the letters and only the flickering tips reach up
+   behind them: a 1.2em tile anchored to the bottom of 0.42em of bottom
+   padding. Behind the letters the solid body made black text on black fire
+   and white text on white fire unreadable; through the middle of a name it
+   read as a strike-through. Bottom padding on an inline box grows its
+   background without moving a line, and the background stays inside the box,
+   so a truncated name (overflow hidden on the span itself, as in the lobby)
+   still shows it. Sparkles are a larger tile (2.2em, was 1.4em) behind the
+   text. Both are pixel art: scaled with smoothing they blurred, so they are
+   drawn pixelated. */
+.decorated {
+  image-rendering: pixelated;
+}
+.decorated[class*="decorated--sparkle-"] {
+  background-size: auto 2.2em;
+}
+.decorated[class*="decorated--fire-"] {
+  background-position: center bottom;
+  background-size: auto 1.2em;
+  padding-bottom: 0.42em;
+}
+/* On a chip the effect is a small preview beside a plain label. */
+[data-decoration-preview].decorated {
+  padding: 0;
+  background-position: center;
+  background-size: auto 100%;
+}
+[data-decoration-preview].decorated[class*="decorated--fire-"] {
+  background-position: center bottom;
+  background-size: auto 140%;
+  padding: 0;
+}
+
+/* ---- Map builder ---------------------------------------------------------- */
+
+/* The canvas's zoom buttons: 36px pieces (they were 28px chips), hovering and
+   pressing like the rest. */
+[data-pb-mapcanvas] button {
+  background-color: #ffffff;
+  color: #1b1f3b;
+  width: 36px;
+  height: 36px;
+  border-color: transparent;
+  border-radius: 10px;
+  box-shadow: var(--pb-piece);
+  background-clip: padding-box;
+  transition:
+    translate 80ms,
+    box-shadow 80ms;
+}
+.dark [data-pb-mapcanvas] button {
+  background-color: #e9edf3;
+  color: #1b1f3b;
+}
+[data-pb-mapcanvas] button svg {
+  width: 18px;
+  height: 18px;
+}
+[data-pb-mapcanvas] button:hover {
+  filter: none;
+  background-color: #f0f2f6;
+}
+.dark [data-pb-mapcanvas] button:hover {
+  background-color: #d7dde8;
+}
+[data-pb-mapcanvas] button:active {
+  translate: 0 2px;
+  box-shadow: var(--pb-piece-down);
+}

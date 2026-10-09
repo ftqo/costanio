@@ -1,0 +1,480 @@
+/* Punchboard: pb-modules. Loaded after index.css (see main.tsx), so rules here win
+   over the Punchboard block at the end of index.css without !important. The old
+   `.modp-*`, `.hudx-*` and `.pg-*` rules sit in index.css's components layer, so
+   any unlayered rule here beats them whatever its specificity.
+
+   Scope: the in-game dialogs, pickers, module panels and the post-game screen
+   (components/game, outside hud/). */
+
+/* ---------------------------------------------------------------------------
+   Tokens
+   ------------------------------------------------------------------------ */
+:root {
+  /* Warning type on a panel. `--hud-award-ink` is the ink ON the yellow award
+     chip now (navy), so it cannot double as text on the panel. */
+  --warn-ink: #8a5300;
+  /* Focus recolours the piece's keyline (3px) and keeps its board edge. */
+  --pbm-focus: var(--pb-focus, #2f6fe4);
+  --pbm-piece-focus: inset 0 0 0 3px var(--pbm-focus), inset 0 -1px 0 3px var(--pb-deep);
+  /* Empty cells on a track (coast pips, mission hexes): 1.9:1 on white rather
+     than the old 1.4:1. */
+  --pbm-cell-empty: #c3c9d6;
+  /* The charts' reference stroke ("Expected"): the line tokens are zeroed in
+     Punchboard, so the charts carry their own. */
+  --pbm-chart-ref: #545a78;
+  /* The charts' grid and axis hairlines, and the hover card's stock. */
+  --pbm-chart-grid: #e3e7ee;
+  --pbm-tip-bg: #ffffff;
+  /* Art in something you cannot take: the build tiles' "short" treatment. */
+  --pbm-art-off: grayscale(1) contrast(0.45) brightness(1.5);
+}
+.dark {
+  --warn-ink: #ffc870;
+  --pbm-focus: var(--pb-focus, #ffd84a);
+  --pbm-cell-empty: #56619a;
+  --pbm-chart-ref: #aab1cf;
+  --pbm-chart-grid: #3b4885;
+  --pbm-tip-bg: #36448a;
+}
+
+/* ---------------------------------------------------------------------------
+   1. Warning and luck type
+   ------------------------------------------------------------------------ */
+.modp-warn,
+.hudx-note[data-warn="true"],
+.pg-row[data-winner="true"] .pg-rank,
+.pg-held,
+.pg-seat-h svg {
+  color: var(--warn-ink);
+}
+.pg-luck[data-sign="up"] {
+  color: var(--green-ink);
+}
+
+/* ---------------------------------------------------------------------------
+   2. A destructive HudButton in a dialog stays red (the dialog's neutral fill
+      rule is more specific than `.hud-btn-danger` on its own).
+   ------------------------------------------------------------------------ */
+.hud-root .hud-btn.hud-btn-danger,
+.hud-root [role="dialog"] .hud-btn.hud-btn-danger,
+.hud-root [role="dialog"] .hud-btn.hud-btn-danger:hover:not(:disabled) {
+  background: var(--btn-danger);
+  color: #ffffff;
+}
+
+/* ---------------------------------------------------------------------------
+   4. Pressables in the module panels are pieces
+   ------------------------------------------------------------------------ */
+button.modp-card,
+.modp-pick,
+button.hudx-cell,
+.hudx-step > button,
+[data-pb-die] {
+  border-color: transparent;
+  box-shadow: var(--pb-piece);
+  background-clip: padding-box;
+  transition:
+    translate 80ms,
+    box-shadow 80ms;
+}
+button.modp-card,
+.modp-pick,
+button.hudx-cell,
+.hudx-step > button {
+  background-color: var(--hud-raised);
+  color: var(--hud-ink);
+}
+/* Hover darkens (light) or lifts (dark) the fill; no focus-coloured ring. */
+button.modp-card:hover:not(:disabled),
+.modp-pick:hover:not(:disabled),
+button.hudx-cell:hover:not(:disabled),
+.hudx-step > button:hover:not(:disabled),
+[data-pb-die]:hover {
+  box-shadow: var(--pb-piece);
+  filter: brightness(0.96);
+}
+.dark button.modp-card:hover:not(:disabled),
+.dark .modp-pick:hover:not(:disabled),
+.dark button.hudx-cell:hover:not(:disabled),
+.dark .hudx-step > button:hover:not(:disabled) {
+  filter: brightness(1.12);
+}
+button.modp-card:active:not(:disabled),
+.modp-pick:active:not(:disabled),
+button.hudx-cell:active:not(:disabled),
+.hudx-step > button:active:not(:disabled),
+[data-pb-die]:active {
+  translate: 0 2px;
+  box-shadow: var(--pb-piece-down);
+  filter: none;
+}
+/* Selected: the yellow fill and navy type, held down. Never a ring. */
+button.modp-card[aria-pressed="true"],
+.modp-pick[aria-pressed="true"],
+button.hudx-cell[aria-pressed="true"],
+.hudx-cell[data-lit="true"],
+.modp-btn[aria-pressed="true"] {
+  background: var(--selected);
+  color: var(--selected-ink);
+  translate: 0 2px;
+  box-shadow: var(--pb-piece-down);
+}
+:is(
+    button.hudx-cell[aria-pressed="true"],
+    .hudx-cell[data-lit="true"],
+    .modp-pick[aria-pressed="true"]
+  )
+  :is(.modp-sub, .hudx-note, .text-muted) {
+  color: var(--selected-ink);
+}
+
+/* The stepper: the value sits on a well (print), minus and plus are pieces. */
+.hudx-step {
+  background: var(--hud-well);
+  box-shadow: none;
+}
+.hudx-step > button {
+  border-radius: 8px;
+}
+
+/* Dice faces (Alchemist). Faces are white card stock in both themes, so the
+   hover is the light one. */
+[data-pb-die] {
+  background: var(--die-face);
+  color: var(--die-pip);
+}
+[data-pb-die][aria-pressed="true"] {
+  translate: 0 2px;
+  box-shadow: var(--pb-piece-down);
+}
+[data-pb-die="white"][aria-pressed="true"] {
+  background: var(--selected);
+  color: var(--selected-ink);
+}
+[data-pb-die="red"][aria-pressed="true"] {
+  background: #c0283a;
+  color: #ffffff;
+}
+
+/* Focus: the keyline recolours (and thickens), the board edge stays. */
+button.modp-card:focus-visible,
+.modp-pick:focus-visible,
+button.hudx-cell:focus-visible,
+.hudx-step > button:focus-visible,
+[data-pb-die]:focus-visible,
+[data-cards] > button:focus-visible {
+  outline: none;
+  box-shadow: var(--pbm-piece-focus);
+}
+
+/* ---------------------------------------------------------------------------
+   5. Disabled: flat grey, pushed down, never faded
+   ------------------------------------------------------------------------ */
+.modp-btn:disabled:not(.modp-btn-quiet),
+.modp-btn.hud-primary:disabled,
+.hudx-btn:disabled,
+button.hudx-cell:disabled,
+.modp-pick:disabled,
+button.modp-card:disabled,
+.hudx-step > button:disabled {
+  opacity: 1;
+  background: var(--pb-disabled);
+  color: var(--hud-muted);
+  translate: 0 2px;
+  box-shadow: var(--pb-piece-down);
+  filter: none;
+  cursor: default;
+}
+.modp-btn-quiet:disabled {
+  opacity: 1;
+  color: var(--hud-muted);
+  box-shadow: none;
+  background: transparent;
+}
+:is(button.hudx-cell, .modp-pick, button.modp-card, .modp-btn):disabled img,
+:is(button.hudx-cell, .modp-pick, button.modp-card, .modp-btn):disabled .hud-ic {
+  opacity: 1;
+  filter: var(--pbm-art-off);
+}
+:is(button.hudx-cell, .modp-pick, button.modp-card):disabled :is(.modp-sub, .hudx-note) {
+  color: var(--hud-muted);
+}
+/* A finished step of the Explorers phase stepper is print, not a control:
+   muted ink on the well, at full opacity. The current step is the yellow. */
+.modp-phase > span[data-done] {
+  opacity: 1;
+  color: var(--hud-muted);
+  background: var(--hud-well);
+}
+.modp-phase > span[data-on] {
+  background: var(--selected);
+  color: var(--selected-ink);
+}
+
+/* ---------------------------------------------------------------------------
+   9. Segmented controls: the chosen segment is the yellow fill, flat.
+   ------------------------------------------------------------------------ */
+.hudx-seg > button[aria-pressed="true"],
+.pg-tab[aria-selected="true"],
+.dark .pg-tab[aria-selected="true"] {
+  background: var(--selected);
+  color: var(--selected-ink);
+  box-shadow: none;
+}
+.pg-tabs {
+  box-shadow: none;
+}
+.hudx-seg > button:focus-visible,
+.pg-tab:focus-visible {
+  outline: 3px solid var(--pbm-focus);
+  outline-offset: 1px;
+}
+
+/* ---------------------------------------------------------------------------
+   10. Print has no lines
+   ------------------------------------------------------------------------ */
+.modp-chip[data-tone="bad"] {
+  background: #c0283a;
+  color: #ffffff;
+  box-shadow: none;
+}
+.modp-chip[data-tone="bad"] > .modp-unit {
+  color: #ffffff;
+}
+.modp-bar,
+.modp-slot,
+.modp-disclosure,
+.pg-src,
+.pg-dot {
+  box-shadow: none;
+}
+/* A loaded cargo slot is a token: a piece. */
+.modp-slot[data-full] {
+  background: var(--hud-raised);
+  background-clip: padding-box;
+  color: var(--hud-ink);
+  box-shadow: var(--pb-piece);
+}
+.pg-row[data-winner="true"] {
+  box-shadow: none;
+}
+
+/* ---------------------------------------------------------------------------
+   11. A rider that must leave the castle: the yellow row, never a ring.
+   ------------------------------------------------------------------------ */
+.modp-card[data-owed] {
+  background: var(--selected);
+  color: var(--selected-ink);
+  box-shadow: var(--pb-piece);
+}
+.modp-card[data-owed] :is(.modp-warn, .modp-small, .text-\[var\(--hud-muted\)\]) {
+  color: var(--selected-ink);
+}
+.modp-card[data-owed]:hover:not(:disabled) {
+  box-shadow: var(--pb-piece);
+}
+.modp-card[data-owed]:focus-visible {
+  box-shadow: var(--pbm-piece-focus);
+}
+
+/* ---------------------------------------------------------------------------
+   6. The location dial, the anchored menu and the piece readout
+   ------------------------------------------------------------------------ */
+[data-anchored-menu]:not(.bg-transparent),
+[data-piece-info],
+[data-readout],
+[data-cards] > button {
+  border-color: transparent;
+  box-shadow: var(--pb-piece);
+  background-clip: padding-box;
+}
+[data-cards] > button {
+  transition:
+    translate 80ms,
+    box-shadow 80ms;
+}
+[data-cards] > button:hover {
+  filter: brightness(0.96);
+}
+.dark [data-cards] > button:hover {
+  filter: brightness(1.12);
+}
+[data-cards] > button:active {
+  translate: 0 2px;
+  box-shadow: var(--pb-piece-down);
+  filter: none;
+}
+/* A card that will not act: the disabled fill and the build tiles' pale art. */
+[data-cards] > button:not([data-status="ready"]) {
+  background-color: var(--pb-disabled);
+  color: var(--hud-muted);
+}
+[data-cards] > button > [data-dim] {
+  opacity: 1;
+  filter: none;
+}
+[data-cards] > button > [data-dim] img {
+  filter: var(--pbm-art-off);
+}
+
+/* ---------------------------------------------------------------------------
+   7, 13. Progress-card choice: the card frame's keyline is drawn above the art
+   on ::after (the art otherwise paints over the frame's own inset shadow).
+   ------------------------------------------------------------------------ */
+[data-progress-choice]::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  box-shadow: var(--pb-piece);
+  pointer-events: none;
+}
+[data-progress-choice] {
+  outline: none;
+  transition: translate 80ms;
+}
+[data-progress-choice]:focus-visible::after {
+  box-shadow: var(--pbm-piece-focus);
+}
+[data-progress-choice]:active:not(:disabled) {
+  translate: 0 2px;
+}
+[data-progress-choice]:active:not(:disabled)::after {
+  box-shadow: var(--pb-piece-down);
+}
+[data-progress-choice]:disabled {
+  opacity: 1;
+  translate: 0 2px;
+  background: var(--pb-disabled);
+}
+[data-progress-choice]:disabled::after {
+  box-shadow:
+    var(--pb-piece-down),
+    inset 0 0 0 6px var(--pb-disabled);
+}
+[data-progress-choice]:disabled img,
+[data-progress-choice]:disabled .hud-deck-band {
+  filter: var(--pbm-art-off);
+}
+
+/* ---------------------------------------------------------------------------
+   14. A dialog's pinned footer paints over the panel's inset keyline, so it
+   continues the keyline and the board edge itself.
+   ------------------------------------------------------------------------ */
+[data-overlay-footer] {
+  /* Its 1px top border (transparent now) is outside the inset shadow, so a
+     fill painted under it would cut the panel's keyline: clip the fill. */
+  border-top-color: transparent;
+  background-clip: padding-box;
+  border-radius: 0 0 11px 11px;
+  /* Sides 2px and a 4px bottom edge in one shadow (shrunk by 2, raised by
+     2), so the edge meets the sides with one smooth inner corner and no top
+     line is drawn. */
+  box-shadow: inset 0 -2px 0 2px var(--pb-deep);
+}
+
+/* ---------------------------------------------------------------------------
+   15. Consistency
+   ------------------------------------------------------------------------ */
+/* Empty cells on a track. */
+.modp-cells > i {
+  background: var(--pbm-cell-empty);
+}
+.modp-cells > i[data-on] {
+  background: var(--tc, var(--hud-focus));
+}
+/* The reveal dock while its card is in flight: a well where the card will
+   land, not a faded copy of it. */
+[data-reveal-dock][data-waiting] {
+  opacity: 1;
+  background: var(--hud-well);
+  border-radius: 4px;
+}
+[data-reveal-dock][data-waiting] > * {
+  visibility: hidden;
+}
+
+/* ---------------------------------------------------------------------------
+   12. Cards in flight: the hand's card face (keyline, yellow count).
+   ------------------------------------------------------------------------ */
+[data-flight-card] .hud-card-well {
+  box-shadow: none;
+}
+
+/* ---------------------------------------------------------------------------
+   8. A held-down answer (the responder's Accept or Reject on a live offer) is
+   the selected yellow, held down, whatever its resting fill (Accept rests
+   green).
+   ------------------------------------------------------------------------ */
+[data-offer-answer][aria-pressed="true"],
+.hud-root [data-offer-answer][aria-pressed="true"] {
+  background: var(--selected);
+  color: var(--selected-ink);
+  translate: 0 2px;
+  box-shadow: var(--pb-piece-down);
+}
+
+/* ---------------------------------------------------------------------------
+   13. The charts' hover card (ChartTip.tsx): a raised piece, keyline and
+   board edge, off the panel the chart sits on. A heading in the display
+   weight, then names against right-aligned figures.
+   ------------------------------------------------------------------------ */
+[data-chart-tip] {
+  min-width: 132px;
+  padding: 8px 12px 11px;
+  border-radius: 10px;
+  background: var(--pbm-tip-bg);
+  background-clip: padding-box;
+  box-shadow: var(--pb-piece);
+  color: var(--hud-ink);
+  font: 500 12px/1.35 var(--hud-font);
+}
+[data-tip-h] {
+  margin-bottom: 4px;
+  font-weight: 800;
+  font-size: 12.5px;
+}
+[data-chart-tip] table {
+  width: 100%;
+  border-collapse: collapse;
+}
+[data-chart-tip] td {
+  padding: 1.5px 0;
+}
+[data-tip-mark] {
+  width: 14px;
+}
+[data-tip-name] {
+  padding-right: 14px !important;
+}
+[data-tip-value] {
+  text-align: right;
+  font-family: var(--hud-num);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+[data-chart-tip] tr[data-strong="true"] {
+  font-weight: 800;
+}
+[data-tip-dot] {
+  display: block;
+  width: 9px;
+  height: 9px;
+  border-radius: 9999px;
+  background: var(--dot);
+}
+/* The race's key carries each final score after the name. */
+[data-key-score] {
+  font-family: var(--hud-num);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: var(--hud-muted);
+}
+.pg-key li[data-winner="true"] [data-key-score] {
+  color: var(--hud-ink);
+}
+/* A card with no swatches (the dice) drops the swatch column. */
+[data-tip-mark]:empty {
+  display: none;
+}

@@ -1,0 +1,61 @@
+costan.db
+costan.db-wal
+costan.db-shm
+/costan
+/costan-loadgen
+/costan-replay-trim
+/costan-replay
+/costan-sim
+backend.log
+# go test -json output from `make gate`, read by the skip census.
+/.gate.json
+
+# load-test artifacts (regenerated per run)
+loadtest/targets.json
+loadtest/*.csv
+.direnv/
+*.test
+*.prof
+*.png
+# Name-decoration first-frame stills ship (reduced-motion fallback for the GIFs).
+!frontend/public/cosmetics/decorations/*_static.png
+# Review renders written by tools/blender/render_*.py: local output, not tracked.
+/art/prototypes/
+# Touch icon and link-preview image ship as PNG (iOS and link unfurlers don't take SVG).
+!frontend/public/apple-touch-icon.png
+!frontend/public/og-image.png
+
+# stray vitest cache when run from repo root
+node_modules/
+
+# Deploy secrets: env file and TLS origin keys/certs.
+.env
+deploy/certs/
+
+# SOPS plaintext and keys.
+age.key
+*.agekey
+/secrets.yaml
+/secrets.dec.yaml
+/origin-cert.yaml
+/origin.pem
+/origin.key
+
+# Python bytecode from tools/blender
+__pycache__/
+*.pyc
+
+# Blender save backups
+*.blend1
+.pairing-shot/
+.ui-smoke/
+
+# `make compose-review`: sheets and the composer log, regenerated on demand.
+/.compose-review/
+
+# Local-only files: OS litter, logs, gate scratch, and the operator's encrypted
+# secrets (they live on the server, not in the repo).
+.DS_Store
+*.log
+.gate-*
+/*.enc.yaml

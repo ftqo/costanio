@@ -1,0 +1,78 @@
+[
+  {
+    "file": "components/BrandPill.tsx",
+    "text": "COSTAN.IO",
+    "reason": "The wordmark. A product name is not translated (docs/i18n glossaries, 'terms deliberately not translated')."
+  },
+  {
+    "file": "components/SiteFooter.tsx",
+    "text": "COSTAN.IO",
+    "reason": "The wordmark, as in BrandPill."
+  },
+  {
+    "file": "components/SiteFooter.tsx",
+    "text": "Discord",
+    "reason": "A third-party brand name, linked to the community server."
+  },
+  {
+    "file": "components/SiteFooter.tsx",
+    "text": "© 2026 ftqo",
+    "reason": "Copyright line: the year and the operator's handle, no words to translate."
+  },
+  {
+    "file": "routes/Support.tsx",
+    "text": "Ko-fi",
+    "reason": "A third-party brand name (the donation platform)."
+  },
+  {
+    "file": "lib/ErrorBoundary.tsx",
+    "reason": "Mounted outside LocaleProvider on purpose: the boundary must render when the catalogue failed to load, so its copy is plain English (see the file's header)."
+  },
+  {
+    "file": "routes/Login.tsx",
+    "text": "Dev login (Tester)",
+    "reason": "Dev-only button, rendered only under IS_DEV. Never reaches a player."
+  },
+  {
+    "file": "routes/Terms.tsx",
+    "kind": "jsx-text",
+    "reason": "The Terms of Service text. English is the version a player agrees to and a translation nobody reviewed as a legal text would be a second, unvetted one; LegalDoc tells a non-English reader so. The title and page chrome are translated."
+  },
+  {
+    "file": "routes/Terms.tsx",
+    "kind": "prop",
+    "reason": "Section titles of the Terms, part of the legal text (see the jsx-text entry)."
+  },
+  {
+    "file": "routes/Privacy.tsx",
+    "kind": "jsx-text",
+    "reason": "The Privacy Policy text, English for the same reason as the Terms."
+  },
+  {
+    "file": "routes/Privacy.tsx",
+    "kind": "prop",
+    "reason": "Section titles of the Privacy Policy, part of the legal text."
+  },
+  {
+    "file": "lib/robbers.ts",
+    "kind": "prop",
+    "reason": "ROBBERS[*].label is an asset-table note that nothing renders. The shop's name for a skin comes from lib/cosmeticNames, which is translated."
+  },
+  {
+    "file": "lib/pieceSets.ts",
+    "kind": "prop",
+    "reason": "PIECE_SETS[*].label, likewise never rendered; the shop's names are lib/cosmeticNames and StoreShelves' STOCK_NAME."
+  },
+  {
+    "file": "lib/preview/checks.ts",
+    "reason": "Map builder geometry checks: English by design, so a bug report copied out of the preview reads the same for everybody (see the file's header). The page chrome around them is translated."
+  },
+  {
+    "file": "lib/board3d/compose/**",
+    "reason": "The tile composer runs at export time in node (make compose-tiles), never in the browser: its strings are build errors and glTF node names, not user-facing copy."
+  },
+  {
+    "file": "lib/board3d/lakeChip.ts",
+    "reason": "chipPrefix builds glTF node names in chips.glb (Chip_04_1), which the board looks meshes up by; no player ever reads them."
+  }
+]

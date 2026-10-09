@@ -1,0 +1,509 @@
+{
+  "seq": 513,
+  "viewer": 0,
+  "config": {
+    "players": 4,
+    "target_vp": 13,
+    "discard_limit": 7,
+    "turn_timer_sec": 600,
+    "ruleset": "base+caravans+fishermen+harbormaster+rivers",
+    "board": {
+      "radius": 2,
+      "tiles": [
+        { "hex": { "q": -2, "r": 0 }, "res": "land", "num": 0 },
+        { "hex": { "q": -2, "r": 1 }, "res": "land", "num": 0 },
+        { "hex": { "q": -2, "r": 2 }, "res": "land", "num": 0 },
+        { "hex": { "q": -1, "r": -1 }, "res": "land", "num": 0 },
+        { "hex": { "q": -1, "r": 0 }, "res": "land", "num": 0 },
+        { "hex": { "q": -1, "r": 1 }, "res": "land", "num": 0 },
+        { "hex": { "q": -1, "r": 2 }, "res": "land", "num": 0 },
+        { "hex": { "q": 0, "r": -2 }, "res": "land", "num": 0 },
+        { "hex": { "q": 0, "r": -1 }, "res": "land", "num": 0 },
+        { "hex": { "q": 0, "r": 0 }, "res": "land", "num": 0 },
+        { "hex": { "q": 0, "r": 1 }, "res": "land", "num": 0 },
+        { "hex": { "q": 0, "r": 2 }, "res": "land", "num": 0 },
+        { "hex": { "q": 1, "r": -2 }, "res": "land", "num": 0 },
+        { "hex": { "q": 1, "r": -1 }, "res": "land", "num": 0 },
+        { "hex": { "q": 1, "r": 0 }, "res": "land", "num": 0 },
+        { "hex": { "q": 1, "r": 1 }, "res": "land", "num": 0 },
+        { "hex": { "q": 2, "r": -2 }, "res": "land", "num": 0 },
+        { "hex": { "q": 2, "r": -1 }, "res": "land", "num": 0 },
+        { "hex": { "q": 2, "r": 0 }, "res": "land", "num": 0 }
+      ],
+      "robber": { "q": 0, "r": 0 },
+      "harbors": null
+    },
+    "dice_mode": "random",
+    "board_mode": "fair"
+  },
+  "phase": "play",
+  "cur": 0,
+  "setup_round": 1,
+  "need_road": false,
+  "rolled": true,
+  "robber_pending": true,
+  "board": {
+    "radius": 2,
+    "tiles": [
+      { "hex": { "q": -2, "r": 0 }, "res": "wood", "num": 6 },
+      { "hex": { "q": -2, "r": 1 }, "res": "wood", "num": 3 },
+      { "hex": { "q": -2, "r": 2 }, "res": "brick", "num": 8 },
+      { "hex": { "q": -1, "r": -1 }, "res": "wood", "num": 4 },
+      { "hex": { "q": -1, "r": 0 }, "res": "lake", "num": 0 },
+      { "hex": { "q": -1, "r": 1 }, "res": "wheat", "num": 11 },
+      { "hex": { "q": -1, "r": 2 }, "res": "ore", "num": 10 },
+      { "hex": { "q": 0, "r": -2 }, "res": "sheep", "num": 5 },
+      { "hex": { "q": 0, "r": -1 }, "res": "wheat", "num": 8 },
+      { "hex": { "q": 0, "r": 0 }, "res": "brick", "num": 4 },
+      { "hex": { "q": 0, "r": 1 }, "res": "wheat", "num": 3 },
+      { "hex": { "q": 0, "r": 2 }, "res": "sheep", "num": 9 },
+      { "hex": { "q": 1, "r": -2 }, "res": "swamp", "num": 0 },
+      { "hex": { "q": 1, "r": -1 }, "res": "ore", "num": 5 },
+      { "hex": { "q": 1, "r": 0 }, "res": "wood", "num": 11 },
+      { "hex": { "q": 1, "r": 1 }, "res": "brick", "num": 6 },
+      { "hex": { "q": 2, "r": -2 }, "res": "sheep", "num": 2 },
+      { "hex": { "q": 2, "r": -1 }, "res": "ore", "num": 9 },
+      { "hex": { "q": 2, "r": 0 }, "res": "sheep", "num": 10 }
+    ],
+    "robber": { "q": 1, "r": -1 },
+    "harbors": [
+      {
+        "verts": [
+          { "q": -3, "r": 3, "side": 0 },
+          { "q": -2, "r": 1, "side": 1 }
+        ],
+        "ratio": 3,
+        "res": "none"
+      },
+      {
+        "verts": [
+          { "q": -3, "r": 1, "side": 0 },
+          { "q": -2, "r": 0, "side": 1 }
+        ],
+        "ratio": 2,
+        "res": "wood"
+      },
+      {
+        "verts": [
+          { "q": -2, "r": 0, "side": 0 },
+          { "q": -1, "r": -2, "side": 1 }
+        ],
+        "ratio": 3,
+        "res": "none"
+      },
+      {
+        "verts": [
+          { "q": 0, "r": -2, "side": 0 },
+          { "q": 1, "r": -3, "side": 1 }
+        ],
+        "ratio": 2,
+        "res": "sheep"
+      },
+      {
+        "verts": [
+          { "q": 2, "r": -3, "side": 1 },
+          { "q": 2, "r": -2, "side": 0 }
+        ],
+        "ratio": 3,
+        "res": "none"
+      },
+      {
+        "verts": [
+          { "q": 2, "r": -1, "side": 0 },
+          { "q": 3, "r": -2, "side": 1 }
+        ],
+        "ratio": 2,
+        "res": "wheat"
+      },
+      {
+        "verts": [
+          { "q": 2, "r": 0, "side": 1 },
+          { "q": 2, "r": 1, "side": 0 }
+        ],
+        "ratio": 2,
+        "res": "ore"
+      },
+      {
+        "verts": [
+          { "q": 0, "r": 3, "side": 0 },
+          { "q": 1, "r": 1, "side": 1 }
+        ],
+        "ratio": 2,
+        "res": "brick"
+      },
+      {
+        "verts": [
+          { "q": -1, "r": 2, "side": 1 },
+          { "q": -1, "r": 3, "side": 0 }
+        ],
+        "ratio": 3,
+        "res": "none"
+      }
+    ]
+  },
+  "bank": [0, 17, 16, 18, 15, 15],
+  "players": [
+    {
+      "seat": 0,
+      "hand_count": 2,
+      "hand": [0, 0, 0, 1, 0, 1],
+      "roads_left": 9,
+      "settlements_left": 2,
+      "cities_left": 4,
+      "dev_count": 1,
+      "dev_cards": [1, 0, 0, 0, 0],
+      "new_dev_cards": [0, 0, 0, 0, 0],
+      "knights_played": 2,
+      "route_length": 4,
+      "vp": 1,
+      "public_vp": 1,
+      "discard_at": 7
+    },
+    {
+      "seat": 1,
+      "hand_count": 3,
+      "roads_left": 9,
+      "settlements_left": 1,
+      "cities_left": 4,
+      "dev_count": 0,
+      "knights_played": 0,
+      "route_length": 7,
+      "vp": 5,
+      "public_vp": 5,
+      "discard_at": 7
+    },
+    {
+      "seat": 2,
+      "hand_count": 3,
+      "roads_left": 11,
+      "settlements_left": 3,
+      "cities_left": 4,
+      "dev_count": 1,
+      "knights_played": 2,
+      "route_length": 2,
+      "vp": 0,
+      "public_vp": 0,
+      "discard_at": 7
+    },
+    {
+      "seat": 3,
+      "hand_count": 6,
+      "roads_left": 9,
+      "settlements_left": 5,
+      "cities_left": 2,
+      "dev_count": 0,
+      "knights_played": 1,
+      "route_length": 4,
+      "vp": 5,
+      "public_vp": 5,
+      "discard_at": 7
+    }
+  ],
+  "buildings": [
+    { "v": { "q": -1, "r": -1, "side": 1 }, "owner": 1, "city": false },
+    { "v": { "q": -1, "r": 1, "side": 1 }, "owner": 2, "city": false },
+    { "v": { "q": -1, "r": 3, "side": 0 }, "owner": 0, "city": false },
+    { "v": { "q": 0, "r": -2, "side": 1 }, "owner": 1, "city": false },
+    { "v": { "q": 0, "r": 0, "side": 0 }, "owner": 0, "city": false },
+    { "v": { "q": 0, "r": 1, "side": 0 }, "owner": 1, "city": false },
+    { "v": { "q": 0, "r": 2, "side": 0 }, "owner": 3, "city": true },
+    { "v": { "q": 0, "r": 3, "side": 0 }, "owner": 0, "city": false },
+    { "v": { "q": 1, "r": -3, "side": 1 }, "owner": 1, "city": false },
+    { "v": { "q": 1, "r": 0, "side": 0 }, "owner": 3, "city": true },
+    { "v": { "q": 1, "r": 1, "side": 0 }, "owner": 2, "city": false }
+  ],
+  "roads": [
+    {
+      "e": { "a": { "q": -2, "r": 3, "side": 0 }, "b": { "q": -1, "r": 1, "side": 1 } },
+      "owner": 2
+    },
+    {
+      "e": { "a": { "q": -1, "r": -1, "side": 1 }, "b": { "q": -1, "r": 0, "side": 0 } },
+      "owner": 1
+    },
+    {
+      "e": { "a": { "q": -1, "r": 0, "side": 0 }, "b": { "q": 0, "r": -2, "side": 1 } },
+      "owner": 1
+    },
+    {
+      "e": { "a": { "q": -1, "r": 1, "side": 1 }, "b": { "q": -1, "r": 2, "side": 0 } },
+      "owner": 2
+    },
+    {
+      "e": { "a": { "q": -1, "r": 2, "side": 0 }, "b": { "q": 0, "r": 0, "side": 1 } },
+      "owner": 3
+    },
+    {
+      "e": { "a": { "q": -1, "r": 2, "side": 0 }, "b": { "q": 0, "r": 1, "side": 1 } },
+      "owner": 3
+    },
+    {
+      "e": { "a": { "q": -1, "r": 3, "side": 0 }, "b": { "q": 0, "r": 2, "side": 1 } },
+      "owner": 0
+    },
+    {
+      "e": { "a": { "q": 0, "r": -2, "side": 1 }, "b": { "q": 0, "r": -1, "side": 0 } },
+      "owner": 1
+    },
+    {
+      "e": { "a": { "q": 0, "r": -1, "side": 0 }, "b": { "q": 1, "r": -3, "side": 1 } },
+      "owner": 1
+    },
+    {
+      "e": { "a": { "q": 0, "r": -1, "side": 0 }, "b": { "q": 1, "r": -2, "side": 1 } },
+      "owner": 1
+    },
+    {
+      "e": { "a": { "q": 0, "r": 0, "side": 0 }, "b": { "q": 1, "r": -2, "side": 1 } },
+      "owner": 0
+    },
+    {
+      "e": { "a": { "q": 0, "r": 0, "side": 0 }, "b": { "q": 1, "r": -1, "side": 1 } },
+      "owner": 0
+    },
+    { "e": { "a": { "q": 0, "r": 0, "side": 1 }, "b": { "q": 0, "r": 1, "side": 0 } }, "owner": 1 },
+    { "e": { "a": { "q": 0, "r": 1, "side": 1 }, "b": { "q": 0, "r": 2, "side": 0 } }, "owner": 3 },
+    { "e": { "a": { "q": 0, "r": 2, "side": 0 }, "b": { "q": 1, "r": 0, "side": 1 } }, "owner": 3 },
+    { "e": { "a": { "q": 0, "r": 2, "side": 1 }, "b": { "q": 0, "r": 3, "side": 0 } }, "owner": 0 },
+    { "e": { "a": { "q": 0, "r": 3, "side": 0 }, "b": { "q": 1, "r": 1, "side": 1 } }, "owner": 0 },
+    {
+      "e": { "a": { "q": 1, "r": -1, "side": 1 }, "b": { "q": 1, "r": 0, "side": 0 } },
+      "owner": 3
+    },
+    {
+      "e": { "a": { "q": 1, "r": 0, "side": 0 }, "b": { "q": 2, "r": -1, "side": 1 } },
+      "owner": 3
+    },
+    { "e": { "a": { "q": 1, "r": 0, "side": 1 }, "b": { "q": 1, "r": 1, "side": 0 } }, "owner": 2 },
+    {
+      "e": { "a": { "q": 1, "r": 1, "side": 0 }, "b": { "q": 2, "r": -1, "side": 1 } },
+      "owner": 2
+    },
+    { "e": { "a": { "q": 1, "r": 1, "side": 1 }, "b": { "q": 1, "r": 2, "side": 0 } }, "owner": 0 }
+  ],
+  "ext": {
+    "caravans": {
+      "bid_resources": ["sheep", "wheat"],
+      "camel_supply": 22,
+      "camels": [
+        {
+          "caravan": 0,
+          "e": { "a": { "q": -1, "r": 0, "side": 0 }, "b": { "q": 0, "r": -2, "side": 1 } }
+        },
+        {
+          "caravan": 0,
+          "e": { "a": { "q": 0, "r": -2, "side": 1 }, "b": { "q": 0, "r": -1, "side": 0 } }
+        },
+        {
+          "caravan": 0,
+          "e": { "a": { "q": 0, "r": -1, "side": 0 }, "b": { "q": 1, "r": -2, "side": 1 } }
+        },
+        {
+          "caravan": 0,
+          "e": { "a": { "q": 1, "r": -2, "side": 1 }, "b": { "q": 1, "r": -1, "side": 0 } }
+        },
+        {
+          "caravan": 0,
+          "e": { "a": { "q": 1, "r": -1, "side": 0 }, "b": { "q": 2, "r": -2, "side": 1 } }
+        }
+      ],
+      "camels_left": 17,
+      "caravans": [
+        {
+          "caravan": 0,
+          "arrow": { "a": { "q": -1, "r": 0, "side": 0 }, "b": { "q": 0, "r": -2, "side": 1 } },
+          "corner": { "q": -1, "r": 0, "side": 0 }
+        },
+        {
+          "caravan": 1,
+          "arrow": { "a": { "q": -1, "r": 1, "side": 0 }, "b": { "q": 0, "r": 0, "side": 1 } },
+          "corner": { "q": -1, "r": 1, "side": 0 }
+        },
+        {
+          "caravan": 2,
+          "arrow": { "a": { "q": -2, "r": 0, "side": 1 }, "b": { "q": -2, "r": 1, "side": 0 } },
+          "corner": { "q": -2, "r": 1, "side": 0 }
+        }
+      ],
+      "oasis": { "q": -1, "r": 0 },
+      "occupied": [
+        { "a": { "q": -1, "r": 0, "side": 0 }, "b": { "q": 0, "r": -2, "side": 1 } },
+        { "a": { "q": 0, "r": -2, "side": 1 }, "b": { "q": 0, "r": -1, "side": 0 } },
+        { "a": { "q": 0, "r": -1, "side": 0 }, "b": { "q": 1, "r": -2, "side": 1 } },
+        { "a": { "q": 1, "r": -2, "side": 1 }, "b": { "q": 1, "r": -1, "side": 0 } },
+        { "a": { "q": 1, "r": -1, "side": 0 }, "b": { "q": 2, "r": -2, "side": 1 } }
+      ]
+    },
+    "fishermen": {
+      "boot_holder": 1,
+      "grounds": [
+        {
+          "v": [
+            { "q": -2, "r": 3, "side": 0 },
+            { "q": -1, "r": 2, "side": 1 },
+            { "q": -2, "r": 2, "side": 1 }
+          ],
+          "hex": { "q": -2, "r": 3 },
+          "number": 4
+        },
+        {
+          "v": [
+            { "q": 0, "r": -3, "side": 1 },
+            { "q": -1, "r": -1, "side": 0 },
+            { "q": -1, "r": -2, "side": 1 }
+          ],
+          "hex": { "q": -1, "r": -2 },
+          "number": 5
+        },
+        {
+          "v": [
+            { "q": 3, "r": -1, "side": 1 },
+            { "q": 2, "r": 0, "side": 0 },
+            { "q": 3, "r": -2, "side": 1 }
+          ],
+          "hex": { "q": 3, "r": -1 },
+          "number": 6
+        },
+        {
+          "v": [
+            { "q": -2, "r": -1, "side": 1 },
+            { "q": -3, "r": 1, "side": 0 }
+          ],
+          "hex": { "q": -3, "r": 0 },
+          "number": 8
+        },
+        {
+          "v": [
+            { "q": 0, "r": 3, "side": 0 },
+            { "q": 0, "r": 2, "side": 1 }
+          ],
+          "hex": { "q": 0, "r": 3 },
+          "number": 9
+        },
+        {
+          "v": [
+            { "q": 3, "r": -3, "side": 1 },
+            { "q": 2, "r": -2, "side": 0 }
+          ],
+          "hex": { "q": 3, "r": -3 },
+          "number": 10
+        }
+      ],
+      "lake_numbers": [2, 3, 11, 12],
+      "mix": [1, 0, 0],
+      "tiles": [1, 2, 0, 0]
+    },
+    "harbormaster": { "holder": -1, "points": [2, 1, 0, 0], "threshold": 3 },
+    "rivers": {
+      "rivers": [
+        {
+          "hexes": [
+            { "q": -1, "r": 2 },
+            { "q": 0, "r": 2 },
+            { "q": 1, "r": 1 },
+            { "q": 2, "r": 0 },
+            { "q": 2, "r": -1 },
+            { "q": 1, "r": -1 },
+            { "q": 1, "r": -2 }
+          ],
+          "mouth": 6,
+          "in": [
+            { "a": { "q": -1, "r": 3, "side": 0 }, "b": { "q": 0, "r": 1, "side": 1 } },
+            { "a": { "q": -1, "r": 3, "side": 0 }, "b": { "q": 0, "r": 1, "side": 1 } },
+            { "a": { "q": 0, "r": 2, "side": 0 }, "b": { "q": 1, "r": 1, "side": 1 } },
+            { "a": { "q": 1, "r": 1, "side": 0 }, "b": { "q": 2, "r": 0, "side": 1 } },
+            { "a": { "q": 2, "r": -1, "side": 1 }, "b": { "q": 2, "r": 0, "side": 0 } },
+            { "a": { "q": 1, "r": 0, "side": 0 }, "b": { "q": 2, "r": -2, "side": 1 } },
+            { "a": { "q": 1, "r": -2, "side": 1 }, "b": { "q": 1, "r": -1, "side": 0 } }
+          ],
+          "out": [
+            { "a": { "q": -1, "r": 3, "side": 0 }, "b": { "q": 0, "r": 1, "side": 1 } },
+            { "a": { "q": 0, "r": 2, "side": 0 }, "b": { "q": 1, "r": 1, "side": 1 } },
+            { "a": { "q": 1, "r": 1, "side": 0 }, "b": { "q": 2, "r": 0, "side": 1 } },
+            { "a": { "q": 2, "r": -1, "side": 1 }, "b": { "q": 2, "r": 0, "side": 0 } },
+            { "a": { "q": 1, "r": 0, "side": 0 }, "b": { "q": 2, "r": -2, "side": 1 } },
+            { "a": { "q": 1, "r": -2, "side": 1 }, "b": { "q": 1, "r": -1, "side": 0 } },
+            { "a": { "q": 1, "r": -3, "side": 1 }, "b": { "q": 1, "r": -2, "side": 0 } }
+          ],
+          "shapes": ["src_e", "ne_w", "ne_sw", "nw_sw", "w_se", "e_nw", "nw_se"],
+          "sites": [
+            { "a": { "q": -1, "r": 3, "side": 0 }, "b": { "q": 0, "r": 1, "side": 1 } },
+            { "a": { "q": 0, "r": 2, "side": 0 }, "b": { "q": 1, "r": 1, "side": 1 } },
+            { "a": { "q": 1, "r": 1, "side": 0 }, "b": { "q": 2, "r": 0, "side": 1 } },
+            { "a": { "q": 2, "r": -1, "side": 1 }, "b": { "q": 2, "r": 0, "side": 0 } },
+            { "a": { "q": 1, "r": 0, "side": 0 }, "b": { "q": 2, "r": -2, "side": 1 } },
+            { "a": { "q": 1, "r": -2, "side": 1 }, "b": { "q": 1, "r": -1, "side": 0 } },
+            { "a": { "q": 1, "r": -3, "side": 1 }, "b": { "q": 1, "r": -2, "side": 0 } }
+          ],
+          "variants": [0, 0, 0, 0, 0, 0, 0]
+        }
+      ],
+      "sites": [
+        { "a": { "q": -1, "r": 3, "side": 0 }, "b": { "q": 0, "r": 1, "side": 1 } },
+        { "a": { "q": 0, "r": 2, "side": 0 }, "b": { "q": 1, "r": 1, "side": 1 } },
+        { "a": { "q": 1, "r": 1, "side": 0 }, "b": { "q": 2, "r": 0, "side": 1 } },
+        { "a": { "q": 2, "r": -1, "side": 1 }, "b": { "q": 2, "r": 0, "side": 0 } },
+        { "a": { "q": 1, "r": 0, "side": 0 }, "b": { "q": 2, "r": -2, "side": 1 } },
+        { "a": { "q": 1, "r": -2, "side": 1 }, "b": { "q": 1, "r": -1, "side": 0 } },
+        { "a": { "q": 1, "r": -3, "side": 1 }, "b": { "q": 1, "r": -2, "side": 0 } }
+      ],
+      "bridges": [
+        {
+          "player": 3,
+          "e": { "a": { "q": -1, "r": 3, "side": 0 }, "b": { "q": 0, "r": 1, "side": 1 } }
+        },
+        {
+          "player": 3,
+          "e": { "a": { "q": 0, "r": 2, "side": 0 }, "b": { "q": 1, "r": 1, "side": 1 } }
+        },
+        {
+          "player": 3,
+          "e": { "a": { "q": 1, "r": 0, "side": 0 }, "b": { "q": 2, "r": -2, "side": 1 } }
+        }
+      ],
+      "coins": [1, 1, 1, 2],
+      "bridges_left": [3, 3, 3, 0],
+      "poorest": [true, true, true, false],
+      "wealthiest": 3,
+      "poorest_in_play": true,
+      "bridge_supply": 3,
+      "bridge_cost": [0, 1, 2, 0, 0, 0],
+      "coin_per_res": 2,
+      "spends_left": 2,
+      "wealthiest_vp": 1,
+      "poorest_vp": -2
+    }
+  },
+  "dev_deck_count": 14,
+  "played_dev": false,
+  "free_roads": 0,
+  "longest_road": 1,
+  "largest_army": -1,
+  "winner": -1,
+  "legal": {
+    "robber_hexes": [
+      { "q": -2, "r": 0 },
+      { "q": -2, "r": 1 },
+      { "q": -2, "r": 2 },
+      { "q": -1, "r": -1 },
+      { "q": -1, "r": 1 },
+      { "q": -1, "r": 2 },
+      { "q": 0, "r": -2 },
+      { "q": 0, "r": -1 },
+      { "q": 0, "r": 0 },
+      { "q": 0, "r": 1 },
+      { "q": 0, "r": 2 },
+      { "q": 1, "r": -2 },
+      { "q": 1, "r": 0 },
+      { "q": 1, "r": 1 },
+      { "q": 2, "r": -2 },
+      { "q": 2, "r": -1 },
+      { "q": 2, "r": 0 }
+    ]
+  },
+  "turns_completed": 44,
+  "draw_min_turns": 200,
+  "bots_only": true,
+  "bank_ratios": [0, 3, 2, 3, 3, 3],
+  "seat_names": ["Tester", "Bot B", "Bot Jester", "Bot William"]
+}

@@ -1,0 +1,11 @@
+# Git LFS for binary art. The .blend is the board's geometry source and the
+# .glb files are rewritten wholesale by `make export-assets`, so they don't
+# delta. A clone needs git-lfs on PATH (the nix devShell has it) or these
+# check out as pointer files; see art/README.md.
+*.blend filter=lfs diff=lfs merge=lfs -text
+*.glb filter=lfs diff=lfs merge=lfs -text
+# Sound effects: re-exported clips are whole new files.
+*.mp3 filter=lfs diff=lfs merge=lfs -text
+*.ogg filter=lfs diff=lfs merge=lfs -text
+# Baked card faces, re-rendered whenever the render rig changes.
+*.webp filter=lfs diff=lfs merge=lfs -text

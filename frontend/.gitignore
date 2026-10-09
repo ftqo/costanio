@@ -1,0 +1,10 @@
+node_modules
+dist
+*.local
+.vite
+*.tsbuildinfo
+
+# Fetched font sources for the card-title subsets. Multi-megabyte upstream
+# releases, pinned by sha256 in scripts/title-fonts.lock.json; only the
+# generated subsets in public/fonts are committed.
+scripts/.fontcache

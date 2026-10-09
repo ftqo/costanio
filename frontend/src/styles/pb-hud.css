@@ -1,0 +1,510 @@
+/* Punchboard: pb-hud. Loaded after index.css (see main.tsx), so rules here win
+   over the Punchboard block at the end of index.css without !important. An
+   `!important` below is only ever beating an inline style (or an !important
+   rule in that block that does the same).
+
+   Hooks are data attributes rather than new class names, so the design-system
+   linter (which reads class names against index.css) has nothing to flag. */
+
+:root {
+  /* A pressable piece under the pointer: up 2px, its board edge 6px. */
+  --pb-piece-hover: inset 0 0 0 2px var(--pb-edge), inset 0 -4px 0 2px var(--pb-deep);
+  /* Wheat's card face. The resource's own yellow (#ffd23f) was the selected
+     and count yellow, so a wheat card and a count on it melted together. A
+     deeper ochre, on the UI card face only: the board's terrain colours are
+     untouched (lib/board3d pins them). */
+  --card-wheat: #e9a92b;
+  /* The Knights event die's ship face. */
+  --event-ship: #1c2b4a;
+  /* Type on a flat disabled face, AA on --pb-disabled in either theme. */
+  --hud-disabled-ink: #545a78;
+  --pb-yellow: #ffd84a;
+  --pb-navy: #1b1f3b;
+  --pb-red: #c0283a;
+  --pb-green: #1b7f46;
+}
+.dark {
+  /* A step lighter than the navy at night, so it separates from a dark panel
+     and its white glyph still clears 5:1. */
+  --event-ship: #4b5aa8;
+  --hud-disabled-ink: #d3d8e6;
+}
+
+/* ---------------------------------------------------------------------------
+   1. Image cards (development and progress cards, the reveal, the sheet).
+   The art is full-bleed, so a keyline drawn as the element's own inset shadow
+   sat under it. It is drawn on ::after, above the art, instead.
+   ------------------------------------------------------------------------ */
+.hud-card-frame {
+  box-shadow: none;
+}
+.hud-card-frame:not(.absolute, .fixed, .sticky) {
+  position: relative;
+}
+.hud-card-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: var(--pb-piece);
+  pointer-events: none;
+  /* Above a progress card's deck band (z-index 10). */
+  z-index: 11;
+}
+/* An <img> has no ::after; its outline paints above the image. */
+img.hud-card-frame {
+  outline: 2px solid var(--pb-edge);
+  outline-offset: -2px;
+}
+.hud-lift.hud-card-frame:hover:not(:disabled):not([aria-disabled="true"]) {
+  box-shadow: none;
+}
+.hud-lift.hud-card-frame:hover:not(:disabled):not([aria-disabled="true"])::after {
+  box-shadow: var(--pb-piece-hover);
+}
+/* A victory point card held: its one outline in green, no second ring. */
+.hud-card-frame[data-held="true"]::after,
+.hud-card-frame.ring-inset.ring-green::after {
+  box-shadow:
+    inset 0 0 0 3px var(--pb-green),
+    inset 0 -2px 0 3px var(--pb-green);
+}
+/* Focus on an image card is the same outline in the focus colour. */
+.hud-card-frame:focus-visible {
+  outline: none;
+}
+.hud-card-frame:focus-visible::after {
+  box-shadow:
+    inset 0 0 0 3px var(--hud-focus),
+    inset 0 -2px 0 3px var(--hud-focus);
+}
+
+/* ---------------------------------------------------------------------------
+   2. Dice. The dock's are pieces (index.css); the log's inline dice are print
+   with a 1px ink keyline so a white die reads on the white panel.
+   ------------------------------------------------------------------------ */
+[data-die="inline"] {
+  box-shadow: 0 0 0 1px var(--pb-edge) !important;
+}
+/* The rolled total beside the log's dice: ink, not muted. */
+[data-die="inline"] + .text-muted.font-num {
+  color: var(--hud-ink);
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------------------
+   3 and 4. No fades. Dimmed and disabled things are flat grey and opaque.
+   ------------------------------------------------------------------------ */
+/* A dimmed resource card (none left to stage, an unaffordable pick): the flat
+   disabled face, the art grey, the name muted. Its yellow count stays. */
+[data-res-card][data-dimmed="true"] .hud-card-face,
+[data-res-card][data-dimmed="true"] .hud-card-back {
+  background: var(--pb-disabled);
+}
+[data-res-card][data-dimmed="true"] .hud-card-well img,
+[data-res-card][data-dimmed="true"] .hud-card-well svg {
+  filter: grayscale(1);
+}
+[data-res-card][data-dimmed="true"] .hud-card-label {
+  color: #545a78;
+}
+
+/* A resource card picked in a trade or levy picker: its name strip fills
+   yellow and the card stands lifted. No ring. */
+[data-res-card][data-selected="true"] {
+  translate: 0 -2px;
+}
+[data-res-card][data-selected="true"] .hud-card-face {
+  box-shadow: var(--pb-piece-hover);
+}
+[data-res-card][data-selected="true"] .hud-card-label {
+  background: var(--pb-yellow);
+  color: var(--pb-navy);
+}
+
+/* Empty hand: one back, in the disabled grey, opaque. The fade is an inline
+   style. */
+.hud-fan[style*="opacity"] {
+  opacity: 1 !important;
+}
+.hud-fan[style*="opacity"] > i {
+  background: var(--pb-disabled);
+}
+
+/* An award this seat does not hold: muted print on the well, not a faded
+   copy on nothing. */
+span[data-held="false"].rounded-md {
+  background: var(--hud-well);
+  color: var(--hud-muted);
+  border-color: transparent;
+}
+
+/* A disabled orb keeps its glyph opaque, in the muted ink. */
+[data-hud-orb]:disabled > * {
+  opacity: 1;
+}
+[data-hud-orb]:disabled {
+  color: var(--hud-muted);
+}
+/* An open orb is a held toggle: the selected yellow. */
+[data-hud-orb][data-active="true"],
+[data-hud-orb][data-active="true"]:hover {
+  background: var(--pb-yellow);
+  color: var(--pb-navy);
+}
+
+/* A toggle that is on and also disabled reads as disabled, not selected. */
+.hud-btn[data-pressed="true"]:disabled {
+  background: var(--pb-disabled);
+  color: var(--hud-disabled-ink);
+  translate: 0 2px;
+  box-shadow: var(--pb-piece-down);
+}
+
+/* A deck with no cards left: the flat disabled face, grey art, a red 0. */
+button[data-empty="true"] .hud-card-face {
+  background: var(--pb-disabled);
+}
+button[data-empty="true"] .hud-card-well > * {
+  filter: grayscale(1);
+}
+button[data-empty="true"] .hud-card-label {
+  color: #545a78;
+}
+button[data-empty="true"] .hud-card-badge {
+  background: var(--pb-red);
+  color: #ffffff;
+}
+
+/* ---------------------------------------------------------------------------
+   5. Counts. Every yellow count carries a 1.5px ink keyline, so it never
+   melts into a yellow face (a selected tile, the active seat's strip, wheat).
+   ------------------------------------------------------------------------ */
+.hud-badge,
+.hud-card-badge,
+.hud-left {
+  box-shadow: inset 0 0 0 1.5px var(--pb-edge);
+}
+/* The same for an award chip on the active seat's yellow strip. */
+.hud-seat[data-active="true"] [data-identity] span[data-held="true"] {
+  box-shadow: inset 0 0 0 1.5px var(--pb-edge);
+}
+
+/* ---------------------------------------------------------------------------
+   6. Build tiles. ok / short (no money) / lock (any other reason) / out.
+   ------------------------------------------------------------------------ */
+.hud-tile-name {
+  font-weight: 700;
+  color: var(--hud-tile-ink);
+}
+.hud-tile[data-state="lock"] .hud-tile-name,
+.hud-tile[data-state="out"] .hud-tile-name {
+  color: var(--hud-tile-muted);
+}
+/* Short is a legal move you cannot pay for yet: the art stays in colour and
+   the price says what is missing. Below sm the tile prints no price, so the
+   art greys there instead. */
+@media (min-width: 40rem) {
+  .hud-tile[data-state="short"] .hud-tile-art {
+    filter: none;
+  }
+}
+/* A kind you are short of is drawn as its silhouette: the shape of what you
+   need with nothing in it, a flat mid grey, and its count in the muted ink.
+   No red: a short price is a normal state (every price is short at the start
+   of a game), and a red chip on each one read as an error. The grey is set by
+   a filter (black, then lifted), so it is solid and needs no second asset;
+   the dark theme's tile is the same light stock, so it takes a slightly
+   deeper grey to hold the same contrast against the darker page. */
+.hud-cc[data-short="true"]::after {
+  display: none;
+}
+.hud-cc[data-short="true"] img {
+  filter: brightness(0) invert(0.62);
+}
+.dark .hud-cc[data-short="true"] img {
+  filter: brightness(0) invert(0.45);
+}
+.hud-cc[data-short="true"] > sub {
+  color: var(--hud-tile-muted);
+}
+/* Locked: a small lock printed in the corner. */
+[data-lock-chip] {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: var(--hud-tile-frame);
+  color: var(--hud-tile-ink);
+}
+/* Out of pieces: flat grey and the red 0, no hatching. */
+.hud-tile[data-state="out"] {
+  background: var(--pb-disabled);
+}
+.dark .hud-tile[data-state="out"] .hud-tile-name {
+  color: var(--hud-disabled-ink);
+}
+/* A free build or level: a green chip with white type. */
+[data-free] {
+  display: inline-block;
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: var(--pb-green);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ---------------------------------------------------------------------------
+   7. The seat on the clock: its normal ink outline, and a yellow strip behind
+   its name row. The strip is drawn under the content and clipped by the
+   panel; the outline is redrawn above it, on the panel's ::after.
+   ------------------------------------------------------------------------ */
+.hud-seat[data-active="true"]::after {
+  box-shadow: var(--pb-piece);
+}
+.hud-seat[data-active="true"] [data-identity] {
+  position: relative;
+  color: var(--pb-navy);
+}
+.hud-seat[data-active="true"] [data-identity]::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  /* Starts at the inner edge of the 2px keyline, so its anti-aliased corner
+     never shows outside the outline. */
+  top: -12px;
+  bottom: -2px;
+  left: -12px;
+  right: -12px;
+  border-radius: 8px 8px 0 0;
+  background: var(--pb-yellow);
+  pointer-events: none;
+}
+.hud-seat[data-active="true"]
+  [data-identity]
+  :is(.hud-vp, .hud-lab, .text-muted, .text-foreground) {
+  color: var(--pb-navy);
+}
+
+/* ---------------------------------------------------------------------------
+   8. The turn banner: yours is yellow with heavier type; theirs is neutral.
+   ------------------------------------------------------------------------ */
+[data-turn-banner][data-mine="true"] {
+  background: var(--pb-yellow);
+  color: var(--pb-navy);
+  font-weight: 700;
+}
+
+/* ---------------------------------------------------------------------------
+   9. Phones.
+   ------------------------------------------------------------------------ */
+/* The sideways turn row's dice wobble sideways only: the rotating wobble
+   swings a quarter of its width and the panel edge clipped the first die. */
+[data-wobble="flat"].animate__wobble {
+  animation-name: pb-wobble-flat;
+}
+@keyframes pb-wobble-flat {
+  0%,
+  100% {
+    transform: none;
+  }
+  15% {
+    transform: translateX(-3px);
+  }
+  30% {
+    transform: translateX(3px);
+  }
+  45% {
+    transform: translateX(-2px);
+  }
+  60% {
+    transform: translateX(2px);
+  }
+  75% {
+    transform: translateX(-1px);
+  }
+}
+/* The sideways End turn: 12px type with 10px sides, and the short label once
+   the button is under 96px, so the words never touch its edges. */
+[data-end-turn="row"] {
+  container-type: inline-size;
+  padding-inline: 10px;
+  font-size: 12px;
+}
+[data-end-label="short"] {
+  display: none;
+}
+@container (max-width: 95.98px) {
+  [data-end-label="long"] {
+    display: none;
+  }
+  [data-end-label="short"] {
+    display: inline;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   10. Over the hand limit: solid red, white type and icon.
+   ------------------------------------------------------------------------ */
+.hud-chip[data-hot="true"] {
+  background: var(--pb-red);
+  color: #ffffff;
+}
+.hud-root .hud-chip[data-hot="true"] > span,
+.hud-chip[data-hot="true"] > span:last-child {
+  color: #ffffff;
+}
+.hud-chip[data-hot="true"] .hud-fan > i {
+  background: #ffffff;
+  box-shadow: 0 0 0 1px var(--pb-red);
+}
+
+/* ---------------------------------------------------------------------------
+   11. Chat senders: bold ink after a dot in their colour.
+   ------------------------------------------------------------------------ */
+[data-chat-name] {
+  color: var(--hud-ink);
+  font-weight: 700;
+}
+[data-chat-dot] {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 4px;
+  border-radius: 9999px;
+  vertical-align: 0.05em;
+  background: var(--swatch);
+  box-shadow: inset 0 0 0 1.5px var(--pb-edge);
+}
+
+/* ---------------------------------------------------------------------------
+   12. A bank pile's rate is print: the well by default, green when better.
+   ------------------------------------------------------------------------ */
+.hud-rate-mark {
+  border: 0;
+  box-shadow: none;
+  background: var(--hud-well);
+  color: var(--hud-ink);
+}
+.hud-rate-mark[data-better="true"] {
+  background: var(--pb-green);
+  color: #ffffff;
+}
+
+/* ---------------------------------------------------------------------------
+   13. Off-palette reds.
+   ------------------------------------------------------------------------ */
+[data-unread-dot] {
+  background: #d7263d;
+  border-color: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--pb-edge);
+}
+/* The timer's red tier; its colour is an inline style. */
+.seat-timer [data-tier="red"] {
+  background: var(--pb-red) !important;
+}
+
+/* ---------------------------------------------------------------------------
+   14. A dialog's sticky footer covers the dialog's bottom edge, so it draws
+   that part of the piece itself. (A ::after on the dialog would scroll with
+   its content: the dialog is the scroller.) The footer reaches the padding
+   box's sides and bottom, where the dialog's inset keyline is drawn, so the
+   two line up whether the footer is stuck or resting.
+   ------------------------------------------------------------------------ */
+.hud-dialog > .hud-dialog-foot {
+  /* Its transparent top border would otherwise paint the fill across the
+     dialog's keyline as a 1px tick. */
+  background-clip: padding-box;
+  border-radius: 0 0 11px 11px;
+  /* Sides 2px and a 4px bottom edge in one shadow (shrunk by 2, raised by
+     2), so the edge meets the sides with one smooth inner corner and no top
+     line is drawn. */
+  box-shadow: inset 0 -2px 0 2px var(--pb-deep);
+}
+
+/* ---------------------------------------------------------------------------
+   15. One hover lift for HUD pieces: up 2px, a 6px edge.
+   ------------------------------------------------------------------------ */
+.hud-lift:hover:not(:disabled):not([aria-disabled="true"]) {
+  transform: none;
+  translate: 0 -2px;
+}
+.hud-lift:hover:not(:disabled):not([aria-disabled="true"]) .hud-card-face,
+.hud-lift.hud-tile:hover:not(:disabled):not([aria-disabled="true"]) {
+  box-shadow: var(--pb-piece-hover);
+}
+.hud-seatpick:hover:not(:disabled) {
+  filter: none;
+  translate: 0 -2px;
+  box-shadow: var(--pb-piece-hover);
+}
+
+/* ---------------------------------------------------------------------------
+   16. Seat picker: pressed is the selected yellow, the ring is the seat's own
+   colour at night, and a disabled seat is flat grey with readable type.
+   ------------------------------------------------------------------------ */
+.hud-seatpick:active:not(:disabled),
+.hud-seatpick[aria-pressed="true"] {
+  translate: 0 2px;
+  background: var(--pb-yellow);
+  color: var(--pb-navy);
+  box-shadow: var(--pb-piece-down);
+}
+.hud-seatpick:active:not(:disabled) .text-muted,
+.hud-seatpick[aria-pressed="true"] .text-muted {
+  color: var(--pb-navy);
+}
+.dark .hud-seatpick-well {
+  box-shadow: 0 0 0 3px var(--pc);
+}
+.hud-seatpick:disabled {
+  opacity: 1;
+  translate: 0 2px;
+  background: var(--pb-disabled);
+  color: var(--hud-disabled-ink);
+  box-shadow: var(--pb-piece-down);
+}
+.hud-seatpick:disabled .text-muted {
+  color: var(--hud-disabled-ink);
+}
+.hud-seatpick:disabled .hud-seatpick-well {
+  box-shadow: 0 0 0 3px var(--hud-disabled-ink);
+}
+.hud-seatpick:disabled .hud-seatpick-well > * {
+  filter: grayscale(1);
+}
+
+/* ---------------------------------------------------------------------------
+   17. The dialog scrim at night is lighter than the ink, so a dark dialog's
+   outline still shows against it.
+   ------------------------------------------------------------------------ */
+.dark .hud-dim {
+  background: rgb(22 30 68 / 0.7);
+}
+
+/* A tile you are placing right now (a setup road) is selected, whatever its
+   state: no lock, art in colour. */
+.hud-tile[data-selected="true"] [data-lock-chip] {
+  display: none;
+}
+.hud-tile[data-selected="true"] .hud-tile-art {
+  filter: none;
+}
+.hud-tile[data-selected="true"] .hud-tile-name {
+  color: var(--hud-tile-ink);
+}
+
+/* A price's count belongs to its icon: until the icon has loaded (the slot is
+   blank, not a placeholder) the count is held back too, so a tile never
+   prints a bare "x2". Hidden, not removed, so nothing moves when it lands. */
+.hud-cc:not(:has(img)) > sub {
+  visibility: hidden;
+}

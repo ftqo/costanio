@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Apply the saved theme before first paint to avoid a flash of the wrong
+      // theme. Mirrors lib/theme.ts.
+      //
+      // color-scheme sets the browser's own canvas, scrollbars and controls,
+      // which would otherwise flash white. index.css declares it too, but this
+      // runs before the stylesheet loads.
+      (function () {
+        try {
+          var p = localStorage.getItem("theme") || "system";
+          var dark = p === "dark" || (p === "system" && matchMedia("(prefers-color-scheme: dark)").matches);
+          if (dark) document.documentElement.classList.add("dark");
+          document.documentElement.style.colorScheme = dark ? "dark" : "light";
+        } catch (e) {}
+        // Same for the language: `lang` picks the font stack (see the :lang()
+        // blocks in index.css), so a wrong first frame would reflow.
+        //
+        // This mirrors resolveLocale in lib/i18n.ts (stored choice, then ?lang=,
+        // then navigator.languages, then en), including dropping subtags and
+        // refusing to serve Traditional Chinese as Simplified. lib/i18n.ts
+        // re-stamps the attribute shortly after and is authoritative.
+        // i18n.test.ts asserts this list matches LOCALES.
+        try {
+          var LOCALES = ["en", "zh-Hans", "ja", "de", "es", "fr", "pt-BR", "it", "nl", "tr", "uk", "ru", "pl", "hu", "cs", "sv", "hi", "vi"];
+          var match = function (tag) {
+            if (!tag) return null;
+            var t = String(tag).trim().toLowerCase().replace(/_/g, "-");
+            var i;
+            for (i = 0; i < LOCALES.length; i++) if (LOCALES[i].toLowerCase() === t) return LOCALES[i];
+            var parts = t.split("-");
+            if (parts[0] === "zh") {
+              // An explicit script subtag settles it; the region is consulted
+              // only when there is none (so zh-Hans-HK is Simplified). Mirrors
+              // matchLocale in lib/i18n.ts.
+              var script = parts.indexOf("hans") > 0 ? "hans" : parts.indexOf("hant") > 0 ? "hant" : null;
+              var hant = script ? script === "hant" : ["tw", "hk", "mo"].some(function (r) { return parts.indexOf(r) > 0; });
+              return hant ? null : "zh-Hans";
+            }
+            for (i = 0; i < LOCALES.length; i++) {
+              if (LOCALES[i].toLowerCase().split("-")[0] === parts[0]) return LOCALES[i];
+            }
+            return null;
+          };
+          var stored = localStorage.getItem("costan.lang");
+          var lang = LOCALES.indexOf(stored) >= 0 ? stored : null;
+          if (!lang) lang = match(new URLSearchParams(location.search).get("lang"));
+          if (!lang) {
+            var nav = navigator.languages || (navigator.language ? [navigator.language] : []);
+            for (var n = 0; n < nav.length && !lang; n++) lang = match(nav[n]);
+          }
+          if (lang) document.documentElement.lang = lang;
+          // Start the catalogue fetch now. LocaleProvider holds the first paint
+          // until it lands, and as a dynamic import its URL is otherwise only
+          // known after the entry chunk runs. The map is injected at build time
+          // by the costan-catalog-preload plugin in vite.config.ts (the chunk
+          // names are hashed); in dev it is absent and this does nothing.
+          var catalogs = window.__COSTAN_CATALOGS__;
+          var href = catalogs && catalogs[lang || "en"];
+          if (href) {
+            var pre = document.createElement("link");
+            pre.rel = "modulepreload";
+            pre.href = href;
+            document.head.appendChild(pre);
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <title>Costan.io | Free Online Settlement and Trading Game</title>
+    <meta
+      name="description"
+      content="Free online settlement and trading game. Play 2 to 10 players in your browser with the Knights and Islands expansions, or practice against bots. No download."
+    />
+    <meta name="theme-color" content="#1159c1" />
+    <!-- Favicons. Browsers prefer the SVG; the .ico (16/32/48) is for engines
+         that request /favicon.ico blind, and the touch icon is square because
+         iOS masks the corners. The sheep sits on a sea tile so the near-white
+         wool shows on light browser chrome. -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <!-- Link previews.
+
+         1. og:image and og:url must be absolute: unfurlers fetch with no page
+            context.
+         2. Every SPA route serves this same index.html (see public/_redirects),
+            so a shared /game/<id> link unfurls as the homepage.
+
+         og:image is the animated GIF, which Discord plays inline; twitter:image
+         is the static 1200x630 plate, because X freezes a GIF at frame one and
+         prefers twitter:image. og:-only readers show the GIF's first frame. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Costan.io" />
+    <meta property="og:url" content="https://costan.io/" />
+    <meta property="og:title" content="Costan.io | Free Online Settlement and Trading Game" />
+    <meta
+      property="og:description"
+      content="Trade, build, and settle in your browser. 2 to 10 players, the Knights and Islands expansions, bots to practice against, and nothing to download."
+    />
+    <meta property="og:image" content="https://costan.io/og-image.gif" />
+    <meta property="og:image:type" content="image/gif" />
+    <meta property="og:image:width" content="833" />
+    <meta property="og:image:height" content="509" />
+    <meta property="og:image:alt" content="A game in progress: the robber sits on a pasture hex, ringed by roads and settlements." />
+    <meta property="og:locale" content="en_US" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Costan.io | Free Online Settlement and Trading Game" />
+    <meta
+      name="twitter:description"
+      content="Trade, build, and settle in your browser. 2 to 10 players, the Knights and Islands expansions, bots to practice against, and nothing to download."
+    />
+    <meta name="twitter:image" content="https://costan.io/og-image.png" />
+    <meta name="twitter:image:alt" content="The Costan.io sheep beside the wordmark, over a hex board pattern." />
+    <!-- Fonts are self-hosted (see @font-face in src/index.css) because the
+         Discord Activity's CSP blocks external origins. Preload the latin
+         subsets of the text face (Nunito) and display face (Baloo 2); other
+         subsets load by unicode-range. -->
+    <link rel="preload" href="/fonts/nunito-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/baloo2-latin.woff2" as="font" type="font/woff2" crossorigin />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

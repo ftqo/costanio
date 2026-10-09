@@ -1,0 +1,94 @@
+{
+  "grounds": {
+    "hills": {
+      "terrain": "Hills",
+      "file": "frontend/public/models/tiles/brick.glb"
+    },
+    "forest": {
+      "terrain": "Forest",
+      "file": "frontend/public/models/tiles/wood.glb"
+    },
+    "pasture": {
+      "terrain": "Pasture",
+      "file": "frontend/public/models/tiles/sheep.glb"
+    },
+    "fields": {
+      "terrain": "Fields",
+      "file": "frontend/public/models/tiles/wheat.glb"
+    },
+    "mountains": {
+      "terrain": "Mountains",
+      "file": "frontend/public/models/tiles/ore.glb"
+    },
+    "desert": {
+      "terrain": "Desert",
+      "file": "frontend/public/models/tiles/none.glb"
+    },
+    "swamp": {
+      "terrain": "Swamp",
+      "file": "frontend/public/models/tiles/swamp.glb"
+    },
+    "lake": {
+      "terrain": "Lake",
+      "file": "frontend/public/models/tiles/lake.glb"
+    }
+  },
+  "trade": {
+    "margin": {
+   "forest": {
+    "Mat_Pasture_mud": "Mat_Forest_trail_dk",
+    "Mat_Pasture_grass_dk": "Mat_Forest_floor_shade"
+   },
+   "fields": {
+    "Mat_Pasture_mud": "Mat_Fields_plough_dk",
+    "Mat_Pasture_grass_dk": "Mat_Fields_fallow_dk"
+   }
+  },
+  "spots": "art/trade/parts/spots.json",
+    "layouts": {
+      "W": "art/trade/parts/town_w.glb",
+      "SW": "art/trade/parts/town_sw.glb"
+    },
+    "lake": "art/trade/parts/laketown_{dir}.glb",
+    "shared": "art/trade/parts/town_tile.glb",
+    "yard": {
+      "hills": "Mat_Hills_path",
+      "forest": "Mat_Forest_trail",
+      "pasture": "Mat_Pasture_dirt",
+      "fields": "Mat_Fields_track",
+      "mountains": "Mat_Mountains_scree_warm",
+      "desert": "Mat_Desert_gravel",
+      "swamp": "Mat_Swamp_peat",
+      "lake": "Mat_Pasture_dirt"
+    }
+  },
+  "river": {
+    "template": "frontend/public/models/tiles/river_pasture_{shape}.glb",
+    "templateGround": "pasture",
+    "swap": {
+      "forest": {
+        "Mat_Pasture_mud": "Mat_Forest_trail_dk",
+        "Mat_Pasture_dirt": "Mat_Forest_trail",
+        "Mat_Pasture_reed": "Mat_Forest_fern",
+        "Mat_Pasture_hedge_dk": "Mat_Forest_shrub"
+      },
+      "fields": {
+        "Mat_Pasture_mud": "Mat_Fields_plough_dk",
+        "Mat_Pasture_dirt": "Mat_Fields_plough_lt",
+        "Mat_Pasture_reed": "Mat_Fields_hedge",
+        "Mat_Pasture_hedge_dk": "Mat_Fields_hedge_dk"
+      }
+    },
+    "margin": {
+      "forest": {
+        "Mat_Pasture_mud": "Mat_Forest_trail_dk",
+        "Mat_Pasture_grass_dk": "Mat_Forest_floor_shade"
+      },
+      "fields": {
+        "Mat_Pasture_mud": "Mat_Fields_plough_dk",
+        "Mat_Pasture_grass_dk": "Mat_Fields_fallow_dk"
+      }
+    },
+    "spots": "art/trade/parts/spots.json"
+  }
+}

@@ -1,0 +1,511 @@
+{
+  "seq": 538,
+  "viewer": 0,
+  "config": {
+    "players": 3,
+    "target_vp": 13,
+    "discard_limit": 7,
+    "turn_timer_sec": 600,
+    "ruleset": "base+cak+fishermen+rivers",
+    "board": {
+      "radius": 2,
+      "tiles": [
+        { "hex": { "q": -2, "r": 0 }, "res": "land", "num": 0 },
+        { "hex": { "q": -2, "r": 1 }, "res": "land", "num": 0 },
+        { "hex": { "q": -2, "r": 2 }, "res": "land", "num": 0 },
+        { "hex": { "q": -1, "r": -1 }, "res": "land", "num": 0 },
+        { "hex": { "q": -1, "r": 0 }, "res": "land", "num": 0 },
+        { "hex": { "q": -1, "r": 1 }, "res": "land", "num": 0 },
+        { "hex": { "q": -1, "r": 2 }, "res": "land", "num": 0 },
+        { "hex": { "q": 0, "r": -2 }, "res": "land", "num": 0 },
+        { "hex": { "q": 0, "r": -1 }, "res": "land", "num": 0 },
+        { "hex": { "q": 0, "r": 0 }, "res": "land", "num": 0 },
+        { "hex": { "q": 0, "r": 1 }, "res": "land", "num": 0 },
+        { "hex": { "q": 0, "r": 2 }, "res": "land", "num": 0 },
+        { "hex": { "q": 1, "r": -2 }, "res": "land", "num": 0 },
+        { "hex": { "q": 1, "r": -1 }, "res": "land", "num": 0 },
+        { "hex": { "q": 1, "r": 0 }, "res": "land", "num": 0 },
+        { "hex": { "q": 1, "r": 1 }, "res": "land", "num": 0 },
+        { "hex": { "q": 2, "r": -2 }, "res": "land", "num": 0 },
+        { "hex": { "q": 2, "r": -1 }, "res": "land", "num": 0 },
+        { "hex": { "q": 2, "r": 0 }, "res": "land", "num": 0 }
+      ],
+      "robber": { "q": 0, "r": 0 },
+      "harbors": null
+    },
+    "dice_mode": "random",
+    "board_mode": "fair"
+  },
+  "phase": "play",
+  "cur": 0,
+  "setup_round": 1,
+  "need_road": false,
+  "rolled": true,
+  "robber_pending": false,
+  "board": {
+    "radius": 2,
+    "tiles": [
+      { "hex": { "q": -2, "r": 0 }, "res": "wood", "num": 10 },
+      { "hex": { "q": -2, "r": 1 }, "res": "wood", "num": 3 },
+      { "hex": { "q": -2, "r": 2 }, "res": "wheat", "num": 9 },
+      { "hex": { "q": -1, "r": -1 }, "res": "brick", "num": 8 },
+      { "hex": { "q": -1, "r": 0 }, "res": "wheat", "num": 5 },
+      { "hex": { "q": -1, "r": 1 }, "res": "wheat", "num": 8 },
+      { "hex": { "q": -1, "r": 2 }, "res": "brick", "num": 4 },
+      { "hex": { "q": 0, "r": -2 }, "res": "swamp", "num": 0 },
+      { "hex": { "q": 0, "r": -1 }, "res": "wheat", "num": 4 },
+      { "hex": { "q": 0, "r": 0 }, "res": "sheep", "num": 11 },
+      { "hex": { "q": 0, "r": 1 }, "res": "ore", "num": 5 },
+      { "hex": { "q": 0, "r": 2 }, "res": "sheep", "num": 6 },
+      { "hex": { "q": 1, "r": -2 }, "res": "sheep", "num": 10 },
+      { "hex": { "q": 1, "r": -1 }, "res": "brick", "num": 3 },
+      { "hex": { "q": 1, "r": 0 }, "res": "wood", "num": 6 },
+      { "hex": { "q": 1, "r": 1 }, "res": "sheep", "num": 11 },
+      { "hex": { "q": 2, "r": -2 }, "res": "wood", "num": 9 },
+      { "hex": { "q": 2, "r": -1 }, "res": "lake", "num": 0 },
+      { "hex": { "q": 2, "r": 0 }, "res": "ore", "num": 12 }
+    ],
+    "robber": { "q": 0, "r": 2 },
+    "harbors": [
+      {
+        "verts": [
+          { "q": -3, "r": 1, "side": 0 },
+          { "q": -2, "r": -1, "side": 1 }
+        ],
+        "ratio": 3,
+        "res": "none"
+      },
+      {
+        "verts": [
+          { "q": -1, "r": -2, "side": 1 },
+          { "q": -1, "r": -1, "side": 0 }
+        ],
+        "ratio": 2,
+        "res": "wheat"
+      },
+      {
+        "verts": [
+          { "q": 0, "r": -2, "side": 0 },
+          { "q": 1, "r": -3, "side": 1 }
+        ],
+        "ratio": 3,
+        "res": "none"
+      },
+      {
+        "verts": [
+          { "q": 2, "r": -2, "side": 0 },
+          { "q": 3, "r": -3, "side": 1 }
+        ],
+        "ratio": 2,
+        "res": "sheep"
+      },
+      {
+        "verts": [
+          { "q": 2, "r": 0, "side": 0 },
+          { "q": 3, "r": -2, "side": 1 }
+        ],
+        "ratio": 3,
+        "res": "none"
+      },
+      {
+        "verts": [
+          { "q": 2, "r": 0, "side": 1 },
+          { "q": 2, "r": 1, "side": 0 }
+        ],
+        "ratio": 2,
+        "res": "ore"
+      },
+      {
+        "verts": [
+          { "q": 0, "r": 2, "side": 1 },
+          { "q": 0, "r": 3, "side": 0 }
+        ],
+        "ratio": 2,
+        "res": "wood"
+      },
+      {
+        "verts": [
+          { "q": -2, "r": 3, "side": 0 },
+          { "q": -1, "r": 2, "side": 1 }
+        ],
+        "ratio": 3,
+        "res": "none"
+      },
+      {
+        "verts": [
+          { "q": -3, "r": 3, "side": 0 },
+          { "q": -2, "r": 1, "side": 1 }
+        ],
+        "ratio": 2,
+        "res": "brick"
+      }
+    ]
+  },
+  "bank": [0, 17, 16, 17, 16, 18],
+  "players": [
+    {
+      "seat": 0,
+      "hand_count": 4,
+      "hand": [0, 0, 2, 1, 1, 0],
+      "roads_left": 10,
+      "settlements_left": 3,
+      "cities_left": 4,
+      "dev_count": 0,
+      "dev_cards": [0, 0, 0, 0, 0],
+      "new_dev_cards": [0, 0, 0, 0, 0],
+      "knights_played": 0,
+      "route_length": 3,
+      "vp": 2,
+      "public_vp": 2,
+      "discard_at": 7
+    },
+    {
+      "seat": 1,
+      "hand_count": 2,
+      "roads_left": 9,
+      "settlements_left": 5,
+      "cities_left": 2,
+      "dev_count": 0,
+      "knights_played": 0,
+      "route_length": 5,
+      "vp": 8,
+      "public_vp": 8,
+      "discard_at": 9
+    },
+    {
+      "seat": 2,
+      "hand_count": 5,
+      "roads_left": 12,
+      "settlements_left": 3,
+      "cities_left": 4,
+      "dev_count": 0,
+      "knights_played": 0,
+      "route_length": 4,
+      "vp": 0,
+      "public_vp": 0,
+      "discard_at": 7
+    }
+  ],
+  "buildings": [
+    { "v": { "q": -1, "r": -1, "side": 1 }, "owner": 1, "city": true },
+    { "v": { "q": -1, "r": 0, "side": 1 }, "owner": 0, "city": false },
+    { "v": { "q": -1, "r": 2, "side": 0 }, "owner": 0, "city": false },
+    { "v": { "q": 0, "r": -2, "side": 1 }, "owner": 2, "city": false },
+    { "v": { "q": 0, "r": 1, "side": 0 }, "owner": 2, "city": false },
+    { "v": { "q": 0, "r": 2, "side": 0 }, "owner": 1, "city": true }
+  ],
+  "roads": [
+    {
+      "e": { "a": { "q": -1, "r": -1, "side": 1 }, "b": { "q": -1, "r": 0, "side": 0 } },
+      "owner": 1
+    },
+    {
+      "e": { "a": { "q": -1, "r": 0, "side": 0 }, "b": { "q": 0, "r": -2, "side": 1 } },
+      "owner": 2
+    },
+    {
+      "e": { "a": { "q": -1, "r": 0, "side": 0 }, "b": { "q": 0, "r": -1, "side": 1 } },
+      "owner": 1
+    },
+    {
+      "e": { "a": { "q": -1, "r": 0, "side": 1 }, "b": { "q": -1, "r": 1, "side": 0 } },
+      "owner": 0
+    },
+    {
+      "e": { "a": { "q": -1, "r": 1, "side": 0 }, "b": { "q": 0, "r": -1, "side": 1 } },
+      "owner": 0
+    },
+    {
+      "e": { "a": { "q": -1, "r": 2, "side": 0 }, "b": { "q": 0, "r": 0, "side": 1 } },
+      "owner": 0
+    },
+    {
+      "e": { "a": { "q": -1, "r": 2, "side": 0 }, "b": { "q": 0, "r": 1, "side": 1 } },
+      "owner": 0
+    },
+    {
+      "e": { "a": { "q": -1, "r": 3, "side": 0 }, "b": { "q": 0, "r": 1, "side": 1 } },
+      "owner": 0
+    },
+    {
+      "e": { "a": { "q": 0, "r": -1, "side": 1 }, "b": { "q": 0, "r": 0, "side": 0 } },
+      "owner": 1
+    },
+    {
+      "e": { "a": { "q": 0, "r": 0, "side": 0 }, "b": { "q": 1, "r": -2, "side": 1 } },
+      "owner": 1
+    },
+    { "e": { "a": { "q": 0, "r": 1, "side": 0 }, "b": { "q": 1, "r": 0, "side": 1 } }, "owner": 2 },
+    { "e": { "a": { "q": 0, "r": 1, "side": 1 }, "b": { "q": 0, "r": 2, "side": 0 } }, "owner": 1 },
+    { "e": { "a": { "q": 0, "r": 2, "side": 0 }, "b": { "q": 1, "r": 1, "side": 1 } }, "owner": 1 },
+    { "e": { "a": { "q": 1, "r": 0, "side": 1 }, "b": { "q": 1, "r": 1, "side": 0 } }, "owner": 2 }
+  ],
+  "ext": {
+    "cak": {
+      "players": [
+        {
+          "commodity_count": 0,
+          "commodities": [0, 0, 0],
+          "improve": [0, 0, 0],
+          "progress_count": 0,
+          "metropolis": [false, false, false],
+          "metropolis_at": [
+            { "q": 0, "r": 0, "side": 0 },
+            { "q": 0, "r": 0, "side": 0 },
+            { "q": 0, "r": 0, "side": 0 }
+          ],
+          "walls": 0,
+          "defender_vp": 0,
+          "merchant_vp": 0,
+          "extra_vp": 0,
+          "laid_city": { "q": 0, "r": 0, "side": 0 },
+          "laid_city_active": false
+        },
+        {
+          "commodity_count": 4,
+          "improve": [2, 2, 2],
+          "progress_count": 3,
+          "metropolis": [false, false, false],
+          "metropolis_at": [
+            { "q": 0, "r": 0, "side": 0 },
+            { "q": 0, "r": 0, "side": 0 },
+            { "q": 0, "r": 0, "side": 0 }
+          ],
+          "walls": 1,
+          "defender_vp": 0,
+          "merchant_vp": 1,
+          "extra_vp": 1,
+          "laid_city": { "q": 0, "r": 0, "side": 0 },
+          "laid_city_active": false
+        },
+        {
+          "commodity_count": 0,
+          "improve": [1, 1, 1],
+          "progress_count": 4,
+          "metropolis": [false, false, false],
+          "metropolis_at": [
+            { "q": 0, "r": 0, "side": 0 },
+            { "q": 0, "r": 0, "side": 0 },
+            { "q": 0, "r": 0, "side": 0 }
+          ],
+          "walls": 0,
+          "defender_vp": 0,
+          "merchant_vp": 0,
+          "extra_vp": 0,
+          "laid_city": { "q": 0, "r": 0, "side": 0 },
+          "laid_city_active": false
+        }
+      ],
+      "knights": [
+        {
+          "v": { "q": -1, "r": 0, "side": 0 },
+          "owner": 1,
+          "level": 1,
+          "active": true,
+          "freshly_activated": false,
+          "promoted_this_turn": false
+        },
+        {
+          "v": { "q": 0, "r": -1, "side": 1 },
+          "owner": 1,
+          "level": 2,
+          "active": true,
+          "freshly_activated": false,
+          "promoted_this_turn": false
+        }
+      ],
+      "commodity_supply": [10, 11, 11],
+      "barbarians": 6,
+      "attacks": 2,
+      "merchant": { "q": -1, "r": -1 },
+      "walled": [{ "q": -1, "r": -1, "side": 1 }],
+      "decks": [16, 14, 16],
+      "deserter_victim": -1,
+      "deserter_taker": -1,
+      "reloc_player": -1
+    },
+    "fishermen": {
+      "boot_holder": -1,
+      "grounds": [
+        {
+          "v": [
+            { "q": -3, "r": 1, "side": 0 },
+            { "q": -2, "r": 0, "side": 1 },
+            { "q": -3, "r": 2, "side": 0 }
+          ],
+          "hex": { "q": -3, "r": 1 },
+          "number": 4
+        },
+        {
+          "v": [
+            { "q": -1, "r": -2, "side": 1 },
+            { "q": -2, "r": 0, "side": 0 },
+            { "q": -2, "r": -1, "side": 1 }
+          ],
+          "hex": { "q": -2, "r": -1 },
+          "number": 5
+        },
+        {
+          "v": [
+            { "q": -1, "r": 3, "side": 0 },
+            { "q": 0, "r": 2, "side": 1 },
+            { "q": -1, "r": 2, "side": 1 }
+          ],
+          "hex": { "q": -1, "r": 3 },
+          "number": 6
+        },
+        {
+          "v": [
+            { "q": 1, "r": 2, "side": 0 },
+            { "q": 0, "r": 3, "side": 0 },
+            { "q": 1, "r": 1, "side": 1 }
+          ],
+          "hex": { "q": 1, "r": 2 },
+          "number": 8
+        },
+        {
+          "v": [
+            { "q": 2, "r": -2, "side": 0 },
+            { "q": 2, "r": -3, "side": 1 },
+            { "q": 1, "r": -2, "side": 0 }
+          ],
+          "hex": { "q": 2, "r": -3 },
+          "number": 9
+        },
+        {
+          "v": [
+            { "q": 3, "r": -2, "side": 1 },
+            { "q": 2, "r": -1, "side": 0 },
+            { "q": 3, "r": -3, "side": 1 }
+          ],
+          "hex": { "q": 3, "r": -2 },
+          "number": 10
+        }
+      ],
+      "lake_numbers": [2, 3, 11, 12],
+      "mix": [0, 0, 0],
+      "tiles": [0, 0, 0]
+    },
+    "rivers": {
+      "rivers": [
+        {
+          "hexes": [
+            { "q": 2, "r": 0 },
+            { "q": 1, "r": 1 },
+            { "q": 0, "r": 1 },
+            { "q": 0, "r": 0 },
+            { "q": 1, "r": -1 },
+            { "q": 1, "r": -2 },
+            { "q": 0, "r": -2 }
+          ],
+          "mouth": 6,
+          "in": [
+            { "a": { "q": 1, "r": 1, "side": 0 }, "b": { "q": 2, "r": 0, "side": 1 } },
+            { "a": { "q": 1, "r": 1, "side": 0 }, "b": { "q": 2, "r": 0, "side": 1 } },
+            { "a": { "q": 0, "r": 2, "side": 0 }, "b": { "q": 1, "r": 0, "side": 1 } },
+            { "a": { "q": 0, "r": 0, "side": 1 }, "b": { "q": 0, "r": 1, "side": 0 } },
+            { "a": { "q": 0, "r": 0, "side": 0 }, "b": { "q": 1, "r": -1, "side": 1 } },
+            { "a": { "q": 1, "r": -2, "side": 1 }, "b": { "q": 1, "r": -1, "side": 0 } },
+            { "a": { "q": 0, "r": -1, "side": 0 }, "b": { "q": 1, "r": -3, "side": 1 } }
+          ],
+          "out": [
+            { "a": { "q": 1, "r": 1, "side": 0 }, "b": { "q": 2, "r": 0, "side": 1 } },
+            { "a": { "q": 0, "r": 2, "side": 0 }, "b": { "q": 1, "r": 0, "side": 1 } },
+            { "a": { "q": 0, "r": 0, "side": 1 }, "b": { "q": 0, "r": 1, "side": 0 } },
+            { "a": { "q": 0, "r": 0, "side": 0 }, "b": { "q": 1, "r": -1, "side": 1 } },
+            { "a": { "q": 1, "r": -2, "side": 1 }, "b": { "q": 1, "r": -1, "side": 0 } },
+            { "a": { "q": 0, "r": -1, "side": 0 }, "b": { "q": 1, "r": -3, "side": 1 } },
+            { "a": { "q": -1, "r": -1, "side": 0 }, "b": { "q": 0, "r": -3, "side": 1 } }
+          ],
+          "shapes": ["src_sw", "ne_w", "e_nw", "ne_se", "nw_sw", "w_se", "e_w"],
+          "sites": [
+            { "a": { "q": 1, "r": 1, "side": 0 }, "b": { "q": 2, "r": 0, "side": 1 } },
+            { "a": { "q": 0, "r": 2, "side": 0 }, "b": { "q": 1, "r": 0, "side": 1 } },
+            { "a": { "q": 0, "r": 0, "side": 1 }, "b": { "q": 0, "r": 1, "side": 0 } },
+            { "a": { "q": 0, "r": 0, "side": 0 }, "b": { "q": 1, "r": -1, "side": 1 } },
+            { "a": { "q": 1, "r": -2, "side": 1 }, "b": { "q": 1, "r": -1, "side": 0 } },
+            { "a": { "q": 0, "r": -1, "side": 0 }, "b": { "q": 1, "r": -3, "side": 1 } },
+            { "a": { "q": -1, "r": -1, "side": 0 }, "b": { "q": 0, "r": -3, "side": 1 } }
+          ],
+          "variants": [0, 0, 0, 0, 0, 0, 1]
+        }
+      ],
+      "sites": [
+        { "a": { "q": 1, "r": 1, "side": 0 }, "b": { "q": 2, "r": 0, "side": 1 } },
+        { "a": { "q": 0, "r": 2, "side": 0 }, "b": { "q": 1, "r": 0, "side": 1 } },
+        { "a": { "q": 0, "r": 0, "side": 1 }, "b": { "q": 0, "r": 1, "side": 0 } },
+        { "a": { "q": 0, "r": 0, "side": 0 }, "b": { "q": 1, "r": -1, "side": 1 } },
+        { "a": { "q": 1, "r": -2, "side": 1 }, "b": { "q": 1, "r": -1, "side": 0 } },
+        { "a": { "q": 0, "r": -1, "side": 0 }, "b": { "q": 1, "r": -3, "side": 1 } },
+        { "a": { "q": -1, "r": -1, "side": 0 }, "b": { "q": 0, "r": -3, "side": 1 } }
+      ],
+      "bridges": [
+        {
+          "player": 1,
+          "e": { "a": { "q": 0, "r": 0, "side": 0 }, "b": { "q": 1, "r": -1, "side": 1 } }
+        },
+        {
+          "player": 2,
+          "e": { "a": { "q": 0, "r": 0, "side": 1 }, "b": { "q": 0, "r": 1, "side": 0 } }
+        },
+        {
+          "player": 1,
+          "e": { "a": { "q": 0, "r": 2, "side": 0 }, "b": { "q": 1, "r": 0, "side": 1 } }
+        },
+        {
+          "player": 1,
+          "e": { "a": { "q": 1, "r": -2, "side": 1 }, "b": { "q": 1, "r": -1, "side": 0 } }
+        },
+        {
+          "player": 2,
+          "e": { "a": { "q": 1, "r": 1, "side": 0 }, "b": { "q": 2, "r": 0, "side": 1 } }
+        }
+      ],
+      "coins": [1, 1, 0],
+      "bridges_left": [3, 0, 1],
+      "poorest": [false, false, true],
+      "wealthiest": -1,
+      "poorest_in_play": true,
+      "bridge_supply": 3,
+      "bridge_cost": [0, 1, 2, 0, 0, 0],
+      "coin_per_res": 2,
+      "spends_left": 2,
+      "wealthiest_vp": 1,
+      "poorest_vp": -2
+    }
+  },
+  "dev_deck_count": 25,
+  "played_dev": false,
+  "free_roads": 0,
+  "longest_road": 1,
+  "largest_army": -1,
+  "winner": -1,
+  "legal": {
+    "settlements": [{ "q": -1, "r": 3, "side": 0 }],
+    "cities": [
+      { "q": -1, "r": 0, "side": 1 },
+      { "q": -1, "r": 2, "side": 0 }
+    ],
+    "roads": [
+      { "a": { "q": -2, "r": 1, "side": 0 }, "b": { "q": -1, "r": 0, "side": 1 } },
+      { "a": { "q": -2, "r": 2, "side": 0 }, "b": { "q": -1, "r": 0, "side": 1 } },
+      { "a": { "q": -1, "r": 1, "side": 0 }, "b": { "q": 0, "r": 0, "side": 1 } },
+      { "a": { "q": -1, "r": 1, "side": 1 }, "b": { "q": -1, "r": 2, "side": 0 } },
+      { "a": { "q": -1, "r": 2, "side": 1 }, "b": { "q": -1, "r": 3, "side": 0 } },
+      { "a": { "q": -1, "r": 3, "side": 0 }, "b": { "q": 0, "r": 2, "side": 1 } }
+    ],
+    "knights": [
+      { "q": -1, "r": 1, "side": 0 },
+      { "q": -1, "r": 3, "side": 0 },
+      { "q": 0, "r": 0, "side": 1 },
+      { "q": 0, "r": 1, "side": 1 }
+    ]
+  },
+  "turns_completed": 45,
+  "draw_min_turns": 200,
+  "bots_only": true,
+  "bank_ratios": [0, 4, 4, 4, 4, 4],
+  "good_ratios": { "cloth": 4, "coin": 4, "paper": 4 },
+  "good_maritime_ratios": { "cloth": 4, "coin": 4, "paper": 4 },
+  "seat_names": ["Tester", "Bot B", "Bot Jester"]
+}

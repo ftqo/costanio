@@ -1,0 +1,14 @@
+-- Sessions store SHA-256(token), hex encoded, instead of the bearer token. A
+-- copy of the database (a backup, a restore left on a laptop, a SELECT pasted
+-- into a support thread) then holds nothing a browser can present.
+--
+-- The column is renamed so that no query can keep comparing a raw token
+-- against it by accident: one that was missed fails loudly on a missing column
+-- instead of silently never matching.
+--
+-- The existing rows are rehashed in place by Go in this same transaction
+-- (store.goMigrations -> rehashSessionTokens), because SQLite has no sha256().
+-- Nobody is logged out: the cookie each browser holds still hashes to its row.
+-- The step runs exactly once, atomically with this file and its schema_version
+-- row, so it can never hash a hash.
+ALTER TABLE sessions RENAME COLUMN token TO token_hash;

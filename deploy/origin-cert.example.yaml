@@ -1,0 +1,17 @@
+# Template for the encrypted Cloudflare origin TLS cert. Easiest is the helper,
+# which handles the YAML block-scalar indentation:
+#
+#   deploy/cert-encrypt.sh path/to/origin.pem path/to/origin.key
+#   then install it on the server as /etc/costan/origin-cert.enc.yaml (DEPLOY.md).
+#   The encrypted file is gitignored: it belongs to your deployment, not the repo.
+#
+# (origin.pem / origin.key come from Cloudflare: SSL/TLS > Origin Server, covering
+# your API hostname, e.g. api.example.com.) By hand, each PEM is a YAML block scalar:
+origin_pem: |
+  -----BEGIN CERTIFICATE-----
+  ...your origin certificate...
+  -----END CERTIFICATE-----
+origin_key: |
+  -----BEGIN PRIVATE KEY-----
+  ...your origin private key...
+  -----END PRIVATE KEY-----

@@ -1,0 +1,208 @@
+{
+  "version": 1,
+  "slots": {
+    "devcard_back": {
+      "ext": "webp"
+    },
+    "devcard_knight": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "devcard_monopoly": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "devcard_roadbuilding": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "devcard_swiftjourney": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "devcard_victorypoint": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "devcard_yearofplenty": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "icon_brick": {
+      "ext": "webp"
+    },
+    "icon_cloth": {
+      "ext": "webp"
+    },
+    "icon_coin": {
+      "ext": "webp"
+    },
+    "icon_ore": {
+      "ext": "webp"
+    },
+    "icon_paper": {
+      "ext": "webp"
+    },
+    "icon_sheep": {
+      "ext": "webp"
+    },
+    "icon_wheat": {
+      "ext": "webp"
+    },
+    "icon_wood": {
+      "ext": "webp"
+    },
+    "progress_alchemist": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_bishop": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_commercial_harbor": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_constitution": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_crane": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_deserter": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_diplomat": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_engineer": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_intrigue": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_inventor": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_irrigation": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_master_merchant": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_medicine": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_merchant": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_merchant_fleet": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_mining": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_printer": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_resource_monopoly": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_road_building": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_saboteur": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_smith": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_spy": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_trade_monopoly": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_warlord": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "progress_wedding": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "raiders_intrigue": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "raiders_muster": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "raiders_swift_rider": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "raiders_treason": {
+      "ext": "webp",
+      "untitled": true
+    },
+    "sound_barbarians": {
+      "ext": "mp3"
+    },
+    "sound_dice-0": {
+      "ext": "mp3"
+    },
+    "sound_dice-1": {
+      "ext": "mp3"
+    },
+    "sound_dice-2": {
+      "ext": "mp3"
+    },
+    "sound_dice-3": {
+      "ext": "mp3"
+    },
+    "sound_dice-4": {
+      "ext": "mp3"
+    },
+    "sound_knight_ready": {
+      "ext": "mp3"
+    },
+    "sound_place": {
+      "ext": "mp3"
+    },
+    "sound_seven": {
+      "ext": "mp3"
+    },
+    "sound_start": {
+      "ext": "mp3"
+    },
+    "sound_turn": {
+      "ext": "mp3"
+    },
+    "sound_upgrade": {
+      "ext": "mp3"
+    }
+  }
+}

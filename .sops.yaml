@@ -1,0 +1,18 @@
+# SOPS configuration: which files are encrypted, and to which age recipient(s).
+#
+# The recipient below is a placeholder. Replace it with your age public key
+# before encrypting anything, or `sops -e` produces a file nobody can decrypt.
+#   age-keygen -o age.key            # prints "Public key: age1..." to stderr
+# The private key goes on the server at /etc/costan/age.key (chmod 600, root),
+# with an offline backup.
+#
+# After changing recipients, re-key existing files: `sops updatekeys secrets.enc.yaml`.
+#
+# The encrypted files (secrets.enc.yaml, origin-cert.enc.yaml) belong to your
+# deployment and are gitignored. Build them in the repo root and install them
+# under /etc/costan/; see DEPLOY.md.
+creation_rules:
+  # Matches secrets.yaml and secrets.enc.yaml (and origin-cert), not
+  # deploy/secrets.example.yaml.
+  - path_regex: (secrets|origin-cert)(\.enc)?\.ya?ml$
+    age: age1REPLACE_WITH_YOUR_AGE_PUBLIC_KEY

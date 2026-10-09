@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Costan.io">
+  <title>Costan.io</title>
+  <!-- Sheep on the site's sea blue (the "sea" token, #1159c1). The ground is
+       needed: the wool is #f3f1eb, so without it the sheep would be white on
+       white against a light browser chrome. Every colour
+       is the board's own, out of frontend/public/models/palette.json; the outline
+       is the "border" token, #131722. -->
+  <rect width="64" height="64" rx="14" fill="#1159c1"/>
+
+  <!-- The wool is drawn twice: once stroked, to lay down the union outline, then
+       again unstroked on top to wipe the strokes where the circles overlap. The
+       stroke is centred, so half of the 8 survives as a 4 unit outer keyline.
+       Five separately stroked circles read as fluff at 64px and as noise at 16. -->
+  <g fill="#f3f1eb" stroke="#131722" stroke-width="8">
+    <circle cx="32" cy="23" r="14"/>
+    <circle cx="17.5" cy="31" r="12.5"/>
+    <circle cx="46.5" cy="31" r="12.5"/>
+    <circle cx="21" cy="42" r="11"/>
+    <circle cx="43" cy="42" r="11"/>
+  </g>
+  <g fill="#f3f1eb">
+    <circle cx="32" cy="23" r="14"/>
+    <circle cx="17.5" cy="31" r="12.5"/>
+    <circle cx="46.5" cy="31" r="12.5"/>
+    <circle cx="21" cy="42" r="11"/>
+    <circle cx="43" cy="42" r="11"/>
+  </g>
+
+  <!-- Face hangs below the wool so the silhouette still reads as a sheep at 16px,
+       where the eyes are barely a pixel each. #857d7b is the sheep's own dark. -->
+  <ellipse cx="32" cy="45" rx="12.5" ry="13" fill="#857d7b" stroke="#131722" stroke-width="4"/>
+  <g fill="#131722">
+    <circle cx="26.5" cy="43" r="3.4"/>
+    <circle cx="37.5" cy="43" r="3.4"/>
+  </g>
+</svg>

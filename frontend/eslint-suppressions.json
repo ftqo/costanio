@@ -1,0 +1,645 @@
+{
+  "src/components/ConnectionIndicator.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 4
+    }
+  },
+  "src/components/GameDock.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 4
+    }
+  },
+  "src/components/LanguagePicker.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 4
+    }
+  },
+  "src/components/LegalDoc.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 13
+    }
+  },
+  "src/components/LoadingScreen.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 4
+    }
+  },
+  "src/components/PageTitle.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 3
+    }
+  },
+  "src/components/PipIcon.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 1
+    }
+  },
+  "src/components/RankedQueueProvider.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 3
+    }
+  },
+  "src/components/Root.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 5
+    }
+  },
+  "src/components/SettingsPanel.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 11
+    }
+  },
+  "src/components/SiteFooter.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 5
+    }
+  },
+  "src/components/SiteHeader.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 13
+    }
+  },
+  "src/components/StoreShelves.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 28
+    }
+  },
+  "src/components/asset/AssetParts.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 1
+    }
+  },
+  "src/components/asset/CardTitlePlate.tsx": {
+    "shadcn/no-inline-styles": {
+      "count": 2
+    }
+  },
+  "src/components/board/Board3D.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 2
+    }
+  },
+  "src/components/board/CheckList.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 7
+    }
+  },
+  "src/components/board/Die.tsx": {
+    "shadcn/no-inline-styles": {
+      "count": 14
+    }
+  },
+  "src/components/board/Hex.tsx": {
+    "shadcn/no-inline-styles": {
+      "count": 7
+    }
+  },
+  "src/components/board/HexCluster.tsx": {
+    "shadcn/no-inline-styles": {
+      "count": 7
+    }
+  },
+  "src/components/game/ActiveOfferCard.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 11
+    },
+    "shadcn/no-inline-styles": {
+      "count": 1
+    },
+    "shadcn/no-restyle": {
+      "count": 8
+    }
+  },
+  "src/components/game/AnchoredMenu.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 1
+    },
+    "shadcn/no-inline-styles": {
+      "count": 3
+    }
+  },
+  "src/components/game/CamelBidPanel.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 10
+    },
+    "shadcn/no-inline-styles": {
+      "count": 3
+    }
+  },
+  "src/components/game/CamelPlacePanel.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 2
+    },
+    "shadcn/no-inline-styles": {
+      "count": 2
+    }
+  },
+  "src/components/game/CardFlightLayer.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 3
+    },
+    "shadcn/no-inline-styles": {
+      "count": 4
+    }
+  },
+  "src/components/game/CardSheet.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 7
+    }
+  },
+  "src/components/game/ChatText.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 1
+    }
+  },
+  "src/components/game/CostChips.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 1
+    }
+  },
+  "src/components/game/CurrencyTrade.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 3
+    }
+  },
+  "src/components/game/DecisionClock.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 1
+    }
+  },
+  "src/components/game/DicePicker.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 7
+    }
+  },
+  "src/components/game/DrawOfferCard.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 3
+    },
+    "shadcn/no-restyle": {
+      "count": 2
+    }
+  },
+  "src/components/game/ExplorerCargoPanel.tsx": {
+    "shadcn/no-inline-styles": {
+      "count": 2
+    }
+  },
+  "src/components/game/ExplorersPanel.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 1
+    },
+    "shadcn/no-inline-styles": {
+      "count": 5
+    }
+  },
+  "src/components/game/FishSpendPanel.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 4
+    }
+  },
+  "src/components/game/LocationDial.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 6
+    },
+    "shadcn/no-inline-styles": {
+      "count": 4
+    }
+  },
+  "src/components/game/LogLine.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 6
+    },
+    "shadcn/no-inline-styles": {
+      "count": 4
+    }
+  },
+  "src/components/game/Overlay.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 5
+    }
+  },
+  "src/components/game/PieceChoice.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 2
+    }
+  },
+  "src/components/game/PieceInfoCard.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 4
+    },
+    "shadcn/no-inline-styles": {
+      "count": 4
+    }
+  },
+  "src/components/game/PlayerCard.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 8
+    },
+    "shadcn/no-inline-styles": {
+      "count": 4
+    }
+  },
+  "src/components/game/PostGameScoreboard.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 2
+    },
+    "shadcn/no-inline-styles": {
+      "count": 2
+    }
+  },
+  "src/components/game/ProgressCardChoice.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 3
+    },
+    "shadcn/no-inline-styles": {
+      "count": 1
+    }
+  },
+  "src/components/game/RaidersCoast.tsx": {
+    "shadcn/no-inline-styles": {
+      "count": 2
+    }
+  },
+  "src/components/game/RaidersGoldPanel.tsx": {
+    "shadcn/no-inline-styles": {
+      "count": 4
+    }
+  },
+  "src/components/game/RaidersMap.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 2
+    },
+    "shadcn/no-inline-styles": {
+      "count": 1
+    }
+  },
+  "src/components/game/RaidersRidersPanel.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 1
+    },
+    "shadcn/no-inline-styles": {
+      "count": 2
+    }
+  },
+  "src/components/game/RaidersTreasonPanel.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 1
+    }
+  },
+  "src/components/game/RiverCoinsPanel.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 2
+    }
+  },
+  "src/components/game/SeatChoice.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 4
+    },
+    "shadcn/no-inline-styles": {
+      "count": 1
+    }
+  },
+  "src/components/game/Stat.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 3
+    },
+    "shadcn/no-inline-styles": {
+      "count": 1
+    }
+  },
+  "src/components/game/Tip.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 4
+    },
+    "shadcn/no-inline-styles": {
+      "count": 3
+    }
+  },
+  "src/components/game/TrackPips.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 4
+    },
+    "shadcn/no-inline-styles": {
+      "count": 3
+    }
+  },
+  "src/components/game/WagonPanel.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 2
+    },
+    "shadcn/no-inline-styles": {
+      "count": 1
+    }
+  },
+  "src/components/game/charts/RollChart.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 7
+    }
+  },
+  "src/components/game/charts/VPChart.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 2
+    }
+  },
+  "src/components/game/hud/BarbarianRail.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 2
+    },
+    "shadcn/no-inline-styles": {
+      "count": 1
+    }
+  },
+  "src/components/game/hud/DockPanels.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 8
+    },
+    "shadcn/no-inline-styles": {
+      "count": 2
+    }
+  },
+  "src/components/game/hud/HudButton.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 2
+    }
+  },
+  "src/components/game/hud/HudLayer.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 16
+    }
+  },
+  "src/components/game/hud/SeatRail.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 24
+    },
+    "shadcn/no-inline-styles": {
+      "count": 17
+    }
+  },
+  "src/components/game/hud/SeatTimerBar.tsx": {
+    "shadcn/no-inline-styles": {
+      "count": 2
+    }
+  },
+  "src/components/game/hud/TableFeed.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 5
+    }
+  },
+  "src/components/game/hud/TableStatus.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 10
+    }
+  },
+  "src/components/game/hud/TurnBanner.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 6
+    },
+    "shadcn/no-inline-styles": {
+      "count": 2
+    }
+  },
+  "src/components/game/hud/TurnControls.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 9
+    },
+    "shadcn/no-inline-styles": {
+      "count": 9
+    }
+  },
+  "src/components/game/hud/TurnTimerEdge.tsx": {
+    "shadcn/no-inline-styles": {
+      "count": 1
+    }
+  },
+  "src/components/game/hud/UtilityOrbs.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 4
+    },
+    "shadcn/no-inline-styles": {
+      "count": 2
+    }
+  },
+  "src/components/game/hudIcons.tsx": {
+    "shadcn/no-inline-styles": {
+      "count": 1
+    }
+  },
+  "src/components/game/moduleUi.tsx": {
+    "shadcn/no-inline-styles": {
+      "count": 1
+    }
+  },
+  "src/components/home/HomeScene.tsx": {
+    "shadcn/no-inline-styles": {
+      "count": 6
+    }
+  },
+  "src/components/lobby/ExpansionShelf.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 9
+    }
+  },
+  "src/components/lobby/LobbyHeader.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 7
+    }
+  },
+  "src/components/profile/MatchHistory.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 9
+    }
+  },
+  "src/components/replay/ReplayPlayer.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 11
+    }
+  },
+  "src/components/ui/avatar.tsx": {
+    "shadcn/no-inline-styles": {
+      "count": 5
+    }
+  },
+  "src/components/ui/badge.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 4
+    }
+  },
+  "src/components/ui/button.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 4
+    },
+    "shadcn/no-inline-styles": {
+      "count": 1
+    }
+  },
+  "src/components/ui/confirm.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 1
+    }
+  },
+  "src/components/ui/dialog.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 10
+    }
+  },
+  "src/components/ui/input.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 2
+    }
+  },
+  "src/components/ui/menu.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 1
+    }
+  },
+  "src/components/ui/pill.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 2
+    }
+  },
+  "src/components/ui/scroll-fade.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 2
+    }
+  },
+  "src/components/ui/segmented.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 3
+    },
+    "shadcn/no-inline-styles": {
+      "count": 3
+    }
+  },
+  "src/components/ui/slider.tsx": {
+    "shadcn/no-inline-styles": {
+      "count": 2
+    }
+  },
+  "src/components/ui/swatch.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 1
+    },
+    "shadcn/no-inline-styles": {
+      "count": 3
+    }
+  },
+  "src/components/ui/switch.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 3
+    }
+  },
+  "src/components/ui/toast.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 4
+    },
+    "shadcn/no-inline-styles": {
+      "count": 1
+    }
+  },
+  "src/routes/Game.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 164
+    },
+    "shadcn/no-inline-styles": {
+      "count": 30
+    },
+    "shadcn/no-restyle": {
+      "count": 30
+    },
+    "shadcn/require-static-classes": {
+      "count": 9
+    }
+  },
+  "src/routes/HowToPlay.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 57
+    }
+  },
+  "src/routes/JoinInvite.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 2
+    }
+  },
+  "src/routes/Landing.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 22
+    },
+    "shadcn/no-inline-styles": {
+      "count": 3
+    }
+  },
+  "src/routes/Leaderboard.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 8
+    }
+  },
+  "src/routes/Lobby.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 48
+    },
+    "shadcn/no-restyle": {
+      "count": 2
+    }
+  },
+  "src/routes/Login.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 6
+    }
+  },
+  "src/routes/MapBuilder.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 18
+    }
+  },
+  "src/routes/NotFound.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 4
+    }
+  },
+  "src/routes/Play.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 11
+    }
+  },
+  "src/routes/Profile.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 26
+    }
+  },
+  "src/routes/Replay.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 12
+    }
+  },
+  "src/routes/Support.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 18
+    }
+  },
+  "src/routes/Verify.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 36
+    }
+  },
+  "src/routes/mapbuilder/DesignEditor.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 21
+    }
+  },
+  "src/routes/mapbuilder/GeneratePanel.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 7
+    }
+  },
+  "src/routes/mapbuilder/PreviewOverlay.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 5
+    }
+  },
+  "src/routes/mapbuilder/WarningsPanel.tsx": {
+    "shadcn/no-arbitrary-values": {
+      "count": 3
+    }
+  }
+}

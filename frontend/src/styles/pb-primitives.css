@@ -1,0 +1,633 @@
+/* Punchboard: pb-primitives. Loaded after index.css (see main.tsx), so rules here win
+   over the Punchboard block at the end of index.css without !important.
+
+   The shared foundation for components/ui. The tokens (--pb-focus,
+   --pb-disabled, --pb-neutral, --on-ground, ...) live in the Punchboard block
+   of index.css; this file consumes them.
+
+   Rules of the house:
+   - A piece (pressable or floating) is ONE 2px ink keyline plus a solid ink
+     bottom edge, both inset (--pb-piece). Print (badges, chips, inputs, rows,
+     tabs, tracks) is flat fill with no line.
+   - Focus recolours and thickens the piece's own keyline. No outline offset,
+     no ring offset, no second ring.
+   - Selected is yellow and sits pushed down with its keyline kept.
+   - Disabled is one rule that always wins (hence its !important): flat grey,
+     muted ink, pushed down. Never faded, striped, green or yellow.
+
+   Several selectors are prefixed `:is(.hud-root, :root)`. That matches
+   everywhere (every element is under :root) but carries the specificity of a
+   class, so the rule outranks the older `.hud-root [x]` rules in index.css
+   without a site copy and a HUD copy. */
+
+body {
+  /* M PLUS Rounded at 400 is spindly at 13-14px; 500 is the body weight. */
+  font-weight: 500;
+}
+
+:root {
+  /* A small piece (a chip, a slider thumb, a nudge) carries a 3px edge so the
+     edge never crowds its label. */
+  --pb-piece-sm: inset 0 0 0 2px var(--pb-edge), inset 0 -1px 0 2px var(--pb-deep);
+  /* Focus on a piece: the keyline becomes 4px of --pb-focus, the edge stays
+     ink. The edge is listed first so it paints over the focus band. */
+  --pb-piece-focus: inset 0 0 0 4px var(--pb-deep), inset 0 0 0 4px var(--pb-focus);
+  --pb-piece-focus-down: inset 0 0 0 4px var(--pb-deep), inset 0 0 0 4px var(--pb-focus);
+  /* Focus on a yellow (selected) piece: the ink keyline thickens, since a
+     yellow focus band would vanish on it in dark. */
+  --pb-piece-focus-selected: inset 0 0 0 4px var(--pb-deep), inset 0 0 0 4px var(--pb-edge);
+  --pb-disabled-thumb: #b3b8c5;
+  --pb-input-focus: #ffffff;
+  --pb-thumb: #ffffff;
+  /* An unselected segment under the pointer, on the print well. */
+  --pb-seg-hover: #dde1e8;
+  --pb-quiet: #f0f2f6;
+}
+.dark {
+  --pb-disabled-thumb: #8b90a6;
+  --pb-input-focus: #36448a;
+  --pb-thumb: #e9edf3;
+  --pb-seg-hover: #36448a;
+  --pb-quiet: #36448a;
+}
+
+/* ---------------------------------------------------------------------------
+   Button (and IconButton, buttonLook, ThemeToggle: anything [data-ui-button])
+   ------------------------------------------------------------------------ */
+
+/* Fills by role, keyed off the fill class each tone sets: a caller's own
+   bg-* replaces that class through cn(), and is then left alone. */
+[data-ui-button].bg-secondary-background {
+  /* Neutral: white (near-white in dark) with navy type. Only the plain
+     neutral: a secondary with a tone has that tone's fill class instead. */
+  background-color: var(--pb-neutral);
+  color: var(--pb-neutral-ink);
+}
+[data-ui-button][data-variant="quiet"].bg-panel {
+  /* Quiet: ink on the raised step. Distinct from neutral (white) and from
+     disabled (grey with muted ink). Its own token, since the HUD re-points
+     --elev at white. */
+  background-color: var(--pb-quiet);
+  color: var(--foreground);
+}
+[data-ui-button][data-variant="ghost"] {
+  box-shadow: none;
+}
+/* A ghost given a tone has a fill, and a filled button is a piece. */
+[data-ui-button][data-variant="ghost"]:not(.bg-transparent) {
+  box-shadow: var(--pb-piece);
+}
+[data-pill="false"][data-ui-button] {
+  /* pill=false is the squarer corner, so the prop means something. */
+  border-radius: 6px;
+}
+
+/* Hover: a 1px lift and an explicit fill. `:where` keeps the lift below the
+   press rule, which must win while the pointer is still over the button. */
+[data-ui-button]:where(:not([data-variant="ghost"])):hover {
+  translate: 0 -1px;
+  filter: none;
+}
+[data-ui-button]:is(.bg-btn-primary, .bg-btn-accent, .bg-btn-success):hover {
+  background-color: var(--pb-primary-hover);
+}
+[data-ui-button].bg-btn-danger:hover {
+  background-color: var(--pb-danger-hover);
+}
+[data-ui-button].bg-secondary-background:hover {
+  background-color: var(--pb-neutral-hover);
+}
+[data-ui-button][data-variant="quiet"].bg-panel:hover {
+  background-color: var(--pb-quiet-hover);
+}
+[data-ui-button].bg-discord:hover {
+  background-color: #3d47b0;
+}
+[data-ui-button].bg-google-surface:hover {
+  background-color: #f1f3f4;
+}
+[data-ui-button][data-variant="ghost"]:hover {
+  background-color: var(--pb-ghost-hover);
+  filter: none;
+}
+[data-ui-button][data-variant="ghost"]:active {
+  background-color: var(--pb-ghost-active);
+}
+
+/* Press: down 2px onto a 2px edge. */
+:is(.hud-root, :root) [data-ui-button]:not([data-variant="ghost"]):active {
+  translate: 0 2px;
+  box-shadow: var(--pb-piece-down);
+  filter: none;
+}
+
+/* Focus: the piece's own keyline recoloured and thickened. */
+:is(.hud-root, :root) [data-ui-button]:focus-visible {
+  outline: none;
+  box-shadow: var(--pb-piece-focus);
+}
+:is(.hud-root, :root) [data-ui-button]:not([data-variant="ghost"]):focus-visible:active {
+  box-shadow: var(--pb-piece-focus-down);
+}
+:is(.hud-root, :root)
+  [data-ui-button][data-variant="ghost"].bg-transparent:not([aria-pressed="true"]):focus-visible {
+  /* Ghost is print: the hover fill plus an inset ring, so it reads on a
+     panel and on the page ground alike. */
+  background-color: var(--pb-ghost-hover);
+  box-shadow: inset 0 0 0 3px var(--pb-focus);
+}
+
+/* Selected: yellow, pushed down, keyline kept. One selector for both the
+   `pressed` prop (which emits aria-pressed) and a caller's own aria-pressed,
+   so the look and the announced state cannot disagree. Any variant, any tone,
+   hovered or not. */
+[data-ui-button][data-ui-button]:is([aria-pressed="true"], .bg-selected),
+.dark [data-ui-button][data-ui-button]:is([aria-pressed="true"], .bg-selected) {
+  background-color: var(--selected);
+  color: var(--selected-ink);
+  translate: 0 2px;
+  box-shadow: var(--pb-piece-down);
+}
+:is(.hud-root, :root)
+  [data-ui-button][data-ui-button]:is([aria-pressed="true"], .bg-selected):focus-visible {
+  box-shadow: var(--pb-piece-focus-selected);
+}
+/* A selected ghost (the header's current page) is a yellow print fill. */
+[data-ui-button][data-ui-button][data-variant="ghost"]:is([aria-pressed="true"], .bg-selected) {
+  translate: none;
+  box-shadow: none;
+}
+:is(.hud-root, :root)
+  [data-ui-button][data-ui-button][data-variant="ghost"]:is(
+    [aria-pressed="true"],
+    .bg-selected
+  ):focus-visible {
+  box-shadow: inset 0 0 0 3px var(--pb-edge);
+}
+
+/* ---------------------------------------------------------------------------
+   Disabled: the one rule that always wins. Flat grey, muted ink, pushed down.
+   !important because it must beat a tone, a hover, a selected state and the
+   inline seat colour of `fill`.
+   ------------------------------------------------------------------------ */
+[data-ui-button]:is(:disabled, [aria-disabled="true"]),
+button[data-ui-pill]:disabled,
+button[data-ui-pill][data-locked="true"] {
+  background-color: var(--pb-disabled) !important;
+  background-image: none !important;
+  /* Clip to the padding box so the transparent rim border never shows the
+     fill as a pale ring outside the keyline. */
+  background-clip: padding-box !important;
+  color: var(--pb-disabled-ink) !important;
+  border-color: transparent !important;
+  box-shadow: var(--pb-piece-down) !important;
+  translate: 0 2px !important;
+  opacity: 1 !important;
+  filter: none !important;
+  cursor: not-allowed;
+}
+[data-ui-button]:is(:disabled, [aria-disabled="true"]) svg,
+button[data-ui-pill]:disabled svg {
+  color: var(--pb-disabled-ink) !important;
+  /* Multi-colour marks (the Google G) go grey too. */
+  filter: grayscale(1) !important;
+  opacity: 1 !important;
+}
+/* Disabled and selected: a solid desaturated yellow, navy ink. Never pale
+   text on a bright yellow. */
+[data-ui-button][data-ui-button]:is([aria-pressed="true"], .bg-selected):is(
+    :disabled,
+    [aria-disabled="true"]
+  ),
+button[data-ui-pill][data-ui-pill]:is([aria-pressed="true"], [data-tone="active"]):disabled {
+  background-color: var(--pb-selected-disabled) !important;
+  color: var(--pb-neutral-ink) !important;
+}
+/* A disabled ghost is print, so it gets the grey fill but no keyline. */
+[data-ui-button][data-ui-button][data-variant="ghost"]:is(:disabled, [aria-disabled="true"]) {
+  box-shadow: none !important;
+  translate: none !important;
+}
+
+/* ---------------------------------------------------------------------------
+   Pill and Segmented
+   ------------------------------------------------------------------------ */
+
+/* A static pill is print: a flat chip, no line. */
+[data-ui-pill]:not([data-interactive]) {
+  border-color: transparent;
+  box-shadow: none;
+}
+[data-ui-pill]:not([data-interactive])[data-tone="neutral"] {
+  background-color: var(--pb-print);
+  color: var(--foreground);
+}
+[data-ui-pill][data-locked="true"] {
+  background-color: var(--pb-disabled);
+  color: var(--pb-disabled-ink);
+  opacity: 1;
+}
+/* An interactive pill is a small piece; the selected one is yellow and sits
+   pushed down with its keyline kept, like every selected piece. */
+button[data-ui-pill][data-interactive] {
+  border-color: transparent;
+  background-clip: padding-box;
+  box-shadow: var(--pb-piece-sm);
+  transition:
+    translate 80ms,
+    box-shadow 80ms;
+}
+button[data-ui-pill][data-interactive][data-tone="neutral"] {
+  background-color: var(--pb-neutral);
+  color: var(--pb-neutral-ink);
+}
+button[data-ui-pill][data-interactive]:where(:not(:disabled)):hover {
+  translate: 0 -1px;
+}
+button[data-ui-pill][data-interactive][data-tone="neutral"]:not(:disabled):hover {
+  background-color: var(--pb-neutral-hover);
+}
+button[data-ui-pill][data-interactive]:active,
+button[data-ui-pill][data-interactive]:is([aria-pressed="true"], [data-tone="active"]),
+button[data-ui-pill][data-interactive]:is([aria-pressed="true"], [data-tone="active"]):hover {
+  translate: 0 2px;
+  box-shadow: var(--pb-piece-down);
+}
+button[data-ui-pill][data-interactive]:is([aria-pressed="true"], [data-tone="active"]),
+button[data-ui-pill][data-interactive]:is([aria-pressed="true"], [data-tone="active"]):hover {
+  background-color: var(--selected);
+  color: var(--selected-ink);
+}
+button[data-ui-pill][data-interactive]:focus-visible {
+  outline: none;
+  box-shadow:
+    inset 0 0 0 4px var(--pb-deep),
+    inset 0 0 0 4px var(--pb-focus);
+}
+button[data-ui-pill][data-interactive]:is(
+    [aria-pressed="true"],
+    [data-tone="active"]
+  ):focus-visible {
+  box-shadow: var(--pb-piece-focus-selected);
+}
+
+/* Joined segmented control: the capsule is a print well, the thumb a yellow
+   piece sitting pushed down. */
+:is(.hud-root, :root) [data-ui-seg] {
+  background-color: var(--pb-print);
+  border-color: transparent;
+  box-shadow: none;
+  opacity: 1;
+}
+:is(.hud-root, :root) [data-ui-seg-thumb] {
+  background-color: var(--selected);
+  border-color: transparent;
+  box-shadow: var(--pb-piece-down);
+}
+:is(.hud-root, :root) [data-ui-seg] > button[aria-pressed="true"] {
+  color: var(--selected-ink);
+}
+:is(.hud-root, :root) [data-ui-seg] > button[aria-pressed="false"] {
+  color: var(--foreground);
+}
+:is(.hud-root, :root) [data-ui-seg] > button[aria-pressed="false"]:not(:disabled):hover {
+  background-color: var(--pb-seg-hover);
+}
+:is(.hud-root, :root) [data-ui-seg] > button:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 3px var(--pb-focus);
+}
+:is(.hud-root, :root) [data-ui-seg] > button[aria-pressed="true"]:focus-visible {
+  box-shadow: inset 0 0 0 3px var(--pb-edge);
+}
+/* Disabled: the well greys, the thumb takes the disabled-selected yellow,
+   labels go muted. The segments are print, so they do not move. */
+:is(.hud-root, :root) [data-ui-seg]:has(> button:disabled) {
+  background-color: var(--pb-disabled);
+}
+:is(.hud-root, :root) [data-ui-seg]:has(> button:disabled) [data-ui-seg-thumb] {
+  background-color: var(--pb-selected-disabled);
+}
+:is(.hud-root, :root) [data-ui-seg] > button:disabled {
+  color: var(--pb-disabled-ink);
+  cursor: not-allowed;
+  opacity: 1;
+}
+:is(.hud-root, :root) [data-ui-seg] > button[aria-pressed="true"]:disabled {
+  color: var(--pb-neutral-ink);
+}
+
+/* ---------------------------------------------------------------------------
+   Badge: print. Yellow is for selection and awards only.
+   ------------------------------------------------------------------------ */
+[data-ui-badge] {
+  border-color: transparent;
+  box-shadow: none;
+}
+[data-ui-badge][data-tone="muted"] {
+  background-color: var(--pb-chip-muted);
+  color: var(--muted);
+}
+[data-ui-badge][data-tone="beta"] {
+  background-color: var(--pb-beta);
+  color: var(--pb-beta-ink);
+}
+/* Ready is a state, not an action: green type on a neutral chip, so it never
+   reads as the green button. */
+[data-ui-badge][data-tone="ready"] {
+  background-color: var(--pb-print);
+  color: var(--green-ink);
+  font-weight: 700;
+}
+[data-ui-badge][data-tone="rating"] {
+  background-color: var(--pb-print);
+  color: var(--foreground);
+  font-variant-numeric: tabular-nums;
+}
+[data-ui-badge][data-dim="true"] {
+  background-color: var(--pb-disabled);
+  color: var(--pb-disabled-ink);
+  opacity: 1;
+}
+
+/* ---------------------------------------------------------------------------
+   Card: hard and lg are pieces; a plain card nested in another piece is print;
+   the radius prop maps to 8 / 12 / 16px.
+   ------------------------------------------------------------------------ */
+[data-ui-card][data-radius="base"] {
+  border-radius: 8px;
+}
+[data-ui-card][data-radius="card"] {
+  border-radius: 12px;
+}
+[data-ui-card][data-radius="lg"] {
+  border-radius: 16px;
+}
+[data-ui-card]:is([data-shadow="hard"], [data-shadow="lg"]) {
+  border-color: transparent;
+  background-clip: padding-box;
+  box-shadow: var(--pb-piece);
+}
+/* No piece-in-piece: a card inside a dialog, menu or another card is print. */
+:is([role="dialog"], [data-ui-card], [data-ui-menu], .ui-surface, .hud-dialog) [data-ui-card] {
+  background-color: var(--pb-print);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Swatch: its own ink keyline; selected adds a 3px yellow band directly
+   inside it (no pale gap); focus recolours the keyline itself.
+   ------------------------------------------------------------------------ */
+[data-ui-swatch] {
+  border-color: transparent;
+  box-shadow: inset 0 0 0 2px var(--pb-edge);
+}
+[data-ui-swatch][data-selected="true"] {
+  box-shadow:
+    inset 0 0 0 2px var(--pb-edge),
+    inset 0 0 0 5px var(--selected);
+}
+[data-ui-swatch]:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 3px var(--pb-focus);
+}
+[data-ui-swatch][data-selected="true"]:focus-visible {
+  box-shadow:
+    inset 0 0 0 3px var(--pb-focus),
+    inset 0 0 0 6px var(--selected);
+}
+[data-ui-swatch]:disabled {
+  cursor: not-allowed;
+  opacity: 1;
+  box-shadow:
+    inset 0 0 0 2px var(--pb-edge),
+    inset 0 0 0 6px var(--pb-disabled);
+}
+
+/* ---------------------------------------------------------------------------
+   Switch: a print track (off clears 3:1 on its panel, on is the one green)
+   with a white thumb in an ink keyline.
+   ------------------------------------------------------------------------ */
+[data-ui-switch] {
+  border-color: transparent;
+  box-shadow: none;
+}
+[data-ui-switch][data-state="unchecked"] {
+  background-color: var(--pb-track-off);
+}
+[data-ui-switch][data-state="checked"] {
+  background-color: var(--toggle);
+}
+[data-ui-switch-thumb] {
+  background-color: var(--pb-thumb);
+  box-shadow: inset 0 0 0 2px var(--pb-edge);
+}
+[data-ui-switch]:focus-visible {
+  /* The track is print, so focus is a band on its edge, at no offset. */
+  outline: 3px solid var(--pb-focus);
+  outline-offset: 0;
+  box-shadow: none;
+}
+[data-ui-switch]:disabled {
+  background-color: var(--pb-disabled) !important;
+  opacity: 1 !important;
+}
+[data-ui-switch]:disabled [data-ui-switch-thumb] {
+  background-color: var(--pb-disabled-thumb);
+}
+
+/* ---------------------------------------------------------------------------
+   Slider: a visible track, the green range, a thumb that is a small piece.
+   ------------------------------------------------------------------------ */
+[data-ui-slider-track] {
+  background-color: var(--pb-slider-track);
+}
+[data-ui-slider-range] {
+  background-color: var(--toggle);
+}
+:is(.hud-root, :root) [data-ui-slider-thumb] {
+  background-color: var(--pb-thumb);
+  border-color: transparent;
+  background-clip: padding-box;
+  box-shadow: var(--pb-piece-sm);
+}
+:is(.hud-root, :root) [data-ui-slider-thumb]:focus-visible {
+  outline: none;
+  box-shadow:
+    inset 0 0 0 4px var(--pb-deep),
+    inset 0 0 0 4px var(--pb-focus);
+}
+[data-ui-slider][data-disabled] [data-ui-slider-range] {
+  background-color: var(--pb-disabled-thumb);
+}
+:is(.hud-root, :root) [data-ui-slider][data-disabled] [data-ui-slider-thumb] {
+  background-color: var(--pb-disabled);
+  box-shadow: var(--pb-piece-down);
+  cursor: not-allowed;
+}
+
+/* ---------------------------------------------------------------------------
+   Inputs: print. Focus is an inset ring on a lighter fill; invalid is a red
+   tint; disabled is the disabled grey. All text inputs, not only <Input>.
+   ------------------------------------------------------------------------ */
+:is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), textarea):focus {
+  outline: none;
+  background-color: var(--pb-input-focus);
+  box-shadow: inset 0 0 0 2px var(--pb-focus);
+}
+:is(
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+  textarea
+)[aria-invalid="true"] {
+  background-color: var(--pb-invalid);
+}
+:is(
+    input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+    textarea
+  )[aria-invalid="true"]:focus {
+  box-shadow: inset 0 0 0 2px var(--pb-invalid-ink);
+}
+:is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]), textarea):disabled {
+  background-color: var(--pb-disabled);
+  color: var(--pb-disabled-ink);
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+/* The confirm dialog's "don't show again": an 18px box on the print fill,
+   green with a white tick when checked. */
+input[type="checkbox"][data-ui-checkbox] {
+  appearance: none;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  border: 0;
+  border-radius: 5px;
+  background-color: var(--pb-print);
+  box-shadow: inset 0 0 0 2px var(--pb-track-off);
+  cursor: pointer;
+}
+input[type="checkbox"][data-ui-checkbox]:checked {
+  background-color: var(--toggle);
+  box-shadow: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M4.5 9.5l3 3 6-7' fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+}
+input[type="checkbox"][data-ui-checkbox]:focus-visible {
+  outline: 3px solid var(--pb-focus);
+  outline-offset: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   Menu: print rows at 700, a visible hover fill; the danger row turns solid
+   red under the pointer.
+   ------------------------------------------------------------------------ */
+:is(.hud-root, :root) [data-ui-menu-item] {
+  font-weight: 700;
+}
+:is(.hud-root, :root) [data-ui-menu-item]:not([data-tone="danger"]):is(:hover, :focus-visible) {
+  background-color: var(--pb-ghost-hover);
+  color: var(--foreground);
+  box-shadow: none;
+}
+:is(.hud-root, :root) [data-ui-menu-item]:not([data-tone="danger"]):is(:hover, :focus-visible) svg {
+  color: var(--foreground);
+}
+:is(.hud-root, :root) [data-ui-menu-item][data-tone="danger"]:is(:hover, :focus-visible) {
+  background-color: var(--pb-danger-solid);
+  color: #ffffff;
+  box-shadow: none;
+}
+:is(.hud-root, :root) [data-ui-menu-item][data-tone="danger"]:is(:hover, :focus-visible) svg {
+  color: #ffffff;
+}
+/* Keyboard focus on a row: rows are print, so an inset ring. */
+:is(.hud-root, :root) [data-ui-menu-item][data-ui-menu-item]:focus-visible {
+  box-shadow: inset 0 0 0 3px var(--pb-focus);
+}
+:is(.hud-root, :root) [data-ui-menu-item][data-ui-menu-item][data-tone="danger"]:focus-visible {
+  box-shadow: inset 0 0 0 3px var(--pb-edge);
+}
+[data-ui-menu-label] {
+  cursor: default;
+}
+/* A trigger that is only a picture (the avatar) is not a piece; its focus is
+   a yellow band on the avatar's own ink outline, so it reads on the blue
+   ground and on a white panel alike. */
+[data-ui-menu-trigger]:not(.border):focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+[data-ui-menu-trigger]:not(.border):focus-visible [data-ui-avatar] {
+  /* Outside the avatar's own 2px ink outline (an inset outline), touching
+     it. */
+  box-shadow: 0 0 0 4px var(--selected);
+}
+:is(.hud-root, :root) [data-ui-menu-trigger].border:focus-visible {
+  outline: none;
+  box-shadow: var(--pb-piece-focus);
+}
+
+/* ---------------------------------------------------------------------------
+   Toast: a piece; the error disc carries the meaning, no side stripe.
+   ------------------------------------------------------------------------ */
+[data-ui-toast] {
+  box-shadow: var(--pb-piece);
+  border-color: transparent;
+  background-clip: padding-box;
+}
+[data-ui-toast-icon] {
+  background-color: var(--pb-danger-solid);
+  color: #ffffff;
+}
+
+/* ---------------------------------------------------------------------------
+   Skeleton, Spinner
+   ------------------------------------------------------------------------ */
+[data-ui-skeleton] {
+  background-color: var(--pb-skeleton);
+  /* A pulse is a fade; the block holds still. */
+  animation: none;
+}
+/* Ink, not purple, in the site and the HUD. A caller's own text colour
+   replaces text-muted and is then kept. */
+:is(.hud-root, :root) [data-ui-spinner].text-muted {
+  color: var(--foreground);
+}
+
+/* ---------------------------------------------------------------------------
+   ScrollFade: no fades and no caps; the nudges are 24px neutral pieces.
+   ------------------------------------------------------------------------ */
+[data-ui-fade] {
+  display: none;
+}
+:is(.hud-root, :root) [data-ui-nudge] {
+  background-color: var(--pb-neutral);
+  color: var(--pb-neutral-ink);
+  border-color: transparent;
+  background-clip: padding-box;
+  box-shadow: var(--pb-piece-sm);
+  font-size: 18px;
+  line-height: 1;
+  padding-bottom: 3px;
+}
+:is(.hud-root, :root) button[data-ui-nudge]:hover,
+:is(.hud-root, :root) [data-scroll-nudge]:hover > [data-ui-nudge] {
+  background-color: var(--pb-neutral-hover);
+}
+:is(.hud-root, :root) button[data-ui-nudge]:active,
+:is(.hud-root, :root) [data-scroll-nudge]:active > [data-ui-nudge] {
+  box-shadow: var(--pb-piece-down);
+}
+
+/* A menu trigger drawn as a button (the hamburger) is a neutral piece, like
+   any neutral button. */
+[data-ui-menu-trigger].border.bg-secondary-background {
+  background-color: var(--pb-neutral);
+  color: var(--pb-neutral-ink);
+}
+[data-ui-menu-trigger].border.bg-secondary-background:hover {
+  background-color: var(--pb-neutral-hover);
+}

@@ -1,0 +1,18 @@
+# Cloudflare Pages config-as-code (optional alternative to the dashboard).
+#
+# `name` must match the Pages project's name exactly, or Pages rejects the
+# deploy. If ORIGIN_BASE is already set in the Pages dashboard, this file can be
+# deleted; it only keeps the non-secret Pages vars in git.
+name = "costan-io"
+pages_build_output_dir = "dist"
+compatibility_date = "2025-06-01"
+
+# Runtime vars for the Pages Function (frontend/functions/_middleware.js reads
+# env.ORIGIN_BASE): the backend origin the Function proxies to. Not secret.
+[vars]
+ORIGIN_BASE = "https://api.costan.io"
+
+# VITE_DISCORD_CLIENT_ID is a build-time Vite var, not a Function runtime var,
+# so it can't go in [vars]. For the Discord Activity, set it as a build
+# environment variable in the Pages dashboard or in frontend/.env.production
+# (Vite loads it at build). Normal web play does not need it.

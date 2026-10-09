@@ -1,0 +1,1214 @@
+{
+  "seq": 804,
+  "viewer": -1,
+  "config": {
+    "players": 4,
+    "target_vp": 13,
+    "discard_limit": 7,
+    "turn_timer_sec": 0,
+    "ruleset": "base+wagons",
+    "dice_mode": "random",
+    "board_mode": "fair"
+  },
+  "phase": "play",
+  "cur": 3,
+  "setup_round": 1,
+  "need_road": false,
+  "rolled": true,
+  "robber_pending": false,
+  "board": {
+    "radius": 2,
+    "tiles": [
+      {
+        "hex": {
+          "q": -2,
+          "r": 0
+        },
+        "res": "wood",
+        "num": 11
+      },
+      {
+        "hex": {
+          "q": -2,
+          "r": 1
+        },
+        "res": "brick",
+        "num": 10
+      },
+      {
+        "hex": {
+          "q": -2,
+          "r": 2
+        },
+        "res": "wheat",
+        "num": 8
+      },
+      {
+        "hex": {
+          "q": -1,
+          "r": -1
+        },
+        "res": "wood",
+        "num": 6
+      },
+      {
+        "hex": {
+          "q": -1,
+          "r": 0
+        },
+        "res": "brick",
+        "num": 5
+      },
+      {
+        "hex": {
+          "q": -1,
+          "r": 1
+        },
+        "res": "ore",
+        "num": 3
+      },
+      {
+        "hex": {
+          "q": -1,
+          "r": 2
+        },
+        "res": "none",
+        "num": 0
+      },
+      {
+        "hex": {
+          "q": 0,
+          "r": -2
+        },
+        "res": "wheat",
+        "num": 2
+      },
+      {
+        "hex": {
+          "q": 0,
+          "r": -1
+        },
+        "res": "wheat",
+        "num": 4
+      },
+      {
+        "hex": {
+          "q": 0,
+          "r": 0
+        },
+        "res": "sheep",
+        "num": 9
+      },
+      {
+        "hex": {
+          "q": 0,
+          "r": 1
+        },
+        "res": "ore",
+        "num": 6
+      },
+      {
+        "hex": {
+          "q": 0,
+          "r": 2
+        },
+        "res": "sheep",
+        "num": 12
+      },
+      {
+        "hex": {
+          "q": 1,
+          "r": -2
+        },
+        "res": "sheep",
+        "num": 8
+      },
+      {
+        "hex": {
+          "q": 1,
+          "r": -1
+        },
+        "res": "wood",
+        "num": 5
+      },
+      {
+        "hex": {
+          "q": 1,
+          "r": 0
+        },
+        "res": "sheep",
+        "num": 4
+      },
+      {
+        "hex": {
+          "q": 1,
+          "r": 1
+        },
+        "res": "wheat",
+        "num": 9
+      },
+      {
+        "hex": {
+          "q": 2,
+          "r": -2
+        },
+        "res": "ore",
+        "num": 10
+      },
+      {
+        "hex": {
+          "q": 2,
+          "r": -1
+        },
+        "res": "brick",
+        "num": 3
+      },
+      {
+        "hex": {
+          "q": 2,
+          "r": 0
+        },
+        "res": "wood",
+        "num": 11
+      }
+    ],
+    "robber": {
+      "q": -1073741824,
+      "r": -1073741824
+    },
+    "harbors": [
+      {
+        "verts": [
+          {
+            "q": -3,
+            "r": 3,
+            "side": 0
+          },
+          {
+            "q": -2,
+            "r": 1,
+            "side": 1
+          }
+        ],
+        "ratio": 2,
+        "res": "wood"
+      },
+      {
+        "verts": [
+          {
+            "q": -3,
+            "r": 1,
+            "side": 0
+          },
+          {
+            "q": -2,
+            "r": 0,
+            "side": 1
+          }
+        ],
+        "ratio": 3,
+        "res": "none"
+      },
+      {
+        "verts": [
+          {
+            "q": -2,
+            "r": 0,
+            "side": 0
+          },
+          {
+            "q": -1,
+            "r": -2,
+            "side": 1
+          }
+        ],
+        "ratio": 3,
+        "res": "none"
+      },
+      {
+        "verts": [
+          {
+            "q": 0,
+            "r": -2,
+            "side": 0
+          },
+          {
+            "q": 1,
+            "r": -3,
+            "side": 1
+          }
+        ],
+        "ratio": 2,
+        "res": "ore"
+      },
+      {
+        "verts": [
+          {
+            "q": 2,
+            "r": -3,
+            "side": 1
+          },
+          {
+            "q": 2,
+            "r": -2,
+            "side": 0
+          }
+        ],
+        "ratio": 2,
+        "res": "brick"
+      },
+      {
+        "verts": [
+          {
+            "q": 2,
+            "r": -1,
+            "side": 0
+          },
+          {
+            "q": 3,
+            "r": -2,
+            "side": 1
+          }
+        ],
+        "ratio": 3,
+        "res": "none"
+      },
+      {
+        "verts": [
+          {
+            "q": 2,
+            "r": 0,
+            "side": 1
+          },
+          {
+            "q": 2,
+            "r": 1,
+            "side": 0
+          }
+        ],
+        "ratio": 3,
+        "res": "none"
+      },
+      {
+        "verts": [
+          {
+            "q": 0,
+            "r": 3,
+            "side": 0
+          },
+          {
+            "q": 1,
+            "r": 1,
+            "side": 1
+          }
+        ],
+        "ratio": 2,
+        "res": "wheat"
+      },
+      {
+        "verts": [
+          {
+            "q": -1,
+            "r": 2,
+            "side": 1
+          },
+          {
+            "q": -1,
+            "r": 3,
+            "side": 0
+          }
+        ],
+        "ratio": 2,
+        "res": "sheep"
+      }
+    ]
+  },
+  "bank": [0, 16, 15, 13, 8, 19],
+  "players": [
+    {
+      "seat": 0,
+      "hand_count": 12,
+      "roads_left": 8,
+      "settlements_left": 3,
+      "cities_left": 1,
+      "dev_count": 1,
+      "knights_played": 2,
+      "route_length": 4,
+      "vp": 11,
+      "public_vp": 11,
+      "discard_at": 7
+    },
+    {
+      "seat": 1,
+      "hand_count": 3,
+      "roads_left": 4,
+      "settlements_left": 0,
+      "cities_left": 2,
+      "dev_count": 2,
+      "knights_played": 2,
+      "route_length": 5,
+      "vp": 12,
+      "public_vp": 12,
+      "discard_at": 7
+    },
+    {
+      "seat": 2,
+      "hand_count": 2,
+      "roads_left": 9,
+      "settlements_left": 5,
+      "cities_left": 1,
+      "dev_count": 1,
+      "knights_played": 8,
+      "route_length": 3,
+      "vp": 11,
+      "public_vp": 11,
+      "discard_at": 7
+    },
+    {
+      "seat": 3,
+      "hand_count": 7,
+      "roads_left": 6,
+      "settlements_left": 2,
+      "cities_left": 2,
+      "dev_count": 0,
+      "knights_played": 2,
+      "route_length": 5,
+      "vp": 9,
+      "public_vp": 9,
+      "discard_at": 7
+    }
+  ],
+  "buildings": [
+    {
+      "v": {
+        "q": -3,
+        "r": 2,
+        "side": 0
+      },
+      "owner": 3,
+      "city": false
+    },
+    {
+      "v": {
+        "q": -3,
+        "r": 3,
+        "side": 0
+      },
+      "owner": 3,
+      "city": false
+    },
+    {
+      "v": {
+        "q": -2,
+        "r": 0,
+        "side": 0
+      },
+      "owner": 0,
+      "city": false
+    },
+    {
+      "v": {
+        "q": -2,
+        "r": 1,
+        "side": 0
+      },
+      "owner": 0,
+      "city": true
+    },
+    {
+      "v": {
+        "q": -2,
+        "r": 2,
+        "side": 0
+      },
+      "owner": 3,
+      "city": true
+    },
+    {
+      "v": {
+        "q": -2,
+        "r": 3,
+        "side": 0
+      },
+      "owner": 3,
+      "city": false
+    },
+    {
+      "v": {
+        "q": -1,
+        "r": -1,
+        "side": 0
+      },
+      "owner": 1,
+      "city": false
+    },
+    {
+      "v": {
+        "q": -1,
+        "r": 0,
+        "side": 0
+      },
+      "owner": 1,
+      "city": true
+    },
+    {
+      "v": {
+        "q": 0,
+        "r": -2,
+        "side": 0
+      },
+      "owner": 1,
+      "city": false
+    },
+    {
+      "v": {
+        "q": 0,
+        "r": -1,
+        "side": 0
+      },
+      "owner": 1,
+      "city": false
+    },
+    {
+      "v": {
+        "q": 0,
+        "r": 0,
+        "side": 0
+      },
+      "owner": 3,
+      "city": true
+    },
+    {
+      "v": {
+        "q": 0,
+        "r": 0,
+        "side": 1
+      },
+      "owner": 2,
+      "city": true
+    },
+    {
+      "v": {
+        "q": 0,
+        "r": 1,
+        "side": 1
+      },
+      "owner": 2,
+      "city": true
+    },
+    {
+      "v": {
+        "q": 1,
+        "r": -1,
+        "side": 0
+      },
+      "owner": 2,
+      "city": true
+    },
+    {
+      "v": {
+        "q": 1,
+        "r": 0,
+        "side": 0
+      },
+      "owner": 1,
+      "city": true
+    },
+    {
+      "v": {
+        "q": 1,
+        "r": 0,
+        "side": 1
+      },
+      "owner": 0,
+      "city": true
+    },
+    {
+      "v": {
+        "q": 1,
+        "r": 1,
+        "side": 1
+      },
+      "owner": 0,
+      "city": false
+    },
+    {
+      "v": {
+        "q": 2,
+        "r": -1,
+        "side": 0
+      },
+      "owner": 1,
+      "city": false
+    },
+    {
+      "v": {
+        "q": 2,
+        "r": 0,
+        "side": 0
+      },
+      "owner": 1,
+      "city": false
+    },
+    {
+      "v": {
+        "q": 2,
+        "r": 0,
+        "side": 1
+      },
+      "owner": 0,
+      "city": true
+    }
+  ],
+  "roads": [
+    {
+      "e": {
+        "a": {
+          "q": -3,
+          "r": 2,
+          "side": 0
+        },
+        "b": {
+          "q": -2,
+          "r": 0,
+          "side": 1
+        }
+      },
+      "owner": 3
+    },
+    {
+      "e": {
+        "a": {
+          "q": -3,
+          "r": 2,
+          "side": 0
+        },
+        "b": {
+          "q": -2,
+          "r": 1,
+          "side": 1
+        }
+      },
+      "owner": 3
+    },
+    {
+      "e": {
+        "a": {
+          "q": -3,
+          "r": 3,
+          "side": 0
+        },
+        "b": {
+          "q": -2,
+          "r": 1,
+          "side": 1
+        }
+      },
+      "owner": 3
+    },
+    {
+      "e": {
+        "a": {
+          "q": -2,
+          "r": 0,
+          "side": 0
+        },
+        "b": {
+          "q": -1,
+          "r": -1,
+          "side": 1
+        }
+      },
+      "owner": 0
+    },
+    {
+      "e": {
+        "a": {
+          "q": -2,
+          "r": 1,
+          "side": 0
+        },
+        "b": {
+          "q": -1,
+          "r": -1,
+          "side": 1
+        }
+      },
+      "owner": 0
+    },
+    {
+      "e": {
+        "a": {
+          "q": -2,
+          "r": 1,
+          "side": 1
+        },
+        "b": {
+          "q": -2,
+          "r": 2,
+          "side": 0
+        }
+      },
+      "owner": 3
+    },
+    {
+      "e": {
+        "a": {
+          "q": -2,
+          "r": 2,
+          "side": 0
+        },
+        "b": {
+          "q": -1,
+          "r": 0,
+          "side": 1
+        }
+      },
+      "owner": 3
+    },
+    {
+      "e": {
+        "a": {
+          "q": -2,
+          "r": 2,
+          "side": 0
+        },
+        "b": {
+          "q": -1,
+          "r": 1,
+          "side": 1
+        }
+      },
+      "owner": 3
+    },
+    {
+      "e": {
+        "a": {
+          "q": -2,
+          "r": 3,
+          "side": 0
+        },
+        "b": {
+          "q": -1,
+          "r": 1,
+          "side": 1
+        }
+      },
+      "owner": 3
+    },
+    {
+      "e": {
+        "a": {
+          "q": -1,
+          "r": -1,
+          "side": 0
+        },
+        "b": {
+          "q": 0,
+          "r": -2,
+          "side": 1
+        }
+      },
+      "owner": 1
+    },
+    {
+      "e": {
+        "a": {
+          "q": -1,
+          "r": 0,
+          "side": 0
+        },
+        "b": {
+          "q": 0,
+          "r": -2,
+          "side": 1
+        }
+      },
+      "owner": 1
+    },
+    {
+      "e": {
+        "a": {
+          "q": -1,
+          "r": 0,
+          "side": 0
+        },
+        "b": {
+          "q": 0,
+          "r": -1,
+          "side": 1
+        }
+      },
+      "owner": 1
+    },
+    {
+      "e": {
+        "a": {
+          "q": -1,
+          "r": 1,
+          "side": 1
+        },
+        "b": {
+          "q": -1,
+          "r": 2,
+          "side": 0
+        }
+      },
+      "owner": 3
+    },
+    {
+      "e": {
+        "a": {
+          "q": -1,
+          "r": 2,
+          "side": 0
+        },
+        "b": {
+          "q": 0,
+          "r": 0,
+          "side": 1
+        }
+      },
+      "owner": 2
+    },
+    {
+      "e": {
+        "a": {
+          "q": -1,
+          "r": 2,
+          "side": 0
+        },
+        "b": {
+          "q": 0,
+          "r": 1,
+          "side": 1
+        }
+      },
+      "owner": 2
+    },
+    {
+      "e": {
+        "a": {
+          "q": 0,
+          "r": -2,
+          "side": 0
+        },
+        "b": {
+          "q": 1,
+          "r": -3,
+          "side": 1
+        }
+      },
+      "owner": 1
+    },
+    {
+      "e": {
+        "a": {
+          "q": 0,
+          "r": -2,
+          "side": 1
+        },
+        "b": {
+          "q": 0,
+          "r": -1,
+          "side": 0
+        }
+      },
+      "owner": 1
+    },
+    {
+      "e": {
+        "a": {
+          "q": 0,
+          "r": -1,
+          "side": 0
+        },
+        "b": {
+          "q": 1,
+          "r": -3,
+          "side": 1
+        }
+      },
+      "owner": 1
+    },
+    {
+      "e": {
+        "a": {
+          "q": 0,
+          "r": 0,
+          "side": 0
+        },
+        "b": {
+          "q": 1,
+          "r": -2,
+          "side": 1
+        }
+      },
+      "owner": 3
+    },
+    {
+      "e": {
+        "a": {
+          "q": 0,
+          "r": 0,
+          "side": 1
+        },
+        "b": {
+          "q": 0,
+          "r": 1,
+          "side": 0
+        }
+      },
+      "owner": 2
+    },
+    {
+      "e": {
+        "a": {
+          "q": 0,
+          "r": 1,
+          "side": 0
+        },
+        "b": {
+          "q": 1,
+          "r": 0,
+          "side": 1
+        }
+      },
+      "owner": 0
+    },
+    {
+      "e": {
+        "a": {
+          "q": 0,
+          "r": 2,
+          "side": 0
+        },
+        "b": {
+          "q": 1,
+          "r": 0,
+          "side": 1
+        }
+      },
+      "owner": 0
+    },
+    {
+      "e": {
+        "a": {
+          "q": 0,
+          "r": 2,
+          "side": 0
+        },
+        "b": {
+          "q": 1,
+          "r": 1,
+          "side": 1
+        }
+      },
+      "owner": 0
+    },
+    {
+      "e": {
+        "a": {
+          "q": 1,
+          "r": -3,
+          "side": 1
+        },
+        "b": {
+          "q": 1,
+          "r": -2,
+          "side": 0
+        }
+      },
+      "owner": 1
+    },
+    {
+      "e": {
+        "a": {
+          "q": 1,
+          "r": -2,
+          "side": 0
+        },
+        "b": {
+          "q": 2,
+          "r": -3,
+          "side": 1
+        }
+      },
+      "owner": 2
+    },
+    {
+      "e": {
+        "a": {
+          "q": 1,
+          "r": -2,
+          "side": 1
+        },
+        "b": {
+          "q": 1,
+          "r": -1,
+          "side": 0
+        }
+      },
+      "owner": 2
+    },
+    {
+      "e": {
+        "a": {
+          "q": 1,
+          "r": -1,
+          "side": 0
+        },
+        "b": {
+          "q": 2,
+          "r": -3,
+          "side": 1
+        }
+      },
+      "owner": 2
+    },
+    {
+      "e": {
+        "a": {
+          "q": 1,
+          "r": 0,
+          "side": 0
+        },
+        "b": {
+          "q": 2,
+          "r": -2,
+          "side": 1
+        }
+      },
+      "owner": 1
+    },
+    {
+      "e": {
+        "a": {
+          "q": 1,
+          "r": 0,
+          "side": 1
+        },
+        "b": {
+          "q": 1,
+          "r": 1,
+          "side": 0
+        }
+      },
+      "owner": 0
+    },
+    {
+      "e": {
+        "a": {
+          "q": 1,
+          "r": 1,
+          "side": 0
+        },
+        "b": {
+          "q": 2,
+          "r": 0,
+          "side": 1
+        }
+      },
+      "owner": 0
+    },
+    {
+      "e": {
+        "a": {
+          "q": 2,
+          "r": -2,
+          "side": 1
+        },
+        "b": {
+          "q": 2,
+          "r": -1,
+          "side": 0
+        }
+      },
+      "owner": 1
+    },
+    {
+      "e": {
+        "a": {
+          "q": 2,
+          "r": -1,
+          "side": 0
+        },
+        "b": {
+          "q": 3,
+          "r": -2,
+          "side": 1
+        }
+      },
+      "owner": 1
+    },
+    {
+      "e": {
+        "a": {
+          "q": 2,
+          "r": 0,
+          "side": 0
+        },
+        "b": {
+          "q": 3,
+          "r": -2,
+          "side": 1
+        }
+      },
+      "owner": 1
+    }
+  ],
+  "ext": {
+    "wagons": {
+      "barb_index": -1,
+      "barb_seat": -1,
+      "barbarians": [
+        {
+          "a": {
+            "q": -2,
+            "r": 1,
+            "side": 0
+          },
+          "b": {
+            "q": -1,
+            "r": -1,
+            "side": 1
+          }
+        },
+        {
+          "a": {
+            "q": 0,
+            "r": 2,
+            "side": 0
+          },
+          "b": {
+            "q": 1,
+            "r": 0,
+            "side": 1
+          }
+        },
+        {
+          "a": {
+            "q": 1,
+            "r": -2,
+            "side": 1
+          },
+          "b": {
+            "q": 1,
+            "r": -1,
+            "side": 0
+          }
+        }
+      ],
+      "boosted": false,
+      "bought": 0,
+      "buys_a_turn": 2,
+      "cargo": "BAQEAw==",
+      "delivered": [3, 3, 3, 2],
+      "drive_floors": [7, 6, 5, 4, 3],
+      "gold": [1, 1, 1, 2],
+      "gold_price": 2,
+      "has_trade": true,
+      "level": [1, 1, 1, 1],
+      "max_level": 5,
+      "move_done": false,
+      "move_open": false,
+      "mp": 0,
+      "mp_track": [4, 5, 6, 7, 7],
+      "stack_depth": 12,
+      "started": true,
+      "swift_held": [1, 0, 1, 1],
+      "swift_left": 0,
+      "trade": [
+        {
+          "hex": {
+            "q": -2,
+            "r": 0
+          },
+          "role": 2,
+          "plaza": {
+            "q": -2,
+            "r": 0,
+            "side": 2
+          },
+          "accepts": "Aw==",
+          "ships": "AgQ=",
+          "left": 7
+        },
+        {
+          "hex": {
+            "q": 0,
+            "r": 2
+          },
+          "role": 0,
+          "plaza": {
+            "q": 0,
+            "r": 2,
+            "side": 2
+          },
+          "accepts": "AQI=",
+          "ships": "BAM=",
+          "left": 7
+        },
+        {
+          "hex": {
+            "q": 2,
+            "r": -2
+          },
+          "role": 1,
+          "plaza": {
+            "q": 2,
+            "r": -2,
+            "side": 2
+          },
+          "accepts": "BA==",
+          "ships": "AQM=",
+          "left": 7
+        }
+      ],
+      "tried": [false, false, false],
+      "turn_seat": 3,
+      "wagons": [
+        {
+          "player": 0,
+          "v": {
+            "q": 0,
+            "r": 2,
+            "side": 2
+          }
+        },
+        {
+          "player": 1,
+          "v": {
+            "q": -1,
+            "r": 0,
+            "side": 0
+          }
+        },
+        {
+          "player": 2,
+          "v": {
+            "q": 1,
+            "r": -1,
+            "side": 1
+          }
+        },
+        {
+          "player": 3,
+          "v": {
+            "q": -1,
+            "r": 0,
+            "side": 1
+          }
+        }
+      ]
+    }
+  },
+  "dev_deck_count": 4,
+  "played_dev": false,
+  "free_roads": 0,
+  "longest_road": -1,
+  "largest_army": 2,
+  "winner": -1,
+  "turns_completed": 67,
+  "draw_min_turns": 200
+}

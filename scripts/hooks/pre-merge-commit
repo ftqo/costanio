@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Lint an automatic merge commit.
+#
+# git runs pre-commit for ordinary commits and pre-merge-commit for the merge
+# commit `git merge` creates, so together they cover every commit that can
+# reach main. A fast-forward creates no commit, and the commits it moves onto
+# were checked when made.
+#
+# A failure here leaves the merge staged; finish it with `git commit`, which
+# runs pre-commit over the same files.
+#
+# Installed by scripts/install-hooks.sh. Read-only, same as pre-commit.
+set -euo pipefail
+
+[ -n "${COSTAN_SKIP_LINT:-}" ] && exit 0
+
+# Same capability guard as pre-commit: .git/hooks is shared across worktrees
+# but scripts/lint.sh is not. See scripts/hooks/pre-commit.
+root="$(git rev-parse --show-toplevel)"
+lint="$root/scripts/lint.sh"
+if [ ! -x "$lint" ] || ! grep -q 'costan-lint-staged-capable' "$lint"; then
+    echo "pre-merge-commit: this worktree's scripts/lint.sh predates --staged; skipping." >&2
+    exit 0
+fi
+
+exec "$lint" --staged

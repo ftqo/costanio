@@ -1,0 +1,81 @@
+{
+  "modules": [
+    "cak",
+    "caravans",
+    "explorers",
+    "fishermen",
+    "harbormaster",
+    "islands",
+    "raiders",
+    "rivers",
+    "wagons"
+  ],
+  "conflicts": [
+    {
+      "a": "caravans",
+      "b": "explorers",
+      "reason": "Explorers has no longest route for a caravan to double, so caravan scoring has nothing to measure."
+    },
+    {
+      "a": "explorers",
+      "b": "fishermen",
+      "reason": "Fishermen and Explorers can only be combined by rewriting three of the five fish spends, which Costanio has not built."
+    },
+    {
+      "a": "explorers",
+      "b": "harbormaster",
+      "reason": "Explorers has no harbours, so there would be nothing to score."
+    },
+    {
+      "a": "explorers",
+      "b": "islands",
+      "reason": "Explorers and Islands both use ships and a pirate, and their rules for both are different."
+    },
+    {
+      "a": "explorers",
+      "b": "raiders",
+      "reason": "Raiders needs a fixed coastline to land on and a castle to defend, and most of an Explorers map is face down when the game starts."
+    },
+    {
+      "a": "explorers",
+      "b": "rivers",
+      "reason": "Explorers deals its map face down, so a river cannot be laid across it."
+    },
+    {
+      "a": "explorers",
+      "b": "wagons",
+      "reason": "Explorers is not a land connected map, so a wagon has no route to travel."
+    },
+    {
+      "a": "islands",
+      "b": "wagons",
+      "reason": "Wagons cannot cross water, and an island board has no single landmass for the trade route to circle."
+    }
+  ],
+  "warnings": [
+    {
+      "a": "caravans",
+      "b": "wagons",
+      "reason": "Wagons removes the Longest Road award, so the camels' road bonus does nothing (their settlement points still score)."
+    }
+  ],
+  "combination_examples": [
+    {
+      "a": "cak",
+      "b": "islands",
+      "also": [
+        "raiders"
+      ],
+      "reason": "Synthetic triple for compatibility matching tests."
+    },
+    {
+      "a": "cak",
+      "b": "fishermen",
+      "also": [
+        "islands",
+        "raiders"
+      ],
+      "reason": "Synthetic four-module combination for compatibility matching tests."
+    }
+  ]
+}

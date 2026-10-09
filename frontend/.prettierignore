@@ -1,0 +1,46 @@
+dist
+node_modules
+package-lock.json
+*.md
+public
+
+# Machine-written files. Prettier is not in either generator's pipeline, so
+# formatting them here only buys one clean run: the next `make export-assets`
+# or `costan-sim -dump-board` rewrites the file in the generator's own layout
+# and format:check fails again with the whole file as the diff. The generator
+# owns the formatting; this says so.
+#
+# An engine board dump (cmd/costan-sim -dump-board), read by the dev/
+# harnesses.
+dev/board-shots.board.json
+# A recorded game (cmd/costan-replay), folded in Go and played back ambiently
+# behind the landing headline. Written as one line by `json.Marshal`; pretty
+# printing it turns 877 KB into several megabytes of diff that the next
+# regeneration throws away.
+src/lib/replay/*.frames.json
+# Written by tools/blender/export_assets.py.
+src/lib/board3d/manifest.generated.ts
+# Written by frontend/scripts/compose-tiles.ts, whose --check (in the gate)
+# compares it byte for byte: reformatting it would read as drift.
+src/lib/board3d/manifest.composed.generated.ts
+# Written by frontend/scripts/gen-title-fonts.py, whose --check compares the file
+# byte for byte (cardTitle.test.ts runs it). Prettier reformatting it makes the
+# committed metrics permanently "stale" and the card-title fitter untestable.
+src/lib/titleMetrics.json
+# A real game log written by `go test ./verify -run TestWriteFixture`, in the
+# exact shape the replay endpoint serves. Reformatting it makes the next
+# regeneration a whole-file diff, and the bytes are the point: the audit page's
+# test reads this as TEXT, because the uint64 seeds in it do not survive
+# JSON.parse.
+src/lib/__fixtures__/verifiedReplay.json
+# Written by `go test ./engine -run TestBankBasketFixture -update`, and read
+# back by that same Go test byte for byte. It is the bank-trade legality table
+# the engine and the client must agree on, so the Go writer owns its layout:
+# prettier collapsing its arrays makes the committed fixture permanently "stale"
+# and the next -update a whole-file diff, which is the oscillation the three
+# entries above are here to stop.
+src/lib/__fixtures__/bank-basket-legality.json
+# The shadcn/lint budget, written by `eslint --suppress-rule` and
+# `--prune-suppressions` in ESLint's own layout (no trailing newline). Every
+# prune would otherwise leave format:check failing on the file it just wrote.
+eslint-suppressions.json

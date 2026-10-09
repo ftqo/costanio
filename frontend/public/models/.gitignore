@@ -1,0 +1,16 @@
+# Prototype art, untracked. `vite build` copies public/ wholesale, so anything
+# tracked here ships. The robber candidates are only for the dev shot harness
+# at frontend/dev/robber-shots.html.
+#
+# Regenerate with:
+#
+#     blender --background --factory-startup \
+#         --python tools/blender/export_robbers_glb.py
+#
+# A chosen design is modelled in art/pieces.blend and ships inside pieces.glb.
+# The robber skins under robbers/ are tracked; tools/robbers/export_skins.py
+# writes them from the lathe profiles without Blender.
+robbers.glb
+
+# Written by tools/watch_art.mjs so the live page knows when to reload.
+.artversion

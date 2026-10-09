@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Lint what is about to become a commit.
+#
+# Installed by scripts/install-hooks.sh (run by the nix flake's shellHook).
+# Read-only; on failure it prints the command that fixes what is fixable.
+#
+# Scoped to staged files: about 5s on a typical code commit, 0.2s when no Go
+# or frontend file is staged.
+#
+# Skip with `git commit --no-verify` or `COSTAN_SKIP_LINT=1 git commit` for a
+# work-in-progress commit. Run ./scripts/lint.sh --all before merging.
+set -euo pipefail
+
+[ -n "${COSTAN_SKIP_LINT:-}" ] && exit 0
+
+# .git/hooks is shared by every worktree of this clone, but scripts/lint.sh is
+# checked out per worktree. An older lint.sh may not understand --staged, so
+# check for the marker before calling it, and skip otherwise.
+root="$(git rev-parse --show-toplevel)"
+lint="$root/scripts/lint.sh"
+if [ ! -x "$lint" ]; then
+    echo "pre-commit: no scripts/lint.sh in this worktree; skipping lint." >&2
+    exit 0
+fi
+if ! grep -q 'costan-lint-staged-capable' "$lint"; then
+    echo "pre-commit: this worktree's scripts/lint.sh predates --staged; skipping." >&2
+    exit 0
+fi
+
+exec "$lint" --staged

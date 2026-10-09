@@ -1,0 +1,25 @@
+# Decrypts the Cloudflare origin TLS cert into tmpfs before nginx starts, so the
+# private key is never plaintext on persistent disk. Ordered Before nginx, and
+# RequiredBy nginx (when enabled) so nginx waits for the decrypt and won't start
+# without it.
+#
+# Install:
+#   sudo cp deploy/costan-certs.service /etc/systemd/system/costan-certs.service
+#   sudo systemctl daemon-reload && sudo systemctl enable --now costan-certs.service
+#   sudo systemctl restart nginx
+[Unit]
+Description=Decrypt Cloudflare origin TLS cert into tmpfs for nginx
+After=local-fs.target
+Before=nginx.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+Environment=SOPS_AGE_KEY_FILE=/etc/costan/age.key
+# The encrypted cert lives outside the checkout (it is not in the repository).
+Environment=ORIGIN_CERT_FILE=/etc/costan/origin-cert.enc.yaml
+ExecStart=/opt/costan/deploy/cert-decrypt.sh
+
+[Install]
+WantedBy=multi-user.target
+RequiredBy=nginx.service

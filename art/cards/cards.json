@@ -1,0 +1,354 @@
+[
+  {
+    "id": "knight",
+    "name": "Knight",
+    "deck": "dev",
+    "rule": "Move the robber and steal a random card from a player beside it. Three played takes Largest Army.",
+    "focal": "A mail hauberk and great helm on an armourer's stand, oiled and waiting",
+    "scene": "The helm faces three-quarters away, its eye-slit catching a cold sliver of light; mail drapes the stand and pools on the bench. A whetstone, an oil rag and a mailed gauntlet lie in front. Behind, in falling darkness, two more helms wait on their own stands.",
+    "light": "Cold steel key raking from the left, low warm ember glow from a banked brazier at the right. No magic in this one.",
+    "nod": "Three helms, the third barely visible in the dark."
+  },
+  {
+    "id": "victory_point",
+    "name": "Victory Point",
+    "deck": "dev",
+    "rule": "Worth 1 victory point. Stays hidden in your hand until the game ends.",
+    "focal": "A sealed charter with a heavy gold seal on a ribbon, half-rolled",
+    "scene": "The document lies closed and weighted with a laurel-chased seal matrix; a wreath of laurel rests beside it, and the writing is turned away from the viewer. Nothing is open, nothing is being read.",
+    "light": "One candle, low and close, entirely warm. The only card in the set with no cool light.",
+    "nod": "The charter is face-down. You cannot read what it is worth."
+  },
+  {
+    "id": "road_building",
+    "name": "Road Building",
+    "deck": "dev",
+    "rule": "Build 2 roads for free.",
+    "focal": "Two staked cord lines running off into the dark",
+    "scene": "Shares its illustration with the Science progress card: one effect, one picture, two deck colours.",
+    "light": "A hanging lantern above-right, warm and swinging low; a cold blue night through an open door behind.",
+    "nod": "Two lines pegged, and the pegs go further than the gravel does.",
+    "art": "road_building"
+  },
+  {
+    "id": "year_of_plenty",
+    "name": "Year of Plenty",
+    "deck": "dev",
+    "rule": "Take any 2 resources from the bank.",
+    "focal": "A harvest board loaded past its edges",
+    "scene": "A basket spilling grain, a cut wheel of cheese, apples rolling off the boards, a jug on its side, two crossed sheaves leaning against the wall behind. The fullest, most crowded frame in the set.",
+    "light": "Broad warm firelight from frame-left, generous and unfocused, lit like a kitchen rather than a cell.",
+    "nod": "Two of everything: two sheaves, two apples in front, two loaves."
+  },
+  {
+    "id": "monopoly",
+    "name": "Monopoly",
+    "deck": "dev",
+    "rule": "Name a resource; every other player hands you all of theirs.",
+    "focal": "A counting table swept clean to one side",
+    "scene": "A wooden rake has dragged every clay tally-token into one heaped pile at the near edge; the rest of the long table is bare, scored wood with faint dust outlines where the piles used to be. One hand's shadow falls across the empty half.",
+    "light": "A single hard hanging lamp directly above the heap, so the empty table falls off into black.",
+    "nod": "The dust rings where the other players' piles stood."
+  },
+  {
+    "id": "commercial_harbor",
+    "name": "Commercial Harbor",
+    "deck": "trade",
+    "rule": "Offer each opponent one of your resources; each must return a commodity of their choice.",
+    "focal": "A harbour master's desk at a shuttered window",
+    "scene": "A brass ship's lantern, coiled tarred rope, a bill of lading weighted with a shell, and a small model cog. The shutter stands half open on black water, bare masts, and one distant harbour light.",
+    "light": "Cold blue-green off the water through the shutter against the warm lantern on the desk. The sharpest warm/cool split in the deck.",
+    "nod": "The bill of lading is written in two columns, one struck through."
+  },
+  {
+    "id": "master_merchant",
+    "name": "Master Merchant",
+    "deck": "trade",
+    "rule": "Look at the hand of a player ahead of you in victory points and take 2 cards of your choice, or their whole hand if they hold fewer than 2.",
+    "focal": "A fanned hand of ledger cards, face-down, and a merchant's mirror",
+    "scene": "A hand of blank-backed cards fanned on green baize; a small tilted mirror on a stand behind them catches the faces from an angle nobody at the table could see. Two cards are already drawn a little proud of the fan.",
+    "light": "A close candle at the fan's edge; the mirror carries a second, colder reflection of it.",
+    "nod": "Exactly two cards standing proud."
+  },
+  {
+    "id": "merchant",
+    "name": "Merchant",
+    "deck": "trade",
+    "rule": "Place the merchant on a land hex next to one of your buildings: worth 1 VP while you hold it, and you trade that hex's resource with the bank at 2:1.",
+    "focal": "A pedlar's handcart, laden and parked",
+    "scene": "A two-wheeled cart backed against a warehouse wall, stacked with bolts of cloth and a strapped crate, its shafts down and a lantern hung from one of them. Road dust on the wheel rims; a doorway of night behind.",
+    "light": "The hanging lantern is the whole key, swinging slightly so the shadows are soft on one side and hard on the other.",
+    "nod": "The cart is loaded but the shafts are down: it has arrived and stopped."
+  },
+  {
+    "id": "merchant_fleet",
+    "name": "Merchant Fleet",
+    "deck": "trade",
+    "rule": "Trade one chosen resource or commodity at 2:1 with the bank for the rest of this turn.",
+    "focal": "A chart table with three ship models in line astern",
+    "scene": "A sea chart pinned flat under brass weights, dividers open across it, a compass rose inked at the corner; three small carved ships stand in a line on the chart. A gimbal lamp hangs above, dead level while everything else leans.",
+    "light": "Warm gimbal lamp overhead, cold moonlight through a stern window behind.",
+    "nod": "The dividers are set to exactly half the distance they span."
+  },
+  {
+    "id": "resource_monopoly",
+    "name": "Resource Monopoly",
+    "deck": "trade",
+    "rule": "Name a resource; take up to 2 of it from every opponent.",
+    "focal": "Two sacks tipped over, spilling toward the viewer",
+    "scene": "Two rough sacks on their sides, grain running out of one and cut ore out of the other, spreading across the boards to the near edge of the frame. A tally stick lies snapped in two beside them.",
+    "light": "Hard low key from frame-right so every grain casts its own long shadow. Harsher than its Trade neighbours.",
+    "nod": "Two sacks, and the tally stick broken into two pieces."
+  },
+  {
+    "id": "trade_monopoly",
+    "name": "Trade Monopoly",
+    "deck": "trade",
+    "rule": "Name a commodity; take 1 of it from every opponent who has any.",
+    "focal": "A great balance, tipped hard to one side",
+    "scene": "A suspended two-pan balance dominates the frame. One pan is on the table under a bolt of cloth, a ream of paper and a short stack of coin; the other hangs empty and high, still swinging.",
+    "light": "One lamp behind the balance so the beam and chains read as silhouette, with warm fill catching the loaded pan.",
+    "nod": "One item of each of the three commodities."
+  },
+  {
+    "id": "bishop",
+    "name": "Bishop",
+    "deck": "politics",
+    "rule": "Move the robber, then steal one random card (resource or commodity) from each player with a building next to its new hex.",
+    "focal": "A censer swinging on its chains, smoke pouring off it",
+    "scene": "A crozier leans against the stone behind; a mitre rests on a stand; the censer hangs mid-swing with pale smoke unspooling sideways. A rank of votive candles burns along the wall at the back.",
+    "light": "The only scene lit by many small flames rather than one: a row of votives, no single key. Smoke does the shaping.",
+    "nod": "The censer is mid-swing. Something is already in motion."
+  },
+  {
+    "id": "constitution",
+    "name": "Constitution",
+    "deck": "politics",
+    "rule": "Scores the moment you draw it: 1 victory point, kept face-up. It is never held in hand and cannot be played.",
+    "focal": "A great charter under glass, seals hanging on cords",
+    "scene": "A wide sheet of parchment laid flat and dead square to the frame, a row of wax seals dangling from its lower edge on plaited cords, a quill upright in an inkwell to one side. A display, not a working desk.",
+    "light": "Symmetrical, gold, from two matched candles. The most formal composition of the set, and the only one with no diagonal in it.",
+    "nod": "It is displayed, not held. It has already done its work."
+  },
+  {
+    "id": "deserter",
+    "name": "Deserter",
+    "deck": "politics",
+    "rule": "An opponent removes a knight of their choice; you place a replacement of the same strength (a basic knight if that tier is full), and none at all if you have no free knight or nowhere to put it.",
+    "focal": "An empty helm and a dropped sword by a dying fire",
+    "scene": "A campfire down to embers; a helm on its side in the ash, a sword left where it fell, a cloak slung over a stool and half off it. The tent flap stands open on a cold, empty night.",
+    "light": "Dying orange embers from below against hard cold blue through the open flap. The coldest card in the deck.",
+    "nod": "Two bedrolls, one of them unrolled and empty."
+  },
+  {
+    "id": "diplomat",
+    "name": "Diplomat",
+    "deck": "politics",
+    "rule": "Remove an opponent's open-ended road; if it's your own, you may rebuild it elsewhere.",
+    "focal": "A treaty with one seal intact and one broken",
+    "scene": "A folded map on the table with a road inked across it and then scored through with a hard line; two wax seals beside it, one whole and one cracked open with the wax crumbs still there.",
+    "light": "Twin candles, matched and symmetrical, with cold moonlight falling across the map from a high window. The negotiation is warm, the map is cold.",
+    "nod": "The scored-out road has a faint second line drawn somewhere else."
+  },
+  {
+    "id": "intrigue",
+    "name": "Intrigue",
+    "deck": "politics",
+    "rule": "Force an enemy knight of any strength off one of your roads. It retreats along its owner's roads, and is removed from the board entirely if it has nowhere to go.",
+    "focal": "A dagger driven through a letter into the tabletop",
+    "scene": "The blade stands vertical through folded paper, biting into the boards. A hooded lantern sits behind it with its shutter almost closed.",
+    "light": "One hard slot of light from the hooded lantern and nothing else. The darkest card in the set; most of the frame is black.",
+    "nod": "The letter's seal is a stranger's, and it was opened before it was pinned."
+  },
+  {
+    "id": "saboteur",
+    "name": "Saboteur",
+    "deck": "politics",
+    "rule": "Every player with at least as many victory points as you discards half their hand.",
+    "focal": "A barrel with its hoop cut, emptying onto the floor",
+    "scene": "A cellar. The barrel has gone over, one iron hoop severed clean and the stave sprung; its contents run across the flagstones. A saw and a wedge lie abandoned in the puddle.",
+    "light": "A single lantern set on the floor, so everything is lit steeply from below and the shadows go up the walls. The only bottom-lit card.",
+    "nod": "Half the barrel's contents are out, half still in."
+  },
+  {
+    "id": "spy",
+    "name": "Spy",
+    "deck": "politics",
+    "rule": "Look at an opponent's progress cards and take one of your choice.",
+    "focal": "A hard blade of light from a cracked door, and a card being drawn from a satchel",
+    "scene": "A dim room. A leather satchel gapes on a stool with one card sliding out of it; a spyglass and a dark lantern lie beside. The door behind stands open a finger's width.",
+    "light": "The room has no light of its own. One vertical blade from the door does everything, falling across exactly the card being taken.",
+    "nod": "Wax drips on the floor mark where someone stood and waited."
+  },
+  {
+    "id": "warlord",
+    "name": "Warlord",
+    "deck": "politics",
+    "rule": "Activate all of your knights at once, for free, but they come up freshly activated, so none of them can act until your next turn.",
+    "focal": "A war table with every knight figure stood upright at once",
+    "scene": "Carved knights in a rank across a map table, all of them standing, none of them moved yet. A war horn and a furled banner lie behind them; the map underneath is marked but untouched.",
+    "light": "Braziers at both edges of frame, matched, so the rank is lit evenly and reads as an assembly rather than an action.",
+    "nod": "Every figure is upright, and every figure is still on its start line."
+  },
+  {
+    "id": "wedding",
+    "name": "Wedding",
+    "deck": "politics",
+    "rule": "Each opponent ahead of you in victory points gives you 2 cards of their own choosing, or everything they hold, if that is less.",
+    "focal": "A long table set for a feast, gifts stacked at one end",
+    "scene": "Two goblets touching, two rings on a folded cloth, garlands of greenery along the boards and, at one end, a stack of wrapped gifts taller than the rest of the setting.",
+    "light": "A row of candles receding down the table, warmest and softest in the set, with real depth falloff. The happiest card in the set.",
+    "nod": "Two goblets, two rings, and the gifts all on one side."
+  },
+  {
+    "id": "alchemist",
+    "name": "Alchemist",
+    "deck": "science",
+    "rule": "Before rolling, set both dice to any values yourself. Must be played before the roll.",
+    "focal": "A cast-iron cauldron of glowing blue brew",
+    "scene": "A cellar workbench at night. The pot boils on the boards with luminous vapour curling off it toward a moonlit window; candles, books, and apothecary bottles crowd the bench.",
+    "light": "Cold arcane key from the brew itself, warm candlelight either side to give the blue something to be cold against.",
+    "nod": "Two dice on the bench, already showing the numbers their owner wanted."
+  },
+  {
+    "id": "crane",
+    "name": "Crane",
+    "deck": "science",
+    "rule": "Upgrade one city-improvement track for one fewer commodity than normal.",
+    "focal": "A treadwheel crane silhouetted against a half-built wall",
+    "scene": "The one exterior in the set. A timber treadwheel crane stands over a mason's yard, a dressed block hanging in its sling a metre off the ground, the unfinished wall rising behind it into the night.",
+    "light": "Moonlight behind for the silhouette, a brazier at the crane's foot for the warm foreground. The sky is the brightest thing in frame, unlike every other card.",
+    "nod": "The block is already in the air. The lift is cheaper than it looks."
+  },
+  {
+    "id": "engineer",
+    "name": "Engineer",
+    "deck": "science",
+    "rule": "Build a city wall on one of your cities for free.",
+    "focal": "A drafting table with a wall elevation drawn out, and a plumb bob hanging dead still",
+    "scene": "A large sheet with a curtain wall drawn in elevation, dividers and a straightedge across it, and a lead plumb bob on a cord hanging perfectly motionless in front. A small stone model of a wall section sits at the sheet's corner.",
+    "light": "One shuttered lamp aimed flat across the paper so the drawing reads and the room does not.",
+    "nod": "The plumb line is exactly vertical, and it is the sharpest thing in the frame."
+  },
+  {
+    "id": "inventor",
+    "name": "Inventor",
+    "deck": "science",
+    "rule": "Swap the number tokens on two hexes (not 2, 6, 8 or 12).",
+    "focal": "Two numbered tokens under a lens on a brass armature",
+    "scene": "A workbench of gears, springs and half-built mechanism. A magnifier on a jointed brass arm hangs over two round clay tokens that have just changed places, one still rocking.",
+    "light": "Warm brass everywhere plus one cool focused bench lamp through the lens, which throws a bright disc onto the tokens.",
+    "nod": "Two tokens, and neither of them shows a number you are allowed to move."
+  },
+  {
+    "id": "irrigation",
+    "name": "Irrigation",
+    "deck": "science",
+    "rule": "Take 2 wheat for each wheat hex you border; a hex pays once, however many buildings you have on it.",
+    "focal": "A sluice gate open, water running in a moonlit channel",
+    "scene": "A low view along an irrigation channel at night: the gate lifted, water sliding through and catching the moon, wheat leaning in over the bank, a spade struck into the earth and a lantern hung on the gate post.",
+    "light": "Moonlight on moving water as the cool key (the one card whose cool light is a reflection rather than a glow), with the lantern warm and close.",
+    "nod": "The channel forks twice: the water reaches more than one field."
+  },
+  {
+    "id": "medicine",
+    "name": "Medicine",
+    "deck": "science",
+    "rule": "Upgrade a settlement to a city for 2 ore and 1 wheat instead of the usual 3 and 2.",
+    "focal": "A mortar and pestle beside a bowl of steaming water",
+    "scene": "An apothecary's table, close and intimate: mortar half-full of ground herb, a shallow bowl steaming, folded linen bandages, dried bunches hanging from a beam just into frame above.",
+    "light": "One guttering candle very close, so the falloff is fast and the frame is mostly warm dark. The gentlest card in the deck.",
+    "nod": "The steam is ordinary steam. Nothing here is magic."
+  },
+  {
+    "id": "mining",
+    "name": "Mining",
+    "deck": "science",
+    "rule": "Take 2 ore for each ore hex you border; a hex pays once, however many buildings you have on it.",
+    "focal": "A pick struck into a glinting seam",
+    "scene": "A mine gallery, the only scene whose walls are living rock rather than masonry. A pick is buried in a seam that catches the light in hard points; a barrow of broken ore stands behind, and timber props frame the tunnel into darkness.",
+    "light": "A miner's lamp hung on a prop, warm and small, with the seam returning hard specular glints. Depth carried by the props receding into black.",
+    "nod": "Two full barrows, and the gallery goes on."
+  },
+  {
+    "id": "printer",
+    "name": "Printer",
+    "deck": "science",
+    "rule": "Scores the moment you draw it: 1 victory point, kept face-up. It is never held in hand and cannot be played.",
+    "focal": "An inked forme of type and a damp sheet hanging",
+    "scene": "A press bed with the forme locked up and freshly inked, glossy black; a printed sheet hangs on a line above, pale and still damp. The press screw and platen loom in the near dark.",
+    "light": "Two lamps, one each side of the bed. The highest-contrast card in the set: ink-black against paper-white, almost no midtone.",
+    "nod": "The sheet is already printed and hung. This one is finished the moment you see it."
+  },
+  {
+    "id": "road_building_sci",
+    "name": "Road Building",
+    "deck": "science",
+    "rule": "Build 2 roads for free.",
+    "focal": "Two staked cord lines running off into the dark",
+    "scene": "A night road crew's ground: two parallel cord lines pegged out across bare earth, a barrow of gravel tipped ready, a maul and a bundle of stakes. A different scene from the base deck's carpenter bench.",
+    "light": "A lantern hung on the nearest stake, low to the ground, so the cords catch the light and run away into black.",
+    "nod": "Two lines pegged, and the pegs go further than the gravel does.",
+    "art": "road_building"
+  },
+  {
+    "id": "smith",
+    "name": "Smith",
+    "deck": "science",
+    "rule": "Promote up to 2 of your knights for free.",
+    "focal": "Two blades glowing on the anvil",
+    "scene": "A forge at night. Two blades lie across the anvil at working heat, orange through to yellow at the edges; the fire is banked behind, tongs and a hammer to hand, the quench tub steaming at the edge of frame.",
+    "light": "The only card whose focal glow is hot rather than cold: the metal itself is the brightest thing, and everything cool in the frame is the night outside the forge door.",
+    "nod": "Two blades, both already hot."
+  },
+  {
+    "id": "raiders_muster",
+    "name": "Muster",
+    "deck": "raiders",
+    "rule": "Place one of your riders on one of the six paths around the castle. A path may hold only one rider.",
+    "focal": "A rider swinging up into the saddle in the castle gateway",
+    "scene": "Late morning outside the castle gate. A rider is mid-mount on the near road, leaning forward over the pommel with one leg swung; a pale horse stands square in the gateway's black opening and a third rider waits further along the wall. The gatehouse fills the upper frame with real relief: a cut arch, a portcullis half down in the slot, corbels under the parapet, a rust-red banner on a bracket.",
+    "light": "Bright and high, key from camera-left landing on the gateway arch and the mounting rider, so the gatehouse throws a hard shadow across the near road. Cool sky fill. No emissive.",
+    "nod": "Three riders, and three roads fanning from the junction at hex angles; the castle hex's other three roads fall outside the frame."
+  },
+  {
+    "id": "raiders_swift_rider",
+    "name": "Swift Rider",
+    "deck": "raiders",
+    "rule": "You may place one of your riders on any empty path on the board, not only at the castle.",
+    "focal": "A single rider at a junction far out on the downs, already turned to go",
+    "scene": "A hex-angle junction of two straight roads on open high ground, a waymarker stone and a low drystone wall at the near corner giving scale and something for the light to break on. The rider is past the junction and leaning, dust off the hooves. The castle is a small hard silhouette back on the skyline, several hexes away.",
+    "light": "Clean cold morning after rain, sun low from camera-right, long clean shadows running along the roads. Saturated sky, wet stone. The distance stays sharp: this card is about how far you can reach.",
+    "nod": "The castle is behind him and small, up on the skyline. Every other card in the deck stands at it."
+  },
+  {
+    "id": "raiders_treason",
+    "name": "Treason",
+    "deck": "raiders",
+    "rule": "Take 2 gold. Move 2 raiders from 2 different hexes onto 2 other unconquered coastal hexes.",
+    "focal": "An open purse on a crate on the shingle, coins counted out on the lid",
+    "scene": "A cove under storm light. A raider longship is drawn up across the tideline with its shields still on the rail and a hawser to a stake in the shingle; a second is out on the water with its oars down, going. Between them a crate serves as a table, the purse slumped open on the lid with its drawstring loose and two coins standing on edge beside it. The castle sits small on the headland above.",
+    "light": "Storm light: dark sky, one bright shaft breaking through onto the shingle and the crate, the air behind the ships left unlit. The gold is the brightest thing in the frame and it is lit by weather, not by a lamp.",
+    "nod": "Two coins, two ships, and one of the ships is already leaving under oars."
+  },
+  {
+    "id": "raiders_intrigue",
+    "name": "Intrigue",
+    "deck": "raiders",
+    "rule": "Remove 1 raider from a hex of your choice and add it to your prisoners. If no raider is on any coastal hex, discard this card and draw another.",
+    "focal": "A raider's shield and axe laid down on the flagstones outside a barred door",
+    "scene": "The castle's inner court under flat overcast. A round raider shield lies face-up and undamaged on the flags with an axe laid across it and a coil of wrist rope beside; the undercroft door behind is barred, iron-studded and standing open on darkness under a stone lintel. A tethering ring and its chain hang on the back wall, a water butt stands in the corner, and nobody is in shot.",
+    "light": "White overcast, one sky and no sun at all, so there is not a shadow anywhere on the card. Everything is described by albedo and relief instead: the flags are individual slabs, the walls are real courses, the door has real studs. The only black region is the open doorway.",
+    "nod": "The shield is face-up and undamaged. He was taken, not beaten."
+  },
+  {
+    "id": "swift_journey",
+    "name": "Swift Journey",
+    "deck": "dev",
+    "rule": "After you have taken a movement action this turn, take a second one, with a fresh full movement allowance.",
+    "focal": "A fresh team already harnessed alongside a loaded wagon at the plaza gate",
+    "scene": "Midday at a plaza gate. A loaded dray stands to the left with its team still hitched and their heads down; on the right, nearer, a fresh pair stands harnessed with the traces running forward to a swingletree lying flat on the paving, hitched to nothing. The gate's black passage sits between them and the road out is wide, straight and undressed.",
+    "light": "High bright noon, deep saturated sky, short hard shadows straight down under both teams. Warm neutral stone, honey and straw. No emissive.",
+    "nod": "Two teams, one wagon, and the traces of the second team end on the stone."
+  }
+]

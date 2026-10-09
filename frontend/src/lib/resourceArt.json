@@ -1,0 +1,24 @@
+{
+  "$comment": "Which render each good uses. A pick is either \"shipped\" (keep the icon the game shipped with, and draw the card at that icon; a good with no shipped icon keeps its glyph) or { \"card\": \"NN\", \"small\": \"NN\" }, the variant numbers from a render batch's manifest.json: `card` is baked to card_<id>.webp (hand, trade lanes, pickers), `small` to icon_<id>.webp (costs, bank, log, tooltips, map builder). Bake with: node scripts/resource-art.mjs --src <render dir>.",
+  "cardPx": 192,
+  "smallPx": 128,
+  "items": {
+    "wood": "shipped",
+    "brick": "shipped",
+    "sheep": "shipped",
+    "wheat": "shipped",
+    "ore": "shipped",
+    "cloth": "shipped",
+    "paper": "shipped",
+    "coin": "shipped",
+    "rivercoin": "shipped",
+    "gold": "shipped",
+    "fish": "shipped",
+    "boot": "shipped",
+    "spice": "shipped",
+    "marble": "shipped",
+    "glass": "shipped",
+    "sand": "shipped",
+    "tools": "shipped"
+  }
+}

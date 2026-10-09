@@ -1,0 +1,201 @@
+# golangci-lint v2 configuration
+version: "2"
+
+run:
+  timeout: 5m
+  tests: true
+
+linters:
+  default: none
+  enable:
+    # Core correctness (gosimple merged into staticcheck in v2)
+    - errcheck
+    - govet
+    - ineffassign
+    - staticcheck
+    - unused
+
+    # Code quality
+    - bodyclose # HTTP/websocket response body must be closed
+    - durationcheck # Check for time.Duration * time.Duration
+    - errorlint # Proper error wrapping
+    - exhaustive # Check exhaustiveness of enum switch statements
+    - gocritic # Opinionated but useful checks
+    - misspell # Spelling mistakes
+    - nilerr # Return nil on error path
+    - nolintlint # Ensure nolint directives are valid and explained
+    - revive # Replacement for golint
+    - unconvert # Unnecessary type conversions
+    - usestdlibvars # Use http.MethodGet, http.StatusOK, etc.
+
+    # HTTP specific
+    - noctx # HTTP requests should use context
+
+    # Database specific (database/sql via modernc.org/sqlite)
+    - rowserrcheck # Check sql.Rows.Err() is checked
+    - sqlclosecheck # Check sql.Rows and sql.Stmt are closed
+
+    # Security
+    - gosec # Security issues
+
+    # Performance / modern Go
+    - copyloopvar # Loop variable capture (Go 1.22+)
+    - intrange # Use range over integers (Go 1.22+)
+    - perfsprint # Efficient string formatting
+    - modernize # Suggest modern Go idioms
+
+    # Additional quality checks
+    # dupword omitted: its autofix corrupts test literals like "hello hello".
+    - exptostd # Replace golang.org/x/exp with std
+    - fatcontext # Nested contexts in loops
+    - nilnesserr # Check err != nil returns correct error
+
+  settings:
+    errcheck:
+      check-type-assertions: true
+      check-blank: false
+      exclude-functions:
+        - (io.Closer).Close
+        - (net/http.ResponseWriter).Write
+        # Encoding to the HTTP response: nothing to recover if the client drops.
+        - (*encoding/json.Encoder).Encode
+        # Deferred rollback after commit is a no-op; the commit error is checked.
+        - (*database/sql.Tx).Rollback
+
+    gocritic:
+      enabled-tags:
+        - diagnostic
+        - style
+        - performance
+        - opinionated
+      disabled-checks:
+        - hugeParam # Too noisy for structs
+        - rangeValCopy # Often acceptable
+        - appendAssign # Style preference
+        - ifElseChain # Sometimes clearer than switch
+        # Names add nothing where the types already say it, and clash with
+        # locals of the same name (store.CreateOrBumpReport's `id`).
+        - unnamedResult
+
+    gosec:
+      excludes:
+        - G104 # Audit errors not checked (handled by errcheck)
+        - G115 # Integer overflow conversion (bounded by validation/config)
+        - G304 # File path from variable (often intentional)
+        - G404 # Weak random: engine RNG is seeded for determinism, not crypto
+        - G124 # Cookie attrs are set via the secureCookie() helper, which gosec's
+        #        literal-only analysis can't see through; deletion cookies carry no value
+
+    misspell:
+      # No locale: prose is British English, while Go identifiers follow the
+      # stdlib's American spelling (Color, Neighbors, Harbor). Either locale
+      # flags one or the other; unset still catches plain typos.
+      #
+      # "cancelled" is a persisted event type (engine.EvTradeCancelled); a US
+      # autofix to "canceled" would break replay of old game logs.
+      locale: ""
+      ignore-rules:
+        - cancelled
+
+    nolintlint:
+      require-explanation: true
+      require-specific: true
+
+    exhaustive:
+      default-signifies-exhaustive: true
+
+    revive:
+      severity: warning
+      rules:
+        - name: blank-imports
+        - name: context-as-argument
+        - name: context-keys-type
+        - name: dot-imports
+        - name: error-return
+        - name: error-strings
+        - name: error-naming
+        - name: exported
+          disabled: true # Too noisy - not all exports need docs
+        - name: increment-decrement
+        - name: indent-error-flow
+        - name: package-comments
+          disabled: true # Not requiring package comments
+        - name: range
+        - name: receiver-naming
+        - name: time-naming
+        - name: unexported-return
+        - name: var-declaration
+        - name: var-naming
+        - name: early-return
+          arguments:
+            - preserve-scope
+        - name: empty-block
+        - name: identical-branches
+        - name: unconditional-recursion
+        - name: superfluous-else
+          arguments:
+            - preserve-scope
+        - name: useless-break
+        - name: unreachable-code
+
+    staticcheck:
+      checks:
+        - all
+        - -SA1019 # stdlib deprecation warnings - handled separately
+        - -SA9003 # Empty branch - sometimes intentional
+        # QF1001 (De Morgan) is a refactoring suggestion; the undistributed
+        # form often reads better. The rest of the QF family stays on.
+        - -QF1001
+
+  exclusions:
+    generated: lax
+    paths:
+      # The flatted npm package ships a stray Go file; never lint node_modules.
+      - node_modules
+    presets:
+      - comments
+      - std-error-handling
+      - common-false-positives
+    rules:
+      # Test files can be more relaxed
+      - path: _test\.go
+        linters:
+          - errcheck
+          - gosec
+          - gocritic
+          - bodyclose # test HTTP clients are short-lived
+          - noctx
+
+      # Load-test / generator tooling: short-lived HTTP clients.
+      - path: (loadtest/|cmd/costan-loadgen/)
+        linters:
+          - bodyclose
+          - noctx
+
+      # store/ methods take no ctx yet. noctx stays on elsewhere for outbound
+      # HTTP (auth, supporter).
+      - path: store/
+        linters:
+          - noctx
+
+formatters:
+  enable:
+    - goimports
+  exclusions:
+    paths:
+      - node_modules
+  settings:
+    goimports:
+      local-prefixes:
+        - github.com/ftqo/costan.io
+
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+
+output:
+  formats:
+    text:
+      colors: true
+  sort-order:
+    - file
